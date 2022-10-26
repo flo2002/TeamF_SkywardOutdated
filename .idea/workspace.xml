@@ -5,27 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/subsystems/BrokerBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/subsystems/PersonBroker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/hello-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/AbstractEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/subsystems/BrokerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/BrokerBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/subsystems/PersonBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/PersonBroker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,24 +66,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/flori/Documents/FHV/Software Engineering/seminar/gradle_experiements/se22_seminar_experiment&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/flori/Documents/Java/BakeryReservationService/BakeryReservationService",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;h2&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fhv.ws22.se.skyward.HelloApplication" />
@@ -130,6 +119,7 @@
       <workItem from="1666702630406" duration="1064000" />
       <workItem from="1666707586443" duration="1631000" />
       <workItem from="1666776517479" duration="54000" />
+      <workItem from="1666776865158" duration="3489000" />
     </task>
     <servers />
   </component>
