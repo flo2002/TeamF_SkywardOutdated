@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.HelloApplication;
 import fhv.ws22.se.skyward.model.Person;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import javafx.fxml.FXML;
@@ -11,12 +12,7 @@ public class HelloController {
     private Label welcomeText;
 
     public HelloController() {
-        Person john = new Person();
-        john.setFirstName("John");
-        john.setLastName("Doe");
-
-        this.dbf = new DatabaseFacade();
-        dbf.addPerson(john);
+        dbf = HelloApplication.getDbf();
     }
 
     @FXML

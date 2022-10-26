@@ -1,4 +1,4 @@
-package fhv.ws22.se.skyward.subsystems;
+package fhv.ws22.se.skyward.persistence.broker;
 
 import fhv.ws22.se.skyward.model.Person;
 
