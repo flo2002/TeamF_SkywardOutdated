@@ -1,4 +1,4 @@
-package fhv.ws22.se.skyward.persistence.model;
+package fhv.ws22.se.skyward.model;
 
 import org.hibernate.annotations.Type;
 

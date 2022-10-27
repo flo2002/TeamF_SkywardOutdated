@@ -1,8 +1,14 @@
 package fhv.ws22.se.skyward.model;
 
-public class Person {
-private String firstName;
+import javax.persistence.*;
+
+@Entity
+public class Person extends AbstractEntity {
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+
 
     public Person() {
     }
