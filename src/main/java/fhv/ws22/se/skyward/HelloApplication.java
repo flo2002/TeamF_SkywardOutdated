@@ -6,11 +6,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
     public static DatabaseFacade dbf;
+    private static final Logger logger = LogManager.getLogger(HelloApplication.class);
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -22,6 +25,12 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+        logger.trace("We've just greeted the user!");
+        logger.debug("We've just greeted the user!");
+        logger.info("We've just greeted the user!");
+        logger.warn("We've just greeted the user!");
+        logger.error("We've just greeted the user!");
+        logger.fatal("We've just greeted the user!");
         Person john = new Person();
         john.setFirstName("John");
         john.setLastName("Doe");
