@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" afterDir="false" />
     </list>
@@ -112,7 +113,8 @@
       <workItem from="1666707586443" duration="1631000" />
       <workItem from="1666776517479" duration="54000" />
       <workItem from="1666776865158" duration="3489000" />
-      <workItem from="1666858862431" duration="2872000" />
+      <workItem from="1666858862431" duration="3022000" />
+      <workItem from="1666867495092" duration="4993000" />
     </task>
     <servers />
   </component>

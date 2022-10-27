@@ -27,20 +27,22 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+
         DataGenerator.generateData();
-        logger.trace("We've just greeted the user!");
-        logger.debug("We've just greeted the user!");
-        logger.info("We've just greeted the user!");
-        logger.warn("We've just greeted the user!");
-        logger.error("We've just greeted the user!");
-        logger.fatal("We've just greeted the user!");
+
+
         Person john = new Person();
         john.setFirstName("John");
         john.setLastName("Doe");
 
         dbf = new DatabaseFacade();
         dbf.add(john);
-
+        logger.trace("We've just greeted the user!");
+        logger.debug("We've just greeted the user!");
+        logger.info("We've just greeted the user!");
+        logger.warn("We've just greeted the user!");
+        logger.error("We've just greeted the user!");
+        logger.fatal("We've just greeted the user!");
         launch();
     }
 }
