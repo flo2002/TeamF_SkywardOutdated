@@ -1,7 +1,5 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.HelloApplication;
-import fhv.ws22.se.skyward.model.Person;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

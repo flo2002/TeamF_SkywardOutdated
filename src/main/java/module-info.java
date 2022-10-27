@@ -17,4 +17,5 @@ module fhv.ws22.se.skyward {
 
     exports fhv.ws22.se.skyward.persistence;
     exports fhv.ws22.se.skyward.model;
+    exports fhv.ws22.se.skyward.model.DTOs;
 }
