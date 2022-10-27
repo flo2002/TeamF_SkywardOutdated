@@ -15,4 +15,5 @@ module fhv.ws22.se.skyward {
     opens fhv.ws22.se.skyward.view to javafx.fxml;
 
     exports fhv.ws22.se.skyward.persistence;
+    exports fhv.ws22.se.skyward.model;
 }
