@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/model/PersonConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/model/PersonEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/model/PersonView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/model/ViewEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/model/AbstractEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/PersonBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/PersonBroker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +29,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -82,7 +96,7 @@
       <module name="TeamF" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="fhv.ws22.se.skyward.view.*" />
+          <option name="PATTERN" value="fhv.ws22.se.skyward.view.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,7 +129,8 @@
       <workItem from="1666858862431" duration="2872000" />
       <workItem from="1666867587683" duration="29000" />
       <workItem from="1666867649086" duration="27000" />
-      <workItem from="1666867921232" duration="168000" />
+      <workItem from="1666867921232" duration="3899000" />
+      <workItem from="1666880707056" duration="1587000" />
     </task>
     <servers />
   </component>

@@ -1,7 +1,5 @@
-package fhv.ws22.se.skyward.view;
+package fhv.ws22.se.skyward.view.controller;
 
-import fhv.ws22.se.skyward.HelloApplication;
-import fhv.ws22.se.skyward.model.Person;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,6 +15,6 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText(dbf.getAllPersons().get(0).getFirstName());
+        welcomeText.setText(dbf.getAllPersonViews().get(0).getFirstName());
     }
 }

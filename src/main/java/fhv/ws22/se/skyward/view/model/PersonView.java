@@ -1,10 +1,10 @@
-package fhv.ws22.se.skyward.model;
+package fhv.ws22.se.skyward.view.model;
 
-public class Person {
-private String firstName;
+public class PersonView implements ViewEntity {
+    private String firstName;
     private String lastName;
 
-    public Person() {
+    public PersonView() {
     }
 
     public String getFirstName() {
@@ -13,6 +13,7 @@ private String firstName;
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }

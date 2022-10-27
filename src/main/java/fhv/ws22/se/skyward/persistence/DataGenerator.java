@@ -1,12 +1,12 @@
 package fhv.ws22.se.skyward.persistence;
 
-import fhv.ws22.se.skyward.model.Person;
+import fhv.ws22.se.skyward.view.model.PersonView;
 
 public class DataGenerator {
     public static void generateData() {
         DatabaseFacade dbf = DatabaseFacade.getInstance();
 
-        Person john = new Person();
+        PersonView john = new PersonView();
         john.setFirstName("John");
         john.setLastName("Doe");
 

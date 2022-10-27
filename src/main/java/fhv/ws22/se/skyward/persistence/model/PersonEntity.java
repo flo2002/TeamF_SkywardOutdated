@@ -1,10 +1,15 @@
-package fhv.ws22.se.skyward.model;
+package fhv.ws22.se.skyward.persistence.model;
 
-public class Person {
-private String firstName;
+import javax.persistence.*;
+
+@Entity
+public class PersonEntity extends AbstractEntity {
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
     private String lastName;
 
-    public Person() {
+    public PersonEntity() {
     }
 
     public String getFirstName() {
