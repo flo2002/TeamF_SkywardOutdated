@@ -8,14 +8,29 @@ import fhv.ws22.se.skyward.persistence.broker.PersonBroker;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseFacade {
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+    private Map<Class, BrokerBase> brokers;
+
+    private static DatabaseFacade singleton;
+
+    public static synchronized DatabaseFacade getInstance() {
+        if (singleton == null) {
+            singleton = new DatabaseFacade();
+        }
+        return singleton;
+    }
 
     public DatabaseFacade() {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("skyward");
         this.entityManager = fact.createEntityManager();
+
+        brokers = new HashMap<Class, BrokerBase>();
+        brokers.put(Person.class, new PersonBroker(entityManager));
     }
 
     public List<Person> getAllPersons() {
@@ -23,21 +38,13 @@ public class DatabaseFacade {
         return broker.getAll();
     }
     public <T extends AbstractEntity> void add(T t) {
-        if (t instanceof Person) {
-            PersonBroker broker = new PersonBroker(entityManager);
-            broker.add((Person) t);
-        }
-    };
+        brokers.get(t.getClass()).add(t);
+    }
+
     public <T extends AbstractEntity> void update(T t) {
-        if (t instanceof Person) {
-            PersonBroker broker = new PersonBroker(entityManager);
-            broker.update((Person) t);
-        }
+        brokers.get(t.getClass()).update(t);
     };
     public <T extends AbstractEntity> void delete(T t) {
-        if (t instanceof Person) {
-            PersonBroker broker = new PersonBroker(entityManager);
-            broker.delete((Person) t);
-        }
+        brokers.get(t.getClass()).delete(t);
     };
 }

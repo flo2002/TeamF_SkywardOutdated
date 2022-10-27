@@ -12,7 +12,7 @@ public class HelloController {
     private Label welcomeText;
 
     public HelloController() {
-        dbf = HelloApplication.getDbf();
+        dbf = DatabaseFacade.getInstance();
     }
 
     @FXML
