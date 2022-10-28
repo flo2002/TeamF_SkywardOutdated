@@ -1,5 +1,7 @@
 package fhv.ws22.se.skyward.model;
 
+import fhv.ws22.se.skyward.model.DTOs.PersonDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,5 +26,9 @@ public class Person extends AbstractEntity {
     }
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public PersonDTO toDTO() {
+        return new PersonDTO(firstName, lastName);
     }
 }
