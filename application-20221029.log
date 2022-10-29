@@ -3268,3 +3268,720 @@ Table "BOOKING" already exists; SQL statement:
 2022-10-29 12:14:04.276 [main] WARN  HelloApplication - We've just greeted the user!
 2022-10-29 12:14:04.277 [main] ERROR HelloApplication - We've just greeted the user!
 2022-10-29 12:14:04.277 [main] FATAL HelloApplication - We've just greeted the user!
+2022-10-29 12:18:13.232 [main] WARN  org.hibernate.dialect.H2Dialect - HHH000393: The 0.0.0 version of H2 implements temporary table creation such that it commits current transaction; multi-table, bulk hql/jpaql will not work properly
+2022-10-29 12:18:13.947 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2022-10-29 12:18:19.197 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:419) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:403) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:272) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:178) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:149) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:117) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:11) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Kann "BOOKING" nicht löschen weil "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" davon abhängt
+Cannot drop "BOOKING" because "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" depends on it; SQL statement:
+
+    drop table Booking if  [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:18:19.212 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:502) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:486) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:363) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:176) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:144) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:128) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:254) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:11) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "BOOKING" besteht bereits
+Table "BOOKING" already exists; SQL statement:
+
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:18:19.354 [main] WARN  HelloApplication - We've just greeted the user!
+2022-10-29 12:18:19.354 [main] ERROR HelloApplication - We've just greeted the user!
+2022-10-29 12:18:19.354 [main] FATAL HelloApplication - We've just greeted the user!
+2022-10-29 12:22:06.579 [main] WARN  org.hibernate.dialect.H2Dialect - HHH000393: The 0.0.0 version of H2 implements temporary table creation such that it commits current transaction; multi-table, bulk hql/jpaql will not work properly
+2022-10-29 12:22:07.270 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2022-10-29 12:22:12.489 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:419) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:403) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:272) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:178) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:149) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:117) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Kann "BOOKING" nicht löschen weil "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" davon abhängt
+Cannot drop "BOOKING" because "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" depends on it; SQL statement:
+
+    drop table Booking if  [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:22:12.504 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:502) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:486) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:363) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:176) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:144) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:128) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:254) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "BOOKING" besteht bereits
+Table "BOOKING" already exists; SQL statement:
+
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:24:54.210 [main] WARN  org.hibernate.dialect.H2Dialect - HHH000393: The 0.0.0 version of H2 implements temporary table creation such that it commits current transaction; multi-table, bulk hql/jpaql will not work properly
+2022-10-29 12:24:54.998 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2022-10-29 12:25:00.245 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:419) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:403) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:272) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:178) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:149) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:117) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Kann "BOOKING" nicht löschen weil "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" davon abhängt
+Cannot drop "BOOKING" because "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" depends on it; SQL statement:
+
+    drop table Booking if  [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:25:00.261 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:502) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:486) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:363) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:176) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:144) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:128) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:254) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "BOOKING" besteht bereits
+Table "BOOKING" already exists; SQL statement:
+
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:25:40.372 [main] WARN  org.hibernate.dialect.H2Dialect - HHH000393: The 0.0.0 version of H2 implements temporary table creation such that it commits current transaction; multi-table, bulk hql/jpaql will not work properly
+2022-10-29 12:25:41.071 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2022-10-29 12:25:46.316 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:419) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:403) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:272) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:178) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:149) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:117) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Kann "BOOKING" nicht löschen weil "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" davon abhängt
+Cannot drop "BOOKING" because "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" depends on it; SQL statement:
+
+    drop table Booking if  [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:25:46.331 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:502) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:486) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:363) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:176) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:144) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:128) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:254) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "BOOKING" besteht bereits
+Table "BOOKING" already exists; SQL statement:
+
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:26:37.431 [main] WARN  org.hibernate.dialect.H2Dialect - HHH000393: The 0.0.0 version of H2 implements temporary table creation such that it commits current transaction; multi-table, bulk hql/jpaql will not work properly
+2022-10-29 12:26:38.144 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2022-10-29 12:26:43.389 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:419) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:403) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:272) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:178) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:149) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:117) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Kann "BOOKING" nicht löschen weil "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" davon abhängt
+Cannot drop "BOOKING" because "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" depends on it; SQL statement:
+
+    drop table Booking if  [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:26:43.405 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:502) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:486) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:363) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:176) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:144) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:128) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:254) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "BOOKING" besteht bereits
+Table "BOOKING" already exists; SQL statement:
+
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:26:43.582 [main] WARN  HelloApplication - We've just greeted the user!
+2022-10-29 12:26:43.582 [main] ERROR HelloApplication - We've just greeted the user!
+2022-10-29 12:26:43.582 [main] FATAL HelloApplication - We've just greeted the user!
+2022-10-29 12:28:09.787 [main] WARN  org.hibernate.dialect.H2Dialect - HHH000393: The 0.0.0 version of H2 implements temporary table creation such that it commits current transaction; multi-table, bulk hql/jpaql will not work properly
+2022-10-29 12:28:10.473 [main] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2022-10-29 12:28:15.695 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    drop table Booking if exists" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:419) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:403) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:272) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:178) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:149) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:117) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Kann "BOOKING" nicht löschen weil "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" davon abhängt
+Cannot drop "BOOKING" because "FK6QRQ1QPQKH33XMU7Q5G0DT80E, FKEPDG3Q528TQ7Y7NM34CAUJIOB" depends on it; SQL statement:
+
+    drop table Booking if  [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:28:15.710 [main] WARN  org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id)
+    )" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlString(SchemaCreatorImpl.java:502) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.applySqlStrings(SchemaCreatorImpl.java:486) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.createFromMetadata(SchemaCreatorImpl.java:363) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.performCreation(SchemaCreatorImpl.java:176) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:144) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.internal.SchemaCreatorImpl.doCreation(SchemaCreatorImpl.java:128) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:254) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.1.4.Final.jar:?]
+	at java.util.HashMap.forEach(HashMap.java:1337) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:333) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1425) ~[hibernate-core-6.1.4.Final.jar:?]
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55) ~[hibernate-core-6.1.4.Final.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:55) ~[jakarta.persistence-api-3.1.0.jar:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.<init>(DatabaseFacade.java:27) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DatabaseFacade.getInstance(DatabaseFacade.java:21) ~[classes/:?]
+	at fhv.ws22.se.skyward.persistence.DataGenerator.generateData(DataGenerator.java:14) ~[classes/:?]
+	at fhv.ws22.se.skyward.HelloApplication.main(HelloApplication.java:28) ~[classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465) ~[javafx-graphics-19-win.jar:?]
+	at com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364) ~[javafx-graphics-19-win.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1071) ~[?:?]
+Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "BOOKING" besteht bereits
+Table "BOOKING" already exists; SQL statement:
+
+    create table Booking (
+       id binary(16) not null,
+        checkInDateTime timestamp(6),
+        checkOutDateTime timestamp(6),
+        primary key (id) [42101-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:91) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.command.Command.executeUpdate(Command.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252) ~[h2-2.1.214.jar:2.1.214]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223) ~[h2-2.1.214.jar:2.1.214]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54) ~[hibernate-core-6.1.4.Final.jar:?]
+	... 31 more
+2022-10-29 12:28:15.886 [main] WARN  HelloApplication - We've just greeted the user!
+2022-10-29 12:28:15.886 [main] ERROR HelloApplication - We've just greeted the user!
+2022-10-29 12:28:15.886 [main] FATAL HelloApplication - We've just greeted the user!

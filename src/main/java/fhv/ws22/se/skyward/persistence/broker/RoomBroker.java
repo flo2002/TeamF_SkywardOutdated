@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomBroker extends BrokerBase<RoomDto> {
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public RoomBroker(EntityManager entityManager) {
         this.entityManager = entityManager;

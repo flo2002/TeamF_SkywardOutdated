@@ -1,6 +1,5 @@
 package fhv.ws22.se.skyward.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.List;
 @Entity
 public class RoomState extends AbstractEntity {
     private String name;
-    @OneToMany(mappedBy = "roomState", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "roomState")
     private List<Room> rooms1;
 
     public RoomState() {}

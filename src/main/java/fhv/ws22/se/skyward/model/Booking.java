@@ -1,9 +1,7 @@
 package fhv.ws22.se.skyward.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,12 +9,12 @@ import java.util.List;
 public class Booking extends AbstractEntity {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "booking_person",
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id"))
     private List<Person> persons;
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "booking_room",
             joinColumns = @JoinColumn(name = "booking_id"),

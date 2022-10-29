@@ -30,6 +30,7 @@ public class DatabaseFacade {
         brokers = new HashMap<Class, BrokerBase>();
         brokers.put(PersonDto.class, new PersonBroker(entityManager));
         brokers.put(RoomDto.class, new RoomBroker(entityManager));
+        brokers.put(BookingDto.class, new BookingBroker(entityManager));
     }
 
     public List<PersonDto> getAllPersons() {
