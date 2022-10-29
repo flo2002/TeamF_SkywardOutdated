@@ -2,11 +2,11 @@ package fhv.ws22.se.skyward.model.DTOs;
 
 import fhv.ws22.se.skyward.model.Person;
 
-public class PersonDTO extends DTOMarker {
+public class PersonDto extends DTOMarker {
     private String firstName;
     private String lastName;
 
-    public PersonDTO(String firstName, String lastName) {
+    public PersonDto(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

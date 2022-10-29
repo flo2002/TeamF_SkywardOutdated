@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomStateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomTypeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomBroker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomStateBroker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomTypeBroker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/118c377c-59a2-4cd5-b09b-fdb92a13f5ee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/118c377c-59a2-4cd5-b09b-fdb92a13f5ee.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/AbstractEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/PersonDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/PersonDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/PersonBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/PersonBroker.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +33,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="com.haulmont.jpb.NewClass" />
         <option value="Class" />
       </list>
     </option>
@@ -65,11 +82,11 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alex/Documents/GitHub/TeamF&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/flori/Documents/Java/DBMHomework&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
@@ -77,6 +94,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="fhv.ws22.se.skyward.model" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fhv.ws22.se.skyward.HelloApplication" />
@@ -115,6 +137,7 @@
       <workItem from="1666776865158" duration="3489000" />
       <workItem from="1666858862431" duration="3022000" />
       <workItem from="1666867495092" duration="4993000" />
+      <workItem from="1666961774153" duration="2786000" />
     </task>
     <servers />
   </component>

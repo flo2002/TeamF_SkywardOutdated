@@ -1,0 +1,37 @@
+package fhv.ws22.se.skyward.model;
+
+import fhv.ws22.se.skyward.model.DTOs.RoomTypeDto;
+
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.math.BigDecimal;
+import java.util.List;
+
+@Entity
+public class RoomType extends AbstractEntity {
+    private String name;
+    private BigDecimal price;
+
+    @OneToMany(mappedBy = "roomType")
+    private List<Room> rooms;
+
+    public RoomType() {}
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public RoomTypeDto toDto() {
+        return new RoomTypeDto(name, price);
+    }
+}

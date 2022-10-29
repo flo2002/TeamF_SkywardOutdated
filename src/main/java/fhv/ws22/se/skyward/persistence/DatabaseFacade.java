@@ -1,10 +1,12 @@
 package fhv.ws22.se.skyward.persistence;
 
 import fhv.ws22.se.skyward.model.DTOs.DTOMarker;
-import fhv.ws22.se.skyward.model.DTOs.PersonDTO;
-import fhv.ws22.se.skyward.model.Person;
-import fhv.ws22.se.skyward.persistence.broker.BrokerBase;
-import fhv.ws22.se.skyward.persistence.broker.PersonBroker;
+import fhv.ws22.se.skyward.model.DTOs.PersonDto;
+import fhv.ws22.se.skyward.model.DTOs.RoomStateDto;
+import fhv.ws22.se.skyward.model.DTOs.RoomTypeDto;
+import fhv.ws22.se.skyward.model.Room;
+import fhv.ws22.se.skyward.model.RoomState;
+import fhv.ws22.se.skyward.persistence.broker.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,10 +33,13 @@ public class DatabaseFacade {
         this.entityManager = fact.createEntityManager();
 
         brokers = new HashMap<Class, BrokerBase>();
-        brokers.put(PersonDTO.class, new PersonBroker(entityManager));
+        brokers.put(PersonDto.class, new PersonBroker(entityManager));
+        brokers.put(RoomTypeDto.class, new RoomTypeBroker(entityManager));
+        brokers.put(RoomStateDto.class, new RoomStateBroker(entityManager));
+        brokers.put(Room.class, new RoomBroker(entityManager));
     }
 
-    public List<PersonDTO> getAllPersons() {
+    public List<PersonDto> getAllPersons() {
         PersonBroker broker = new PersonBroker(entityManager);
         return broker.getAll();
     }
