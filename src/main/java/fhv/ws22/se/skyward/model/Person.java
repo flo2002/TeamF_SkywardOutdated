@@ -2,7 +2,7 @@ package fhv.ws22.se.skyward.model;
 
 import fhv.ws22.se.skyward.model.DTOs.PersonDto;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity

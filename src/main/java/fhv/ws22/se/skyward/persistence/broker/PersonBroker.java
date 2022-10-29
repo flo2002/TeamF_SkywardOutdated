@@ -3,7 +3,7 @@ package fhv.ws22.se.skyward.persistence.broker;
 import fhv.ws22.se.skyward.model.DTOs.PersonDto;
 import fhv.ws22.se.skyward.model.Person;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 

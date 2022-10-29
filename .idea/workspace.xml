@@ -7,17 +7,18 @@
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application-20221029.log" beforeDir="false" afterPath="$PROJECT_DIR$/application-20221029.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomStateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomTypeDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/AbstractEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/AbstractEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/PersonBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/PersonBroker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomBroker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomStateBroker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomTypeBroker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,6 +136,7 @@
       <workItem from="1666961774153" duration="2786000" />
       <workItem from="1667023808741" duration="5974000" />
       <workItem from="1667031688241" duration="2109000" />
+      <workItem from="1667036763544" duration="1454000" />
     </task>
     <servers />
   </component>

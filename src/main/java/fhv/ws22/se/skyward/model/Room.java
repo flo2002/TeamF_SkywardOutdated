@@ -2,7 +2,7 @@ package fhv.ws22.se.skyward.model;
 
 import org.hibernate.annotations.Cascade;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.List;
 
 @Entity

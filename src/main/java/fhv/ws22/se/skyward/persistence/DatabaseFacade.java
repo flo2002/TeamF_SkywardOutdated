@@ -3,9 +3,9 @@ package fhv.ws22.se.skyward.persistence;
 import fhv.ws22.se.skyward.model.DTOs.*;
 import fhv.ws22.se.skyward.persistence.broker.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
