@@ -20,7 +20,7 @@ public class RoomTypeBroker extends BrokerBase<RoomTypeDto> {
 
         List<RoomTypeDto> roomTypeDtos = new ArrayList<RoomTypeDto>();
         for (RoomType rt : roomTypes) {
-            roomTypeDtos.add(rt.toDto());
+            roomTypeDtos.add(RoomTypeDto.toDto(rt));
         }
 
         return roomTypeDtos;
@@ -28,19 +28,19 @@ public class RoomTypeBroker extends BrokerBase<RoomTypeDto> {
 
     public void add(RoomTypeDto roomType) {
         entityManager.getTransaction().begin();
-        entityManager.persist(roomType.toRoomType());
+        entityManager.persist(roomType.toEntity());
         entityManager.getTransaction().commit();
     }
 
     public void update(RoomTypeDto roomType) {
         entityManager.getTransaction().begin();
-        entityManager.merge(roomType.toRoomType());
+        entityManager.merge(roomType.toEntity());
         entityManager.getTransaction().commit();
     }
 
     public void delete(RoomTypeDto roomType) {
         entityManager.getTransaction().begin();
-        entityManager.remove(roomType.toRoomType());
+        entityManager.remove(roomType.toEntity());
         entityManager.getTransaction().commit();
     }
 }

@@ -22,7 +22,7 @@ public class RoomBroker extends BrokerBase<RoomDto> {
 
         List<RoomDto> roomDtos = new ArrayList<RoomDto>();
         for (Room r : rooms) {
-            roomDtos.add(r.toDto());
+            roomDtos.add(RoomDto.toDto(r));
         }
 
         return roomDtos;
@@ -30,19 +30,19 @@ public class RoomBroker extends BrokerBase<RoomDto> {
 
     public void add(RoomDto room) {
         entityManager.getTransaction().begin();
-        entityManager.persist(room.toRoom());
+        entityManager.persist(room.toEntity());
         entityManager.getTransaction().commit();
     }
 
     public void update(RoomDto room) {
         entityManager.getTransaction().begin();
-        entityManager.merge(room.toRoom());
+        entityManager.merge(room.toEntity());
         entityManager.getTransaction().commit();
     }
 
     public void delete(RoomDto room) {
         entityManager.getTransaction().begin();
-        entityManager.remove(room.toRoom());
+        entityManager.remove(room.toEntity());
         entityManager.getTransaction().commit();
     }
 }

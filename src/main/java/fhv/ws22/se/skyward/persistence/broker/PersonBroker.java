@@ -10,8 +10,8 @@ import java.util.List;
 public class PersonBroker extends BrokerBase<PersonDto> {
     private final EntityManager entityManager;
 
-    public PersonBroker(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public PersonBroker(EntityManager em) {
+        entityManager = em;
     }
 
     @SuppressWarnings("unchecked")
@@ -20,7 +20,7 @@ public class PersonBroker extends BrokerBase<PersonDto> {
 
         List<PersonDto> personDtos = new ArrayList<PersonDto>();
         for (Person p : persons) {
-            personDtos.add(p.toDTO());
+            personDtos.add(PersonDto.toDto(p));
         }
 
         return personDtos;
@@ -28,19 +28,19 @@ public class PersonBroker extends BrokerBase<PersonDto> {
 
     public void add(PersonDto person) {
         entityManager.getTransaction().begin();
-        entityManager.persist(person.toPerson());
+        entityManager.persist(person.toEntity());
         entityManager.getTransaction().commit();
     }
 
     public void update(PersonDto person) {
         entityManager.getTransaction().begin();
-        entityManager.merge(person);
+        entityManager.merge(person.toEntity());
         entityManager.getTransaction().commit();
     }
 
     public void delete(PersonDto person) {
         entityManager.getTransaction().begin();
-        entityManager.remove(person);
+        entityManager.remove(person.toEntity());
         entityManager.getTransaction().commit();
     }
 }

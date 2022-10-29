@@ -2,6 +2,7 @@ package fhv.ws22.se.skyward.model;
 
 import fhv.ws22.se.skyward.model.DTOs.RoomStateDto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -26,10 +27,6 @@ public class RoomState extends AbstractEntity {
     }
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
-    }
-
-    public RoomStateDto toDto() {
-        return new RoomStateDto(name);
     }
 }
 

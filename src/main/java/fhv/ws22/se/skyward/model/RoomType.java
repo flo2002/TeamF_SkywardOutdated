@@ -31,7 +31,10 @@ public class RoomType extends AbstractEntity {
         this.price = price;
     }
 
-    public RoomTypeDto toDto() {
-        return new RoomTypeDto(name, price);
+    public List<Room> getRooms() {
+        return rooms;
+    }
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }

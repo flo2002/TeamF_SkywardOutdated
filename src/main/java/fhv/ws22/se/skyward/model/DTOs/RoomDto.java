@@ -1,12 +1,15 @@
 package fhv.ws22.se.skyward.model.DTOs;
 
 import fhv.ws22.se.skyward.model.Room;
+import org.modelmapper.ModelMapper;
 
-public class RoomDto extends DTOMarker {
+public class RoomDto extends AbstractDto {
     private int roomNumber;
     private RoomTypeDto roomType;
     private RoomStateDto roomState;
 
+    public RoomDto() {
+    }
     public RoomDto(int roomNumber, RoomTypeDto roomType, RoomStateDto roomState) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
@@ -34,11 +37,11 @@ public class RoomDto extends DTOMarker {
         this.roomState = roomState;
     }
 
-    public Room toRoom() {
-        Room room = new Room();
-        room.setRoomNumber(roomNumber);
-        room.setRoomType(roomType.toRoomType());
-        room.setRoomState(roomState.toRoomState());
-        return room;
+    public Room toEntity() {
+        return modelMapper.map(this, Room.class);
+    }
+    public static RoomDto toDto(Room room) {
+        ModelMapper mm = new ModelMapper();
+        return mm.map(room, RoomDto.class);
     }
 }

@@ -30,8 +30,10 @@ public class Person extends AbstractEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public PersonDto toDTO() {
-        return new PersonDto(firstName, lastName);
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

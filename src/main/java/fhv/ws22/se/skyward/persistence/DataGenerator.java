@@ -4,6 +4,7 @@ import fhv.ws22.se.skyward.model.DTOs.PersonDto;
 import fhv.ws22.se.skyward.model.DTOs.RoomDto;
 import fhv.ws22.se.skyward.model.DTOs.RoomStateDto;
 import fhv.ws22.se.skyward.model.DTOs.RoomTypeDto;
+import fhv.ws22.se.skyward.model.Room;
 
 import java.math.BigDecimal;
 
@@ -19,9 +20,11 @@ public class DataGenerator {
         RoomStateDto rs3 = new RoomStateDto("occupied");
         RoomStateDto rs4 = new RoomStateDto("out_of_order");
 
-        RoomDto r = new RoomDto(101, rt, rs);
+        RoomDto r = new RoomDto(101, null, null);
         RoomDto r2 = new RoomDto(201, rt, rs2);
         RoomDto r3 = new RoomDto(301, rt2, rs3);
+
+
 
         PersonDto john = new PersonDto("John", "Doe");
         PersonDto jane = new PersonDto("Jane", "Doe");
@@ -33,8 +36,8 @@ public class DataGenerator {
         dbf.add(rs3);
         dbf.add(rs4);
         dbf.add(r);
-        dbf.add(r2);
-        dbf.add(r3);
+        //dbf.add(r2);
+        //dbf.add(r3);
         dbf.add(john);
         dbf.add(jane);
     }

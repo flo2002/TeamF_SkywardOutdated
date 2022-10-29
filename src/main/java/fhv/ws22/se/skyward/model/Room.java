@@ -1,8 +1,5 @@
 package fhv.ws22.se.skyward.model;
 
-import fhv.ws22.se.skyward.model.DTOs.RoomDto;
-import fhv.ws22.se.skyward.model.DTOs.RoomStateDto;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -41,7 +38,10 @@ public class Room extends AbstractEntity {
         this.roomState = roomState;
     }
 
-    public RoomDto toDto() {
-        return new RoomDto(roomNumber, roomType.toDto(), roomState.toDto());
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
