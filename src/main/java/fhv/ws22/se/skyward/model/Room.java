@@ -1,5 +1,7 @@
 package fhv.ws22.se.skyward.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,9 +9,11 @@ import java.util.List;
 public class Room extends AbstractEntity {
     private int roomNumber;
     @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "roomType_id")
     private RoomType roomType;
     @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "roomState_id")
     private RoomState roomState;
     @ManyToMany(mappedBy = "rooms")

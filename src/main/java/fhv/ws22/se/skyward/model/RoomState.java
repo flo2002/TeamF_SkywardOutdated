@@ -1,7 +1,5 @@
 package fhv.ws22.se.skyward.model;
 
-import fhv.ws22.se.skyward.model.DTOs.RoomStateDto;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -10,8 +8,8 @@ import java.util.List;
 @Entity
 public class RoomState extends AbstractEntity {
     private String name;
-    @OneToMany(mappedBy = "roomState")
-    private List<Room> rooms;
+    @OneToMany(mappedBy = "roomState", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Room> rooms1;
 
     public RoomState() {}
 
@@ -23,10 +21,10 @@ public class RoomState extends AbstractEntity {
     }
 
     public List<Room> getRooms() {
-        return rooms;
+        return rooms1;
     }
     public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+        this.rooms1 = rooms;
     }
 }
 

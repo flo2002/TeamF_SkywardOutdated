@@ -1,7 +1,6 @@
 package fhv.ws22.se.skyward.model;
 
-import fhv.ws22.se.skyward.model.DTOs.RoomTypeDto;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.math.BigDecimal;
@@ -12,7 +11,7 @@ public class RoomType extends AbstractEntity {
     private String name;
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "roomType")
+    @OneToMany(mappedBy = "roomType", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms;
 
     public RoomType() {}

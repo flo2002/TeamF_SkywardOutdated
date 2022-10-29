@@ -5,7 +5,11 @@
              version="2.0">
     <persistence-unit name="skyward" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>fhv.ws22.se.skyward.model.Person</class>
+        <!--<class>fhv.ws22.se.skyward.model.Person</class>
+        <class>fhv.ws22.se.skyward.model.RoomState</class>
+        <class>fhv.ws22.se.skyward.model.RoomType</class>
+        <class>fhv.ws22.se.skyward.model.Room</class>
+        <class>fhv.ws22.se.skyward.model.Booking</class>-->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:./target/h2db/db/testproject;AUTO_SERVER=true" />

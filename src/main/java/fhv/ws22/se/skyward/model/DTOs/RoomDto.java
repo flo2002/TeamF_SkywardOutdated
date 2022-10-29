@@ -3,17 +3,21 @@ package fhv.ws22.se.skyward.model.DTOs;
 import fhv.ws22.se.skyward.model.Room;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigDecimal;
+
 public class RoomDto extends AbstractDto {
     private int roomNumber;
-    private RoomTypeDto roomType;
-    private RoomStateDto roomState;
+    private String roomTypeName;
+    private BigDecimal roomTypePrice;
+    private String roomStateName;
 
     public RoomDto() {
     }
-    public RoomDto(int roomNumber, RoomTypeDto roomType, RoomStateDto roomState) {
+    public RoomDto(int roomNumber, String roomTypeName, BigDecimal roomTypePrice, String roomStateName) {
         this.roomNumber = roomNumber;
-        this.roomType = roomType;
-        this.roomState = roomState;
+        this.roomTypeName = roomTypeName;
+        this.roomTypePrice = roomTypePrice;
+        this.roomStateName = roomStateName;
     }
 
     public int getRoomNumber() {
@@ -22,19 +26,24 @@ public class RoomDto extends AbstractDto {
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
+    public String getRoomTypeName() {
+        return roomTypeName;
+    }
+    public void setRoomTypeName(String roomTypeName) {
+        this.roomTypeName = roomTypeName;
+    }
+    public BigDecimal getRoomTypePrice() {
+        return roomTypePrice;
+    }
+    public void setRoomTypePrice(BigDecimal roomTypePrice) {
+        this.roomTypePrice = roomTypePrice;
+    }
 
-    public RoomTypeDto getRoomType() {
-        return roomType;
+    public String getRoomStateName() {
+        return roomStateName;
     }
-    public void setRoomType(RoomTypeDto roomType) {
-        this.roomType = roomType;
-    }
-
-    public RoomStateDto getRoomState() {
-        return roomState;
-    }
-    public void setRoomState(RoomStateDto roomState) {
-        this.roomState = roomState;
+    public void setRoomStateName(String roomStateName) {
+        this.roomStateName = roomStateName;
     }
 
     public Room toEntity() {

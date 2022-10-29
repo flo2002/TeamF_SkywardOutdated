@@ -29,8 +29,6 @@ public class DatabaseFacade {
 
         brokers = new HashMap<Class, BrokerBase>();
         brokers.put(PersonDto.class, new PersonBroker(entityManager));
-        brokers.put(RoomTypeDto.class, new RoomTypeBroker(entityManager));
-        brokers.put(RoomStateDto.class, new RoomStateBroker(entityManager));
         brokers.put(RoomDto.class, new RoomBroker(entityManager));
     }
 
