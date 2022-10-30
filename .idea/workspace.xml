@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/BookingBroker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/BookingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/CreateBookingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/NavBarController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/bookings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/home.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/navbar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application-20221029.log" beforeDir="false" afterPath="$PROJECT_DIR$/application-20221029.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/RoomType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomBroker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/broker/RoomBroker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="com.haulmont.jpb.NewClass" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -133,6 +135,10 @@
       <workItem from="1667023808741" duration="5974000" />
       <workItem from="1667031688241" duration="2109000" />
       <workItem from="1667036763544" duration="2548000" />
+      <workItem from="1667150936822" duration="799000" />
+      <workItem from="1667151753457" duration="109000" />
+      <workItem from="1667151878462" duration="1826000" />
+      <workItem from="1667154621526" duration="3839000" />
     </task>
     <servers />
   </component>

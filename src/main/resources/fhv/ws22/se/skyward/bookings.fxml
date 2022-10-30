@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.BookingController">
+    <top>
+        <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCreateBookingButtonClick" text="create Booking" />
+    </top>
+    <left>
+        <fx:include source="navbar.fxml" />
+    </left>
+    <center>
+        <TableView GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <columns>
+                <TableColumn text="ID">
+                </TableColumn>
+                <TableColumn text="Room Numbers">
+                </TableColumn>
+                <TableColumn text="Firstname">
+                </TableColumn>
+                <TableColumn text="Lastname">
+                </TableColumn>
+                <TableColumn text="Status">
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

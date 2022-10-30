@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.CreateBookingController">
+    <top>
+        <VBox>
+            <HBox>
+                <Button onAction="#onCreateBookingButtonClick" text="Create Booking" />
+                <Button onAction="#onReturnToBookingsButtonClick" text="Return to Bookings" />
+            </HBox>
+            <HBox>
+                <Label text="From:"/>
+                <TextField/>
+                <Label text="Until:"/>
+                <TextField/>
+            </HBox>
+        </VBox>
+    </top>
+    <left>
+        <fx:include source="navbar.fxml" />
+    </left>
+    <center>
+        <HBox>
+            <TableView GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <columns>
+                    <TableColumn text="Room Number">
+                    </TableColumn>
+                    <TableColumn text="Type">
+                    </TableColumn>
+                    <TableColumn text="Cost">
+                    </TableColumn>
+                </columns>
+            </TableView>
+            <TableView GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <columns>
+                    <TableColumn text="Firstname">
+                    </TableColumn>
+                    <TableColumn text="Lastname">
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </HBox>
+    </center>
+
+
+</BorderPane>
