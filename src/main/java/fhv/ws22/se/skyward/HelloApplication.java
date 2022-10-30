@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    private static final Logger logger = LogManager.getLogger(HelloApplication.class);
+    private static final Logger logger = LogManager.getLogger("HelloApplication");
 
     @Override
     public void start(Stage stage) throws IOException {

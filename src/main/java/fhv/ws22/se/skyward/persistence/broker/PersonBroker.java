@@ -1,46 +1,46 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.DTOs.PersonDTO;
+import fhv.ws22.se.skyward.model.DTOs.PersonDto;
 import fhv.ws22.se.skyward.model.Person;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonBroker extends BrokerBase<PersonDTO> {
+public class PersonBroker extends BrokerBase<PersonDto> {
     private final EntityManager entityManager;
 
-    public PersonBroker(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public PersonBroker(EntityManager em) {
+        entityManager = em;
     }
 
     @SuppressWarnings("unchecked")
-    public List<PersonDTO> getAll() {
+    public List<PersonDto> getAll() {
         List<Person> persons = (List<Person>) entityManager.createQuery("FROM Person").getResultList();
 
-        List<PersonDTO> personDTOs = new ArrayList<PersonDTO>();
+        List<PersonDto> personDtos = new ArrayList<PersonDto>();
         for (Person p : persons) {
-            personDTOs.add(p.toDTO());
+            personDtos.add(PersonDto.toDto(p));
         }
 
-        return personDTOs;
+        return personDtos;
     }
 
-    public void add(PersonDTO person) {
+    public void add(PersonDto person) {
         entityManager.getTransaction().begin();
-        entityManager.persist(person.toPerson());
+        entityManager.persist(person.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void update(PersonDTO person) {
+    public void update(PersonDto person) {
         entityManager.getTransaction().begin();
-        entityManager.merge(person);
+        entityManager.merge(person.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void delete(PersonDTO person) {
+    public void delete(PersonDto person) {
         entityManager.getTransaction().begin();
-        entityManager.remove(person);
+        entityManager.remove(person.toEntity());
         entityManager.getTransaction().commit();
     }
 }

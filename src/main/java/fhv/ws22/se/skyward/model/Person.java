@@ -1,8 +1,7 @@
 package fhv.ws22.se.skyward.model;
 
-import fhv.ws22.se.skyward.model.DTOs.PersonDTO;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Person extends AbstractEntity {
@@ -10,6 +9,8 @@ public class Person extends AbstractEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @ManyToMany(mappedBy = "persons")
+    private List<Booking> bookings;
 
 
     public Person() {
@@ -27,8 +28,10 @@ public class Person extends AbstractEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public PersonDTO toDTO() {
-        return new PersonDTO(firstName, lastName);
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
