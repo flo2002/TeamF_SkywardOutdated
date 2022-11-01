@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/BookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/CreateBookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/NavBarController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/bookings.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/home.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/navbar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +127,9 @@
       <workItem from="1667150936822" duration="799000" />
       <workItem from="1667151753457" duration="109000" />
       <workItem from="1667151878462" duration="1826000" />
-      <workItem from="1667154621526" duration="3839000" />
+      <workItem from="1667154621526" duration="5639000" />
+      <workItem from="1667199636465" duration="710000" />
+      <workItem from="1667308603765" duration="21000" />
     </task>
     <servers />
   </component>
