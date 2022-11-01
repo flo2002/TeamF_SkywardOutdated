@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"first_name", "last_name"}))
 public class Person extends AbstractEntity {
     @Column(name = "first_name")
     private String firstName;

@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"checkInDateTime", "checkOutDateTime", "room_id", "person_id"}))
 public class Booking extends AbstractEntity {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;

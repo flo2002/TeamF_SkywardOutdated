@@ -24,6 +24,7 @@ public class DataGenerator {
         BookingDto b2 = new BookingDto(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), List.of(john), List.of(r3));
 
         dbf.add(john);
+        dbf.add(john);
         dbf.add(jane);
         dbf.add(r);
         dbf.add(r2);

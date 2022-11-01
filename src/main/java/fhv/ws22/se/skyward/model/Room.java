@@ -5,6 +5,7 @@ import java.util.List;
 
 @Entity
 public class Room extends AbstractEntity {
+    //@Column(unique = true)
     private int roomNumber;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "roomType_id")

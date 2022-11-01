@@ -1,11 +1,13 @@
 package fhv.ws22.se.skyward.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
 public class RoomState extends AbstractEntity {
+    //@Column(unique = true)
     private String name;
     @OneToMany(mappedBy = "roomState")
     private List<Room> rooms1;
