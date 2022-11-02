@@ -38,4 +38,12 @@ public class CustomerDto extends AbstractDto {
         ModelMapper mm = new ModelMapper();
         return mm.map(customer, CustomerDto.class);
     }
+
+    @Override
+    public String toString() {
+        return "CustomerDto{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

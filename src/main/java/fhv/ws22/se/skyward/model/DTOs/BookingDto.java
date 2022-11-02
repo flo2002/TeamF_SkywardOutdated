@@ -10,16 +10,16 @@ public class BookingDto extends AbstractDto {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
     private Boolean isCheckedIn;
-    private List<CustomerDto> persons;
+    private List<CustomerDto> customers;
     private List<RoomDto> rooms;
 
     public BookingDto() {
     }
-    public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerDto> persons, List<RoomDto> rooms) {
+    public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerDto> customers, List<RoomDto> rooms) {
         this.checkInDateTime = checkInDateTime;
         this.checkOutDateTime = checkOutDateTime;
         this.isCheckedIn = isCheckedIn;
-        this.persons = persons;
+        this.customers = customers;
         this.rooms = rooms;
     }
 
@@ -45,10 +45,10 @@ public class BookingDto extends AbstractDto {
     }
 
     public List<CustomerDto> getPersons() {
-        return persons;
+        return customers;
     }
     public void setPersons(List<CustomerDto> persons) {
-        this.persons = persons;
+        this.customers = persons;
     }
 
     public List<RoomDto> getRooms() {
@@ -72,7 +72,7 @@ public class BookingDto extends AbstractDto {
                 "checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 ", isCheckedIn=" + isCheckedIn +
-                ", persons=" + persons +
+                ", customers=" + customers +
                 ", rooms=" + rooms +
                 '}';
     }
