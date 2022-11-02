@@ -65,4 +65,15 @@ public class BookingDto extends AbstractDto {
         ModelMapper mm = new ModelMapper();
         return mm.map(booking, BookingDto.class);
     }
+
+    @Override
+    public String toString() {
+        return "BookingDto{" +
+                "checkInDateTime=" + checkInDateTime +
+                ", checkOutDateTime=" + checkOutDateTime +
+                ", isCheckedIn=" + isCheckedIn +
+                ", persons=" + persons +
+                ", rooms=" + rooms +
+                '}';
+    }
 }
