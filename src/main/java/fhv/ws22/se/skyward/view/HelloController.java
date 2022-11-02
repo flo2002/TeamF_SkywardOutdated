@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.model.DTOs.PersonDto;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,6 +16,10 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText(dbf.getAllPersons().get(0).getFirstName());
+        PersonDto person = new PersonDto("Max", "Mustermann");
+        dbf.add(person);
+
+
+        welcomeText.setText(dbf.getPersonByNames(person.getFirstName(), person.getLastName()).getFirstName());
     }
 }

@@ -26,6 +26,14 @@ public class PersonBroker extends BrokerBase<PersonDto> {
         return personDtos;
     }
 
+    public PersonDto getPersonByNames(String firstName, String lastName) {
+        Person p = (Person) entityManager.createQuery("FROM Person WHERE firstName = :firstName AND lastName = :lastName")
+                .setParameter("firstName", firstName)
+                .setParameter("lastName", lastName)
+                .getSingleResult();
+        return PersonDto.toDto(p);
+    }
+
     public void add(PersonDto person) {
         entityManager.getTransaction().begin();
         entityManager.persist(person.toEntity());
