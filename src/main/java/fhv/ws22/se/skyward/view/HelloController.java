@@ -1,6 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.model.DTOs.PersonDto;
+import fhv.ws22.se.skyward.model.DTOs.CustomerDto;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,7 +16,7 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() {
-        PersonDto person = new PersonDto("Max", "Mustermann");
+        CustomerDto person = new CustomerDto("Max", "Mustermann");
         dbf.add(person);
 
 

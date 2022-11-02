@@ -1,7 +1,6 @@
 package fhv.ws22.se.skyward.persistence;
 
 import fhv.ws22.se.skyward.model.DTOs.*;
-import fhv.ws22.se.skyward.model.Person;
 import fhv.ws22.se.skyward.persistence.broker.*;
 
 import jakarta.persistence.EntityManager;
@@ -29,13 +28,13 @@ public class DatabaseFacade {
         this.entityManager = fact.createEntityManager();
 
         brokers = new HashMap<Class, BrokerBase>();
-        brokers.put(PersonDto.class, new PersonBroker(entityManager));
+        brokers.put(CustomerDto.class, new PersonBroker(entityManager));
         brokers.put(RoomDto.class, new RoomBroker(entityManager));
         brokers.put(BookingDto.class, new BookingBroker(entityManager));
     }
 
-    public PersonDto getPersonByNames(String firstName, String lastName) {
-        PersonBroker broker = (PersonBroker) brokers.get(PersonDto.class);
+    public CustomerDto getPersonByNames(String firstName, String lastName) {
+        PersonBroker broker = (PersonBroker) brokers.get(CustomerDto.class);
         return broker.getPersonByNames(firstName, lastName);
     }
     public <T extends AbstractDto> List getAll(T t) {

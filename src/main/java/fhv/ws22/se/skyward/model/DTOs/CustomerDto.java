@@ -1,15 +1,15 @@
 package fhv.ws22.se.skyward.model.DTOs;
 
-import fhv.ws22.se.skyward.model.Person;
+import fhv.ws22.se.skyward.model.Customer;
 import org.modelmapper.ModelMapper;
 
-public class PersonDto extends AbstractDto {
+public class CustomerDto extends AbstractDto {
     private String firstName;
     private String lastName;
 
-    public PersonDto() {
+    public CustomerDto() {
     }
-    public PersonDto(String firstName, String lastName) {
+    public CustomerDto(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -30,12 +30,12 @@ public class PersonDto extends AbstractDto {
         this.lastName = lastName;
     }
 
-    public Person toEntity() {
-        return modelMapper.map(this, Person.class);
+    public Customer toEntity() {
+        return modelMapper.map(this, Customer.class);
     }
 
-    public static PersonDto toDto(Person person) {
+    public static CustomerDto toDto(Customer customer) {
         ModelMapper mm = new ModelMapper();
-        return mm.map(person, PersonDto.class);
+        return mm.map(customer, CustomerDto.class);
     }
 }

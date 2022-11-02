@@ -14,7 +14,7 @@ public class Booking extends AbstractEntity {
     @JoinTable(name = "booking_person",
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id"))
-    private List<Person> persons;
+    private List<Customer> customers;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "booking_room",
@@ -39,11 +39,11 @@ public class Booking extends AbstractEntity {
         this.checkOutDateTime = checkOutDateTime;
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public List<Customer> getPersons() {
+        return customers;
     }
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
+    public void setPersons(List<Customer> customers) {
+        this.customers = customers;
     }
 
     public List<Room> getRooms() {

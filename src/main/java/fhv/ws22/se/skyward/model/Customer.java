@@ -5,16 +5,16 @@ import java.util.List;
 
 @Entity
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"first_name", "last_name"}))
-public class Person extends AbstractEntity {
+public class Customer extends AbstractEntity {
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @ManyToMany(mappedBy = "persons")
+    @ManyToMany(mappedBy = "customers")
     private List<Booking> bookings;
 
 
-    public Person() {
+    public Customer() {
     }
 
     public String getFirstName() {

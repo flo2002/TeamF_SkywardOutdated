@@ -1,7 +1,5 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.DTOs.PersonDto;
-
 import java.util.List;
 
 public abstract class BrokerBase<T> {

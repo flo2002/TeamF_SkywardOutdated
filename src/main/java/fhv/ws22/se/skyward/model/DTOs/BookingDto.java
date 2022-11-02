@@ -9,12 +9,12 @@ import java.util.List;
 public class BookingDto extends AbstractDto {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
-    private List<PersonDto> persons;
+    private List<CustomerDto> persons;
     private List<RoomDto> rooms;
 
     public BookingDto() {
     }
-    public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, List<PersonDto> persons, List<RoomDto> rooms) {
+    public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, List<CustomerDto> persons, List<RoomDto> rooms) {
         this.checkInDateTime = checkInDateTime;
         this.checkOutDateTime = checkOutDateTime;
         this.persons = persons;
@@ -35,10 +35,10 @@ public class BookingDto extends AbstractDto {
         this.checkOutDateTime = checkOutDateTime;
     }
 
-    public List<PersonDto> getPersons() {
+    public List<CustomerDto> getPersons() {
         return persons;
     }
-    public void setPersons(List<PersonDto> persons) {
+    public void setPersons(List<CustomerDto> persons) {
         this.persons = persons;
     }
 
