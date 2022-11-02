@@ -37,8 +37,8 @@ public class DatabaseFacade {
         PersonBroker broker = (PersonBroker) brokers.get(CustomerDto.class);
         return broker.getPersonByNames(firstName, lastName);
     }
-    public <T extends AbstractDto> List getAll(T t) {
-        return brokers.get(t.getClass()).getAll();
+    public <T extends AbstractDto> List getAll(Class<T> clazz) {
+        return brokers.get(clazz).getAll();
     }
     public <T extends AbstractDto> void add(T t) {
         brokers.get(t.getClass()).add(t);

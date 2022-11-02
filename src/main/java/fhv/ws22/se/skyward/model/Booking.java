@@ -10,6 +10,7 @@ import java.util.List;
 public class Booking extends AbstractEntity {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
+    private Boolean isCheckedIn;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "booking_person",
             joinColumns = @JoinColumn(name = "booking_id"),
@@ -37,6 +38,13 @@ public class Booking extends AbstractEntity {
     }
     public void setCheckOutDateTime(LocalDateTime checkOutDateTime) {
         this.checkOutDateTime = checkOutDateTime;
+    }
+
+    public Boolean getIsCheckedIn() {
+        return isCheckedIn;
+    }
+    public void setIsCheckedIn(Boolean isCheckedIn) {
+        this.isCheckedIn = isCheckedIn;
     }
 
     public List<Customer> getPersons() {
