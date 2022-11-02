@@ -30,10 +30,10 @@ public class BookingController {
 
         bookingsTable = new TableView();
 
-        TableColumn<BookingDto, LocalDateTime> checkinColumn =
+        /*TableColumn<BookingDto, LocalDateTime> checkinColumn =
                 TableColumn<>("CheckIn");
         firstNameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("firstName"));
+                new PropertyValueFactory<>("firstName"));*/
 
 
 

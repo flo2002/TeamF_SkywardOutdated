@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/NotificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DataGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/persistence/DatabaseFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/bookings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/bookings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/navbar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/navbar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/NavBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/NavBarController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

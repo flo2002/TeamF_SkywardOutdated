@@ -19,7 +19,6 @@ public class HelloController {
         CustomerDto person = new CustomerDto("Max", "Mustermann");
         dbf.add(person);
 
-
         welcomeText.setText(dbf.getPersonByNames(person.getFirstName(), person.getLastName()).getFirstName());
     }
 }

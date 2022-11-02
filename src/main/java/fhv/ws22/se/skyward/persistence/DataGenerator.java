@@ -30,5 +30,8 @@ public class DataGenerator {
         dbf.add(r3);
         dbf.add(b);
         dbf.add(b2);
+
+        //BookingDto testB = (BookingDto) dbf.getAll(BookingDto.class).get(0);
+        //System.out.println(testB.getRooms().get(0).getRoomNumber());
     }
 }
