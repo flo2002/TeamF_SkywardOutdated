@@ -30,6 +30,8 @@ public class NavBarController {
             stage.setTitle("Home");
             stage.setScene(new Scene(parent));
             stage.show();
+
+            NotificationController.getInstance().showSuccessNotification("Home", stage);
         } catch (IOException e) {
             e.printStackTrace();
         }

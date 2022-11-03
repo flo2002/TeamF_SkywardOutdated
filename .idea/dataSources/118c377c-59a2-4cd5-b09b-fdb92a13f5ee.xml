@@ -2,7 +2,7 @@
 <dataSource name="testproject">
   <database-model serializer="dbm" dbms="H2" family-id="H2" format-version="4.43">
     <root id="1">
-      <ServerVersion>2.1.210</ServerVersion>
+      <ServerVersion>2.1.214</ServerVersion>
     </root>
     <database id="2" parent="1" name="TESTPROJECT">
       <Current>1</Current>
@@ -102,7 +102,7 @@
     <collation id="95" parent="2" name="LITHUANIAN"/>
     <collation id="96" parent="2" name="LITHUANIAN_LITHUANIA"/>
     <collation id="97" parent="2" name="MACEDONIAN"/>
-    <collation id="98" parent="2" name="MACEDONIAN_NORTH_MACEDONIA"/>
+    <collation id="98" parent="2" name="MACEDONIAN_MACEDONIA"/>
     <collation id="99" parent="2" name="MALAY"/>
     <collation id="100" parent="2" name="MALAY_MALAYSIA"/>
     <collation id="101" parent="2" name="MALTESE"/>
@@ -181,7 +181,7 @@
     <table id="170" parent="163" name="ROOMSTATE"/>
     <table id="171" parent="163" name="ROOMTYPE"/>
     <column id="172" parent="165" name="ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -204,12 +204,12 @@
       <Primary>1</Primary>
     </key>
     <column id="177" parent="166" name="BOOKING_ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="178" parent="166" name="PERSON_ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
@@ -236,12 +236,12 @@
       <NameSurrogate>1</NameSurrogate>
     </index>
     <column id="183" parent="167" name="BOOKING_ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="184" parent="167" name="ROOM_ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
@@ -268,7 +268,7 @@
       <NameSurrogate>1</NameSurrogate>
     </index>
     <column id="189" parent="168" name="ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -291,7 +291,7 @@
       <Primary>1</Primary>
     </key>
     <column id="194" parent="169" name="ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -301,11 +301,11 @@
       <Position>2</Position>
     </column>
     <column id="196" parent="169" name="ROOMSTATE_ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <Position>3</Position>
     </column>
     <column id="197" parent="169" name="ROOMTYPE_ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <Position>4</Position>
     </column>
     <foreign-key id="198" parent="169" name="FKKM6DKWO9ITWN5W0IRRF5PWQ8W">
@@ -341,7 +341,7 @@
       <Primary>1</Primary>
     </key>
     <column id="204" parent="170" name="ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -360,7 +360,7 @@
       <Primary>1</Primary>
     </key>
     <column id="208" parent="171" name="ID">
-      <DataType>BINARY(16)|0s</DataType>
+      <DataType>CHARACTER VARYING(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -369,7 +369,7 @@
       <Position>2</Position>
     </column>
     <column id="210" parent="171" name="PRICE">
-      <DataType>NUMERIC(38,2)|0s</DataType>
+      <DataType>NUMERIC(19,2)|0s</DataType>
       <Position>3</Position>
     </column>
     <index id="211" parent="171" name="PRIMARY_KEY_24">

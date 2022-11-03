@@ -12,19 +12,25 @@
         <fx:include source="navbar.fxml" />
     </left>
     <center>
-        <TableView GridPane.columnIndex="0" GridPane.rowIndex="1">
-            <columns>
-                <TableColumn text="ID">
+        <TableView fx:id="bookingsTable" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <!--<columns>
+                <TableColumn text="checkInDateTime">
                 </TableColumn>
-                <TableColumn text="Room Numbers">
+                <TableColumn text="checkOutDateTime">
                 </TableColumn>
-                <TableColumn text="Firstname">
+                <TableColumn text="isCheckedIn">
                 </TableColumn>
-                <TableColumn text="Lastname">
+            </columns>-->
+            <!--<columns>
+                <TableColumn fx:id="roomNumbersCol" text="Room Numbers">
                 </TableColumn>
-                <TableColumn text="Status">
+                <TableColumn fx:id="firstNameCol" text="Firstname">
                 </TableColumn>
-            </columns>
+                <TableColumn fx:id="lastNameCol" text="Lastname">
+                </TableColumn>
+                <TableColumn fx:id="statusCol" text="Status">
+                </TableColumn>
+            </columns>-->
         </TableView>
     </center>
 </BorderPane>

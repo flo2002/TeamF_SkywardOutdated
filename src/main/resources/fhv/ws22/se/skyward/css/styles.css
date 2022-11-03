@@ -1,0 +1,15 @@
+.success_popup {
+    -fx-background-color: green;
+    -fx-padding: 10;
+    -fx-border-color: black;
+    -fx-border-width: 5;
+    -fx-font-size: 16;
+}
+
+.error_popup {
+    -fx-background-color: red;
+    -fx-padding: 10;
+    -fx-border-color: black;
+    -fx-border-width: 5;
+    -fx-font-size: 16;
+}
