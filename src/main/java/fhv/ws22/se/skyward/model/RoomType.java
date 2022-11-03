@@ -2,10 +2,14 @@ package fhv.ws22.se.skyward.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "price"}))
 public class RoomType extends AbstractEntity {
     private String name;
     private BigDecimal price;

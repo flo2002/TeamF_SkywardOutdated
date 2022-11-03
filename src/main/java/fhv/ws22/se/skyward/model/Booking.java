@@ -6,14 +6,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"checkInDateTime", "checkOutDateTime", "room_id", "person_id"}))
 public class Booking extends AbstractEntity {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
+    private Boolean isCheckedIn;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "booking_person",
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "person_id"))
-    private List<Person> persons;
+    private List<Customer> customers;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "booking_room",
@@ -38,11 +40,18 @@ public class Booking extends AbstractEntity {
         this.checkOutDateTime = checkOutDateTime;
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public Boolean getIsCheckedIn() {
+        return isCheckedIn;
     }
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
+    public void setIsCheckedIn(Boolean isCheckedIn) {
+        this.isCheckedIn = isCheckedIn;
+    }
+
+    public List<Customer> getPersons() {
+        return customers;
+    }
+    public void setPersons(List<Customer> customers) {
+        this.customers = customers;
     }
 
     public List<Room> getRooms() {

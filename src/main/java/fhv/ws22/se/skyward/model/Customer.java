@@ -4,16 +4,17 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Person extends AbstractEntity {
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"first_name", "last_name"}))
+public class Customer extends AbstractEntity {
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @ManyToMany(mappedBy = "persons")
+    @ManyToMany(mappedBy = "customers")
     private List<Booking> bookings;
 
 
-    public Person() {
+    public Customer() {
     }
 
     public String getFirstName() {

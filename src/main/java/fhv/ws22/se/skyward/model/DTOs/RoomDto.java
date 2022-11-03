@@ -53,4 +53,14 @@ public class RoomDto extends AbstractDto {
         ModelMapper mm = new ModelMapper();
         return mm.map(room, RoomDto.class);
     }
+
+    @Override
+    public String toString() {
+        return "RoomDto{" +
+                "roomNumber=" + roomNumber +
+                ", roomTypeName='" + roomTypeName + '\'' +
+                ", roomTypePrice=" + roomTypePrice +
+                ", roomStateName='" + roomStateName + '\'' +
+                '}';
+    }
 }

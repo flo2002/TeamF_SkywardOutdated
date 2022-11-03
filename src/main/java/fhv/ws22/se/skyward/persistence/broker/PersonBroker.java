@@ -1,13 +1,13 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.DTOs.PersonDto;
-import fhv.ws22.se.skyward.model.Person;
+import fhv.ws22.se.skyward.model.Customer;
+import fhv.ws22.se.skyward.model.DTOs.CustomerDto;
 
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonBroker extends BrokerBase<PersonDto> {
+public class PersonBroker extends BrokerBase<CustomerDto> {
     private final EntityManager entityManager;
 
     public PersonBroker(EntityManager em) {
@@ -15,30 +15,38 @@ public class PersonBroker extends BrokerBase<PersonDto> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<PersonDto> getAll() {
-        List<Person> persons = (List<Person>) entityManager.createQuery("FROM Person").getResultList();
+    public List<CustomerDto> getAll() {
+        List<Customer> customers = (List<Customer>) entityManager.createQuery("FROM Customer").getResultList();
 
-        List<PersonDto> personDtos = new ArrayList<PersonDto>();
-        for (Person p : persons) {
-            personDtos.add(PersonDto.toDto(p));
+        List<CustomerDto> customerDtos = new ArrayList<CustomerDto>();
+        for (Customer p : customers) {
+            customerDtos.add(CustomerDto.toDto(p));
         }
 
-        return personDtos;
+        return customerDtos;
     }
 
-    public void add(PersonDto person) {
+    public CustomerDto getPersonByNames(String firstName, String lastName) {
+        Customer p = (Customer) entityManager.createQuery("FROM Customer WHERE firstName = :firstName AND lastName = :lastName")
+                .setParameter("firstName", firstName)
+                .setParameter("lastName", lastName)
+                .getSingleResult();
+        return CustomerDto.toDto(p);
+    }
+
+    public void add(CustomerDto person) {
         entityManager.getTransaction().begin();
         entityManager.persist(person.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void update(PersonDto person) {
+    public void update(CustomerDto person) {
         entityManager.getTransaction().begin();
         entityManager.merge(person.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void delete(PersonDto person) {
+    public void delete(CustomerDto person) {
         entityManager.getTransaction().begin();
         entityManager.remove(person.toEntity());
         entityManager.getTransaction().commit();

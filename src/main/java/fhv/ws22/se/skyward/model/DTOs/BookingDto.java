@@ -9,15 +9,17 @@ import java.util.List;
 public class BookingDto extends AbstractDto {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
-    private List<PersonDto> persons;
+    private Boolean isCheckedIn;
+    private List<CustomerDto> customers;
     private List<RoomDto> rooms;
 
     public BookingDto() {
     }
-    public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, List<PersonDto> persons, List<RoomDto> rooms) {
+    public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerDto> customers, List<RoomDto> rooms) {
         this.checkInDateTime = checkInDateTime;
         this.checkOutDateTime = checkOutDateTime;
-        this.persons = persons;
+        this.isCheckedIn = isCheckedIn;
+        this.customers = customers;
         this.rooms = rooms;
     }
 
@@ -35,11 +37,18 @@ public class BookingDto extends AbstractDto {
         this.checkOutDateTime = checkOutDateTime;
     }
 
-    public List<PersonDto> getPersons() {
-        return persons;
+    public Boolean getIsCheckedIn() {
+        return isCheckedIn;
     }
-    public void setPersons(List<PersonDto> persons) {
-        this.persons = persons;
+    public void setIsCheckedIn(Boolean isCheckedIn) {
+        this.isCheckedIn = isCheckedIn;
+    }
+
+    public List<CustomerDto> getPersons() {
+        return customers;
+    }
+    public void setPersons(List<CustomerDto> persons) {
+        this.customers = persons;
     }
 
     public List<RoomDto> getRooms() {
@@ -55,5 +64,16 @@ public class BookingDto extends AbstractDto {
     public static BookingDto toDto(Booking booking) {
         ModelMapper mm = new ModelMapper();
         return mm.map(booking, BookingDto.class);
+    }
+
+    @Override
+    public String toString() {
+        return "BookingDto{" +
+                "checkInDateTime=" + checkInDateTime +
+                ", checkOutDateTime=" + checkOutDateTime +
+                ", isCheckedIn=" + isCheckedIn +
+                ", customers=" + customers +
+                ", rooms=" + rooms +
+                '}';
     }
 }

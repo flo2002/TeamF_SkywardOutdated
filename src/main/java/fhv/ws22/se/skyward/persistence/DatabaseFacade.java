@@ -28,14 +28,17 @@ public class DatabaseFacade {
         this.entityManager = fact.createEntityManager();
 
         brokers = new HashMap<Class, BrokerBase>();
-        brokers.put(PersonDto.class, new PersonBroker(entityManager));
+        brokers.put(CustomerDto.class, new PersonBroker(entityManager));
         brokers.put(RoomDto.class, new RoomBroker(entityManager));
         brokers.put(BookingDto.class, new BookingBroker(entityManager));
     }
 
-    public List<PersonDto> getAllPersons() {
-        PersonBroker broker = new PersonBroker(entityManager);
-        return broker.getAll();
+    public CustomerDto getPersonByNames(String firstName, String lastName) {
+        PersonBroker broker = (PersonBroker) brokers.get(CustomerDto.class);
+        return broker.getPersonByNames(firstName, lastName);
+    }
+    public <T extends AbstractDto> List getAll(Class<T> clazz) {
+        return brokers.get(clazz).getAll();
     }
     public <T extends AbstractDto> void add(T t) {
         brokers.get(t.getClass()).add(t);
@@ -47,4 +50,5 @@ public class DatabaseFacade {
     public <T extends AbstractDto> void delete(T t) {
         brokers.get(t.getClass()).delete(t);
     };
+
 }

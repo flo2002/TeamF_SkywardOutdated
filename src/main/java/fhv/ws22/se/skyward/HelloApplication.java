@@ -24,7 +24,6 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-
         DataGenerator.generateData();
 
         logger.trace("We've just greeted the user!");
@@ -33,6 +32,7 @@ public class HelloApplication extends Application {
         logger.warn("We've just greeted the user!");
         logger.error("We've just greeted the user!");
         logger.fatal("We've just greeted the user!");
+
         launch();
     }
 }
