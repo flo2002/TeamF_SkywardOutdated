@@ -6,9 +6,7 @@ import java.util.List;
 @Entity
 //@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"first_name", "last_name"}))
 public class Customer extends AbstractEntity {
-    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name")
     private String lastName;
     @ManyToMany(mappedBy = "customers")
     private List<Booking> bookings;
@@ -34,5 +32,14 @@ public class Customer extends AbstractEntity {
     }
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", bookings=" + bookings +
+                '}';
     }
 }

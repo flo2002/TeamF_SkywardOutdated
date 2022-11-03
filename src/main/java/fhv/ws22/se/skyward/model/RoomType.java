@@ -39,4 +39,13 @@ public class RoomType extends AbstractEntity {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
+    @Override
+    public String toString() {
+        return "RoomType{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", rooms=" + rooms +
+                '}';
+    }
 }
