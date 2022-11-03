@@ -175,213 +175,246 @@
     </user>
     <table id="165" parent="163" name="BOOKING"/>
     <table id="166" parent="163" name="BOOKING_CUSTOMER"/>
-    <table id="167" parent="163" name="BOOKING_ROOM"/>
-    <table id="168" parent="163" name="CUSTOMER"/>
-    <table id="169" parent="163" name="ROOM"/>
-    <table id="170" parent="163" name="ROOMSTATE"/>
-    <table id="171" parent="163" name="ROOMTYPE"/>
-    <column id="172" parent="165" name="ID">
+    <table id="167" parent="163" name="BOOKING_PERSON"/>
+    <table id="168" parent="163" name="BOOKING_ROOM"/>
+    <table id="169" parent="163" name="CUSTOMER"/>
+    <table id="170" parent="163" name="ROOM"/>
+    <table id="171" parent="163" name="ROOMSTATE"/>
+    <table id="172" parent="163" name="ROOMTYPE"/>
+    <column id="173" parent="165" name="ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="173" parent="165" name="CHECKINDATETIME">
+    <column id="174" parent="165" name="CHECKINDATETIME">
       <DataType>TIMESTAMP|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="174" parent="165" name="CHECKOUTDATETIME">
+    <column id="175" parent="165" name="CHECKOUTDATETIME">
       <DataType>TIMESTAMP|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="175" parent="165" name="ISCHECKEDIN">
+    <column id="176" parent="165" name="ISCHECKEDIN">
       <DataType>BOOLEAN|0s</DataType>
       <Position>4</Position>
     </column>
-    <index id="176" parent="165" name="PRIMARY_KEY_2">
+    <index id="177" parent="165" name="PRIMARY_KEY_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="177" parent="165" name="CONSTRAINT_2">
+    <key id="178" parent="165" name="CONSTRAINT_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="178" parent="166" name="BOOKING_ID">
+    <column id="179" parent="166" name="BOOKING_ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="179" parent="166" name="CUSTOMER_ID">
+    <column id="180" parent="166" name="CUSTOMER_ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="180" parent="166" name="FKT49H4FJQSAUNYHRS3GKQ13RTJ">
+    <foreign-key id="181" parent="166" name="FKT49H4FJQSAUNYHRS3GKQ13RTJ">
       <ColNames>BOOKING_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_2</RefKeyName>
       <RefTableName>BOOKING</RefTableName>
     </foreign-key>
-    <foreign-key id="181" parent="166" name="FK1562K3GXU29BTOPP6QC7CYRLF">
+    <foreign-key id="182" parent="166" name="FK1562K3GXU29BTOPP6QC7CYRLF">
       <ColNames>CUSTOMER_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_5</RefKeyName>
       <RefTableName>CUSTOMER</RefTableName>
     </foreign-key>
-    <index id="182" parent="166" name="FKT49H4FJQSAUNYHRS3GKQ13RTJ_INDEX_1">
+    <index id="183" parent="166" name="FKT49H4FJQSAUNYHRS3GKQ13RTJ_INDEX_1">
       <ColNames>BOOKING_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="183" parent="166" name="FK1562K3GXU29BTOPP6QC7CYRLF_INDEX_1">
+    <index id="184" parent="166" name="FK1562K3GXU29BTOPP6QC7CYRLF_INDEX_1">
       <ColNames>CUSTOMER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <column id="184" parent="167" name="BOOKING_ID">
+    <column id="185" parent="167" name="BOOKING_ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="185" parent="167" name="ROOM_ID">
+    <column id="186" parent="167" name="PERSON_ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="186" parent="167" name="FKEPDG3Q528TQ7Y7NM34CAUJIOB">
+    <foreign-key id="187" parent="167" name="FK6QRQ1QPQKH33XMU7Q5G0DT80E">
       <ColNames>BOOKING_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_2</RefKeyName>
       <RefTableName>BOOKING</RefTableName>
     </foreign-key>
-    <foreign-key id="187" parent="167" name="FKB83YOE80SP9N48CHWNOWF7TVM">
+    <foreign-key id="188" parent="167" name="FKQBOMQWJ3G22QDRPQW6PU4R2P8">
+      <ColNames>PERSON_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_5</RefKeyName>
+      <RefTableName>CUSTOMER</RefTableName>
+    </foreign-key>
+    <index id="189" parent="167" name="FK6QRQ1QPQKH33XMU7Q5G0DT80E_INDEX_A">
+      <ColNames>BOOKING_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <index id="190" parent="167" name="FKQBOMQWJ3G22QDRPQW6PU4R2P8_INDEX_A">
+      <ColNames>PERSON_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <column id="191" parent="168" name="BOOKING_ID">
+      <DataType>BINARY(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="192" parent="168" name="ROOM_ID">
+      <DataType>BINARY(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="193" parent="168" name="FKEPDG3Q528TQ7Y7NM34CAUJIOB">
+      <ColNames>BOOKING_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_2</RefKeyName>
+      <RefTableName>BOOKING</RefTableName>
+    </foreign-key>
+    <foreign-key id="194" parent="168" name="FKB83YOE80SP9N48CHWNOWF7TVM">
       <ColNames>ROOM_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_26</RefKeyName>
       <RefTableName>ROOM</RefTableName>
     </foreign-key>
-    <index id="188" parent="167" name="FKEPDG3Q528TQ7Y7NM34CAUJIOB_INDEX_F">
+    <index id="195" parent="168" name="FKEPDG3Q528TQ7Y7NM34CAUJIOB_INDEX_F">
       <ColNames>BOOKING_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="189" parent="167" name="FKB83YOE80SP9N48CHWNOWF7TVM_INDEX_F">
+    <index id="196" parent="168" name="FKB83YOE80SP9N48CHWNOWF7TVM_INDEX_F">
       <ColNames>ROOM_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <column id="190" parent="168" name="ID">
+    <column id="197" parent="169" name="ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="191" parent="168" name="FIRST_NAME">
+    <column id="198" parent="169" name="FIRST_NAME">
       <DataType>CHARACTER VARYING(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="192" parent="168" name="LAST_NAME">
+    <column id="199" parent="169" name="LAST_NAME">
       <DataType>CHARACTER VARYING(255)|0s</DataType>
       <Position>3</Position>
     </column>
-    <index id="193" parent="168" name="PRIMARY_KEY_5">
+    <index id="200" parent="169" name="PRIMARY_KEY_5">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="194" parent="168" name="CONSTRAINT_5">
+    <key id="201" parent="169" name="CONSTRAINT_5">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="195" parent="169" name="ID">
+    <column id="202" parent="170" name="ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="196" parent="169" name="ROOMNUMBER">
+    <column id="203" parent="170" name="ROOMNUMBER">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="197" parent="169" name="ROOMSTATE_ID">
+    <column id="204" parent="170" name="ROOMSTATE_ID">
       <DataType>BINARY(16)|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="198" parent="169" name="ROOMTYPE_ID">
+    <column id="205" parent="170" name="ROOMTYPE_ID">
       <DataType>BINARY(16)|0s</DataType>
       <Position>4</Position>
     </column>
-    <foreign-key id="199" parent="169" name="FKKM6DKWO9ITWN5W0IRRF5PWQ8W">
+    <foreign-key id="206" parent="170" name="FKKM6DKWO9ITWN5W0IRRF5PWQ8W">
       <ColNames>ROOMSTATE_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_6</RefKeyName>
       <RefTableName>ROOMSTATE</RefTableName>
     </foreign-key>
-    <foreign-key id="200" parent="169" name="FKKLAFYW0CU1H3EO2M7VL1F4GA1">
+    <foreign-key id="207" parent="170" name="FKKLAFYW0CU1H3EO2M7VL1F4GA1">
       <ColNames>ROOMTYPE_ID</ColNames>
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
       <RefKeyName>CONSTRAINT_24</RefKeyName>
       <RefTableName>ROOMTYPE</RefTableName>
     </foreign-key>
-    <index id="201" parent="169" name="PRIMARY_KEY_26">
+    <index id="208" parent="170" name="PRIMARY_KEY_26">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="202" parent="169" name="FKKM6DKWO9ITWN5W0IRRF5PWQ8W_INDEX_2">
+    <index id="209" parent="170" name="FKKM6DKWO9ITWN5W0IRRF5PWQ8W_INDEX_2">
       <ColNames>ROOMSTATE_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <index id="203" parent="169" name="FKKLAFYW0CU1H3EO2M7VL1F4GA1_INDEX_2">
+    <index id="210" parent="170" name="FKKLAFYW0CU1H3EO2M7VL1F4GA1_INDEX_2">
       <ColNames>ROOMTYPE_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
     </index>
-    <key id="204" parent="169" name="CONSTRAINT_26">
+    <key id="211" parent="170" name="CONSTRAINT_26">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="205" parent="170" name="ID">
+    <column id="212" parent="171" name="ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="206" parent="170" name="NAME">
+    <column id="213" parent="171" name="NAME">
       <DataType>CHARACTER VARYING(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <index id="207" parent="170" name="PRIMARY_KEY_6">
+    <index id="214" parent="171" name="PRIMARY_KEY_6">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="208" parent="170" name="CONSTRAINT_6">
+    <key id="215" parent="171" name="CONSTRAINT_6">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="209" parent="171" name="ID">
+    <column id="216" parent="172" name="ID">
       <DataType>BINARY(16)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="210" parent="171" name="NAME">
+    <column id="217" parent="172" name="NAME">
       <DataType>CHARACTER VARYING(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="211" parent="171" name="PRICE">
+    <column id="218" parent="172" name="PRICE">
       <DataType>NUMERIC(38,2)|0s</DataType>
       <Position>3</Position>
     </column>
-    <index id="212" parent="171" name="PRIMARY_KEY_24">
+    <index id="219" parent="172" name="PRIMARY_KEY_24">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="213" parent="171" name="CONSTRAINT_24">
+    <key id="220" parent="172" name="CONSTRAINT_24">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
