@@ -1,10 +1,13 @@
 package fhv.ws22.se.skyward.model.DTOs;
 
 import fhv.ws22.se.skyward.model.Booking;
+import fhv.ws22.se.skyward.model.Customer;
+import fhv.ws22.se.skyward.model.Room;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class BookingDto extends AbstractDto {
     private LocalDateTime checkInDateTime;
@@ -44,11 +47,11 @@ public class BookingDto extends AbstractDto {
         this.isCheckedIn = isCheckedIn;
     }
 
-    public List<CustomerDto> getPersons() {
+    public List<CustomerDto> getCustomers() {
         return customers;
     }
-    public void setPersons(List<CustomerDto> persons) {
-        this.customers = persons;
+    public void setCustomers(List<CustomerDto> customers) {
+        this.customers = customers;
     }
 
     public List<RoomDto> getRooms() {

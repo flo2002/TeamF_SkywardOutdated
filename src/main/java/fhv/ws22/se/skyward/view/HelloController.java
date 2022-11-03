@@ -16,9 +16,9 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() {
-        CustomerDto person = new CustomerDto("Max", "Mustermann");
-        dbf.add(person);
+        CustomerDto customer = new CustomerDto("Max", "Mustermann");
+        dbf.add(customer);
 
-        welcomeText.setText(dbf.getPersonByNames(person.getFirstName(), person.getLastName()).getFirstName());
+        welcomeText.setText(dbf.getCustomerByNames(customer.getFirstName(), customer.getLastName()).getFirstName());
     }
 }

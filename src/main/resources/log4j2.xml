@@ -9,7 +9,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="error"> <!-- level="WARN" -->
+        <Root level="WARN"> <!-- level="WARN", "error" -->
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender"/>
         </Root>

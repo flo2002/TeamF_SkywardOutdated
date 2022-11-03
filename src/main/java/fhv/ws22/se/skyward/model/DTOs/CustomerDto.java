@@ -17,7 +17,6 @@ public class CustomerDto extends AbstractDto {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -25,7 +24,6 @@ public class CustomerDto extends AbstractDto {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
