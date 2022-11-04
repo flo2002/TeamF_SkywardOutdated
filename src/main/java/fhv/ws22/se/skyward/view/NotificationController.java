@@ -6,12 +6,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NotificationController {
+
+    private static final Logger logger = LogManager.getLogger("NotificationController");
+
     private static NotificationController singleton;
 
     public static synchronized NotificationController getInstance() {
@@ -38,6 +43,7 @@ public class NotificationController {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/css/styles.css").toURI().toURL();
             label.getStylesheets().add(url.toString());
         } catch (MalformedURLException e) {
+            logger.error("objects: NotificationController, msg: " + e.getMessage());
             e.printStackTrace();
         }
 
