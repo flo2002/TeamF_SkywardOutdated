@@ -21,10 +21,9 @@ public class SearchCustomerController {
             Parent parent = FXMLLoader.load(url);
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.close();
-//            stage.setTitle("Home");
-//            stage.setScene(new Scene(parent));
-//            stage.show();
+            stage.setTitle("Home");
+            stage.setScene(new Scene(parent));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

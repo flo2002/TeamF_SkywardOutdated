@@ -21,10 +21,9 @@ public class AddGuestController {
             Parent parent = FXMLLoader.load(url);
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.close();
-//            stage.setTitle("Home");
-//            stage.setScene(new Scene(parent));
-//            stage.show();
+            stage.setTitle("Home");
+            stage.setScene(new Scene(parent));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,8 +35,7 @@ public class AddGuestController {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/search-customer.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
 
-            //Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            Stage stage = new Stage();
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Home");
             stage.setScene(new Scene(parent));
             stage.show();
