@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.boot.archive.internal.UrlInputStreamAccess;
 
 import java.io.File;
@@ -16,6 +18,7 @@ import java.net.URL;
 import java.util.Objects;
 
 public class NavBarController {
+    private static final Logger logger = LogManager.getLogger("NavBarController");
     public NavBarController() {
 
     }
@@ -33,13 +36,14 @@ public class NavBarController {
 
             NotificationController.getInstance().showSuccessNotification("Home", stage);
         } catch (IOException e) {
+            logger.error("objects: NavBarController, msg: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @FXML
     public void onBookingButtonClick(ActionEvent event) {
-        System.out.println("To Bookings we go!");
+
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/bookings.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -49,6 +53,7 @@ public class NavBarController {
             stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException e) {
+            logger.error("objects: NavBarController, msg: " + e.getMessage());
             e.printStackTrace();
         }
     }

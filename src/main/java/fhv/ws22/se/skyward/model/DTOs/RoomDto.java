@@ -1,11 +1,14 @@
 package fhv.ws22.se.skyward.model.DTOs;
 
 import fhv.ws22.se.skyward.model.Room;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 
 public class RoomDto extends AbstractDto {
+    private static final Logger logger = LogManager.getLogger("RoomDto");
     private int roomNumber;
     private String roomTypeName;
     private BigDecimal roomTypePrice;
@@ -47,9 +50,11 @@ public class RoomDto extends AbstractDto {
     }
 
     public Room toEntity() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation Room Entity to RoomDto.");
         return modelMapper.map(this, Room.class);
     }
     public static RoomDto toDto(Room room) {
+        logger.info("objects: " + room.toString() + ", msg: Transformation RoomDto to Room Entity");
         ModelMapper mm = new ModelMapper();
         return mm.map(room, RoomDto.class);
     }

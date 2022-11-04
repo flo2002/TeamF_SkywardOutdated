@@ -1,9 +1,12 @@
 package fhv.ws22.se.skyward.model.DTOs;
 
 import fhv.ws22.se.skyward.model.Customer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
 public class CustomerDto extends AbstractDto {
+    private static final Logger logger = LogManager.getLogger("CustomerDto");
     private String firstName;
     private String lastName;
 
@@ -29,10 +32,12 @@ public class CustomerDto extends AbstractDto {
     }
 
     public Customer toEntity() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation Customer Entity to CustomerDto.");
         return modelMapper.map(this, Customer.class);
     }
 
     public static CustomerDto toDto(Customer customer) {
+        logger.info("objects: " + customer.toString() + ", msg: Transformation CustomerDto to Customer Entity");
         ModelMapper mm = new ModelMapper();
         return mm.map(customer, CustomerDto.class);
     }
