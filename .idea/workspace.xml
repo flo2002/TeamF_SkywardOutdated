@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d503ca86-b1f2-4d6e-8d5a-b0243d7ea320" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/CustomerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/CustomerDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/AddGuestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/AddGuestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/NavBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/NavBarController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
