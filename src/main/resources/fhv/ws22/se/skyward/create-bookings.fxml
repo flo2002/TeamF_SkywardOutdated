@@ -43,6 +43,13 @@
             </TableView>
         </HBox>
     </center>
+    <bottom>
+        <VBox>
+            <Button onAction="#onAddRoomButtonClick" text="add Room"/>
+            <Button onAction="#onAddGuestButtonClick" text="add Guest"/>
+        </VBox>
+
+    </bottom>
 
 
 </BorderPane>

@@ -12,20 +12,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class CreateBookingController {
-    public CreateBookingController() {
-
-    }
+public class AddGuestController {
 
     @FXML
-    public void onCreateBookingButtonClick() {
-
-    }
-
-    @FXML
-    public void onReturnToBookingsButtonClick(ActionEvent event) {
+    public void onConfirmButtonClick(ActionEvent event) {
         try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/bookings.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -38,13 +30,12 @@ public class CreateBookingController {
     }
 
     @FXML
-    public void onAddRoomButtonClick(ActionEvent event) {
+    public void onSearchCustomerButtonClick(ActionEvent event) {
         try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/fhv/ws22/se/skyward/search-customer.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
             stage.setTitle("Home");
             stage.setScene(new Scene(parent));
             stage.show();
@@ -54,18 +45,7 @@ public class CreateBookingController {
     }
 
     @FXML
-    public void onAddGuestButtonClick(ActionEvent event) {
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-guests.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
+    public void onAddAnotherCustomerButtonClick(ActionEvent event) {
 
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            stage.setTitle("Home");
-            stage.setScene(new Scene(parent));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
