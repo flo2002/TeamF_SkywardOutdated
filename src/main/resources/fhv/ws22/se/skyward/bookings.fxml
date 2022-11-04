@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.collections.FXCollections?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.BookingController">
     <top>
         <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCreateBookingButtonClick" text="create Booking" />
@@ -12,25 +11,12 @@
         <fx:include source="navbar.fxml" />
     </left>
     <center>
-        <TableView fx:id="bookingsTable" GridPane.columnIndex="0" GridPane.rowIndex="1">
-            <!--<columns>
-                <TableColumn text="checkInDateTime">
-                </TableColumn>
-                <TableColumn text="checkOutDateTime">
-                </TableColumn>
-                <TableColumn text="isCheckedIn">
-                </TableColumn>
-            </columns>-->
-            <!--<columns>
-                <TableColumn fx:id="roomNumbersCol" text="Room Numbers">
-                </TableColumn>
-                <TableColumn fx:id="firstNameCol" text="Firstname">
-                </TableColumn>
-                <TableColumn fx:id="lastNameCol" text="Lastname">
-                </TableColumn>
-                <TableColumn fx:id="statusCol" text="Status">
-                </TableColumn>
-            </columns>-->
+        <TableView fx:id="table" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <columns>
+                <TableColumn fx:id="checkInDateTimeCol" text="checkInDateTime"/>
+                <TableColumn fx:id="checkOutDateTimeCol" text="checkOutDateTime"/>
+                <TableColumn fx:id="isCheckedInCol" text="isCheckedIn"/>
+            </columns>
         </TableView>
     </center>
 </BorderPane>

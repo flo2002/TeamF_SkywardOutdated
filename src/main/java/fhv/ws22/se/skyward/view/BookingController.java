@@ -2,7 +2,10 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.model.DTOs.BookingDto;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,39 +17,36 @@ import java.util.List;
 public class BookingController {
     private DatabaseFacade dbf;
     @FXML
-    private TableView<BookingDto> bookingsTable;
-    /*@FXML
-    private TableColumn<BookingDto, String> roomNumbersCol;
+    private TableView<BookingDto> table;
     @FXML
-    private TableColumn<BookingDto, String> firstNameCol;
+    private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
     @FXML
-    private TableColumn<BookingDto, String> lastNameCol;
+    private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol;
     @FXML
-    private TableColumn<BookingDto, Boolean> statusCol;*/
+    private TableColumn<BookingDto, Boolean> isCheckedInCol;
 
-    public BookingController() {
+
+    @FXML
+    protected void initialize() {
         dbf = DatabaseFacade.getInstance();
-        List<BookingDto> bookings = (List<BookingDto>) dbf.getAll(BookingDto.class);
-
-        bookingsTable = new TableView();
-
-        /*TableColumn<BookingDto, LocalDateTime> checkinColumn =
-                TableColumn<>("CheckIn");
-        firstNameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("firstName"));*/
-
-
-
-        //https://jenkov.com/tutorials/javafx/tableview.html#add-data-to-tableview
-
-
-        for (BookingDto booking : bookings) {
-            bookingsTable.getItems().add(booking);
-        }
+        checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
+        checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
+        isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
+        updateTable();
     }
 
     @FXML
-    public void onCreateBookingButtonClick() {
-        System.out.println("Let's create a Booking!");
+    public void onCreateBookingButtonClick(ActionEvent event) {
+        BookingDto booking = new BookingDto(LocalDateTime.now(), LocalDateTime.now(), false, null, null);
+        dbf.add(booking);
+        updateTable();
+    }
+
+    public void updateTable() {
+        table.getItems().clear();
+        List<BookingDto> bookings = dbf.getAll(BookingDto.class);
+        for (BookingDto booking : bookings) {
+            table.getItems().add(booking);
+        }
     }
 }
