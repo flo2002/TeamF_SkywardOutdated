@@ -6,7 +6,6 @@ module fhv.ws22.se.skyward {
     requires org.hibernate.orm.core;
     requires org.apache.logging.log4j;
     requires modelmapper;
-    requires org.postgresql.jdbc;
 
 
     opens fhv.ws22.se.skyward to javafx.fxml;
