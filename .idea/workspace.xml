@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b11583e-ecd0-4153-8fa4-8625791692db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/AddGuestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/AddRoomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/SearchCustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/add-guests.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/search-customer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/118c377c-59a2-4cd5-b09b-fdb92a13f5ee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/118c377c-59a2-4cd5-b09b-fdb92a13f5ee.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/BookingDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/CustomerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/CustomerDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/model/DTOs/RoomDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/CreateBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fhv/ws22/se/skyward/view/CreateBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +80,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -136,6 +144,7 @@
       <workItem from="1667308603765" duration="21000" />
       <workItem from="1667379119211" duration="383000" />
       <workItem from="1667381567595" duration="2934000" />
+      <workItem from="1667546615355" duration="9209000" />
     </task>
     <servers />
   </component>

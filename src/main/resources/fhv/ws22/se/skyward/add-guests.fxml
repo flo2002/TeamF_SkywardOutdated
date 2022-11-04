@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fhv.ws22.se.skyward.view.AddGuestController"
+            prefHeight="400.0" prefWidth="600.0">
+    <BorderPane>
+        <top>
+            <Button onAction="#onSearchCustomerButtonClick" text="search"/>
+        </top>
+        <center>
+            <VBox>
+                <HBox>
+                    <Label text="Firstname"/>
+                    <TextField />
+                </HBox>
+                <HBox>
+                    <Label text="Lastname"/>
+                    <TextField />
+                </HBox>
+                <HBox>
+                    <Label text="Address"/>
+                    <TextField />
+                </HBox>
+                <HBox>
+                    <Label text="Tel Nr."/>
+                    <TextField />
+                </HBox>
+            </VBox>
+        </center>
+        <bottom>
+            <HBox>
+                <Button onAction="#onConfirmButtonClick" text="Confirm"/>
+                <Button onAction="#onAddAnotherCustomerButtonClick" text="Add"/>
+            </HBox>
+        </bottom>
+    </BorderPane>
+
+</AnchorPane>

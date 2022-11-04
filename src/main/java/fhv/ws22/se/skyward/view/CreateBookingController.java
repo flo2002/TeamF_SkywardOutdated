@@ -36,4 +36,36 @@ public class CreateBookingController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void onAddRoomButtonClick(ActionEvent event) {
+        try {
+            URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml").toURI().toURL();
+            Parent parent = FXMLLoader.load(url);
+
+            //Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
+            stage.setTitle("Home");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onAddGuestButtonClick(ActionEvent event) {
+        try {
+            URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-guests.fxml").toURI().toURL();
+            Parent parent = FXMLLoader.load(url);
+
+            //Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
+            stage.setTitle("Home");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

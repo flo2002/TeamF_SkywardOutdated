@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fhv.ws22.se.skyward.view.SearchCustomerController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <BorderPane>
+        <top>
+            <HBox>
+                <TextField />
+                <Button onAction="#onConfirmCustomerSearchButtonClick" text="Confirm"/>
+            </HBox>
+        </top>
+        <center>
+            <TableView>
+                <columns>
+                    <TableColumn text="Firstname"/>
+                    <TableColumn text="Lastname"/>
+                    <TableColumn text="Address"/>
+                    <TableColumn text="TelNr"/>
+                </columns>
+            </TableView>
+        </center>
+    </BorderPane>
+</AnchorPane>
