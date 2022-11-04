@@ -2,15 +2,21 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.model.DTOs.BookingDto;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,7 +31,6 @@ public class BookingController {
     @FXML
     private TableColumn<BookingDto, Boolean> isCheckedInCol;
 
-
     @FXML
     protected void initialize() {
         dbf = DatabaseFacade.getInstance();
@@ -37,9 +42,20 @@ public class BookingController {
 
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
-        BookingDto booking = new BookingDto(LocalDateTime.now(), LocalDateTime.now(), false, null, null);
+        /*BookingDto booking = new BookingDto(LocalDateTime.now(), LocalDateTime.now(), false, null, null);
         dbf.add(booking);
-        updateTable();
+        updateTable();*/
+        try {
+            URL url = new File("src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml").toURI().toURL();
+            Parent parent = FXMLLoader.load(url);
+
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("Home");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateTable() {
