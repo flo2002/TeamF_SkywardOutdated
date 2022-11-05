@@ -2,6 +2,7 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.model.DTOs.BookingDto;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,39 +23,28 @@ import java.util.List;
 public class BookingController {
     private DatabaseFacade dbf;
     @FXML
-    private TableView<BookingDto> bookingsTable;
-    /*@FXML
-    private TableColumn<BookingDto, String> roomNumbersCol;
+    private TableView<BookingDto> table;
     @FXML
-    private TableColumn<BookingDto, String> firstNameCol;
+    private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
     @FXML
-    private TableColumn<BookingDto, String> lastNameCol;
+    private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol;
     @FXML
-    private TableColumn<BookingDto, Boolean> statusCol;*/
+    private TableColumn<BookingDto, Boolean> isCheckedInCol;
 
-    public BookingController() {
-        //dbf = DatabaseFacade.getInstance();
-        //List<BookingDto> bookings = (List<BookingDto>) dbf.getAll(BookingDto.class);
-
-        //bookingsTable = new TableView();
-
-        /*TableColumn<BookingDto, LocalDateTime> checkinColumn =
-                TableColumn<>("CheckIn");
-        firstNameColumn.setCellValueFactory(
-                new PropertyValueFactory<>("firstName"));*/
-
-
-
-        //https://jenkov.com/tutorials/javafx/tableview.html#add-data-to-tableview
-
-
-//        for (BookingDto booking : bookings) {
-//            bookingsTable.getItems().add(booking);
-//        }
+    @FXML
+    protected void initialize() {
+        dbf = DatabaseFacade.getInstance();
+        checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
+        checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
+        isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
+        updateTable();
     }
 
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
+        /*BookingDto booking = new BookingDto(LocalDateTime.now(), LocalDateTime.now(), false, null, null);
+        dbf.add(booking);
+        updateTable();*/
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -65,6 +55,14 @@ public class BookingController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void updateTable() {
+        table.getItems().clear();
+        List<BookingDto> bookings = dbf.getAll(BookingDto.class);
+        for (BookingDto booking : bookings) {
+            table.getItems().add(booking);
         }
     }
 }
