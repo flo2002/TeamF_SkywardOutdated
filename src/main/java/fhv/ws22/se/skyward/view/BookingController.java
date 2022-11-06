@@ -13,6 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +23,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class BookingController {
+
+    private static final Logger logger = LogManager.getLogger("BookingController");
+
     private DatabaseFacade dbf;
     @FXML
     private TableView<BookingDto> table;
@@ -54,6 +59,8 @@ public class BookingController {
             stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException e) {
+            logger.error("objects: BookingController, msg: " + e.getMessage());
+
             e.printStackTrace();
         }
     }
