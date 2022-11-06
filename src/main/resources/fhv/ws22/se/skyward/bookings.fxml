@@ -1,22 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.BookingController">
-    <top>
-        <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onCreateBookingButtonClick" text="create Booking" />
-    </top>
-    <left>
-        <fx:include source="navbar.fxml" />
-    </left>
-    <center>
-        <TableView fx:id="table" GridPane.columnIndex="0" GridPane.rowIndex="1">
-            <columns>
-                <TableColumn fx:id="checkInDateTimeCol" text="checkInDateTime"/>
-                <TableColumn fx:id="checkOutDateTimeCol" text="checkOutDateTime"/>
-                <TableColumn fx:id="isCheckedInCol" text="isCheckedIn"/>
-            </columns>
-        </TableView>
-    </center>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.BookingController">
+   <children>
+      <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #89CFF0;">
+         <children>
+            <Pane prefHeight="111.0" prefWidth="170.0">
+               <children>
+                  <ImageView fitHeight="132.0" fitWidth="150.0" layoutX="19.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../SkyWardIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" text="Guests" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="170.0" prefHeight="132.0" prefWidth="504.0" style="-fx-background-color: A9E0F6;">
+         <children>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #50C878;" text="Create Booking" />
+            <Button layoutX="175.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #7393B3;" text="Bookings" />
+            <CheckBox layoutX="29.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="single" />
+            <CheckBox layoutX="98.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="double" />
+            <CheckBox layoutX="175.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="triple" />
+            <CheckBox layoutX="243.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="twin" />
+            <CheckBox layoutX="319.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="queen" />
+            <DatePicker layoutX="22.0" layoutY="97.0" promptText="From" />
+            <DatePicker layoutX="214.0" layoutY="97.0" promptText="To" />
+         </children>
+      </Pane>
+      <HBox layoutX="174.0" layoutY="136.0" prefHeight="281.0" prefWidth="495.0">
+         <children>
+            <TableView prefHeight="287.0" prefWidth="232.0" stylesheets="@css/styles.css">
+              <columns>
+                <TableColumn editable="false" prefWidth="75.0" styleClass="css/style.css" text="RoomNr." />
+                <TableColumn prefWidth="75.0" text="Type" />
+                  <TableColumn prefWidth="80.79998779296875" text="Cost" />
+              </columns>
+            </TableView>
+            <TableView prefHeight="302.0" prefWidth="262.0" stylesheets="@css/styles.css">
+              <columns>
+                <TableColumn prefWidth="123.99993896484375" text="Firstname" />
+                <TableColumn prefWidth="138.40008544921875" text="Lastname" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0">
+         <children>
+            <Button id="addroom" layoutX="136.0" layoutY="6.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="add Room" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0">
+         <children>
+            <Button id="addguest" layoutX="161.0" layoutY="7.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="add Guest" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

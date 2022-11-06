@@ -1,29 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fhv.ws22.se.skyward.view.AddRoomController"
-            prefHeight="400.0" prefWidth="600.0">
-<BorderPane>
-    <center>
-        <TableView>
-            <columns>
-                <TableColumn text="Room Number"/>
-                <TableColumn text="Type"/>
-                <TableColumn text="Cost"/>
-            </columns>
-        </TableView>
-    </center>
-    <bottom>
-        <Button onAction="#onConfirmButtonClick" text="Confirm"/>
-    </bottom>
-</BorderPane>
-
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.AddRoomController">
+   <children>
+      <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #89CFF0;">
+         <children>
+            <Pane prefHeight="111.0" prefWidth="170.0">
+               <children>
+                  <ImageView fitHeight="132.0" fitWidth="150.0" layoutX="19.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../SkyWardIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" text="Guests" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+         </children>
+      </VBox>
+      <HBox layoutX="223.0" layoutY="61.0" prefHeight="330.0" prefWidth="394.0">
+         <children>
+            <TableView prefHeight="329.0" prefWidth="386.0" stylesheets="@css/styles.css">
+               <columns>
+                  <TableColumn editable="false" prefWidth="83.99998474121094" styleClass="css/style.css" text="RoomNr." />
+                  <TableColumn prefWidth="85.60003662109375" text="Type" />
+                  <TableColumn prefWidth="96.0" text="Cost" />
+                  <TableColumn prefWidth="196.7999267578125" text="Select" />
+               </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
+      <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0">
+         <children>
+            <Button id="addguest" layoutX="107.0" layoutY="6.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="confirm" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

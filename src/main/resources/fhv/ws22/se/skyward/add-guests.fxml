@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fhv.ws22.se.skyward.view.AddGuestController"
-            prefHeight="400.0" prefWidth="600.0">
-    <BorderPane>
-        <top>
-            <Button onAction="#onSearchCustomerButtonClick" text="search"/>
-        </top>
-        <center>
-            <VBox>
-                <HBox>
-                    <Label text="Firstname"/>
-                    <TextField />
-                </HBox>
-                <HBox>
-                    <Label text="Lastname"/>
-                    <TextField />
-                </HBox>
-                <HBox>
-                    <Label text="Address"/>
-                    <TextField />
-                </HBox>
-                <HBox>
-                    <Label text="Tel Nr."/>
-                    <TextField />
-                </HBox>
-            </VBox>
-        </center>
-        <bottom>
-            <HBox>
-                <Button onAction="#onConfirmButtonClick" text="Confirm"/>
-                <Button onAction="#onAddAnotherCustomerButtonClick" text="Add"/>
-            </HBox>
-        </bottom>
-    </BorderPane>
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.AddGuestController">
+   <children>
+      <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #89CFF0;">
+         <children>
+            <Pane prefHeight="111.0" prefWidth="170.0">
+               <children>
+                  <ImageView fitHeight="132.0" fitWidth="150.0" layoutX="19.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../SkyWardIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" text="Guests" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+            </Button>
+         </children>
+      </VBox>
+      <HBox layoutX="223.0" layoutY="61.0" prefHeight="330.0" prefWidth="394.0">
+         <children>
+            <AnchorPane prefHeight="330.0" prefWidth="397.0">
+               <children>
+                  <TextField layoutX="109.0" layoutY="14.0" />
+                  <TextField layoutX="109.0" layoutY="57.0" />
+                  <TextField layoutX="109.0" layoutY="102.0" />
+                  <TextField layoutX="109.0" layoutY="139.0" />
+                  <Button id="addguest" layoutX="168.0" layoutY="236.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="confirm" />
+                  <Text layoutX="35.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname" />
+                  <Text layoutX="35.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname" />
+                  <Text layoutX="43.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adress" />
+                  <Text layoutX="30.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail-adress" />
+                  <TextField layoutX="108.0" layoutY="179.0" />
+                  <Text layoutX="42.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel.Nr." />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
+      <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0" />
+      <Button id="confirm" layoutX="337.0" layoutY="34.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" prefHeight="26.0" prefWidth="142.0" stylesheets="@css/styles.css" text="Search Guest" />
+   </children>
 </AnchorPane>
