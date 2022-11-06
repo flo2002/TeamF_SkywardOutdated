@@ -10,13 +10,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class MainApplication extends Application {
     private static final Logger logger = LogManager.getLogger("HelloApplication");
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800,500);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("homescreen.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 674,465);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

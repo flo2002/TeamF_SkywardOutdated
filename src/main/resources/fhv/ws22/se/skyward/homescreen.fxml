@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?xml-stylesheet type="text/css" href="style.css"?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.HomescreenController">
    <children>
       <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #89CFF0;">
          <children>
@@ -29,20 +30,32 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="170.0" stylesheets="@../../../../../../../../../../Desktop/style.css" text="Home" textFill="WHITE">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
             </Button>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="170.0" stylesheets="@../../../../../../../../../../Desktop/style.css" text="Booking" textFill="WHITE">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
             </Button>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" stylesheets="@../../../../../../../../../../Desktop/style.css" text="Guests" textFill="WHITE">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" text="Guests" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
+               <stylesheets>
+                  <URL value="@../../../../../Desktop/style.css" />
+                  <URL value="@css/styles.css" />
+               </stylesheets>
             </Button>
          </children>
       </VBox>

@@ -17,11 +17,11 @@ public class AddGuestController {
     @FXML
     public void onConfirmButtonClick(ActionEvent event) {
         try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/create-bookings.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/fhv/ws22/se/skyward/bookings.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Home");
+            stage.setTitle("Booking");
             stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException e) {
@@ -36,9 +36,27 @@ public class AddGuestController {
             Parent parent = FXMLLoader.load(url);
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setTitle("Search");
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onHomeButtonClick(ActionEvent event) {
+        System.out.println("This works, right?");
+        try {
+            URL url = new File("src/main/resources/fhv/ws22/se/skyward/homescreen.fxml").toURI().toURL();
+            Parent parent = FXMLLoader.load(url);
+
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Home");
             stage.setScene(new Scene(parent));
             stage.show();
+
+            //NotificationController.getInstance().showSuccessNotification("Home", stage);
         } catch (IOException e) {
             e.printStackTrace();
         }

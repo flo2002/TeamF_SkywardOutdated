@@ -30,7 +30,7 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size : 20;
-    -fx-background-color:   #2D75E8;
+    -fx-background-color:   #7393B3;
 }
 .table-view .column-header .label{
 
@@ -94,3 +94,18 @@
     -fx-border-color: derive(-fx-pie-color, 1%);
     -fx-border-width: 0px;
 }
+
+#addroom {
+    -fx-background-color: #7393B3;
+}
+
+#addguest {
+    -fx-background-color: #7393B3;
+}
+
+#confirm {
+    -fx-background-color: #7393B3;
+}
+
+
+
