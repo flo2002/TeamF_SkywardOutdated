@@ -1,7 +1,7 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.Customer;
-import fhv.ws22.se.skyward.model.DTOs.CustomerDto;
+import fhv.ws22.se.skyward.persistence.entity.Customer;
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.Booking;
-import fhv.ws22.se.skyward.model.DTOs.BookingDto;
+import fhv.ws22.se.skyward.persistence.entity.Booking;
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package fhv.ws22.se.skyward.model;
+package fhv.ws22.se.skyward.persistence.entity;
 
 import jakarta.persistence.*;
 import java.util.List;

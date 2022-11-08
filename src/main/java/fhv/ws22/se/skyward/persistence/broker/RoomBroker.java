@@ -1,7 +1,7 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.DTOs.RoomDto;
-import fhv.ws22.se.skyward.model.Room;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.persistence.entity.Room;
 
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;

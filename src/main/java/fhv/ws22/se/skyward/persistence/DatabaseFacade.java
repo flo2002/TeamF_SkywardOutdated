@@ -1,6 +1,9 @@
 package fhv.ws22.se.skyward.persistence;
 
-import fhv.ws22.se.skyward.model.DTOs.*;
+import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.persistence.broker.*;
 
 import jakarta.persistence.EntityManager;
