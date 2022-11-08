@@ -9,6 +9,7 @@ import jakarta.persistence.Persistence;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class DatabaseFacade {
     private final EntityManager entityManager;
@@ -43,12 +44,10 @@ public class DatabaseFacade {
     public <T extends AbstractDto> void add(T t) {
         brokers.get(t.getClass()).add(t);
     }
-
-    public <T extends AbstractDto> void update(T t) {
+    public <T extends AbstractDto> void update(UUID id, T t) {
         brokers.get(t.getClass()).update(t);
     };
-    public <T extends AbstractDto> void delete(T t) {
+    public <T extends AbstractDto> void delete(UUID id, T t) {
         brokers.get(t.getClass()).delete(t);
     };
-
 }

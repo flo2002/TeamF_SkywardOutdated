@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class BookingBroker extends BrokerBase<BookingDto> {
     private final EntityManager entityManager;
@@ -32,13 +33,13 @@ public class BookingBroker extends BrokerBase<BookingDto> {
         entityManager.getTransaction().commit();
     }
 
-    public void update(BookingDto booking) {
+    public void update(UUID id, BookingDto booking) {
         entityManager.getTransaction().begin();
         entityManager.merge(booking.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void delete(BookingDto booking) {
+    public void delete(UUID id, BookingDto booking) {
         entityManager.getTransaction().begin();
         entityManager.remove(booking.toEntity());
         entityManager.getTransaction().commit();
