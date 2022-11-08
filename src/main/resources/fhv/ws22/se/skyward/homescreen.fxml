@@ -17,9 +17,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.HomescreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.HomescreenController">
    <children>
-      <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #89CFF0;">
+      <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #89CFF0;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="111.0" prefWidth="170.0">
                <children>
@@ -88,9 +88,9 @@
             </GridPane>
          </children>
       </VBox>
-      <Pane layoutX="170.0" layoutY="34.0" prefHeight="92.0" prefWidth="503.0" style="-fx-background-color: A9E0F6;">
+      <Pane layoutX="170.0" layoutY="34.0" prefHeight="92.0" prefWidth="503.0" style="-fx-background-color: A9E0F6;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="0.8000000000000114">
          <children>
-            <Text fill="WHITE" layoutX="150.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="150.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
                <font>
                   <Font size="42.0" />
                </font>

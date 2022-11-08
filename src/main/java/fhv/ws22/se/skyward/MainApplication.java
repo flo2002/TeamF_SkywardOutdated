@@ -25,7 +25,7 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        //DataGenerator.generateData();
+        DataGenerator.generateData();
 
         logger.trace("We've just greeted the user!");
         logger.debug("We've just greeted the user!");
