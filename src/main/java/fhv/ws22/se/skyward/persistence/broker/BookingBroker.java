@@ -39,9 +39,9 @@ public class BookingBroker extends BrokerBase<BookingDto> {
         entityManager.getTransaction().commit();
     }
 
-    public void delete(UUID id, BookingDto booking) {
+    public void delete(UUID id) {
         entityManager.getTransaction().begin();
-        entityManager.remove(booking.toEntity());
+        entityManager.remove(entityManager.find(Booking.class, id));
         entityManager.getTransaction().commit();
     }
 }

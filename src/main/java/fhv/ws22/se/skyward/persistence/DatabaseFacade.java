@@ -45,9 +45,9 @@ public class DatabaseFacade {
         brokers.get(t.getClass()).add(t);
     }
     public <T extends AbstractDto> void update(UUID id, T t) {
-        brokers.get(t.getClass()).update(t);
+        brokers.get(t.getClass()).update(id, t);
     };
-    public <T extends AbstractDto> void delete(UUID id, T t) {
-        brokers.get(t.getClass()).delete(t);
+    public <T extends AbstractDto> void delete(UUID id, Class<T> clazz) {
+        brokers.get(clazz).delete(id);
     };
 }

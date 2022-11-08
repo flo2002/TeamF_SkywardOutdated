@@ -6,6 +6,7 @@ import fhv.ws22.se.skyward.model.DTOs.CustomerDto;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CustomerBroker extends BrokerBase<CustomerDto> {
     private final EntityManager entityManager;
@@ -40,15 +41,15 @@ public class CustomerBroker extends BrokerBase<CustomerDto> {
         entityManager.getTransaction().commit();
     }
 
-    public void update(CustomerDto customer) {
+    public void update(UUID id, CustomerDto customer) {
         entityManager.getTransaction().begin();
         entityManager.merge(customer.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void delete(CustomerDto customer) {
+    public void delete(UUID id) {
         entityManager.getTransaction().begin();
-        entityManager.remove(customer.toEntity());
+        entityManager.remove(entityManager.find(Customer.class, id));
         entityManager.getTransaction().commit();
     }
 }
