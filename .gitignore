@@ -7,7 +7,7 @@ target/
 Logs
 
 ### IntelliJ IDEA ###
-.idea/
+.idea
 
 ### Eclipse ###
 .apt_generated
