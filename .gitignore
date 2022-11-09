@@ -8,6 +8,7 @@ Logs
 
 ### IntelliJ IDEA ###
 .idea
+skyward.iml
 
 ### Eclipse ###
 .apt_generated
