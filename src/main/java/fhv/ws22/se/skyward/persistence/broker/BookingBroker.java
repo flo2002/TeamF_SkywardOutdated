@@ -1,11 +1,12 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.Booking;
-import fhv.ws22.se.skyward.model.DTOs.BookingDto;
+import fhv.ws22.se.skyward.persistence.entity.Booking;
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class BookingBroker extends BrokerBase<BookingDto> {
     private final EntityManager entityManager;
@@ -26,21 +27,34 @@ public class BookingBroker extends BrokerBase<BookingDto> {
         return roomDtos;
     }
 
+    public BookingDto get(UUID id) {
+        Booking booking = entityManager.find(Booking.class, id);
+        return BookingDto.toDto(booking);
+    }
+
     public void add(BookingDto booking) {
         entityManager.getTransaction().begin();
         entityManager.persist(booking.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void update(BookingDto booking) {
+    public void update(UUID id, BookingDto booking) {
         entityManager.getTransaction().begin();
         entityManager.merge(booking.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void delete(BookingDto booking) {
+    public void delete(UUID id) {
         entityManager.getTransaction().begin();
-        entityManager.remove(booking.toEntity());
+        entityManager.remove(entityManager.find(Booking.class, id));
         entityManager.getTransaction().commit();
+    }
+
+    public UUID addAndReturnId(BookingDto booking) {
+        Booking tmpBooking = booking.toEntity();
+        entityManager.getTransaction().begin();
+        entityManager.persist(tmpBooking);
+        entityManager.getTransaction().commit();
+        return tmpBooking.getId();
     }
 }

@@ -1,11 +1,14 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.DTOs.RoomDto;
-import fhv.ws22.se.skyward.model.Room;
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.persistence.entity.Customer;
+import fhv.ws22.se.skyward.persistence.entity.Room;
 
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class RoomBroker extends BrokerBase<RoomDto> {
     private final EntityManager entityManager;
@@ -26,21 +29,36 @@ public class RoomBroker extends BrokerBase<RoomDto> {
         return roomDtos;
     }
 
+    public RoomDto get(UUID id) {
+        Room room = entityManager.find(Room.class, id);
+        return RoomDto.toDto(room);
+    }
+
     public void add(RoomDto room) {
         entityManager.getTransaction().begin();
         entityManager.persist(room.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void update(RoomDto room) {
+    public void update(UUID id, RoomDto room) {
+        Room tmpRoom = room.toEntity();
+        tmpRoom.setId(id);
         entityManager.getTransaction().begin();
-        entityManager.merge(room.toEntity());
+        entityManager.merge(tmpRoom);
         entityManager.getTransaction().commit();
     }
 
-    public void delete(RoomDto room) {
+    public void delete(UUID id) {
         entityManager.getTransaction().begin();
-        entityManager.remove(room.toEntity());
+        entityManager.remove(entityManager.find(Room.class, id));
         entityManager.getTransaction().commit();
+    }
+
+    public UUID addAndReturnId(RoomDto room) {
+        Room tmpRoom = room.toEntity();
+        entityManager.getTransaction().begin();
+        entityManager.persist(tmpRoom);
+        entityManager.getTransaction().commit();
+        return tmpRoom.getId();
     }
 }

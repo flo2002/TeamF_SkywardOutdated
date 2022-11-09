@@ -56,12 +56,12 @@
       </VBox>
       <HBox layoutX="223.0" layoutY="61.0" prefHeight="330.0" prefWidth="394.0">
          <children>
-            <TableView prefHeight="329.0" prefWidth="386.0" stylesheets="@css/styles.css">
+            <TableView fx:id="roomTable" prefHeight="329.0" prefWidth="386.0" stylesheets="@css/styles.css">
                <columns>
-                  <TableColumn editable="false" prefWidth="83.99998474121094" styleClass="css/style.css" text="RoomNr." />
-                  <TableColumn prefWidth="85.60003662109375" text="Type" />
-                  <TableColumn prefWidth="96.0" text="Cost" />
-                  <TableColumn prefWidth="196.7999267578125" text="Select" />
+                  <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="83.99998474121094" styleClass="css/style.css" text="RoomNr." />
+                  <TableColumn fx:id="roomTypeNameCol" prefWidth="85.60003662109375" text="Type" />
+                  <TableColumn fx:id="roomTypePriceCol" prefWidth="96.0" text="Cost" />
+                  <TableColumn fx:id="roomStateNameCol" prefWidth="196.7999267578125" text="Select" />
                </columns>
             </TableView>
          </children>

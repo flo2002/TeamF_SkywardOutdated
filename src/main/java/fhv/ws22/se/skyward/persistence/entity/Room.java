@@ -1,4 +1,4 @@
-package fhv.ws22.se.skyward.model;
+package fhv.ws22.se.skyward.persistence.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -7,10 +7,10 @@ import java.util.List;
 public class Room extends AbstractEntity {
     //@Column(unique = true)
     private int roomNumber;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "roomType_id")
     private RoomType roomType;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "roomState_id")
     private RoomState roomState;
     @ManyToMany(mappedBy = "rooms")
@@ -44,5 +44,15 @@ public class Room extends AbstractEntity {
     }
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNumber=" + roomNumber +
+                ", roomType=" + roomType +
+                ", roomState=" + roomState +
+                ", bookings=" + bookings +
+                '}';
     }
 }

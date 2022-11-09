@@ -1,6 +1,5 @@
-package fhv.ws22.se.skyward.model;
+package fhv.ws22.se.skyward.persistence.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import java.util.List;
@@ -26,6 +25,14 @@ public class RoomState extends AbstractEntity {
     }
     public void setRooms(List<Room> rooms) {
         this.rooms1 = rooms;
+    }
+
+    @Override
+    public String toString() {
+        return "RoomState{" +
+                "name='" + name + '\'' +
+                ", rooms=" + rooms1 +
+                '}';
     }
 }
 

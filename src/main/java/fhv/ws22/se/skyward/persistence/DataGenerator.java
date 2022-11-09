@@ -1,8 +1,8 @@
 package fhv.ws22.se.skyward.persistence;
 
-import fhv.ws22.se.skyward.model.DTOs.BookingDto;
-import fhv.ws22.se.skyward.model.DTOs.CustomerDto;
-import fhv.ws22.se.skyward.model.DTOs.RoomDto;
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -30,9 +30,5 @@ public class DataGenerator {
         dbf.add(r3);
         dbf.add(b);
         dbf.add(b2);
-
-        BookingDto testB = (BookingDto) dbf.getAll(BookingDto.class).get(0);
-        System.out.println(testB);
-        //System.out.println(testB.getRooms().get(0).getRoomNumber());
     }
 }

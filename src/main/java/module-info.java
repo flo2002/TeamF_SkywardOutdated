@@ -11,12 +11,14 @@ module fhv.ws22.se.skyward {
     opens fhv.ws22.se.skyward to javafx.fxml;
     exports fhv.ws22.se.skyward;
 
-    opens fhv.ws22.se.skyward.model;
+    opens fhv.ws22.se.skyward.persistence.entity;
     exports fhv.ws22.se.skyward.view;
 
     opens fhv.ws22.se.skyward.view to javafx.fxml;
 
     exports fhv.ws22.se.skyward.persistence;
-    exports fhv.ws22.se.skyward.model;
-    exports fhv.ws22.se.skyward.model.DTOs;
+    exports fhv.ws22.se.skyward.persistence.entity;
+    exports fhv.ws22.se.skyward.domain.dtos;
+    exports fhv.ws22.se.skyward.domain;
+    exports fhv.ws22.se.skyward.domain.model;
 }

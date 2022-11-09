@@ -71,17 +71,18 @@
       </Pane>
       <HBox layoutX="174.0" layoutY="136.0" prefHeight="281.0" prefWidth="495.0">
          <children>
-            <TableView prefHeight="287.0" prefWidth="232.0" stylesheets="@css/styles.css">
+            <TableView fx:id="roomTable" prefHeight="287.0" prefWidth="232.0" stylesheets="@css/styles.css">
               <columns>
-                <TableColumn editable="false" prefWidth="75.0" styleClass="css/style.css" text="RoomNr." />
-                <TableColumn prefWidth="75.0" text="Type" />
-                  <TableColumn prefWidth="80.79998779296875" text="Cost" />
+                <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="75.0" styleClass="css/style.css" text="RoomNr." />
+                <TableColumn fx:id="roomTypeNameCol" prefWidth="75.0" text="Type" />
+                 <TableColumn fx:id="roomTypePriceCol" prefWidth="80.79998779296875" text="Cost" />
+                 <TableColumn fx:id="roomStateNameCol" prefWidth="80.79998779296875" text="State" />
               </columns>
             </TableView>
-            <TableView prefHeight="302.0" prefWidth="262.0" stylesheets="@css/styles.css">
+            <TableView fx:id="customerTable" prefHeight="302.0" prefWidth="262.0" stylesheets="@css/styles.css">
               <columns>
-                <TableColumn prefWidth="123.99993896484375" text="Firstname" />
-                <TableColumn prefWidth="138.40008544921875" text="Lastname" />
+                <TableColumn fx:id="firstNameCol" prefWidth="123.99993896484375" text="Firstname" />
+                <TableColumn fx:id="lastNameCol" prefWidth="138.40008544921875" text="Lastname" />
               </columns>
             </TableView>
          </children>

@@ -1,9 +1,7 @@
-package fhv.ws22.se.skyward.model;
+package fhv.ws22.se.skyward.persistence.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -38,5 +36,14 @@ public class RoomType extends AbstractEntity {
     }
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    @Override
+    public String toString() {
+        return "RoomType{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", rooms=" + rooms +
+                '}';
     }
 }
