@@ -1,6 +1,5 @@
-package fhv.ws22.se.skyward.model;
+package fhv.ws22.se.skyward.persistence.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import java.util.List;

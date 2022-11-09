@@ -1,6 +1,6 @@
-package fhv.ws22.se.skyward.model.DTOs;
+package fhv.ws22.se.skyward.domain.dtos;
 
-import fhv.ws22.se.skyward.model.Room;
+import fhv.ws22.se.skyward.persistence.entity.Room;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;

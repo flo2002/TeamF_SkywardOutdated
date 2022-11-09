@@ -59,10 +59,10 @@
          <children>
             <TextField layoutX="14.0" layoutY="23.0" prefHeight="26.0" prefWidth="200.0" />
             <Button id="confirm" layoutX="227.0" layoutY="23.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" stylesheets="@css/styles.css" text="search" />
-            <TableView layoutX="10.0" layoutY="75.0" prefHeight="244.0" prefWidth="398.0">
+            <TableView fx:id="customerTable" layoutX="10.0" layoutY="75.0" prefHeight="244.0" prefWidth="398.0">
               <columns>
-                <TableColumn prefWidth="91.19999694824219" text="Firstname" />
-                <TableColumn prefWidth="97.5999755859375" text="Lastname" />
+                <TableColumn fx:id="firstNameCol" prefWidth="91.19999694824219" text="Firstname" />
+                <TableColumn fx:id="lastNameCol" prefWidth="97.5999755859375" text="Lastname" />
                   <TableColumn prefWidth="100.79998779296875" text="adress" />
                   <TableColumn prefWidth="108.800048828125" text="Tel.Nr." />
               </columns>

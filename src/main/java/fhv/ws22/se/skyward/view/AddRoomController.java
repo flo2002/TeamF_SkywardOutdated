@@ -1,21 +1,52 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.domain.SessionFactory;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.domain.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.util.List;
 
 public class AddRoomController {
     private static final Logger logger = LogManager.getLogger("AddRoomController");
+    private Session session;
+
+    @FXML
+    private TableView<RoomDto> roomTable;
+    @FXML
+    private TableColumn<RoomDto, Integer> roomNumberCol;
+    @FXML
+    private TableColumn<RoomDto, String> roomTypeNameCol;
+    @FXML
+    private TableColumn<RoomDto, BigDecimal> roomTypePriceCol;
+    @FXML
+    private TableColumn<RoomDto, String> roomStateNameCol;
+
+    @FXML
+    protected void initialize() {
+        session = SessionFactory.getInstance().getSession();
+
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
+        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
+        roomTypePriceCol.setCellValueFactory(new PropertyValueFactory<RoomDto, BigDecimal>("roomTypePrice"));
+        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
+        updateTable();
+    }
 
     @FXML
     public void onConfirmButtonClick(ActionEvent event) {
@@ -51,4 +82,13 @@ public class AddRoomController {
             e.printStackTrace();
         }
     }
+
+    public void updateTable() {
+        roomTable.getItems().clear();
+        List<RoomDto> rooms = session.getAll(RoomDto.class);
+        for (RoomDto room : rooms) {
+            roomTable.getItems().add(room);
+        }
+    }
+
 }

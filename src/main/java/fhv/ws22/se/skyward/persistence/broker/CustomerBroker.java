@@ -1,11 +1,12 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.model.Customer;
-import fhv.ws22.se.skyward.model.DTOs.CustomerDto;
+import fhv.ws22.se.skyward.persistence.entity.Customer;
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CustomerBroker extends BrokerBase<CustomerDto> {
     private final EntityManager entityManager;
@@ -34,21 +35,34 @@ public class CustomerBroker extends BrokerBase<CustomerDto> {
         return CustomerDto.toDto(p);
     }
 
+    public CustomerDto get(UUID id) {
+        Customer customer = entityManager.find(Customer.class, id);
+        return CustomerDto.toDto(customer);
+    }
+
     public void add(CustomerDto customer) {
         entityManager.getTransaction().begin();
         entityManager.persist(customer.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void update(CustomerDto customer) {
+    public void update(UUID id, CustomerDto customer) {
         entityManager.getTransaction().begin();
         entityManager.merge(customer.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void delete(CustomerDto customer) {
+    public void delete(UUID id) {
         entityManager.getTransaction().begin();
-        entityManager.remove(customer.toEntity());
+        entityManager.remove(entityManager.find(Customer.class, id));
         entityManager.getTransaction().commit();
+    }
+
+    public UUID addAndReturnId(CustomerDto customerDto) {
+        Customer tmpCustomer = customerDto.toEntity();
+        entityManager.getTransaction().begin();
+        entityManager.persist(tmpCustomer);
+        entityManager.getTransaction().commit();
+        return tmpCustomer.getId();
     }
 }

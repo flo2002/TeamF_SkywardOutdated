@@ -1,8 +1,11 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.model.DTOs.BookingDto;
-import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+import fhv.ws22.se.skyward.domain.SessionFactory;
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
+import fhv.ws22.se.skyward.domain.Session;
 
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,38 +21,54 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class BookingController {
-
     private static final Logger logger = LogManager.getLogger("BookingController");
+    private Session session;
+    private BookingDto tmpBooking;
 
-    private DatabaseFacade dbf;
     @FXML
-    private TableView<BookingDto> table;
+    private TableView<RoomDto> roomTable;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
+    private TableColumn<RoomDto, Integer> roomNumberCol;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol;
+    private TableColumn<RoomDto, String> roomTypeNameCol;
     @FXML
-    private TableColumn<BookingDto, Boolean> isCheckedInCol;
+    private TableColumn<RoomDto, BigDecimal> roomTypePriceCol;
+    @FXML
+    private TableColumn<RoomDto, String> roomStateNameCol;
+
+    @FXML
+    private TableView<CustomerDto> customerTable;
+    @FXML
+    private TableColumn<CustomerDto, String> firstNameCol;
+    @FXML
+    private TableColumn<CustomerDto, String> lastNameCol;
 
     @FXML
     protected void initialize() {
-        dbf = DatabaseFacade.getInstance();
-        checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
-        checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
-        isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
+        session = SessionFactory.getInstance().getSession();
+
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
+        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
+        roomTypePriceCol.setCellValueFactory(new PropertyValueFactory<RoomDto, BigDecimal>("roomTypePrice"));
+        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
+
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
+
+        tmpBooking = session.getTmpBooking();
+        System.out.println("tmpBookingId: " + tmpBooking);
+
         updateTable();
     }
 
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
-        /*BookingDto booking = new BookingDto(LocalDateTime.now(), LocalDateTime.now(), false, null, null);
-        dbf.add(booking);
-        updateTable();*/
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/bookings.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -65,7 +84,6 @@ public class BookingController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        System.out.println("This works, right?");
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/homescreen.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -116,10 +134,22 @@ public class BookingController {
     }
 
     public void updateTable() {
-        table.getItems().clear();
-        List<BookingDto> bookings = dbf.getAll(BookingDto.class);
-        for (BookingDto booking : bookings) {
-            table.getItems().add(booking);
+        customerTable.getItems().clear();
+        //List<CustomerDto> customers = session.getActiveBooking(tmpBookingId);
+        List<CustomerDto> customers = session.getAll(CustomerDto.class);
+        if (customers != null) {
+            for (CustomerDto customer : customers) {
+                customerTable.getItems().add(customer);
+            }
+        }
+
+        roomTable.getItems().clear();
+        //List<RoomDto> rooms = session.getActiveBooking(tmpBookingId);
+        List<RoomDto> rooms = session.getAll(RoomDto.class);
+        if (customers != null) {
+            for (RoomDto room : rooms) {
+                roomTable.getItems().add(room);
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-package fhv.ws22.se.skyward.model;
-import org.hibernate.annotations.Type;
+package fhv.ws22.se.skyward.persistence.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
