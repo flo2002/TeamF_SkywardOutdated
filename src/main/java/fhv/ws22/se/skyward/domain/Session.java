@@ -77,7 +77,6 @@ public class Session {
             booking.setCheckInDateTime(LocalDateTime.now());
 
             tmpBookingId = addAndReturnId(BookingDto.class, booking);
-            System.out.println("created tmp booking with id: " + tmpBookingId);
         }
 
         return dbf.get(tmpBookingId, BookingDto.class);

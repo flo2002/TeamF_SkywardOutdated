@@ -65,8 +65,8 @@
             <CheckBox layoutX="175.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="triple" />
             <CheckBox layoutX="243.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="twin" />
             <CheckBox layoutX="319.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="queen" />
-            <DatePicker layoutX="22.0" layoutY="97.0" promptText="From" />
-            <DatePicker layoutX="214.0" layoutY="97.0" promptText="To" />
+            <DatePicker fx:id="checkInDatePicker" layoutX="22.0" layoutY="97.0" promptText="From" />
+            <DatePicker fx:id="checkOutDatePicker" layoutX="214.0" layoutY="97.0" promptText="To" />
          </children>
       </Pane>
       <HBox layoutX="174.0" layoutY="136.0" prefHeight="281.0" prefWidth="495.0">
