@@ -28,8 +28,8 @@ public class BookingBroker extends BrokerBase<BookingDto> {
     }
 
     public BookingDto get(UUID id) {
-        Booking room = entityManager.find(Booking.class, id);
-        return BookingDto.toDto(room);
+        Booking booking = entityManager.find(Booking.class, id);
+        return BookingDto.toDto(booking);
     }
 
     public void add(BookingDto booking) {

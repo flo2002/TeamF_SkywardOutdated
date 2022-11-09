@@ -14,6 +14,6 @@ public class SessionFactory {
     }
 
     public Session getSession() {
-        return new Session();
+        return Session.getInstance();
     }
 }

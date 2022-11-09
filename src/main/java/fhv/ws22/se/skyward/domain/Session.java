@@ -23,6 +23,15 @@ public class Session {
     private final DatabaseFacade dbf;
     private UUID tmpBookingId;
 
+    private static Session singleton;
+
+    public static synchronized Session getInstance() {
+        if (singleton == null) {
+            singleton = new Session();
+        }
+        return singleton;
+    }
+
     public Session() {
         dbf = DatabaseFacade.getInstance();
     }
@@ -32,16 +41,34 @@ public class Session {
         return dbf.getAll(clazz);
     }
     public <T extends AbstractDto> void add(T t) {
-        dbf.add(t);
+        if (t instanceof BookingDto) {
+            BookingModel bm = BookingModel.toModel((BookingDto) t);
+            BookingDto bd = bm.toDto();
+            dbf.add(bd);
+        } else {
+            dbf.add(t);
+        }
     }
     public <T extends AbstractDto> void update(UUID id, T t) {
-        dbf.update(id, t);
+        if (t instanceof BookingDto) {
+            BookingModel bm = BookingModel.toModel((BookingDto) t);
+            BookingDto bd = bm.toDto();
+            dbf.update(id, bd);
+        } else {
+            dbf.update(id, t);
+        }
     };
     public <T extends AbstractDto> void delete(UUID id, Class<T> clazz) {
         dbf.delete(id, clazz);
     };
     private <T extends AbstractDto> UUID addAndReturnId(Class<T> clazz, T t) {
-        return dbf.addAndReturnId(clazz, t);
+        if (t instanceof BookingDto) {
+            BookingModel bm = BookingModel.toModel((BookingDto) t);
+            BookingDto bd = bm.toDto();
+            return dbf.addAndReturnId(BookingDto.class, bd);
+        } else {
+            return dbf.addAndReturnId(clazz, t);
+        }
     }
 
     public BookingDto getTmpBooking() {
@@ -50,8 +77,9 @@ public class Session {
             booking.setCheckInDateTime(LocalDateTime.now());
 
             tmpBookingId = addAndReturnId(BookingDto.class, booking);
+            System.out.println("created tmp booking with id: " + tmpBookingId);
         }
 
-        return (BookingDto) dbf.get(tmpBookingId, BookingDto.class);
+        return dbf.get(tmpBookingId, BookingDto.class);
     }
 }
