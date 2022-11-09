@@ -20,4 +20,5 @@ module fhv.ws22.se.skyward {
     exports fhv.ws22.se.skyward.persistence.entity;
     exports fhv.ws22.se.skyward.domain.dtos;
     exports fhv.ws22.se.skyward.domain;
+    exports fhv.ws22.se.skyward.domain.model;
 }

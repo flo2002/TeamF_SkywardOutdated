@@ -29,6 +29,7 @@ import java.util.List;
 public class BookingController {
     private static final Logger logger = LogManager.getLogger("BookingController");
     private Session session;
+    private BookingDto tmpBooking;
 
     @FXML
     private TableView<RoomDto> roomTable;
@@ -60,10 +61,8 @@ public class BookingController {
         firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
 
-        /*BookingDto tmpBooking = new BookingDto();
-        tmpBooking.setCheckInDateTime(LocalDateTime.now());
-        tmpBookingId = dbf.addAndReturnId(tmpBooking);
-        System.out.println("tmpBookingId: " + tmpBookingId);*/
+        tmpBooking = session.getTmpBooking();
+        System.out.println("tmpBookingId: " + tmpBooking);
 
         updateTable();
     }

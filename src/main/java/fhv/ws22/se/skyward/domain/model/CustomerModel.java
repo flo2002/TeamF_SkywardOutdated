@@ -31,13 +31,13 @@ public class CustomerModel extends AbstractModel {
         this.lastName = lastName;
     }
 
-    public Customer toEntity() {
-        logger.info("objects: " + this.toString() + ", msg: Transformation Customer Entity to CustomerDto.");
+    public Customer toModel() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation Customer Model to CustomerDto.");
         return modelMapper.map(this, Customer.class);
     }
 
     public static CustomerModel toDto(Customer customer) {
-        logger.info("objects: " + customer.toString() + ", msg: Transformation CustomerDto to Customer Entity");
+        logger.info("objects: " + customer.toString() + ", msg: Transformation CustomerDto to Customer Model");
         ModelMapper mm = new ModelMapper();
         return mm.map(customer, CustomerModel.class);
     }

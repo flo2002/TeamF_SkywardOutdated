@@ -27,6 +27,11 @@ public class BookingBroker extends BrokerBase<BookingDto> {
         return roomDtos;
     }
 
+    public BookingDto get(UUID id) {
+        Booking room = entityManager.find(Booking.class, id);
+        return BookingDto.toDto(room);
+    }
+
     public void add(BookingDto booking) {
         entityManager.getTransaction().begin();
         entityManager.persist(booking.toEntity());
@@ -43,5 +48,13 @@ public class BookingBroker extends BrokerBase<BookingDto> {
         entityManager.getTransaction().begin();
         entityManager.remove(entityManager.find(Booking.class, id));
         entityManager.getTransaction().commit();
+    }
+
+    public UUID addAndReturnId(BookingDto booking) {
+        Booking tmpBooking = booking.toEntity();
+        entityManager.getTransaction().begin();
+        entityManager.persist(tmpBooking);
+        entityManager.getTransaction().commit();
+        return tmpBooking.getId();
     }
 }

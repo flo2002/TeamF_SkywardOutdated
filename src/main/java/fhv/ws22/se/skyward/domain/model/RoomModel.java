@@ -49,12 +49,12 @@ public class RoomModel extends AbstractModel {
         this.roomStateName = roomStateName;
     }
 
-    public Room toEntity() {
-        logger.info("objects: " + this.toString() + ", msg: Transformation Room Entity to RoomDto.");
+    public Room toModel() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation Room Model to RoomDto.");
         return modelMapper.map(this, Room.class);
     }
     public static RoomModel toDto(Room room) {
-        logger.info("objects: " + room.toString() + ", msg: Transformation RoomDto to Room Entity");
+        logger.info("objects: " + room.toString() + ", msg: Transformation RoomDto to Room Model");
         ModelMapper mm = new ModelMapper();
         return mm.map(room, RoomModel.class);
     }

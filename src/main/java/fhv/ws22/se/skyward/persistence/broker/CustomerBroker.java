@@ -35,6 +35,11 @@ public class CustomerBroker extends BrokerBase<CustomerDto> {
         return CustomerDto.toDto(p);
     }
 
+    public CustomerDto get(UUID id) {
+        Customer customer = entityManager.find(Customer.class, id);
+        return CustomerDto.toDto(customer);
+    }
+
     public void add(CustomerDto customer) {
         entityManager.getTransaction().begin();
         entityManager.persist(customer.toEntity());
@@ -51,5 +56,13 @@ public class CustomerBroker extends BrokerBase<CustomerDto> {
         entityManager.getTransaction().begin();
         entityManager.remove(entityManager.find(Customer.class, id));
         entityManager.getTransaction().commit();
+    }
+
+    public UUID addAndReturnId(CustomerDto customerDto) {
+        Customer tmpCustomer = customerDto.toEntity();
+        entityManager.getTransaction().begin();
+        entityManager.persist(tmpCustomer);
+        entityManager.getTransaction().commit();
+        return tmpCustomer.getId();
     }
 }

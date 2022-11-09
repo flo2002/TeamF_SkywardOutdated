@@ -44,6 +44,9 @@ public class DatabaseFacade {
     public <T extends AbstractDto> List getAll(Class<T> clazz) {
         return brokers.get(clazz).getAll();
     }
+    public <T extends AbstractDto> T get(UUID id, Class<T> clazz) {
+        return (T) brokers.get(clazz).get(id);
+    };
     public <T extends AbstractDto> void add(T t) {
         brokers.get(t.getClass()).add(t);
     }
@@ -53,4 +56,7 @@ public class DatabaseFacade {
     public <T extends AbstractDto> void delete(UUID id, Class<T> clazz) {
         brokers.get(clazz).delete(id);
     };
+    public <T extends AbstractDto> UUID addAndReturnId(Class<T> clazz, T t) {
+        return brokers.get(clazz).addAndReturnId(t);
+    }
 }
