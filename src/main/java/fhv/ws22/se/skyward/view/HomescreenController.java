@@ -45,7 +45,7 @@ public class HomescreenController {
             row.setOnMouseClicked(mouseEvent -> {
                 if (mouseEvent.getClickCount() == 2 && (! row.isEmpty()) ) {
                     BookingDto rowData = row.getItem();
-                    System.out.println(rowData);
+                    session.setTmpBooking(rowData);
                     ControllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
                 }
             });

@@ -80,17 +80,6 @@ public class Session {
         dbf.delete(id, models.get(clazz));
     }
 
-    public BookingDto getTmpBooking() {
-        if (tmpBookingId == null) {
-            BookingModel booking = new BookingModel();
-            booking.setCheckInDateTime(LocalDateTime.now());
-            tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
-        }
-        BookingModel booking = dbf.get(tmpBookingId, BookingModel.class);
-
-        return booking.toDto();
-    }
-
     public List<RoomDto> getAvailableRooms() {
         List<RoomModel> modelRooms = dbf.getAll(RoomModel.class);
         List<RoomDto> rooms = new ArrayList<RoomDto>();
@@ -114,6 +103,25 @@ public class Session {
         }
 
         return availableRooms;
+    }
+
+
+    public void setTmpBooking(BookingDto booking) {
+        BookingModel tmpBid = dbf.get(booking.getId(), BookingModel.class);
+        if (tmpBid == null) {
+            throw new IllegalArgumentException("Booking could not be added");
+        }
+        tmpBookingId = tmpBid.getId();
+    }
+    public BookingDto getTmpBooking() {
+        if (tmpBookingId == null) {
+            BookingModel booking = new BookingModel();
+            booking.setCheckInDateTime(LocalDateTime.now());
+            tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
+        }
+        BookingModel booking = dbf.get(tmpBookingId, BookingModel.class);
+
+        return booking.toDto();
     }
 
     public void setFilterMap(HashMap<String, Boolean> filterMap) {
