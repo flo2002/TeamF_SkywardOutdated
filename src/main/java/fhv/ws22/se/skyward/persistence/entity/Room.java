@@ -13,8 +13,6 @@ public class Room extends AbstractEntity {
     @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "roomState_id")
     private RoomState roomState;
-    @ManyToMany(mappedBy = "rooms")
-    private List<Booking> bookings;
 
     public Room() {}
 
@@ -39,20 +37,12 @@ public class Room extends AbstractEntity {
         this.roomState = roomState;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
     @Override
     public String toString() {
         return "Room{" +
                 "roomNumber=" + roomNumber +
                 ", roomType=" + roomType +
                 ", roomState=" + roomState +
-                ", bookings=" + bookings +
                 '}';
     }
 }

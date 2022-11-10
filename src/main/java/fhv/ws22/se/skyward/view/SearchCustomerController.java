@@ -2,13 +2,16 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,12 +21,15 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.List;
 
 public class SearchCustomerController {
     private static final Logger logger = LogManager.getLogger("SearchCustomerController");
+    private static final BigInteger clientSessionID = new BigInteger("1");
     private Session session;
+    private BookingDto tmpBooking;
 
     @FXML
     private TableView<CustomerDto> customerTable;
@@ -34,16 +40,26 @@ public class SearchCustomerController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession();
+        session = SessionFactory.getInstance().getSession(clientSessionID);
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
 
         updateTable();
+
+        tmpBooking = session.getTmpBooking();
+        customerTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        customerTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                List<CustomerDto> selectedCustomers = customerTable.getSelectionModel().getSelectedItems();
+                tmpBooking.setCustomers(selectedCustomers);
+            }
+        });
     }
 
     @FXML
     public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
+        session.update(tmpBooking.getId(), tmpBooking);
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-guests.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);

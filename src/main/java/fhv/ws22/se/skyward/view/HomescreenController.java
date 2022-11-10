@@ -16,12 +16,14 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class HomescreenController {
     private Session session;
+    private static final BigInteger clientSessionID = new BigInteger("1");
 
     @FXML
     private TableView<BookingDto> table;
@@ -34,10 +36,12 @@ public class HomescreenController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession();
+        session = SessionFactory.getInstance().getSession(clientSessionID);
+
         checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
         checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
         isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
+
         updateTable();
     }
 

@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,14 +24,35 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class BookingController {
     private static final Logger logger = LogManager.getLogger("BookingController");
+    private static final BigInteger clientSessionID = new BigInteger("1");
     private Session session;
     private BookingDto tmpBooking;
+
+    @FXML
+    private CheckBox filterSingleRoom;
+    @FXML
+    private CheckBox filterDoubleRoom;
+    @FXML
+    private CheckBox filterTripleRoom;
+    @FXML
+    private CheckBox filterTwinRoom;
+    @FXML
+    private CheckBox filterQueenRoom;
+
+
+    @FXML
+    private DatePicker checkInDatePicker;
+    @FXML
+    private DatePicker checkOutDatePicker;
 
     @FXML
     private TableView<RoomDto> roomTable;
@@ -51,7 +74,8 @@ public class BookingController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession();
+        session = SessionFactory.getInstance().getSession(clientSessionID);
+        tmpBooking = session.getTmpBooking();
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
@@ -61,14 +85,69 @@ public class BookingController {
         firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
 
-        tmpBooking = session.getTmpBooking();
-        System.out.println("tmpBookingId: " + tmpBooking);
+        configureListener();
 
-        updateTable();
+        updateData();
+    }
+
+    private void configureListener() {
+        if (session.getFilterMap().size() == 0) {
+            HashMap<String, Boolean> filterMap = new HashMap<String, Boolean>();
+            filterMap.put("Single", false);
+            filterMap.put("Double", false);
+            filterMap.put("Triple", false);
+            filterMap.put("Twin", false);
+            filterMap.put("Queen", false);
+            session.setFilterMap(filterMap);
+        }
+        HashMap<String, Boolean> filterMap = session.getFilterMap();
+
+        filterSingleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            filterMap.put("Single", filterSingleRoom.isSelected());
+            session.setFilterMap(filterMap);
+            updateData();
+        });
+        filterDoubleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            filterMap.put("Double", filterDoubleRoom.isSelected());
+            session.setFilterMap(filterMap);
+            updateData();
+        });
+        filterTripleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            filterMap.put("Triple", filterTripleRoom.isSelected());
+            session.setFilterMap(filterMap);
+            updateData();
+        });
+        filterTwinRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            filterMap.put("Twin", filterTwinRoom.isSelected());
+            session.setFilterMap(filterMap);
+            updateData();
+        });
+        filterQueenRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            filterMap.put("Queen", filterQueenRoom.isSelected());
+            session.setFilterMap(filterMap);
+            updateData();
+        });
+
+
+        checkInDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                LocalDateTime checkInDateTime = LocalDateTime.of(newValue.getYear(), newValue.getMonth(), newValue.getDayOfMonth(), 15, 0);
+                tmpBooking.setCheckInDateTime(checkInDateTime);
+                updateData();
+            }
+        });
+        checkOutDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                LocalDateTime checkOutDateTime = LocalDateTime.of(newValue.getYear(), newValue.getMonth(), newValue.getDayOfMonth(), 11, 0);
+                tmpBooking.setCheckOutDateTime(checkOutDateTime);
+                updateData();
+            }
+        });
     }
 
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
+        session.update(tmpBooking.getId(), tmpBooking);
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/bookings.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -84,6 +163,7 @@ public class BookingController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
+        session.update(tmpBooking.getId(), tmpBooking);
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/homescreen.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -101,6 +181,7 @@ public class BookingController {
 
     @FXML
     public void onAddRoomButtonClick(ActionEvent event) {
+        session.update(tmpBooking.getId(), tmpBooking);
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -117,6 +198,7 @@ public class BookingController {
 
     @FXML
     public void onAddGuestButtonClick(ActionEvent event) {
+        session.update(tmpBooking.getId(), tmpBooking);
         try {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-guests.fxml").toURI().toURL();
             Parent parent = FXMLLoader.load(url);
@@ -133,10 +215,33 @@ public class BookingController {
         }
     }
 
-    public void updateTable() {
+    public void updateData() {
+        HashMap<String, Boolean> filterMap = session.getFilterMap();
+        if (filterMap.get("Single")) {
+            filterSingleRoom.setSelected(true);
+        }
+        if (filterMap.get("Double")) {
+            filterDoubleRoom.setSelected(true);
+        }
+        if (filterMap.get("Triple")) {
+            filterTripleRoom.setSelected(true);
+        }
+        if (filterMap.get("Twin")) {
+            filterTwinRoom.setSelected(true);
+        }
+        if (filterMap.get("Queen")) {
+            filterQueenRoom.setSelected(true);
+        }
+
+        if (tmpBooking.getCheckInDateTime() != null) {
+            checkInDatePicker.setValue(tmpBooking.getCheckInDateTime().toLocalDate());
+        }
+        if (tmpBooking.getCheckOutDateTime() != null) {
+            checkOutDatePicker.setValue(tmpBooking.getCheckOutDateTime().toLocalDate());
+        }
+
         customerTable.getItems().clear();
-        //List<CustomerDto> customers = session.getActiveBooking(tmpBookingId);
-        List<CustomerDto> customers = session.getAll(CustomerDto.class);
+        List<CustomerDto> customers = tmpBooking.getCustomers();
         if (customers != null) {
             for (CustomerDto customer : customers) {
                 customerTable.getItems().add(customer);
@@ -144,9 +249,8 @@ public class BookingController {
         }
 
         roomTable.getItems().clear();
-        //List<RoomDto> rooms = session.getActiveBooking(tmpBookingId);
-        List<RoomDto> rooms = session.getAll(RoomDto.class);
-        if (customers != null) {
+        List<RoomDto> rooms = tmpBooking.getRooms();
+        if (rooms != null) {
             for (RoomDto room : rooms) {
                 roomTable.getItems().add(room);
             }

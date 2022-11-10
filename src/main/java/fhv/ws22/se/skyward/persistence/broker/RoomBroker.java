@@ -5,6 +5,8 @@ import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.persistence.entity.Customer;
 import fhv.ws22.se.skyward.persistence.entity.Room;
 
+import fhv.ws22.se.skyward.persistence.entity.RoomState;
+import fhv.ws22.se.skyward.persistence.entity.RoomType;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +37,29 @@ public class RoomBroker extends BrokerBase<RoomDto> {
     }
 
     public void add(RoomDto room) {
+        RoomState roomState = null;
         entityManager.getTransaction().begin();
-        entityManager.persist(room.toEntity());
+        if (entityManager.createQuery("FROM RoomState WHERE name = :name")
+                .setParameter("name", room.getRoomStateName())
+                .getResultList().isEmpty()) {
+            roomState = new RoomState();
+            roomState.setName(room.getRoomStateName());
+
+            entityManager.persist(roomState);
+            entityManager.flush();
+            System.out.println("RoomState did not exist and therefore was created");
+        }
+
+        if (roomState == null) {
+            roomState = (RoomState) entityManager.createQuery("FROM RoomState WHERE name = :name")
+                    .setParameter("name", room.getRoomStateName())
+                    .getSingleResult();
+        }
+
+        Room roomEntity = room.toEntity();
+        roomEntity.setRoomState(roomState);
+
+        entityManager.persist(roomEntity);
         entityManager.getTransaction().commit();
     }
 
