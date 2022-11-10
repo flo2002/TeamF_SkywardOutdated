@@ -4,6 +4,7 @@ import fhv.ws22.se.skyward.domain.model.RoomModel;
 import fhv.ws22.se.skyward.persistence.entity.Room;
 
 import fhv.ws22.se.skyward.persistence.entity.RoomState;
+import fhv.ws22.se.skyward.persistence.entity.RoomType;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,26 +36,40 @@ public class RoomBroker extends BrokerBase<RoomModel> {
 
     public void add(RoomModel room) {
         RoomState roomState = null;
+        RoomType roomType = null;
+
         entityManager.getTransaction().begin();
         if (entityManager.createQuery("FROM RoomState WHERE name = :name")
                 .setParameter("name", room.getRoomStateName())
                 .getResultList().isEmpty()) {
             roomState = new RoomState();
             roomState.setName(room.getRoomStateName());
-
             entityManager.persist(roomState);
             entityManager.flush();
-            System.out.println("RoomState did not exist and therefore was created");
+        }
+        if (entityManager.createQuery("FROM RoomType WHERE name = :name")
+                .setParameter("name", room.getRoomTypeName())
+                .getResultList().isEmpty()) {
+            roomType = new RoomType();
+            roomType.setName(room.getRoomTypeName());
+            entityManager.persist(roomType);
+            entityManager.flush();
         }
 
         if (roomState == null) {
             roomState = (RoomState) entityManager.createQuery("FROM RoomState WHERE name = :name")
-                    .setParameter("name", room.getRoomStateName())
-                    .getSingleResult();
+                .setParameter("name", room.getRoomStateName())
+                .getSingleResult();
+        }
+        if (roomType == null) {
+            roomType = (RoomType) entityManager.createQuery("FROM RoomType WHERE name = :name")
+                .setParameter("name", room.getRoomTypeName())
+                .getSingleResult();
         }
 
         Room roomEntity = room.toEntity();
         roomEntity.setRoomState(roomState);
+        roomEntity.setRoomType(roomType);
 
         entityManager.persist(roomEntity);
         entityManager.getTransaction().commit();

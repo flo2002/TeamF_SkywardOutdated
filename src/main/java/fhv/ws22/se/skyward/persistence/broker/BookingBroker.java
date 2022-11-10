@@ -1,7 +1,11 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
 import fhv.ws22.se.skyward.domain.model.BookingModel;
+import fhv.ws22.se.skyward.domain.model.CustomerModel;
+import fhv.ws22.se.skyward.domain.model.RoomModel;
 import fhv.ws22.se.skyward.persistence.entity.Booking;
+import fhv.ws22.se.skyward.persistence.entity.Customer;
+import fhv.ws22.se.skyward.persistence.entity.Room;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
@@ -33,8 +37,38 @@ public class BookingBroker extends BrokerBase<BookingModel> {
     }
 
     public void add(BookingModel booking) {
+        List<CustomerModel> customerModels = booking.getCustomers();
+        List<Customer> customers = new ArrayList<Customer>();
+        for (CustomerModel customerModel : customerModels) {
+            customers.add(customerModel.toEntity());
+        }
+
+        List<RoomModel> roomModels = booking.getRooms();
+        List<Room> rooms = new ArrayList<Room>();
+        for (RoomModel roomModel : roomModels) {
+            rooms.add(roomModel.toEntity());
+        }
+
         entityManager.getTransaction().begin();
-        entityManager.persist(booking.toEntity());
+        List<Customer> customersInDb = new ArrayList<Customer>();
+        for (Customer c : customers) {
+            customersInDb.add((Customer) entityManager.createQuery("FROM Customer WHERE firstName = :firstname AND lastName = :lastname")
+                .setParameter("firstname", c.getFirstName())
+                .setParameter("lastname", c.getLastName())
+                .getSingleResult());
+        }
+        List<Room> roomsInDb = new ArrayList<Room>();
+        for (Room r : rooms) {
+            roomsInDb.add((Room) entityManager.createQuery("FROM Room WHERE roomNumber = :number")
+                .setParameter("number", r.getRoomNumber())
+                .getSingleResult());
+        }
+
+        Booking bookingEntity = booking.toEntity();
+        bookingEntity.setCustomers(customersInDb);
+        bookingEntity.setRooms(roomsInDb);
+
+        entityManager.persist(bookingEntity);
         entityManager.getTransaction().commit();
     }
 

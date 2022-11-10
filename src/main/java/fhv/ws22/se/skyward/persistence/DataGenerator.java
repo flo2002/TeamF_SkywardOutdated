@@ -23,7 +23,6 @@ public class DataGenerator {
         BookingModel b2 = new BookingModel(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), true, List.of(john), List.of(r3));
 
         dbf.add(john);
-        dbf.add(john);
         dbf.add(jane);
         dbf.add(r);
         dbf.add(r2);

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 public class RoomState extends AbstractEntity {
-    //@Column(unique = true)
+    @Column(unique = true)
     private String name;
 
     public RoomState() {}

@@ -5,12 +5,12 @@ import java.util.List;
 
 @Entity
 public class Room extends AbstractEntity {
-    //@Column(unique = true)
+    @Column(unique = true)
     private int roomNumber;
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne
     @JoinColumn(name = "roomType_id")
     private RoomType roomType;
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @ManyToOne
     @JoinColumn(name = "roomState_id")
     private RoomState roomState;
 

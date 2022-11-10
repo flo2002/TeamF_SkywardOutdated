@@ -1,6 +1,7 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
 import fhv.ws22.se.skyward.domain.model.CustomerModel;
+import fhv.ws22.se.skyward.persistence.entity.Booking;
 import fhv.ws22.se.skyward.persistence.entity.Customer;
 
 import jakarta.persistence.EntityManager;
