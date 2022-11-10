@@ -105,7 +105,9 @@ public class Session {
         return availableRooms;
     }
 
-
+    public void resetTmpBooking() {
+        tmpBookingId = null;
+    }
     public void setTmpBooking(BookingDto booking) {
         BookingModel tmpBid = dbf.get(booking.getId(), BookingModel.class);
         if (tmpBid == null) {

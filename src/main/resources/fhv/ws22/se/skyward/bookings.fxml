@@ -58,7 +58,7 @@
       </VBox>
       <Pane layoutX="170.0" prefHeight="132.0" prefWidth="504.0" style="-fx-background-color: A9E0F6;">
          <children>
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #50C878;" text="Create Booking" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #50C878;" text="Create new Booking" />
             <Button layoutX="175.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #7393B3;" text="Bookings" />
             <Button fx:id="CheckInCheckOutButton" onAction="#onCheckInCheckOutButtonClick" layoutX="337.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" stylesheets="@css/styles.css" text="Check-in" />
             <CheckBox fx:id="filterSingleRoom" layoutX="29.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="single" />

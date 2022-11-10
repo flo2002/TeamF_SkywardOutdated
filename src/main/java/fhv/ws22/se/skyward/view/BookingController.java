@@ -138,6 +138,7 @@ public class BookingController {
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+        session.resetTmpBooking();
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
