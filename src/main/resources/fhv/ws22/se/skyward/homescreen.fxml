@@ -76,9 +76,9 @@
                   <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="52.0" stylesheets="@css/styles.css" text="Search" textFill="WHITE" GridPane.rowIndex="1" />
                   <TableView fx:id="table" prefHeight="22.0" prefWidth="476.0" stylesheets="@css/styles.css" GridPane.rowIndex="3">
                     <columns>
-                      <TableColumn fx:id="checkInDateTimeCol" prefWidth="75.0" text="ID" />
-                        <TableColumn fx:id="checkOutDateTimeCol" prefWidth="75.0" text="Amount" />
-                      <TableColumn fx:id="isCheckedInCol" prefWidth="158.4000244140625" text="Guest" />
+                      <TableColumn fx:id="checkInDateTimeCol" prefWidth="75.0" text="CheckInDateTime" />
+                        <TableColumn fx:id="checkOutDateTimeCol" prefWidth="75.0" text="CheckOutDateTime" />
+                      <TableColumn fx:id="isCheckedInCol" prefWidth="158.4000244140625" text="isCheckedIn?" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
