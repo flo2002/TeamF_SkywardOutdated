@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +31,7 @@ import java.util.UUID;
 public class BookingController {
     private static final Logger logger = LogManager.getLogger("BookingController");
     private static final BigInteger clientSessionID = new BigInteger("1");
+    public Button CheckInCheckOutButton;
     private Session session;
     private BookingDto tmpBooking;
 
@@ -209,6 +207,15 @@ public class BookingController {
             for (RoomDto room : rooms) {
                 roomTable.getItems().add(room);
             }
+        }
+    }
+
+    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
+        if (CheckInCheckOutButton.getText().equals("Check-in")) {
+            //add check in logic
+            CheckInCheckOutButton.setText("Check-out");
+        } else if (CheckInCheckOutButton.getText().equals("Check-out")){
+            CheckInCheckOutButton.setText("Check-in");
         }
     }
 }
