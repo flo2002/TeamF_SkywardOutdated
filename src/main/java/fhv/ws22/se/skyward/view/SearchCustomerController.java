@@ -60,36 +60,17 @@ public class SearchCustomerController {
     @FXML
     public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-guests.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Home");
+//
 
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Home");
-            stage.setScene(new Scene(parent));
-            stage.show();
-        } catch (IOException e) {
-            logger.error("objects: SearchCustomerController, msg: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         System.out.println("This works, right?");
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/homescreen.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+//
 
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Home");
-            stage.setScene(new Scene(parent));
-            stage.show();
-
-            //NotificationController.getInstance().showSuccessNotification("Home", stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void updateTable() {

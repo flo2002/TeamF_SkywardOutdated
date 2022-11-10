@@ -47,36 +47,12 @@ public class HomescreenController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/homescreen.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
-
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Home");
-            stage.setScene(new Scene(parent));
-            stage.show();
-
-            //NotificationController.getInstance().showSuccessNotification("Home", stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
     @FXML
     public void onBookingButtonClick(ActionEvent event) {
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/bookings.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
-
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Booking");
-            stage.setScene(new Scene(parent));
-            stage.show();
-
-            //NotificationController.getInstance().showSuccessNotification("Bookings", stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     public void updateTable() {
