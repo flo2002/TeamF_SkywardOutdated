@@ -12,10 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +31,7 @@ import java.util.UUID;
 public class BookingController {
     private static final Logger logger = LogManager.getLogger("BookingController");
     private static final BigInteger clientSessionID = new BigInteger("1");
+    public Button CheckInCheckOutButton;
     private Session session;
     private BookingDto tmpBooking;
 
@@ -148,71 +146,26 @@ public class BookingController {
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/bookings.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
-
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Booking");
-            stage.setScene(new Scene(parent));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/homescreen.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
-
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Home");
-            stage.setScene(new Scene(parent));
-            stage.show();
-
-            //NotificationController.getInstance().showSuccessNotification("Home", stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        //NotificationController.getInstance().showSuccessNotification("Home", stage);
     }
 
     @FXML
     public void onAddRoomButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
-
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            stage.setTitle("Rooms");
-            stage.setScene(new Scene(parent));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml", "Rooms");
     }
 
     @FXML
     public void onAddGuestButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        try {
-            URL url = new File("src/main/resources/fhv/ws22/se/skyward/add-guests.fxml").toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
-
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-            stage.setTitle("Guests");
-            stage.setScene(new Scene(parent));
-            stage.show();
-        } catch (IOException e) {
-            logger.error("objects: BookingController, msg: " + e.getMessage());
-
-            e.printStackTrace();
-        }
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Guests");
     }
 
     public void updateData() {
@@ -254,6 +207,15 @@ public class BookingController {
             for (RoomDto room : rooms) {
                 roomTable.getItems().add(room);
             }
+        }
+    }
+
+    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
+        if (CheckInCheckOutButton.getText().equals("Check-in")) {
+            //add check in logic
+            CheckInCheckOutButton.setText("Check-out");
+        } else if (CheckInCheckOutButton.getText().equals("Check-out")){
+            CheckInCheckOutButton.setText("Check-in");
         }
     }
 }
