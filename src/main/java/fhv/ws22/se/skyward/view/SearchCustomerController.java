@@ -21,11 +21,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.List;
 
 public class SearchCustomerController {
     private static final Logger logger = LogManager.getLogger("SearchCustomerController");
+    private static final BigInteger clientSessionID = new BigInteger("1");
     private Session session;
     private BookingDto tmpBooking;
 
@@ -38,7 +40,7 @@ public class SearchCustomerController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession();
+        session = SessionFactory.getInstance().getSession(clientSessionID);
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));

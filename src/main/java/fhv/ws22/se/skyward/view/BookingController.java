@@ -24,13 +24,16 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class BookingController {
     private static final Logger logger = LogManager.getLogger("BookingController");
+    private static final BigInteger clientSessionID = new BigInteger("1");
     private Session session;
     private BookingDto tmpBooking;
 
@@ -71,16 +74,8 @@ public class BookingController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession();
+        session = SessionFactory.getInstance().getSession(clientSessionID);
         tmpBooking = session.getTmpBooking();
-
-        HashMap<String, Boolean> filtermap = new HashMap<String, Boolean>();
-        filtermap.put("Single", filterSingleRoom.isSelected());
-        filtermap.put("Double", filterDoubleRoom.isSelected());
-        filtermap.put("Triple", filterTripleRoom.isSelected());
-        filtermap.put("Twin", filterTwinRoom.isSelected());
-        filtermap.put("Queen", filterQueenRoom.isSelected());
-        session.setFilterMap(filtermap);
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
@@ -96,31 +91,40 @@ public class BookingController {
     }
 
     private void configureListener() {
-        HashMap<String, Boolean> filtermap = session.getFilterMap();
+        if (session.getFilterMap().size() == 0) {
+            HashMap<String, Boolean> filterMap = new HashMap<String, Boolean>();
+            filterMap.put("Single", false);
+            filterMap.put("Double", false);
+            filterMap.put("Triple", false);
+            filterMap.put("Twin", false);
+            filterMap.put("Queen", false);
+            session.setFilterMap(filterMap);
+        }
+        HashMap<String, Boolean> filterMap = session.getFilterMap();
 
         filterSingleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filtermap.put("Single", filterSingleRoom.isSelected());
-            session.setFilterMap(filtermap);
+            filterMap.put("Single", filterSingleRoom.isSelected());
+            session.setFilterMap(filterMap);
             updateData();
         });
         filterDoubleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filtermap.put("Double", filterDoubleRoom.isSelected());
-            session.setFilterMap(filtermap);
+            filterMap.put("Double", filterDoubleRoom.isSelected());
+            session.setFilterMap(filterMap);
             updateData();
         });
         filterTripleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filtermap.put("Triple", filterTripleRoom.isSelected());
-            session.setFilterMap(filtermap);
+            filterMap.put("Triple", filterTripleRoom.isSelected());
+            session.setFilterMap(filterMap);
             updateData();
         });
         filterTwinRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filtermap.put("Twin", filterTwinRoom.isSelected());
-            session.setFilterMap(filtermap);
+            filterMap.put("Twin", filterTwinRoom.isSelected());
+            session.setFilterMap(filterMap);
             updateData();
         });
         filterQueenRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filtermap.put("Queen", filterQueenRoom.isSelected());
-            session.setFilterMap(filtermap);
+            filterMap.put("Queen", filterQueenRoom.isSelected());
+            session.setFilterMap(filterMap);
             updateData();
         });
 
@@ -212,16 +216,20 @@ public class BookingController {
     }
 
     public void updateData() {
-        HashMap<String, Boolean> filtermap = session.getFilterMap();
-        if (filtermap.get("Single")) {
+        HashMap<String, Boolean> filterMap = session.getFilterMap();
+        if (filterMap.get("Single")) {
             filterSingleRoom.setSelected(true);
-        } else if (filtermap.get("Double")) {
+        }
+        if (filterMap.get("Double")) {
             filterDoubleRoom.setSelected(true);
-        } else if (filtermap.get("Triple")) {
+        }
+        if (filterMap.get("Triple")) {
             filterTripleRoom.setSelected(true);
-        } else if (filtermap.get("Twin")) {
+        }
+        if (filterMap.get("Twin")) {
             filterTwinRoom.setSelected(true);
-        } else if (filtermap.get("Queen")) {
+        }
+        if (filterMap.get("Queen")) {
             filterQueenRoom.setSelected(true);
         }
 

@@ -15,17 +15,10 @@ public class Session {
     private UUID tmpBookingId;
     private HashMap<String, Boolean> filterMap;
 
-    private static Session singleton;
-
-    public static synchronized Session getInstance() {
-        if (singleton == null) {
-            singleton = new Session();
-        }
-        return singleton;
-    }
 
     public Session() {
         dbf = DatabaseFacade.getInstance();
+        filterMap = new HashMap<String, Boolean>();
     }
 
 
