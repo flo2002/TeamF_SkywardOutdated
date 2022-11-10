@@ -23,10 +23,12 @@ import java.util.List;
 public class BookingController {
     private static final Logger logger = LogManager.getLogger("BookingController");
     private static final BigInteger clientSessionID = new BigInteger("1");
-    public Button CheckInCheckOutButton;
     private Session session;
     private BookingDto tmpBooking;
 
+
+    @FXML
+    private Button checkInCheckOutButton;
     @FXML
     private CheckBox filterSingleRoom;
     @FXML
@@ -135,6 +137,20 @@ public class BookingController {
         });
     }
 
+
+    @FXML
+    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
+        if (checkInCheckOutButton.getText().equals("Check-in")) {
+            tmpBooking.setIsCheckedIn(true);
+            updateData();
+            checkInCheckOutButton.setText("Check-out");
+        } else if (checkInCheckOutButton.getText().equals("Check-out")){
+            tmpBooking.setIsCheckedIn(false);
+            updateData();
+            checkInCheckOutButton.setText("Check-in");
+        }
+    }
+
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
@@ -162,6 +178,13 @@ public class BookingController {
     }
 
     public void updateData() {
+        if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
+            checkInCheckOutButton.setText("Check-out");
+        }
+        if (tmpBooking.getIsCheckedIn() != null && !tmpBooking.getIsCheckedIn()) {
+            checkInCheckOutButton.setText("Check-in");
+        }
+
         HashMap<String, Boolean> filterMap = session.getFilterMap();
         if (filterMap.get("Single")) {
             filterSingleRoom.setSelected(true);
@@ -200,15 +223,6 @@ public class BookingController {
             for (RoomDto room : rooms) {
                 roomTable.getItems().add(room);
             }
-        }
-    }
-
-    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
-        if (CheckInCheckOutButton.getText().equals("Check-in")) {
-            //add check in logic
-            CheckInCheckOutButton.setText("Check-out");
-        } else if (CheckInCheckOutButton.getText().equals("Check-out")){
-            CheckInCheckOutButton.setText("Check-in");
         }
     }
 }
