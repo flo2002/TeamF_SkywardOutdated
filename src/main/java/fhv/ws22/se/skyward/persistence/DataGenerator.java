@@ -1,8 +1,8 @@
 package fhv.ws22.se.skyward.persistence;
 
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.domain.model.BookingModel;
+import fhv.ws22.se.skyward.domain.model.CustomerModel;
+import fhv.ws22.se.skyward.domain.model.RoomModel;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,15 +12,15 @@ public class DataGenerator {
     public static void generateData() {
         DatabaseFacade dbf = DatabaseFacade.getInstance();
 
-        RoomDto r = new RoomDto(101, "Single", new BigDecimal(100), "free");
-        RoomDto r2 = new RoomDto(201, "Double", new BigDecimal(200), "free");
-        RoomDto r3 = new RoomDto(301, "Double", new BigDecimal(300), "free");
+        RoomModel r = new RoomModel(101, "Single", new BigDecimal(100), "free");
+        RoomModel r2 = new RoomModel(201, "Double", new BigDecimal(200), "free");
+        RoomModel r3 = new RoomModel(301, "Double", new BigDecimal(300), "free");
 
-        CustomerDto john = new CustomerDto("John", "Doe");
-        CustomerDto jane = new CustomerDto("Jane", "Doe");
+        CustomerModel john = new CustomerModel("John", "Doe");
+        CustomerModel jane = new CustomerModel("Jane", "Doe");
 
-        BookingDto b = new BookingDto(LocalDateTime.now(), LocalDateTime.now().plusDays(1), false, List.of(john, jane), List.of(r2));
-        BookingDto b2 = new BookingDto(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), true, List.of(john), List.of(r3));
+        BookingModel b = new BookingModel(LocalDateTime.now(), LocalDateTime.now().plusDays(1), false, List.of(john, jane), List.of(r2));
+        BookingModel b2 = new BookingModel(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), true, List.of(john), List.of(r3));
 
         dbf.add(john);
         dbf.add(john);

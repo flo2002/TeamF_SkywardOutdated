@@ -1,18 +1,15 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.persistence.entity.Customer;
+import fhv.ws22.se.skyward.domain.model.RoomModel;
 import fhv.ws22.se.skyward.persistence.entity.Room;
 
 import fhv.ws22.se.skyward.persistence.entity.RoomState;
-import fhv.ws22.se.skyward.persistence.entity.RoomType;
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class RoomBroker extends BrokerBase<RoomDto> {
+public class RoomBroker extends BrokerBase<RoomModel> {
     private final EntityManager entityManager;
 
     public RoomBroker(EntityManager entityManager) {
@@ -20,23 +17,23 @@ public class RoomBroker extends BrokerBase<RoomDto> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<RoomDto> getAll() {
+    public List<RoomModel> getAll() {
         List<Room> rooms = (List<Room>) entityManager.createQuery("FROM Room").getResultList();
 
-        List<RoomDto> roomDtos = new ArrayList<RoomDto>();
+        List<RoomModel> roomModels = new ArrayList<RoomModel>();
         for (Room r : rooms) {
-            roomDtos.add(RoomDto.toDto(r));
+            roomModels.add(RoomModel.toModel(r));
         }
 
-        return roomDtos;
+        return roomModels;
     }
 
-    public RoomDto get(UUID id) {
+    public RoomModel get(UUID id) {
         Room room = entityManager.find(Room.class, id);
-        return RoomDto.toDto(room);
+        return RoomModel.toModel(room);
     }
 
-    public void add(RoomDto room) {
+    public void add(RoomModel room) {
         RoomState roomState = null;
         entityManager.getTransaction().begin();
         if (entityManager.createQuery("FROM RoomState WHERE name = :name")
@@ -63,7 +60,7 @@ public class RoomBroker extends BrokerBase<RoomDto> {
         entityManager.getTransaction().commit();
     }
 
-    public void update(UUID id, RoomDto room) {
+    public void update(UUID id, RoomModel room) {
         Room tmpRoom = room.toEntity();
         tmpRoom.setId(id);
         entityManager.getTransaction().begin();
@@ -77,7 +74,7 @@ public class RoomBroker extends BrokerBase<RoomDto> {
         entityManager.getTransaction().commit();
     }
 
-    public UUID addAndReturnId(RoomDto room) {
+    public UUID addAndReturnId(RoomModel room) {
         Room tmpRoom = room.toEntity();
         entityManager.getTransaction().begin();
         entityManager.persist(tmpRoom);

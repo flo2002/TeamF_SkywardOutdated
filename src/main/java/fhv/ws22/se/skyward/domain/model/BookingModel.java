@@ -62,12 +62,22 @@ public class BookingModel extends AbstractModel {
         this.rooms = rooms;
     }
 
+
     public BookingDto toDto() {
-        logger.info("objects: " + this.toString() + ", msg: Transformation Booking Model to BookingDto.");
+        logger.info("objects: " + this.toString() + ", msg: Transformation BookingModel to BookingDto.");
         return modelMapper.map(this, BookingDto.class);
     }
     public static BookingModel toModel(BookingDto booking) {
-        logger.info("objects: " + booking.toString() + ", msg: Transformation BookingDto to Booking Model");
+        logger.info("objects: " + booking.toString() + ", msg: Transformation BookingDto to BookingModel");
+        ModelMapper mm = new ModelMapper();
+        return mm.map(booking, BookingModel.class);
+    }
+    public Booking toEntity() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation BookingModel to BookingEntity.");
+        return modelMapper.map(this, Booking.class);
+    }
+    public static BookingModel toModel(Booking booking) {
+        logger.info("objects: " + booking.toString() + ", msg: Transformation BookingEntity to BookingModel");
         ModelMapper mm = new ModelMapper();
         return mm.map(booking, BookingModel.class);
     }

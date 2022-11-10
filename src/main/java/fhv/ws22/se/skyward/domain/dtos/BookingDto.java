@@ -1,6 +1,6 @@
 package fhv.ws22.se.skyward.domain.dtos;
 
-import fhv.ws22.se.skyward.persistence.entity.Booking;
+import fhv.ws22.se.skyward.domain.model.BookingModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
@@ -61,12 +61,13 @@ public class BookingDto extends AbstractDto {
         this.rooms = rooms;
     }
 
-    public Booking toEntity() {
-        logger.info("objects: " + this.toString() + ", msg: Transformation Booking Entity to BookingDto.");
-        return modelMapper.map(this, Booking.class);
+
+    public BookingModel toModel() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation BookingDto to BookingModel.");
+        return modelMapper.map(this, BookingModel.class);
     }
-    public static BookingDto toDto(Booking booking) {
-        logger.info("objects: " + booking.toString() + ", msg: Transformation BookingDto to Booking Entity");
+    public static BookingDto toDto(BookingModel booking) {
+        logger.info("objects: " + booking.toString() + ", msg: Transformation BookingModel to BookingDto");
         ModelMapper mm = new ModelMapper();
         return mm.map(booking, BookingDto.class);
     }

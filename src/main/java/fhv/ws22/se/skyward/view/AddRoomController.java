@@ -76,7 +76,7 @@ public class AddRoomController {
 
     public void updateTable() {
         roomTable.getItems().clear();
-        List<RoomDto> rooms = session.getAvailableRooms(RoomDto.class);
+        List<RoomDto> rooms = session.getAvailableRooms();
         for (RoomDto room : rooms) {
             roomTable.getItems().add(room);
         }

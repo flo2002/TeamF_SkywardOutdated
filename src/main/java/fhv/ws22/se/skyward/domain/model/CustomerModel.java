@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.domain.model;
 
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.persistence.entity.Customer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,16 +32,25 @@ public class CustomerModel extends AbstractModel {
         this.lastName = lastName;
     }
 
-    public Customer toModel() {
-        logger.info("objects: " + this.toString() + ", msg: Transformation Customer Model to CustomerDto.");
-        return modelMapper.map(this, Customer.class);
+    public CustomerDto toDto() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation CustomerModel to CustomerDto.");
+        return modelMapper.map(this, CustomerDto.class);
     }
-
-    public static CustomerModel toDto(Customer customer) {
-        logger.info("objects: " + customer.toString() + ", msg: Transformation CustomerDto to Customer Model");
+    public static CustomerModel toModel(CustomerDto customer) {
+        logger.info("objects: " + customer.toString() + ", msg: Transformation CustomerDto to CustomerModel");
         ModelMapper mm = new ModelMapper();
         return mm.map(customer, CustomerModel.class);
     }
+    public Customer toEntity() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation CustomerModel to CustomerEntity.");
+        return modelMapper.map(this, Customer.class);
+    }
+    public static CustomerModel toModel(Customer customer) {
+        logger.info("objects: " + customer.toString() + ", msg: Transformation CustomerEntity to CustomerModel");
+        ModelMapper mm = new ModelMapper();
+        return mm.map(customer, CustomerModel.class);
+    }
+
 
     @Override
     public String toString() {
