@@ -35,9 +35,11 @@ public class HomescreenController {
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession();
+
         checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
         checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
         isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
+
         updateTable();
     }
 

@@ -60,11 +60,11 @@
          <children>
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #50C878;" text="Create Booking" />
             <Button layoutX="175.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #7393B3;" text="Bookings" />
-            <CheckBox layoutX="29.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="single" />
-            <CheckBox layoutX="98.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="double" />
-            <CheckBox layoutX="175.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="triple" />
-            <CheckBox layoutX="243.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="twin" />
-            <CheckBox layoutX="319.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="queen" />
+            <CheckBox fx:id="filterSingleRoom" layoutX="29.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="single" />
+            <CheckBox fx:id="filterDoubleRoom" layoutX="98.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="double" />
+            <CheckBox fx:id="filterTripleRoom" layoutX="175.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="triple" />
+            <CheckBox fx:id="filterTwinRoom" layoutX="243.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="twin" />
+            <CheckBox fx:id="filterQueenRoom" layoutX="319.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="queen" />
             <DatePicker fx:id="checkInDatePicker" layoutX="22.0" layoutY="97.0" promptText="From" />
             <DatePicker fx:id="checkOutDatePicker" layoutX="214.0" layoutY="97.0" promptText="To" />
          </children>

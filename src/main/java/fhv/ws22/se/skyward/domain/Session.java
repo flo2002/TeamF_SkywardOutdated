@@ -2,26 +2,18 @@ package fhv.ws22.se.skyward.domain;
 
 import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.domain.model.AbstractModel;
 import fhv.ws22.se.skyward.domain.model.BookingModel;
-import fhv.ws22.se.skyward.domain.model.CustomerModel;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
-import fhv.ws22.se.skyward.persistence.broker.BookingBroker;
-import fhv.ws22.se.skyward.persistence.broker.BrokerBase;
-import fhv.ws22.se.skyward.persistence.broker.CustomerBroker;
-import fhv.ws22.se.skyward.persistence.broker.RoomBroker;
+import javafx.scene.control.CheckBox;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class Session {
     private final DatabaseFacade dbf;
     private UUID tmpBookingId;
+    private HashMap<String, Boolean> filterMap;
 
     private static Session singleton;
 
@@ -80,5 +72,33 @@ public class Session {
         }
 
         return dbf.get(tmpBookingId, BookingDto.class);
+    }
+
+    public void setFilterMap(HashMap<String, Boolean> filterMap) {
+        this.filterMap = filterMap;
+    }
+    public HashMap<String, Boolean> getFilterMap() {
+        return filterMap;
+    }
+
+    public List<RoomDto> getAvailableRooms(Class<RoomDto> roomDtoClass) {
+        List<RoomDto> rooms = dbf.getAll(roomDtoClass);
+
+        List<RoomDto> availableRooms = new ArrayList<RoomDto>();
+        for (RoomDto room : rooms) {
+            if (room.getRoomTypeName().equals("Single") && filterMap.get("Single")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Double") && filterMap.get("Double")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Triple") && filterMap.get("Triple")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Twin") && filterMap.get("Twin")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Queen") && filterMap.get("Queen")) {
+                availableRooms.add(room);
+            }
+        }
+
+        return availableRooms;
     }
 }

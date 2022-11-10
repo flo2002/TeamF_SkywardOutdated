@@ -49,8 +49,6 @@ public class AddRoomController {
         roomTypePriceCol.setCellValueFactory(new PropertyValueFactory<RoomDto, BigDecimal>("roomTypePrice"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
 
-        updateTable();
-
         tmpBooking = session.getTmpBooking();
         roomTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         roomTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -59,6 +57,8 @@ public class AddRoomController {
                 tmpBooking.setRooms(selectedRooms);
             }
         });
+
+        updateTable();
     }
 
     @FXML
@@ -99,7 +99,7 @@ public class AddRoomController {
 
     public void updateTable() {
         roomTable.getItems().clear();
-        List<RoomDto> rooms = session.getAll(RoomDto.class);
+        List<RoomDto> rooms = session.getAvailableRooms(RoomDto.class);
         for (RoomDto room : rooms) {
             roomTable.getItems().add(room);
         }
