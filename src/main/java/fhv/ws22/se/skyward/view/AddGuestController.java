@@ -21,7 +21,6 @@ public class AddGuestController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        System.out.println("This works, right?");
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 

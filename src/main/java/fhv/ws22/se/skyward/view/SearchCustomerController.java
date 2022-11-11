@@ -53,16 +53,12 @@ public class SearchCustomerController {
     public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Home");
-//
-
     }
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         System.out.println("This works, right?");
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
-//
-
     }
 
     public void updateTable() {

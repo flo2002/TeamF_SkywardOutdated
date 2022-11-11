@@ -43,7 +43,7 @@ public class NotificationUtil {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/css/styles.css").toURI().toURL();
             label.getStylesheets().add(url.toString());
         } catch (MalformedURLException e) {
-            logger.error("objects: NotificationController, msg: " + e.getMessage());
+            logger.error("objects: NotificationUtil, msg: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -62,6 +62,7 @@ public class NotificationUtil {
         });
         popup.getContent().get(0).getStyleClass().add("success_popup");
         popup.show(stage);
+        logger.info("object: SuccessPopUp, msg: " + message);
     }
 
     public void showErrorNotification(String message, Stage stage) {
@@ -75,5 +76,6 @@ public class NotificationUtil {
         });
         popup.getContent().get(0).getStyleClass().add("error_popup");
         popup.show(stage);
+        logger.info("object: ErrorPopUp, msg: " + message);
     }
 }
