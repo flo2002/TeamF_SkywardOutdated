@@ -40,7 +40,6 @@
                         <Font size="14.0" />
                     </font>
                     <stylesheets>
-                        <URL value="@../../../../../Desktop/style.css" />
                         <URL value="@css/styles.css" />
                     </stylesheets>
                 </Button>
@@ -49,7 +48,6 @@
                         <Font size="14.0" />
                     </font>
                     <stylesheets>
-                        <URL value="@../../../../../Desktop/style.css" />
                         <URL value="@css/styles.css" />
                     </stylesheets>
                 </Button>
@@ -58,7 +56,6 @@
                         <Font size="14.0" />
                     </font>
                     <stylesheets>
-                        <URL value="@../../../../../Desktop/style.css" />
                         <URL value="@css/styles.css" />
                     </stylesheets>
                 </Button>

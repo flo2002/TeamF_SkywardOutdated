@@ -40,6 +40,7 @@ public class AddRoomController {
     @FXML
     private TableColumn<RoomDto, String> roomStateNameCol;
 
+    @FXML
     private CheckBox filterSingleRoom;
     @FXML
     private CheckBox filterDoubleRoom;
@@ -67,7 +68,7 @@ public class AddRoomController {
                 tmpBooking.setRooms(selectedRooms);
             }
         });
-
+        configureListener();
         updateTable();
     }
 

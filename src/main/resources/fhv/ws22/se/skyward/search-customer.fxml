@@ -30,7 +30,6 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -39,7 +38,6 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -48,7 +46,6 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -58,17 +55,17 @@
       <AnchorPane layoutX="201.0" layoutY="48.0" prefHeight="369.0" prefWidth="414.0">
          <children>
             <TextField layoutX="14.0" layoutY="23.0" prefHeight="26.0" prefWidth="200.0" />
-            <Button id="confirm" layoutX="227.0" layoutY="23.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" stylesheets="@css/styles.css" text="search" />
+            <Button id="confirm" layoutX="227.0" layoutY="23.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" stylesheets="@css/styles.css" text="Search" />
             <TableView fx:id="customerTable" layoutX="10.0" layoutY="75.0" prefHeight="244.0" prefWidth="398.0">
               <columns>
                 <TableColumn fx:id="firstNameCol" prefWidth="91.19999694824219" text="Firstname" />
                 <TableColumn fx:id="lastNameCol" prefWidth="97.5999755859375" text="Lastname" />
-                  <TableColumn prefWidth="100.79998779296875" text="adress" />
+                  <TableColumn prefWidth="100.79998779296875" text="Adress" />
                   <TableColumn prefWidth="108.800048828125" text="Tel.Nr." />
               </columns>
             </TableView>
             <Button id="confirm" layoutX="290.0" layoutY="329.0" mnemonicParsing="false" onAction="#onConfirmCustomerSearchButtonClick" prefHeight="26.0" prefWidth="109.0" stylesheets="@css/styles.css" text="Confirm" />
-            <Button id="confirm" layoutX="302.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCreateButtonClick" prefHeight="26.0" prefWidth="62.0" stylesheets="@css/styles.css" text="create" />
+            <Button id="confirm" layoutX="302.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCreateButtonClick" prefHeight="26.0" prefWidth="62.0" stylesheets="@css/styles.css" text="Create" />
          </children>
       </AnchorPane>
    </children>
