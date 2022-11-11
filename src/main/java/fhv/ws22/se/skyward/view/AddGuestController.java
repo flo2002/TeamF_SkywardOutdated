@@ -1,6 +1,7 @@
 package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,7 @@ public class AddGuestController {
 
     @FXML
     public void onConfirmButtonClick(ActionEvent event) {
+        NotificationUtil.getInstance().showSuccessNotification("The guest was added to the database and booking", event);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
@@ -21,12 +23,11 @@ public class AddGuestController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        System.out.println("This works, right?");
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
     @FXML
-    public void onAddAnotherCustomerButtonClick(ActionEvent event) {
-
+    public void onBookingButtonClick(ActionEvent event) {
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 }

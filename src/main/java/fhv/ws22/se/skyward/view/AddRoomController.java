@@ -5,6 +5,7 @@ import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
@@ -59,14 +60,19 @@ public class AddRoomController {
     @FXML
     public void onConfirmButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+        NotificationUtil.getInstance().showSuccessNotification("The Rooms were added to the booking", event);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
+        }
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
+    @FXML
+    public void onBookingButtonClick(ActionEvent event) {
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
     public void updateTable() {
         roomTable.getItems().clear();
         List<RoomDto> rooms = session.getAvailableRooms();
