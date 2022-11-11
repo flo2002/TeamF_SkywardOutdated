@@ -1,6 +1,8 @@
 package fhv.ws22.se.skyward.view.util;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
@@ -43,7 +45,7 @@ public class NotificationUtil {
             URL url = new File("src/main/resources/fhv/ws22/se/skyward/css/styles.css").toURI().toURL();
             label.getStylesheets().add(url.toString());
         } catch (MalformedURLException e) {
-            logger.error("objects: NotificationController, msg: " + e.getMessage());
+            logger.error("objects: NotificationUtil, msg: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -51,7 +53,8 @@ public class NotificationUtil {
         return popup;
     }
 
-    public void showSuccessNotification(String message, Stage stage) {
+    public void showSuccessNotification(String message, Event event) {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         final Popup popup = createPopup(message);
         popup.setOnShown(new EventHandler<WindowEvent>() {
             @Override
@@ -62,9 +65,11 @@ public class NotificationUtil {
         });
         popup.getContent().get(0).getStyleClass().add("success_popup");
         popup.show(stage);
+        logger.info("object: SuccessPopUp, msg: " + message);
     }
 
-    public void showErrorNotification(String message, Stage stage) {
+    public void showErrorNotification(String message, Event event) {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         final Popup popup = createPopup(message);
         popup.setOnShown(new EventHandler<WindowEvent>() {
             @Override
@@ -75,5 +80,6 @@ public class NotificationUtil {
         });
         popup.getContent().get(0).getStyleClass().add("error_popup");
         popup.show(stage);
+        logger.info("object: ErrorPopUp, msg: " + message);
     }
 }

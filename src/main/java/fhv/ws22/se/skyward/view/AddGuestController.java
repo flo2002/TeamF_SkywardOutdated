@@ -5,6 +5,7 @@ import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -44,6 +45,7 @@ public class AddGuestController {
         CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText());
         session.add(customerDto);
 
+        NotificationUtil.getInstance().showSuccessNotification("The guest was added to the database and booking", event);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
@@ -58,7 +60,7 @@ public class AddGuestController {
     }
 
     @FXML
-    public void onAddAnotherCustomerButtonClick(ActionEvent event) {
-
+    public void onBookingButtonClick(ActionEvent event) {
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 }

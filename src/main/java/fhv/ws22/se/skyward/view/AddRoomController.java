@@ -62,14 +62,19 @@ public class AddRoomController {
     @FXML
     public void onConfirmButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+        NotificationUtil.getInstance().showSuccessNotification("The Rooms were added to the booking", event);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
+        }
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
+    @FXML
+    public void onBookingButtonClick(ActionEvent event) {
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
     public void updateTable() {
         roomTable.getItems().clear();
 
