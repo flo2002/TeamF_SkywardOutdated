@@ -1,14 +1,15 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
+import fhv.ws22.se.skyward.domain.model.CustomerModel;
+import fhv.ws22.se.skyward.persistence.entity.Booking;
 import fhv.ws22.se.skyward.persistence.entity.Customer;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 
 import jakarta.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class CustomerBroker extends BrokerBase<CustomerDto> {
+public class CustomerBroker extends BrokerBase<CustomerModel> {
     private final EntityManager entityManager;
 
     public CustomerBroker(EntityManager em) {
@@ -16,37 +17,37 @@ public class CustomerBroker extends BrokerBase<CustomerDto> {
     }
 
     @SuppressWarnings("unchecked")
-    public List<CustomerDto> getAll() {
+    public List<CustomerModel> getAll() {
         List<Customer> customers = (List<Customer>) entityManager.createQuery("FROM Customer").getResultList();
 
-        List<CustomerDto> customerDtos = new ArrayList<CustomerDto>();
+        List<CustomerModel> customerModels = new ArrayList<CustomerModel>();
         for (Customer p : customers) {
-            customerDtos.add(CustomerDto.toDto(p));
+            customerModels.add(CustomerModel.toModel(p));
         }
 
-        return customerDtos;
+        return customerModels;
     }
 
-    public CustomerDto getCustomerByNames(String firstName, String lastName) {
+    public CustomerModel getCustomerByNames(String firstName, String lastName) {
         Customer p = (Customer) entityManager.createQuery("FROM Customer WHERE firstName = :firstName AND lastName = :lastName")
                 .setParameter("firstName", firstName)
                 .setParameter("lastName", lastName)
                 .getSingleResult();
-        return CustomerDto.toDto(p);
+        return CustomerModel.toModel(p);
     }
 
-    public CustomerDto get(UUID id) {
+    public CustomerModel get(UUID id) {
         Customer customer = entityManager.find(Customer.class, id);
-        return CustomerDto.toDto(customer);
+        return CustomerModel.toModel(customer);
     }
 
-    public void add(CustomerDto customer) {
+    public void add(CustomerModel customer) {
         entityManager.getTransaction().begin();
         entityManager.persist(customer.toEntity());
         entityManager.getTransaction().commit();
     }
 
-    public void update(UUID id, CustomerDto customer) {
+    public void update(UUID id, CustomerModel customer) {
         entityManager.getTransaction().begin();
         entityManager.merge(customer.toEntity());
         entityManager.getTransaction().commit();
@@ -58,8 +59,8 @@ public class CustomerBroker extends BrokerBase<CustomerDto> {
         entityManager.getTransaction().commit();
     }
 
-    public UUID addAndReturnId(CustomerDto customerDto) {
-        Customer tmpCustomer = customerDto.toEntity();
+    public UUID addAndReturnId(CustomerModel customerModel) {
+        Customer tmpCustomer = customerModel.toEntity();
         entityManager.getTransaction().begin();
         entityManager.persist(tmpCustomer);
         entityManager.getTransaction().commit();

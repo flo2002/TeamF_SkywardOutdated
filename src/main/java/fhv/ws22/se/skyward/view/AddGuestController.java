@@ -1,25 +1,10 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.domain.SessionFactory;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.Session;
+import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
 
 public class AddGuestController {
     private static final Logger logger = LogManager.getLogger("AddGuestController");

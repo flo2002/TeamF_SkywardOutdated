@@ -21,4 +21,6 @@ module fhv.ws22.se.skyward {
     exports fhv.ws22.se.skyward.domain.dtos;
     exports fhv.ws22.se.skyward.domain;
     exports fhv.ws22.se.skyward.domain.model;
+    exports fhv.ws22.se.skyward.view.util;
+    opens fhv.ws22.se.skyward.view.util to javafx.fxml;
 }

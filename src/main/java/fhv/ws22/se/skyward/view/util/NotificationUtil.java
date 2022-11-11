@@ -1,4 +1,4 @@
-package fhv.ws22.se.skyward.view;
+package fhv.ws22.se.skyward.view.util;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -13,15 +13,15 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class NotificationController {
+public class NotificationUtil {
 
     private static final Logger logger = LogManager.getLogger("NotificationController");
 
-    private static NotificationController singleton;
+    private static NotificationUtil singleton;
 
-    public static synchronized NotificationController getInstance() {
+    public static synchronized NotificationUtil getInstance() {
         if (singleton == null) {
-            singleton = new NotificationController();
+            singleton = new NotificationUtil();
         }
         return singleton;
     }

@@ -18,10 +18,13 @@ public abstract class AbstractModel {
         modelMapper = new ModelMapper();
     }
 
+    public abstract <T extends AbstractDto> T toDto();
+
     public UUID getId() {
         return id;
     }
     public void setId(UUID id) {
         this.id = id;
     }
+
 }

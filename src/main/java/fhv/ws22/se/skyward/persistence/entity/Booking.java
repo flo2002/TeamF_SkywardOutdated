@@ -11,14 +11,13 @@ public class Booking extends AbstractEntity {
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
     private Boolean isCheckedIn;
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany
     @JoinTable(name = "booking_customer",
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
     private List<Customer> customers;
-    @ManyToMany(cascade = {CascadeType.PERSIST})
-    @JoinTable(
-            name = "booking_room",
+    @ManyToMany
+    @JoinTable(name = "booking_room",
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private List<Room> rooms;

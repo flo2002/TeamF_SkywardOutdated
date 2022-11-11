@@ -6,35 +6,29 @@ import fhv.ws22.se.skyward.domain.Session;
 
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class BookingController {
     private static final Logger logger = LogManager.getLogger("BookingController");
     private static final BigInteger clientSessionID = new BigInteger("1");
-    public Button CheckInCheckOutButton;
     private Session session;
     private BookingDto tmpBooking;
 
+
+    @FXML
+    private Button checkInCheckOutButton;
     @FXML
     private CheckBox filterSingleRoom;
     @FXML
@@ -143,9 +137,24 @@ public class BookingController {
         });
     }
 
+
+    @FXML
+    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
+        if (checkInCheckOutButton.getText().equals("Check-in")) {
+            tmpBooking.setIsCheckedIn(true);
+            updateData();
+            checkInCheckOutButton.setText("Check-out");
+        } else if (checkInCheckOutButton.getText().equals("Check-out")){
+            tmpBooking.setIsCheckedIn(false);
+            updateData();
+            checkInCheckOutButton.setText("Check-in");
+        }
+    }
+
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+        session.resetTmpBooking();
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
@@ -169,6 +178,13 @@ public class BookingController {
     }
 
     public void updateData() {
+        if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
+            checkInCheckOutButton.setText("Check-out");
+        }
+        if (tmpBooking.getIsCheckedIn() != null && !tmpBooking.getIsCheckedIn()) {
+            checkInCheckOutButton.setText("Check-in");
+        }
+
         HashMap<String, Boolean> filterMap = session.getFilterMap();
         if (filterMap.get("Single")) {
             filterSingleRoom.setSelected(true);
@@ -207,15 +223,6 @@ public class BookingController {
             for (RoomDto room : rooms) {
                 roomTable.getItems().add(room);
             }
-        }
-    }
-
-    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
-        if (CheckInCheckOutButton.getText().equals("Check-in")) {
-            //add check in logic
-            CheckInCheckOutButton.setText("Check-out");
-        } else if (CheckInCheckOutButton.getText().equals("Check-out")){
-            CheckInCheckOutButton.setText("Check-in");
         }
     }
 }

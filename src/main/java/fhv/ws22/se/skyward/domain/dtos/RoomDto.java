@@ -1,6 +1,6 @@
 package fhv.ws22.se.skyward.domain.dtos;
 
-import fhv.ws22.se.skyward.persistence.entity.Room;
+import fhv.ws22.se.skyward.domain.model.RoomModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
@@ -49,12 +49,12 @@ public class RoomDto extends AbstractDto {
         this.roomStateName = roomStateName;
     }
 
-    public Room toEntity() {
-        logger.info("objects: " + this.toString() + ", msg: Transformation Room Entity to RoomDto.");
-        return modelMapper.map(this, Room.class);
+    public RoomModel toModel() {
+        logger.info("objects: " + this.toString() + ", msg: Transformation RoomDto to RoomModel");
+        return modelMapper.map(this, RoomModel.class);
     }
-    public static RoomDto toDto(Room room) {
-        logger.info("objects: " + room.toString() + ", msg: Transformation RoomDto to Room Entity");
+    public static RoomDto toDto(RoomModel room) {
+        logger.info("objects: " + room.toString() + ", msg: Transformation RoomModel to RoomDto");
         ModelMapper mm = new ModelMapper();
         return mm.map(room, RoomDto.class);
     }
