@@ -58,8 +58,8 @@
          <children>
             <AnchorPane prefHeight="330.0" prefWidth="397.0">
                <children>
-                  <TextField layoutX="109.0" layoutY="14.0" />
-                  <TextField layoutX="109.0" layoutY="57.0" />
+                  <TextField fx:id="firstNameTextField" layoutX="109.0" layoutY="14.0" />
+                  <TextField fx:id="lastNameTextField" layoutX="109.0" layoutY="57.0" />
                   <TextField layoutX="109.0" layoutY="102.0" />
                   <TextField layoutX="109.0" layoutY="139.0" />
                   <Button id="addguest" layoutX="168.0" layoutY="236.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="confirm" />
