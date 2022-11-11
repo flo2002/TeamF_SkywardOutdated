@@ -1,6 +1,8 @@
 package fhv.ws22.se.skyward.view.util;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
@@ -51,7 +53,8 @@ public class NotificationUtil {
         return popup;
     }
 
-    public void showSuccessNotification(String message, Stage stage) {
+    public void showSuccessNotification(String message, Event event) {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         final Popup popup = createPopup(message);
         popup.setOnShown(new EventHandler<WindowEvent>() {
             @Override
@@ -65,7 +68,8 @@ public class NotificationUtil {
         logger.info("object: SuccessPopUp, msg: " + message);
     }
 
-    public void showErrorNotification(String message, Stage stage) {
+    public void showErrorNotification(String message, Event event) {
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         final Popup popup = createPopup(message);
         popup.setOnShown(new EventHandler<WindowEvent>() {
             @Override

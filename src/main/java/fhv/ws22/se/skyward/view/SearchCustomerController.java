@@ -5,6 +5,7 @@ import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
@@ -52,13 +53,18 @@ public class SearchCustomerController {
     @FXML
     public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+        NotificationUtil.getInstance().showSuccessNotification("The guests were added to the booking", event);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Home");
     }
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        System.out.println("This works, right?");
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+    }
+
+    @FXML
+    public void onBookingButtonClick(ActionEvent event) {
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     public void updateTable() {

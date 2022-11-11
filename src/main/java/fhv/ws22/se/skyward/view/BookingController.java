@@ -7,6 +7,7 @@ import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -155,6 +156,7 @@ public class BookingController {
     public void onCreateBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
         session.resetTmpBooking();
+        NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
@@ -162,7 +164,6 @@ public class BookingController {
     public void onHomeButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
-        //NotificationController.getInstance().showSuccessNotification("Home", stage);
     }
 
     @FXML
