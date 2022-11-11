@@ -34,7 +34,7 @@
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
-            <Button onAction="#onBookingButtonClick" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -58,7 +58,7 @@
       <AnchorPane layoutX="201.0" layoutY="48.0" prefHeight="369.0" prefWidth="414.0">
          <children>
             <TextField layoutX="14.0" layoutY="23.0" prefHeight="26.0" prefWidth="200.0" />
-            <Button id="confirm" layoutX="227.0" layoutY="23.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" stylesheets="@css/styles.css" text="search" />
+            <Button id="confirm" layoutX="227.0" layoutY="23.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" stylesheets="@css/styles.css" text="search" />
             <TableView fx:id="customerTable" layoutX="10.0" layoutY="75.0" prefHeight="244.0" prefWidth="398.0">
               <columns>
                 <TableColumn fx:id="firstNameCol" prefWidth="91.19999694824219" text="Firstname" />
@@ -68,6 +68,7 @@
               </columns>
             </TableView>
             <Button id="confirm" layoutX="290.0" layoutY="329.0" mnemonicParsing="false" onAction="#onConfirmCustomerSearchButtonClick" prefHeight="26.0" prefWidth="109.0" stylesheets="@css/styles.css" text="Confirm" />
+            <Button id="confirm" layoutX="302.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCreateButtonClick" prefHeight="26.0" prefWidth="62.0" stylesheets="@css/styles.css" text="create" />
          </children>
       </AnchorPane>
    </children>
