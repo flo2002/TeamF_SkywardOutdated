@@ -58,7 +58,11 @@ public class Session {
         dbf.delete(id, dtoModelClassMap.get(clazz));
     }
 
-    public List<RoomDto> getAvailableRooms() {
+    public List<RoomDto> getAvailableRooms(LocalDateTime checkIn, LocalDateTime checkOut) {
+        if (checkIn == null || checkOut == null) {
+            throw new IllegalArgumentException("checkIn and checkOut must not be null");
+        }
+
         List<RoomModel> modelRooms = dbf.getAll(RoomModel.class);
         List<RoomDto> rooms = new ArrayList<RoomDto>();
         for (RoomModel model : modelRooms) {
@@ -77,6 +81,15 @@ public class Session {
                 availableRooms.add(room);
             } else if (room.getRoomTypeName().equals("Queen") && filterMap.get("Queen")) {
                 availableRooms.add(room);
+            }
+        }
+
+        List<BookingModel> modelBookings = dbf.getAll(BookingModel.class);
+        for (BookingModel booking : modelBookings) {
+            if (booking.getCheckInDateTime().isBefore(checkOut) && booking.getCheckOutDateTime().isAfter(checkIn)) {
+                for (RoomDto room : availableRooms) {
+                    availableRooms.remove(room);
+                }
             }
         }
 

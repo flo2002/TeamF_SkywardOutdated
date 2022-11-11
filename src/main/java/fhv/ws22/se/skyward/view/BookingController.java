@@ -162,7 +162,6 @@ public class BookingController {
     public void onHomeButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
-        //NotificationController.getInstance().showSuccessNotification("Home", stage);
     }
 
     @FXML
