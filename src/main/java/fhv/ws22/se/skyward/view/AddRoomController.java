@@ -78,12 +78,7 @@ public class AddRoomController {
     public void updateTable() {
         roomTable.getItems().clear();
 
-        List<RoomDto> rooms = null;
-        try {
-            rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
-        } catch (IllegalArgumentException e) {
-            logger.error(e.getMessage());
-        }
+        List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
         for (RoomDto room : rooms) {
             roomTable.getItems().add(room);
         }

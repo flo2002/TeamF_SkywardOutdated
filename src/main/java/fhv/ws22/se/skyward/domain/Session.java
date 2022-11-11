@@ -60,9 +60,8 @@ public class Session {
 
     public List<RoomDto> getAvailableRooms(LocalDateTime checkIn, LocalDateTime checkOut) {
         if (checkIn == null || checkOut == null) {
-            throw new IllegalArgumentException("checkIn and checkOut must not be null");
+            return null;
         }
-
         List<RoomModel> modelRooms = dbf.getAll(RoomModel.class);
         List<RoomDto> rooms = new ArrayList<RoomDto>();
         for (RoomModel model : modelRooms) {
@@ -85,15 +84,19 @@ public class Session {
         }
 
         List<BookingModel> modelBookings = dbf.getAll(BookingModel.class);
+        List<RoomDto> availableRoomsUpdated = new ArrayList<RoomDto>();
         for (BookingModel booking : modelBookings) {
-            if (booking.getCheckInDateTime().isBefore(checkOut) && booking.getCheckOutDateTime().isAfter(checkIn)) {
-                for (RoomDto room : availableRooms) {
-                    availableRooms.remove(room);
+            // check if booking is not in the time frame of the new booking - not sure if this is right:
+            if (booking.getCheckInDateTime().isAfter(checkOut) || booking.getCheckOutDateTime().isBefore(checkIn)) {
+                if (!booking.getCheckInDateTime().equals(checkIn) && !booking.getCheckOutDateTime().equals(checkOut)) {
+                    for (RoomDto room : availableRooms) {
+                        availableRoomsUpdated.add(room);
+                    }
                 }
             }
         }
 
-        return availableRooms;
+        return availableRoomsUpdated;
     }
 
     public void resetTmpBooking() {
