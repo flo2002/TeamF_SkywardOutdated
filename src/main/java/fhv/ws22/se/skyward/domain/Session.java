@@ -86,11 +86,12 @@ public class Session {
         List<BookingModel> modelBookings = dbf.getAll(BookingModel.class);
         List<RoomDto> availableRoomsUpdated = new ArrayList<RoomDto>();
         for (BookingModel booking : modelBookings) {
-            // check if booking is not in the time frame of the new booking - not sure if this is right:
+            // check if booking is not in the time frame of the new booking
             if (booking.getCheckInDateTime().isAfter(checkOut) || booking.getCheckOutDateTime().isBefore(checkIn)) {
                 if (!booking.getCheckInDateTime().equals(checkIn) && !booking.getCheckOutDateTime().equals(checkOut)) {
-                    for (RoomDto room : availableRooms) {
-                        availableRoomsUpdated.add(room);
+                    List<RoomModel> modelRoomsBooked = booking.getRooms();
+                    for (RoomModel room : booking.getRooms()) {
+                        availableRoomsUpdated.add(room.toDto());
                     }
                 }
             }
