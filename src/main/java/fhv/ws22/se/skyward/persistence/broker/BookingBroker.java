@@ -21,7 +21,7 @@ public class BookingBroker extends BrokerBase<BookingModel> {
 
     @SuppressWarnings("unchecked")
     public List<BookingModel> getAll() {
-        List<Booking> rooms = (List<Booking>) entityManager.createQuery("FROM Booking").getResultList();
+        List<Booking> rooms = entityManager.createQuery("FROM Booking").getResultList();
 
         List<BookingModel> roomModels = new ArrayList<BookingModel>();
         for (Booking r : rooms) {

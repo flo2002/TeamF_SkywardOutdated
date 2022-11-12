@@ -9,6 +9,10 @@ public class Customer extends AbstractEntity {
     private String firstName;
     private String lastName;
 
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address billingAddress;
+
 
     public Customer() {
     }
@@ -24,6 +28,12 @@ public class Customer extends AbstractEntity {
     }
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     @Override

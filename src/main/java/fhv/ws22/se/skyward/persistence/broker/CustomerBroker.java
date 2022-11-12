@@ -1,6 +1,7 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
 import fhv.ws22.se.skyward.domain.model.CustomerModel;
+import fhv.ws22.se.skyward.persistence.entity.Address;
 import fhv.ws22.se.skyward.persistence.entity.Booking;
 import fhv.ws22.se.skyward.persistence.entity.Customer;
 
@@ -18,7 +19,7 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
 
     @SuppressWarnings("unchecked")
     public List<CustomerModel> getAll() {
-        List<Customer> customers = (List<Customer>) entityManager.createQuery("FROM Customer").getResultList();
+        List<Customer> customers = entityManager.createQuery("FROM Customer").getResultList();
 
         List<CustomerModel> customerModels = new ArrayList<CustomerModel>();
         for (Customer p : customers) {
@@ -28,28 +29,55 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
         return customerModels;
     }
 
-    public CustomerModel getCustomerByNames(String firstName, String lastName) {
-        Customer p = (Customer) entityManager.createQuery("FROM Customer WHERE firstName = :firstName AND lastName = :lastName")
-                .setParameter("firstName", firstName)
-                .setParameter("lastName", lastName)
-                .getSingleResult();
-        return CustomerModel.toModel(p);
-    }
-
     public CustomerModel get(UUID id) {
         Customer customer = entityManager.find(Customer.class, id);
         return CustomerModel.toModel(customer);
     }
 
     public void add(CustomerModel customer) {
+        Address address = null;
+
         entityManager.getTransaction().begin();
-        entityManager.persist(customer.toEntity());
+        if (entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
+                .setParameter("street", customer.getAddress().getStreet())
+                .setParameter("number", customer.getAddress().getHouseNumber())
+                .setParameter("zip", customer.getAddress().getZipCode())
+                .setParameter("city", customer.getAddress().getCity())
+                .setParameter("country", customer.getAddress().getCountry())
+                .getResultList().isEmpty()) {
+            address = new Address();
+            address.setStreet(customer.getAddress().getStreet());
+            address.setHouseNumber(customer.getAddress().getHouseNumber());
+            address.setZipCode(customer.getAddress().getZipCode());
+            address.setCity(customer.getAddress().getCity());
+            address.setCountry(customer.getAddress().getCountry());
+            entityManager.persist(address);
+            entityManager.flush();
+        }
+
+        if (address == null) {
+            address = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
+                    .setParameter("street", customer.getAddress().getStreet())
+                    .setParameter("number", customer.getAddress().getHouseNumber())
+                    .setParameter("zip", customer.getAddress().getZipCode())
+                    .setParameter("city", customer.getAddress().getCity())
+                    .setParameter("country", customer.getAddress().getCountry())
+                    .getSingleResult();
+        }
+
+        Customer customerEntity = customer.toEntity();
+        customerEntity.setBillingAddress(address);
+
+        entityManager.persist(customerEntity);
         entityManager.getTransaction().commit();
     }
 
+
     public void update(UUID id, CustomerModel customer) {
+        Customer tmpCustomer = customer.toEntity();
+        tmpCustomer.setId(id);
         entityManager.getTransaction().begin();
-        entityManager.merge(customer.toEntity());
+        entityManager.merge(tmpCustomer);
         entityManager.getTransaction().commit();
     }
 

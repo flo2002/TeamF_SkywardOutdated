@@ -1,13 +1,7 @@
 package fhv.ws22.se.skyward.domain;
 
-import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.domain.model.AbstractModel;
-import fhv.ws22.se.skyward.domain.model.BookingModel;
-import fhv.ws22.se.skyward.domain.model.CustomerModel;
-import fhv.ws22.se.skyward.domain.model.RoomModel;
+import fhv.ws22.se.skyward.domain.dtos.*;
+import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 
 import java.time.LocalDateTime;
@@ -27,6 +21,7 @@ public class Session {
         dtoModelClassMap.put(CustomerDto.class, CustomerModel.class);
         dtoModelClassMap.put(RoomDto.class, RoomModel.class);
         dtoModelClassMap.put(BookingDto.class, BookingModel.class);
+        dtoModelClassMap.put(InvoiceDto.class, InvoiceModel.class);
     }
 
 

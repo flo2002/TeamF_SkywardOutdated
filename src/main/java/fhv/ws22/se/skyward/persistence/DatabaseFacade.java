@@ -1,9 +1,6 @@
 package fhv.ws22.se.skyward.persistence;
 
-import fhv.ws22.se.skyward.domain.model.AbstractModel;
-import fhv.ws22.se.skyward.domain.model.BookingModel;
-import fhv.ws22.se.skyward.domain.model.CustomerModel;
-import fhv.ws22.se.skyward.domain.model.RoomModel;
+import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.broker.*;
 
 import jakarta.persistence.EntityManager;
@@ -35,12 +32,10 @@ public class DatabaseFacade {
         brokers.put(CustomerModel.class, new CustomerBroker(entityManager));
         brokers.put(RoomModel.class, new RoomBroker(entityManager));
         brokers.put(BookingModel.class, new BookingBroker(entityManager));
+        brokers.put(InvoiceModel.class, new InvoiceBroker(entityManager));
+        brokers.put(AddressModel.class, new AddressBroker(entityManager));
     }
 
-    public CustomerModel getCustomerByNames(String firstName, String lastName) {
-        CustomerBroker broker = (CustomerBroker) brokers.get(CustomerModel.class);
-        return broker.getCustomerByNames(firstName, lastName);
-    }
     public <T extends AbstractModel> List getAll(Class<T> clazz) {
         return brokers.get(clazz).getAll();
     }

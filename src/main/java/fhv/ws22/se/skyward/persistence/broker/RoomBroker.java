@@ -19,7 +19,7 @@ public class RoomBroker extends BrokerBase<RoomModel> {
 
     @SuppressWarnings("unchecked")
     public List<RoomModel> getAll() {
-        List<Room> rooms = (List<Room>) entityManager.createQuery("FROM Room").getResultList();
+        List<Room> rooms = entityManager.createQuery("FROM Room").getResultList();
 
         List<RoomModel> roomModels = new ArrayList<RoomModel>();
         for (Room r : rooms) {
