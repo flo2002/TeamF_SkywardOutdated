@@ -14,8 +14,8 @@ public class CustomerModel extends AbstractModel {
     public CustomerModel() {
     }
     public CustomerModel(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        setFirstName(firstName);
+        setLastName(lastName);
     }
 
     public String getFirstName() {

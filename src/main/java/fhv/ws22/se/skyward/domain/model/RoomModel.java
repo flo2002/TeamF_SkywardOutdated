@@ -19,16 +19,20 @@ public class RoomModel extends AbstractModel {
     public RoomModel() {
     }
     public RoomModel(int roomNumber, String roomTypeName, BigDecimal roomTypePrice, String roomStateName) {
-        this.roomNumber = roomNumber;
-        this.roomTypeName = roomTypeName;
-        this.roomTypePrice = roomTypePrice;
-        this.roomStateName = roomStateName;
+        setRoomNumber(roomNumber);
+        setRoomTypeName(roomTypeName);
+        setRoomTypePrice(roomTypePrice);
+        setRoomStateName(roomStateName);
     }
 
     public int getRoomNumber() {
         return roomNumber;
     }
     public void setRoomNumber(int roomNumber) {
+        int length = String.valueOf(roomNumber).length();
+        if (length != 3) {
+            throw new IllegalArgumentException("Room number must be 3 digits long.");
+        }
         this.roomNumber = roomNumber;
     }
     public String getRoomTypeName() {
@@ -48,6 +52,9 @@ public class RoomModel extends AbstractModel {
         return roomStateName;
     }
     public void setRoomStateName(String roomStateName) {
+        if (!(roomStateName.equals("cleaned") || roomStateName.equals("dirty") || roomStateName.equals("out_of_order"))) {
+            throw new IllegalArgumentException("Room state must be 'cleaned', 'dirty' or 'out_of_order'.");
+        }
         this.roomStateName = roomStateName;
     }
 
