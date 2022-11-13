@@ -69,7 +69,7 @@ public class AddRoomController {
             }
         });
         configureListener();
-        updateTable();
+        updateData();
     }
 
     private void configureListener() {
@@ -124,22 +124,10 @@ public class AddRoomController {
     }
 
     @FXML
-    public void onRefreshButtonClick(ActionEvent event) {
-        session.update(tmpBooking.getId(), tmpBooking);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml", "Rooms");
-    }
-
-    @FXML
     public void onBookingButtonClick(ActionEvent event) {
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
-    public void updateTable() {
-        roomTable.getItems().clear();
-        List<RoomDto> rooms = session.getAvailableRooms();
-        for (RoomDto room : rooms) {
-            roomTable.getItems().add(room);
-        }
-    }
+
     public void updateData() {
 
         HashMap<String, Boolean> filterMap = session.getFilterMap();
@@ -160,7 +148,7 @@ public class AddRoomController {
         }
 
         roomTable.getItems().clear();
-        List<RoomDto> rooms = tmpBooking.getRooms();
+        List<RoomDto> rooms = session.getAvailableRooms();
         if (rooms != null) {
             for (RoomDto room : rooms) {
                 roomTable.getItems().add(room);

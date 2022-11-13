@@ -68,7 +68,6 @@
       <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0">
          <children>
             <Button id="addguest" layoutX="107.0" layoutY="6.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="Confirm" />
-            <Button id="addguest" layoutY="6.0" mnemonicParsing="false" onAction="#onRefreshButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="Refresh" />
          </children>
       </AnchorPane>
       <CheckBox fx:id="filterSingleRoom" layoutX="223.0" layoutY="30.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="Single" />
