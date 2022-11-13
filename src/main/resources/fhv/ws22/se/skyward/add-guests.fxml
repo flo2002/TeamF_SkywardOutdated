@@ -30,16 +30,14 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
-            <Button onAction="#onBookingButtonClick" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -48,7 +46,6 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -62,7 +59,7 @@
                   <TextField fx:id="lastNameTextField" layoutX="109.0" layoutY="57.0" />
                   <TextField layoutX="109.0" layoutY="102.0" />
                   <TextField layoutX="109.0" layoutY="139.0" />
-                  <Button id="addguest" layoutX="168.0" layoutY="236.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="confirm" />
+                  <Button id="addguest" layoutX="168.0" layoutY="236.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="Confirm" />
                   <Text layoutX="35.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname" />
                   <Text layoutX="35.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname" />
                   <Text layoutX="43.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adress" />

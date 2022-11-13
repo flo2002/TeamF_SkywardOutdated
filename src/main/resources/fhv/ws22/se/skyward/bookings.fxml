@@ -2,7 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -32,7 +31,6 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -41,7 +39,6 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -50,7 +47,6 @@
                   <Font size="14.0" />
                </font>
                <stylesheets>
-                  <URL value="@../../../../../Desktop/style.css" />
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
@@ -58,14 +54,8 @@
       </VBox>
       <Pane layoutX="170.0" prefHeight="132.0" prefWidth="504.0" style="-fx-background-color: A9E0F6;">
          <children>
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #50C878;" text="Create new Booking" />
-            <Button layoutX="175.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #7393B3;" text="Bookings" />
-            <Button fx:id="checkInCheckOutButton" onAction="#onCheckInCheckOutButtonClick" layoutX="337.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" stylesheets="@css/styles.css" text="Check-in" />
-            <CheckBox fx:id="filterSingleRoom" layoutX="29.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="single" />
-            <CheckBox fx:id="filterDoubleRoom" layoutX="98.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="double" />
-            <CheckBox fx:id="filterTripleRoom" layoutX="175.0" layoutY="60.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="triple" />
-            <CheckBox fx:id="filterTwinRoom" layoutX="243.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="twin" />
-            <CheckBox fx:id="filterQueenRoom" layoutX="319.0" layoutY="61.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="queen" />
+            <Button layoutX="22.0" layoutY="41.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #50C878;" text="Create new Booking" />
+            <Button fx:id="checkInCheckOutButton" layoutX="186.0" layoutY="41.0" mnemonicParsing="false" onAction="#onCheckInCheckOutButtonClick" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #7393B3;" text="Check-in" />
             <DatePicker fx:id="checkInDatePicker" layoutX="22.0" layoutY="97.0" promptText="From" />
             <DatePicker fx:id="checkOutDatePicker" layoutX="214.0" layoutY="97.0" promptText="To" />
          </children>
