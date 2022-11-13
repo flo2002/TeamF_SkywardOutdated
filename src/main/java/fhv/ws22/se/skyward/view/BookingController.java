@@ -169,6 +169,12 @@ public class BookingController {
     @FXML
     public void onAddRoomButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+
+        if (tmpBooking.getCheckInDateTime() == null || tmpBooking.getCheckOutDateTime() == null) {
+            NotificationUtil.getInstance().showErrorNotification("Please select a Check-in and Check-out date", event);
+            return;
+        }
+
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml", "Rooms");
     }
 

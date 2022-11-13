@@ -7,6 +7,8 @@ import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -75,10 +77,10 @@ public class AddRoomController {
     }
     public void updateTable() {
         roomTable.getItems().clear();
-        List<RoomDto> rooms = session.getAvailableRooms();
+
+        List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
         for (RoomDto room : rooms) {
             roomTable.getItems().add(room);
         }
     }
-
 }

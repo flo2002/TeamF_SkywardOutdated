@@ -12,9 +12,12 @@ public class DataGenerator {
     public static void generateData() {
         DatabaseFacade dbf = DatabaseFacade.getInstance();
 
-        RoomModel r = new RoomModel(101, "Single", new BigDecimal(100), "free");
-        RoomModel r2 = new RoomModel(201, "Double", new BigDecimal(200), "free");
-        RoomModel r3 = new RoomModel(301, "Double", new BigDecimal(300), "free");
+        RoomModel r = new RoomModel(101, "Single", new BigDecimal(100), "cleaned");
+        RoomModel r1 = new RoomModel(102, "Single", new BigDecimal(100), "cleaned");
+        RoomModel r2 = new RoomModel(201, "Double", new BigDecimal(200), "cleaned");
+        RoomModel r3 = new RoomModel(202, "Double", new BigDecimal(200), "cleaned");
+        RoomModel r4 = new RoomModel(301, "Double", new BigDecimal(300), "cleaned");
+        RoomModel r5 = new RoomModel(303, "Triple", new BigDecimal(300), "cleaned");
 
         CustomerModel john = new CustomerModel("John", "Doe");
         CustomerModel jane = new CustomerModel("Jane", "Doe");
@@ -25,8 +28,11 @@ public class DataGenerator {
         dbf.add(john);
         dbf.add(jane);
         dbf.add(r);
+        dbf.add(r1);
         dbf.add(r2);
         dbf.add(r3);
+        dbf.add(r4);
+        dbf.add(r5);
         dbf.add(b);
         dbf.add(b2);
     }

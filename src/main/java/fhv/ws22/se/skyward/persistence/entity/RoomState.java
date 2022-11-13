@@ -27,8 +27,9 @@ public class RoomState extends AbstractEntity {
     }
 }
 
-    /*FREE,
-    FREE_FOR_CLEANING,
-    OCCUPIED,
-    OCCUPIED_FOR_CLEANING,
-    OUT_OF_ORDER*/
+    /*FREE,     }
+    OCCUPIED,   } is calculated by the booking dates
+    FREE_FOR_CLEANING       }
+    OCCUPIED_FOR_CLEANING,  }
+    OUT_OF_ORDER            } is set in the name field
+    */

@@ -20,17 +20,20 @@ public class BookingModel extends AbstractModel {
     public BookingModel() {
     }
     public BookingModel(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerModel> customers, List<RoomModel> rooms) {
-        this.checkInDateTime = checkInDateTime;
-        this.checkOutDateTime = checkOutDateTime;
-        this.isCheckedIn = isCheckedIn;
-        this.customers = customers;
-        this.rooms = rooms;
+        setCheckInDateTime(checkInDateTime);
+        setCheckOutDateTime(checkOutDateTime);
+        setIsCheckedIn(isCheckedIn);
+        setCustomers(customers);
+        setRooms(rooms);
     }
 
     public LocalDateTime getCheckInDateTime() {
         return checkInDateTime;
     }
     public void setCheckInDateTime(LocalDateTime checkInDateTime) {
+        if (checkInDateTime.isBefore(LocalDateTime.now().toLocalDate().atStartOfDay())) {
+            throw new IllegalArgumentException("CheckInDateTime is in the past");
+        }
         this.checkInDateTime = checkInDateTime;
     }
 
