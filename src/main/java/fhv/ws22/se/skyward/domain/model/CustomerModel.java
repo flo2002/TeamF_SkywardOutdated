@@ -14,10 +14,11 @@ public class CustomerModel extends AbstractModel {
 
     public CustomerModel() {
     }
+
     public CustomerModel(String firstName, String lastName, AddressModel address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAddress(address);
     }
 
     public String getFirstName() {

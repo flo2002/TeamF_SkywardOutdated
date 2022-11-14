@@ -30,16 +30,6 @@ public class BookingController {
 
     @FXML
     private Button checkInCheckOutButton;
-    @FXML
-    private CheckBox filterSingleRoom;
-    @FXML
-    private CheckBox filterDoubleRoom;
-    @FXML
-    private CheckBox filterTripleRoom;
-    @FXML
-    private CheckBox filterTwinRoom;
-    @FXML
-    private CheckBox filterQueenRoom;
 
 
     @FXML
@@ -84,43 +74,6 @@ public class BookingController {
     }
 
     private void configureListener() {
-        if (session.getFilterMap().size() == 0) {
-            HashMap<String, Boolean> filterMap = new HashMap<String, Boolean>();
-            filterMap.put("Single", false);
-            filterMap.put("Double", false);
-            filterMap.put("Triple", false);
-            filterMap.put("Twin", false);
-            filterMap.put("Queen", false);
-            session.setFilterMap(filterMap);
-        }
-        HashMap<String, Boolean> filterMap = session.getFilterMap();
-
-        filterSingleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filterMap.put("Single", filterSingleRoom.isSelected());
-            session.setFilterMap(filterMap);
-            updateData();
-        });
-        filterDoubleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filterMap.put("Double", filterDoubleRoom.isSelected());
-            session.setFilterMap(filterMap);
-            updateData();
-        });
-        filterTripleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filterMap.put("Triple", filterTripleRoom.isSelected());
-            session.setFilterMap(filterMap);
-            updateData();
-        });
-        filterTwinRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filterMap.put("Twin", filterTwinRoom.isSelected());
-            session.setFilterMap(filterMap);
-            updateData();
-        });
-        filterQueenRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            filterMap.put("Queen", filterQueenRoom.isSelected());
-            session.setFilterMap(filterMap);
-            updateData();
-        });
-
 
         checkInDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -169,13 +122,19 @@ public class BookingController {
     @FXML
     public void onAddRoomButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+
+        if (tmpBooking.getCheckInDateTime() == null || tmpBooking.getCheckOutDateTime() == null) {
+            NotificationUtil.getInstance().showErrorNotification("Please select a Check-in and Check-out date", event);
+            return;
+        }
+
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml", "Rooms");
     }
 
     @FXML
     public void onAddGuestButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Guests");
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Guests");
     }
 
     public void updateData() {
@@ -186,22 +145,6 @@ public class BookingController {
             checkInCheckOutButton.setText("Check-in");
         }
 
-        HashMap<String, Boolean> filterMap = session.getFilterMap();
-        if (filterMap.get("Single")) {
-            filterSingleRoom.setSelected(true);
-        }
-        if (filterMap.get("Double")) {
-            filterDoubleRoom.setSelected(true);
-        }
-        if (filterMap.get("Triple")) {
-            filterTripleRoom.setSelected(true);
-        }
-        if (filterMap.get("Twin")) {
-            filterTwinRoom.setSelected(true);
-        }
-        if (filterMap.get("Queen")) {
-            filterQueenRoom.setSelected(true);
-        }
 
         if (tmpBooking.getCheckInDateTime() != null) {
             checkInDatePicker.setValue(tmpBooking.getCheckInDateTime().toLocalDate());

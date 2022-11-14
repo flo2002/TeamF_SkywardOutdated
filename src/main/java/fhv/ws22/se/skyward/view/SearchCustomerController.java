@@ -73,6 +73,11 @@ public class SearchCustomerController {
     }
 
     @FXML
+    public void onCreateButtonClick(ActionEvent event) {
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Home");
+    }
+
+    @FXML
     public void onBookingButtonClick(ActionEvent event) {
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
