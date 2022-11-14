@@ -42,7 +42,7 @@ public class AddGuestController {
             return;
         }
 
-        CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText());
+        CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(), "MainStreet", "43", "1234", "Vienna", "Austria");
         session.add(customerDto);
 
         NotificationUtil.getInstance().showSuccessNotification("The guest was added to the database and booking", event);
