@@ -27,7 +27,7 @@ public class HomescreenController {
     @FXML
     private TableView<BookingDto> table;
     @FXML
-    private TableColumn<BookingDto, String> roomNumberCol;
+    private TableColumn<BookingDto, BigInteger> bookingNumberCol;
     @FXML
     private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
     @FXML
@@ -35,13 +35,11 @@ public class HomescreenController {
     @FXML
     private TableColumn<BookingDto, Boolean> isCheckedInCol;
 
-    private ObservableList<BookingDto> tablelist;
-
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
 
-        roomNumberCol.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getRooms().get(0).getRoomNumber())));
+        bookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
         checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
         checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
         isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
@@ -76,6 +74,5 @@ public class HomescreenController {
         for (BookingDto booking : bookings) {
             table.getItems().add(booking);
         }
-        tablelist = table.getItems();
     }
 }

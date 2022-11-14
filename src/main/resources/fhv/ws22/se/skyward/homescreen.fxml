@@ -72,7 +72,7 @@
                   <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="52.0" stylesheets="@css/styles.css" text="Search" textFill="WHITE" GridPane.rowIndex="1" />
                   <TableView fx:id="table" prefHeight="54.0" prefWidth="476.0" stylesheets="@css/styles.css" GridPane.rowIndex="2">
                     <columns>
-                        <TableColumn fx:id="roomNumberCol" prefWidth="20.0" text="Room Number" />
+                        <TableColumn fx:id="bookingNumberCol" prefWidth="20.0" text="Room Number" />
                       <TableColumn fx:id="checkInDateTimeCol" prefWidth="75.0" text="CheckInDateTime" />
                         <TableColumn fx:id="checkOutDateTimeCol" prefWidth="75.0" text="CheckOutDateTime" />
                       <TableColumn fx:id="isCheckedInCol" prefWidth="158.4000244140625" text="isCheckedIn?" />

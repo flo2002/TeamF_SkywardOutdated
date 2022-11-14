@@ -5,11 +5,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class BookingDto extends AbstractDto {
     private static final Logger logger = LogManager.getLogger("BookingDto");
+    private BigInteger bookingNumber;
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
     private Boolean isCheckedIn;
@@ -24,6 +26,13 @@ public class BookingDto extends AbstractDto {
         this.isCheckedIn = isCheckedIn;
         this.customers = customers;
         this.rooms = rooms;
+    }
+
+    public BigInteger getBookingNumber() {
+        return bookingNumber;
+    }
+    public void setBookingNumber(BigInteger bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 
     public LocalDateTime getCheckInDateTime() {

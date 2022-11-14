@@ -1,13 +1,17 @@
 package fhv.ws22.se.skyward.persistence.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"checkInDateTime", "checkOutDateTime", "room_id", "customer_id"}))
 public class Booking extends AbstractEntity {
+    //@Column(unique = true)
+    private BigInteger bookingNumber;
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
     private Boolean isCheckedIn;
@@ -23,6 +27,16 @@ public class Booking extends AbstractEntity {
     private List<Room> rooms;
 
     public Booking() {
+    }
+
+    public BigInteger getBookingNumber() {
+        if (bookingNumber == null) {
+            setBookingNumber(AbstractEntity.getBookingNum());
+        }
+        return bookingNumber;
+    }
+    public void setBookingNumber(BigInteger bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 
     public LocalDateTime getCheckInDateTime() {

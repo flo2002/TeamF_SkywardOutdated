@@ -6,6 +6,7 @@ import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -26,5 +27,4 @@ public abstract class AbstractModel {
     public void setId(UUID id) {
         this.id = id;
     }
-
 }
