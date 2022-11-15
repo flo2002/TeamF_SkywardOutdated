@@ -152,7 +152,7 @@ public class AddRoomController {
         roomTable.getItems().clear();
 
 
-        List<RoomDto> rooms = session.getAvailableRooms();
+        List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
         if (rooms != null) {
             for (RoomDto room : rooms) {
                 roomTable.getItems().add(room);
