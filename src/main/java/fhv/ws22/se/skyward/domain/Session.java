@@ -110,6 +110,7 @@ public class Session {
         if (tmpBookingId == null) {
             BookingModel booking = new BookingModel();
             booking.setCheckInDateTime(LocalDateTime.now());
+            booking.setIsCheckedIn(false);
             tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
         }
         BookingModel booking = dbf.get(tmpBookingId, BookingModel.class);
