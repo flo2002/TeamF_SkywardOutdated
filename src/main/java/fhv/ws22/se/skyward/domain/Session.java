@@ -84,20 +84,16 @@ public class Session {
         }
 
         List<BookingModel> modelBookings = dbf.getAll(BookingModel.class);
-        List<RoomDto> availableRoomsUpdated = new ArrayList<RoomDto>();
+        // check if any booking is in the same time frame to remove it from the available rooms
         for (BookingModel booking : modelBookings) {
-            // check if booking is not in the time frame of the new booking
-            if (booking.getCheckInDateTime().isAfter(checkOut) || booking.getCheckOutDateTime().isBefore(checkIn)) {
-                if (!booking.getCheckInDateTime().equals(checkIn) && !booking.getCheckOutDateTime().equals(checkOut)) {
-                    List<RoomModel> modelRoomsBooked = booking.getRooms();
-                    for (RoomModel room : booking.getRooms()) {
-                        availableRoomsUpdated.add(room.toDto());
-                    }
+            if (booking.getCheckInDateTime().isBefore(checkOut) || booking.getCheckOutDateTime().isAfter(checkIn)) {
+                for (RoomModel room : booking.getRooms()) {
+                    availableRooms.remove(room.toDto());
                 }
             }
         }
 
-        return availableRoomsUpdated;
+        return availableRooms;
     }
 
     public void resetTmpBooking() {
