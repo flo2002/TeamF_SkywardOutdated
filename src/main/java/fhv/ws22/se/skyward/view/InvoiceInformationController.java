@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 public class InvoiceInformationController {
     private static final Logger logger = LogManager.getLogger("BookingController");
@@ -30,12 +31,12 @@ public class InvoiceInformationController {
     private Label payPlaceholder;
     @FXML
     private Label checkInDatePlaceholder;
-
     @FXML
     private Label checkOutDatePlaceholder;
-
     @FXML
     private Label namePlaceholder;
+    @FXML
+    private Label invoiceDatePlaceholder;
 
     @FXML
     protected void initialize() {
@@ -44,6 +45,7 @@ public class InvoiceInformationController {
         checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toString());
         checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toString());
         namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
+        invoiceDatePlaceholder.setText(LocalDateTime.now().toString());
     }
 
     @FXML
