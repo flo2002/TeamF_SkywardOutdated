@@ -169,4 +169,10 @@ public class BookingController {
             }
         }
     }
+
+    @FXML
+    public void onInvoiceButtonClick(ActionEvent event) {
+        session.update(tmpBooking.getId(), tmpBooking);
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
+    }
 }
