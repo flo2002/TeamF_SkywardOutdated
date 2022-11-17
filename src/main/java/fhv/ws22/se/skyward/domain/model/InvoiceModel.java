@@ -5,18 +5,22 @@ import fhv.ws22.se.skyward.persistence.entity.Invoice;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class InvoiceModel extends AbstractModel {
     private BigInteger invoiceNumber;
     private String companyName;
+    private LocalDateTime invoiceDateTime;
     private Boolean isPaid;
     private AddressModel hotelAddress;
     private BookingModel booking;
 
     public InvoiceModel() {
     }
-    public InvoiceModel(String companyName, Boolean isPaid, AddressModel address, BookingModel booking) {
+    public InvoiceModel(String companyName, LocalDateTime invoiceDateTime, Boolean isPaid, AddressModel address, BookingModel booking) {
         setCompanyName(companyName);
+        setInvoiceDateTime(invoiceDateTime);
         setIsPaid(isPaid);
         setHotelAddress(address);
         setBooking(booking);
@@ -34,6 +38,13 @@ public class InvoiceModel extends AbstractModel {
     }
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public LocalDateTime getInvoiceDateTime() {
+        return invoiceDateTime;
+    }
+    public void setInvoiceDateTime(LocalDateTime invoiceDateTime) {
+        this.invoiceDateTime = invoiceDateTime;
     }
 
     public Boolean getIsPaid() {
@@ -78,6 +89,7 @@ public class InvoiceModel extends AbstractModel {
         return "InvoiceModel{" +
                 "invoiceNumber=" + invoiceNumber +
                 ", companyName='" + companyName + '\'' +
+                ", invoiceDateTime=" + invoiceDateTime +
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
                 ", booking=" + booking +

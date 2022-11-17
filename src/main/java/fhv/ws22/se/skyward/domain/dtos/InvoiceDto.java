@@ -6,18 +6,21 @@ import fhv.ws22.se.skyward.persistence.entity.Booking;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 public class InvoiceDto extends AbstractDto {
     private BigInteger invoiceNumber;
     private String companyName;
+    private LocalDateTime invoiceDateTime;
     private Boolean isPaid;
-    private Address hotelAddress;
+    private AddressDto hotelAddress;
     private BookingDto booking;
 
     public InvoiceDto() {
     }
-    public InvoiceDto(String companyName, Boolean isPaid, Address hotelAddress, BookingDto booking) {
+    public InvoiceDto(String companyName, LocalDateTime invoiceDateTime, Boolean isPaid, AddressDto hotelAddress, BookingDto booking) {
         this.companyName = companyName;
+        this.invoiceDateTime = invoiceDateTime;
         this.isPaid = isPaid;
         this.hotelAddress = hotelAddress;
         this.booking = booking;
@@ -37,10 +40,17 @@ public class InvoiceDto extends AbstractDto {
         this.companyName = companyName;
     }
 
-    public Address getHotelAddress() {
+    public LocalDateTime getInvoiceDateTime() {
+        return invoiceDateTime;
+    }
+    public void setInvoiceDateTime(LocalDateTime invoiceDateTime) {
+        this.invoiceDateTime = invoiceDateTime;
+    }
+
+    public AddressDto getHotelAddress() {
         return hotelAddress;
     }
-    public void setHotelAddress(Address hotelAddress) {
+    public void setHotelAddress(AddressDto hotelAddress) {
         this.hotelAddress = hotelAddress;
     }
 

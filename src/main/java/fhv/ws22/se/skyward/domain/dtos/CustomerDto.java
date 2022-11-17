@@ -9,22 +9,14 @@ public class CustomerDto extends AbstractDto {
     private static final Logger logger = LogManager.getLogger("CustomerDto");
     private String firstName;
     private String lastName;
-    private String addressStreet;
-    private String addressHouseNumber;
-    private String addressZipCode;
-    private String addressCity;
-    private String addressCountry;
+    private AddressDto address;
 
     public CustomerDto() {
     }
-    public CustomerDto(String firstName, String lastName, String addressStreet, String addressHouseNumber, String addressZipCode, String addressCity, String addressCountry) {
+    public CustomerDto(String firstName, String lastName, AddressDto address) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addressStreet = addressStreet;
-        this.addressHouseNumber = addressHouseNumber;
-        this.addressZipCode = addressZipCode;
-        this.addressCity = addressCity;
-        this.addressCountry = addressCountry;
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -41,39 +33,11 @@ public class CustomerDto extends AbstractDto {
         this.lastName = lastName;
     }
 
-    public String getAddressStreet() {
-        return addressStreet;
+    public AddressDto getAddress() {
+        return address;
     }
-    public void setAddressStreet(String addressStreet) {
-        this.addressStreet = addressStreet;
-    }
-
-    public String getAddressHouseNumber() {
-        return addressHouseNumber;
-    }
-    public void setAddressHouseNumber(String addressHouseNumber) {
-        this.addressHouseNumber = addressHouseNumber;
-    }
-
-    public String getAddressZipCode() {
-        return addressZipCode;
-    }
-    public void setAddressZipCode(String addressZipCode) {
-        this.addressZipCode = addressZipCode;
-    }
-
-    public String getAddressCity() {
-        return addressCity;
-    }
-    public void setAddressCity(String addressCity) {
-        this.addressCity = addressCity;
-    }
-
-    public String getAddressCountry() {
-        return addressCountry;
-    }
-    public void setAddressCountry(String addressCountry) {
-        this.addressCountry = addressCountry;
+    public void setAddress(AddressDto address) {
+        this.address = address;
     }
 
     public CustomerModel toModel() {
@@ -91,6 +55,7 @@ public class CustomerDto extends AbstractDto {
         return "CustomerDto{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", address=" + address +
                 '}';
     }
 }

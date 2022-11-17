@@ -3,13 +3,14 @@ package fhv.ws22.se.skyward.persistence.entity;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 public class Invoice extends AbstractEntity {
     @Column(unique = true)
     private BigInteger invoiceNumber;
     private String companyName;
+    private LocalDateTime invoiceDateTime;
     private Boolean isPaid;
     @ManyToOne
     @JoinColumn(name = "address_id")
@@ -33,6 +34,13 @@ public class Invoice extends AbstractEntity {
     }
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public LocalDateTime getInvoiceDateTime() {
+        return invoiceDateTime;
+    }
+    public void setInvoiceDateTime(LocalDateTime invoiceDateTime) {
+        this.invoiceDateTime = invoiceDateTime;
     }
 
     public Boolean getIsPaid() {
@@ -61,8 +69,9 @@ public class Invoice extends AbstractEntity {
         return "Invoice{" +
                 "invoiceNumber=" + invoiceNumber +
                 ", companyName='" + companyName + '\'' +
-                ", hotelAddress=" + hotelAddress +
+                ", invoiceDateTime=" + invoiceDateTime +
                 ", isPaid=" + isPaid +
+                ", hotelAddress=" + hotelAddress +
                 ", booking=" + booking +
                 '}';
     }

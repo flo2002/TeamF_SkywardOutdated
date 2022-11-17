@@ -2,9 +2,8 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.domain.dtos.*;
+import fhv.ws22.se.skyward.domain.model.AddressModel;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,10 +41,13 @@ public class InvoiceInformationController {
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
         tmpBooking = session.getTmpBooking();
-        checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toString());
-        checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toString());
-        namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
-        invoiceDatePlaceholder.setText(LocalDateTime.now().toString());
+
+        if (tmpBooking.getInvoices() == null) {
+            AddressDto hotelAddress = new AddressDto("ExampleStreet", "2", "1234", "New York", "United States");
+            InvoiceDto invoice = new InvoiceDto("Skyward International", LocalDateTime.now(), false, hotelAddress, tmpBooking);
+        }
+
+        updateData();
     }
 
     @FXML
@@ -87,5 +89,21 @@ public class InvoiceInformationController {
     @FXML
     public void onPrintButtonClick(ActionEvent event){
 
+    }
+
+    public void updateData(){
+        if (tmpBooking.getCheckInDateTime() != null) {
+            checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toLocalDate().toString());
+        }
+        if (tmpBooking.getCheckOutDateTime() != null) {
+            checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toLocalDate().toString());
+        }
+        if (tmpBooking.getCustomers() != null) {
+            namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
+        }
+        if (tmpBooking.getInvoices() != null) {
+            invoiceDatePlaceholder.setText(tmpBooking.getInvoices().get(0).getInvoiceDateTime().toLocalDate().toString());
+            payPlaceholder.setText(tmpBooking.getInvoices().get(0).getIsPaid() ? "Yes" : "No");
+        }
     }
 }

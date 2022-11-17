@@ -44,8 +44,6 @@ public class BookingController {
     @FXML
     private TableColumn<RoomDto, String> roomTypeNameCol;
     @FXML
-    private TableColumn<RoomDto, BigDecimal> roomTypePriceCol;
-    @FXML
     private TableColumn<RoomDto, String> roomStateNameCol;
 
     @FXML
@@ -62,7 +60,6 @@ public class BookingController {
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
-        roomTypePriceCol.setCellValueFactory(new PropertyValueFactory<RoomDto, BigDecimal>("roomTypePrice"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));

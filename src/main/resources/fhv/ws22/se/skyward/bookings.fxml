@@ -67,7 +67,6 @@
               <columns>
                 <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="75.0" styleClass="css/style.css" text="RoomNr." />
                 <TableColumn fx:id="roomTypeNameCol" prefWidth="75.0" text="Type" />
-                 <TableColumn fx:id="roomTypePriceCol" prefWidth="80.79998779296875" text="Cost" />
                  <TableColumn fx:id="roomStateNameCol" prefWidth="80.79998779296875" text="State" />
               </columns>
             </TableView>

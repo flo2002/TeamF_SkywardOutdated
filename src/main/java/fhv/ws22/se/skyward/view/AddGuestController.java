@@ -2,6 +2,7 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
+import fhv.ws22.se.skyward.domain.dtos.AddressDto;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
@@ -42,7 +43,7 @@ public class AddGuestController {
             return;
         }
 
-        CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(), "MainStreet", "43", "1234", "Vienna", "Austria");
+        CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(), new AddressDto("MainStreet", "43", "1234", "Vienna", "Austria"));
         session.add(customerDto);
 
         NotificationUtil.getInstance().showSuccessNotification("The guest was added to the database and booking", event);
