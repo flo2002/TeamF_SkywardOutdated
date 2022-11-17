@@ -56,15 +56,10 @@ public class SearchCustomerController {
     }
 
     @FXML
-    public void onSearchButtonClick(ActionEvent actionEvent) {
-        updateTable(searchTextField.getText());
-    }
-
-    @FXML
     public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
         NotificationUtil.getInstance().showSuccessNotification("The guests were added to the booking", event);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Home");
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
