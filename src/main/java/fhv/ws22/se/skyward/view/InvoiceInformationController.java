@@ -54,15 +54,13 @@ public class InvoiceInformationController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        session.update(tmpBooking.getId(), tmpBooking);
-        session.update(tmpInvoice.getId(), tmpInvoice);
+        session.resetTmpInvoice();
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
     @FXML
     public void onBookingButtonClick(ActionEvent event) {
-        session.update(tmpBooking.getId(), tmpBooking);
-        session.update(tmpInvoice.getId(), tmpInvoice);
+        session.resetTmpInvoice();
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
@@ -74,18 +72,19 @@ public class InvoiceInformationController {
     @FXML
     public void onPayButtonClick(ActionEvent event){
         if (payButton.getText().equals("Pay")) {
+            payButton.setText("Unpay");
             tmpInvoice.setIsPaid(true);
             updateData();
-            payButton.setText("Unpay");
         } else if (payButton.getText().equals("Unpay")){
+            payButton.setText("Pay");
             tmpInvoice.setIsPaid(false);
             updateData();
-            payButton.setText("Pay");
         }
     }
 
     @FXML
     public void onConfirmButtonClick(ActionEvent event){
+        session.resetTmpInvoice();
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
     @FXML
@@ -99,6 +98,7 @@ public class InvoiceInformationController {
 
     public void updateData(){
         tmpBooking.setInvoices(List.of(tmpInvoice));
+        session.update(tmpBooking.getId(), tmpBooking);
 
         checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toLocalDate().toString());
         checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toLocalDate().toString());

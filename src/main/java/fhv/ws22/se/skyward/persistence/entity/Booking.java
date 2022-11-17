@@ -95,7 +95,8 @@ public class Booking extends AbstractEntity {
     @Override
     public String toString() {
         return "Booking{" +
-                "checkInDateTime=" + checkInDateTime +
+                "bookingNumber=" + bookingNumber +
+                ", checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +

@@ -100,7 +100,8 @@ public class BookingDto extends AbstractDto {
     @Override
     public String toString() {
         return "BookingDto{" +
-                "checkInDateTime=" + checkInDateTime +
+                "bookingNumber=" + bookingNumber +
+                ", checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +

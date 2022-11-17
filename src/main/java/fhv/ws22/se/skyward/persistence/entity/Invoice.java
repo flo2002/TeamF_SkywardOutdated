@@ -23,6 +23,9 @@ public class Invoice extends AbstractEntity {
     }
 
     public BigInteger getInvoiceNumber() {
+        if (invoiceNumber == null) {
+            setInvoiceNumber(AbstractEntity.getInvoiceNum());
+        }
         return invoiceNumber;
     }
     public void setInvoiceNumber(BigInteger invoiceNumber) {

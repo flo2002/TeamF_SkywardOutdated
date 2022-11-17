@@ -32,9 +32,23 @@ public class AddressBroker extends BrokerBase<AddressModel> {
     }
 
     public void add(AddressModel address) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(address.toEntity());
-        entityManager.getTransaction().commit();
+        if (entityManager.createQuery("FROM Address a WHERE a.street = :street AND a.houseNumber = :houseNumber AND a.zipCode = :postalCode AND a.city = :city AND a.country = :country")
+                .setParameter("street", address.getStreet())
+                .setParameter("houseNumber", address.getHouseNumber())
+                .setParameter("postalCode", address.getZipCode())
+                .setParameter("city", address.getCity())
+                .setParameter("country", address.getCountry())
+                .getResultList().isEmpty()) {
+            Address a = new Address();
+            a.setStreet(address.getStreet());
+            a.setHouseNumber(address.getHouseNumber());
+            a.setZipCode(address.getZipCode());
+            a.setCity(address.getCity());
+            a.setCountry(address.getCountry());
+            entityManager.getTransaction().begin();
+            entityManager.persist(a);
+            entityManager.getTransaction().commit();
+        }
     }
 
     public void update(UUID id, AddressModel address) {

@@ -81,6 +81,7 @@ public class InvoiceDto extends AbstractDto {
         return "InvoiceDto{" +
                 "invoiceNumber=" + invoiceNumber +
                 ", companyName='" + companyName + '\'' +
+                ", invoiceDateTime=" + invoiceDateTime +
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
                 ", booking=" + booking +

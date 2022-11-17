@@ -23,6 +23,8 @@ public class Session {
         dtoModelClassMap.put(RoomDto.class, RoomModel.class);
         dtoModelClassMap.put(BookingDto.class, BookingModel.class);
         dtoModelClassMap.put(InvoiceDto.class, InvoiceModel.class);
+        dtoModelClassMap.put(AddressDto.class, AddressModel.class);
+        dtoModelClassMap.put(ChargeableItemDto.class, ChargeableItemModel.class);
     }
 
 
@@ -120,19 +122,26 @@ public class Session {
         tmpBookingId = tmpBid.getId();
     }
 
-
-
-
     public InvoiceDto getTmpInvoice() {
         if (tmpInvoiceId == null) {
-            InvoiceModel invoice = new InvoiceModel();
-            invoice.setInvoiceDateTime(LocalDateTime.now());
-            invoice.setIsPaid(false);
+            AddressModel customerAddress = new AddressModel("ExampleStreet", "2", "1234", "New York", "United States");
+            dbf.add(customerAddress);
+            InvoiceModel invoice = new InvoiceModel("Skyward International", LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
             tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
         }
         InvoiceModel invoice = dbf.get(tmpInvoiceId, InvoiceModel.class);
 
         return invoice.toDto();
+    }
+    public void resetTmpInvoice() {
+        tmpInvoiceId = null;
+    }
+    public void setTmpInvoice(InvoiceDto invoice) {
+        InvoiceModel tmpIid = dbf.get(invoice.getId(), InvoiceModel.class);
+        if (tmpIid == null) {
+            throw new IllegalArgumentException("Invoice could not be added");
+        }
+        tmpInvoiceId = tmpIid.getId();
     }
 
 

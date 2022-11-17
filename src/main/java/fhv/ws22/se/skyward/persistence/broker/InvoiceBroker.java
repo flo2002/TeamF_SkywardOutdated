@@ -37,10 +37,25 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
     }
 
     public void add(InvoiceModel invoice) {
-        Invoice i = invoice.toEntity();
         entityManager.getTransaction().begin();
+        Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE bookingNumber = :bookingNumber")
+            .setParameter("bookingNumber", invoice.getBooking().getBookingNumber())
+            .getSingleResult();
+
+        Address address = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :houseNumber AND zipCode = :zipCode AND city = :city AND country = :country")
+            .setParameter("street", invoice.getHotelAddress().getStreet())
+            .setParameter("houseNumber", invoice.getHotelAddress().getHouseNumber())
+            .setParameter("zipCode", invoice.getHotelAddress().getZipCode())
+            .setParameter("city", invoice.getHotelAddress().getCity())
+            .setParameter("country", invoice.getHotelAddress().getCountry())
+            .getSingleResult();
+
+        Invoice i = invoice.toEntity();
+        i.setBooking(booking);
+        i.setHotelAddress(address);
+
         entityManager.persist(i);
-        entityManager.getTransaction().commit();
+        entityManager.flush();
     }
 
     public void update(UUID id, InvoiceModel invoice) {
@@ -59,7 +74,19 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
 
     public UUID addAndReturnId(InvoiceModel invoice) {
         Invoice tmpInvoice = invoice.toEntity();
+
         entityManager.getTransaction().begin();
+        Address address = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :houseNumber AND zipCode = :zipCode AND city = :city AND country = :country")
+                .setParameter("street", invoice.getHotelAddress().getStreet())
+                .setParameter("houseNumber", invoice.getHotelAddress().getHouseNumber())
+                .setParameter("zipCode", invoice.getHotelAddress().getZipCode())
+                .setParameter("city", invoice.getHotelAddress().getCity())
+                .setParameter("country", invoice.getHotelAddress().getCountry())
+                .getSingleResult();
+
+        tmpInvoice.setHotelAddress(address);
+
+
         entityManager.persist(tmpInvoice);
         entityManager.getTransaction().commit();
         return tmpInvoice.getId();

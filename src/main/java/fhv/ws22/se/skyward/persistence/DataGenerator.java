@@ -19,7 +19,6 @@ public class DataGenerator {
         RoomModel r5 = new RoomModel(303, "Triple", "cleaned");
 
         AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
-        AddressModel hotelAddress = new AddressModel("ExampleStreet", "2", "1234", "New York", "United States");
 
         CustomerModel john = new CustomerModel("John", "Doe", customerAddress);
         CustomerModel jane = new CustomerModel("Jane", "Doe", customerAddress);
@@ -27,7 +26,6 @@ public class DataGenerator {
         BookingModel b = new BookingModel(LocalDateTime.now(), LocalDateTime.now().plusDays(1), false, List.of(john, jane), List.of(r2));
         BookingModel b2 = new BookingModel(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), true, List.of(john), List.of(r3));
 
-        InvoiceModel i = new InvoiceModel("Skyward International", LocalDateTime.now(), false, hotelAddress, b);
 
         dbf.add(r0);
         dbf.add(r1);
@@ -36,11 +34,9 @@ public class DataGenerator {
         dbf.add(r4);
         dbf.add(r5);
         dbf.add(customerAddress);
-        dbf.add(hotelAddress);
         dbf.add(john);
         dbf.add(jane);
         dbf.add(b);
         dbf.add(b2);
-        dbf.add(i);
     }
 }

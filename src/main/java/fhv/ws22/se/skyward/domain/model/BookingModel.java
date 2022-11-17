@@ -113,8 +113,9 @@ public class BookingModel extends AbstractModel {
 
     @Override
     public String toString() {
-        return "BookingDto{" +
-                "checkInDateTime=" + checkInDateTime +
+        return "BookingModel{" +
+                "bookingNumber=" + bookingNumber +
+                ", checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +
