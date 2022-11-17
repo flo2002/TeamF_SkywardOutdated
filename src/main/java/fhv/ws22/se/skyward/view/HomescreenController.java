@@ -3,7 +3,10 @@ package fhv.ws22.se.skyward.view;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -23,18 +27,19 @@ public class HomescreenController {
     @FXML
     private TableView<BookingDto> table;
     @FXML
+    private TableColumn<BookingDto, BigInteger> bookingNumberCol;
+    @FXML
     private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
     @FXML
     private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol;
     @FXML
     private TableColumn<BookingDto, Boolean> isCheckedInCol;
 
-    private ObservableList<BookingDto> tablelist;
-
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
 
+        bookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
         checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
         checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
         isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
@@ -69,6 +74,5 @@ public class HomescreenController {
         for (BookingDto booking : bookings) {
             table.getItems().add(booking);
         }
-        tablelist = table.getItems();
     }
 }

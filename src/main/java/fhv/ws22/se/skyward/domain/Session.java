@@ -1,13 +1,7 @@
 package fhv.ws22.se.skyward.domain;
 
-import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.domain.model.AbstractModel;
-import fhv.ws22.se.skyward.domain.model.BookingModel;
-import fhv.ws22.se.skyward.domain.model.CustomerModel;
-import fhv.ws22.se.skyward.domain.model.RoomModel;
+import fhv.ws22.se.skyward.domain.dtos.*;
+import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 
 import java.time.LocalDateTime;
@@ -16,6 +10,7 @@ import java.util.*;
 public class Session {
     private final DatabaseFacade dbf;
     private UUID tmpBookingId;
+    private UUID tmpInvoiceId;
     private HashMap<String, Boolean> filterMap;
     private Map<Class, Class> dtoModelClassMap;
 
@@ -27,6 +22,9 @@ public class Session {
         dtoModelClassMap.put(CustomerDto.class, CustomerModel.class);
         dtoModelClassMap.put(RoomDto.class, RoomModel.class);
         dtoModelClassMap.put(BookingDto.class, BookingModel.class);
+        dtoModelClassMap.put(InvoiceDto.class, InvoiceModel.class);
+        dtoModelClassMap.put(AddressDto.class, AddressModel.class);
+        dtoModelClassMap.put(ChargeableItemDto.class, ChargeableItemModel.class);
     }
 
 
@@ -87,8 +85,11 @@ public class Session {
         // check if any booking is in the same time frame to remove it from the available rooms
         for (BookingModel booking : modelBookings) {
             if (booking.getCheckInDateTime().isBefore(checkOut) || booking.getCheckOutDateTime().isAfter(checkIn)) {
-                for (RoomModel room : booking.getRooms()) {
-                    availableRooms.remove(room.toDto());
+                List<RoomModel> blockedRooms = booking.getRooms();
+                if (blockedRooms != null) {
+                    for (RoomModel room : blockedRooms) {
+                        availableRooms.remove(room.toDto());
+                    }
                 }
             }
         }
@@ -96,16 +97,9 @@ public class Session {
         return availableRooms;
     }
 
-    public void resetTmpBooking() {
-        tmpBookingId = null;
-    }
-    public void setTmpBooking(BookingDto booking) {
-        BookingModel tmpBid = dbf.get(booking.getId(), BookingModel.class);
-        if (tmpBid == null) {
-            throw new IllegalArgumentException("Booking could not be added");
-        }
-        tmpBookingId = tmpBid.getId();
-    }
+
+
+
     public BookingDto getTmpBooking() {
         if (tmpBookingId == null) {
             BookingModel booking = new BookingModel();
@@ -117,6 +111,40 @@ public class Session {
 
         return booking.toDto();
     }
+    public void resetTmpBooking() {
+        tmpBookingId = null;
+    }
+    public void setTmpBooking(BookingDto booking) {
+        BookingModel tmpBid = dbf.get(booking.getId(), BookingModel.class);
+        if (tmpBid == null) {
+            throw new IllegalArgumentException("Booking could not be added");
+        }
+        tmpBookingId = tmpBid.getId();
+    }
+
+    public InvoiceDto getTmpInvoice() {
+        if (tmpInvoiceId == null) {
+            AddressModel customerAddress = new AddressModel("ExampleStreet", "2", "1234", "New York", "United States");
+            dbf.add(customerAddress);
+            InvoiceModel invoice = new InvoiceModel("Skyward International", LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
+            tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
+        }
+        InvoiceModel invoice = dbf.get(tmpInvoiceId, InvoiceModel.class);
+
+        return invoice.toDto();
+    }
+    public void resetTmpInvoice() {
+        tmpInvoiceId = null;
+    }
+    public void setTmpInvoice(InvoiceDto invoice) {
+        InvoiceModel tmpIid = dbf.get(invoice.getId(), InvoiceModel.class);
+        if (tmpIid == null) {
+            throw new IllegalArgumentException("Invoice could not be added");
+        }
+        tmpInvoiceId = tmpIid.getId();
+    }
+
+
 
     public void setFilterMap(HashMap<String, Boolean> filterMap) {
         this.filterMap = filterMap;

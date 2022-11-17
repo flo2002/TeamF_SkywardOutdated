@@ -5,16 +5,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class BookingDto extends AbstractDto {
     private static final Logger logger = LogManager.getLogger("BookingDto");
+    private BigInteger bookingNumber;
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
     private Boolean isCheckedIn;
     private List<CustomerDto> customers;
     private List<RoomDto> rooms;
+    private List<ChargeableItemDto> chargeableItems;
+    private List<InvoiceDto> invoices;
 
     public BookingDto() {
     }
@@ -24,6 +28,13 @@ public class BookingDto extends AbstractDto {
         this.isCheckedIn = isCheckedIn;
         this.customers = customers;
         this.rooms = rooms;
+    }
+
+    public BigInteger getBookingNumber() {
+        return bookingNumber;
+    }
+    public void setBookingNumber(BigInteger bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 
     public LocalDateTime getCheckInDateTime() {
@@ -61,6 +72,20 @@ public class BookingDto extends AbstractDto {
         this.rooms = rooms;
     }
 
+    public List<ChargeableItemDto> getChargeableItems() {
+        return chargeableItems;
+    }
+    public void setChargeableItems(List<ChargeableItemDto> chargeableItems) {
+        this.chargeableItems = chargeableItems;
+    }
+
+    public List<InvoiceDto> getInvoices() {
+        return invoices;
+    }
+    public void setInvoices(List<InvoiceDto> invoices) {
+        this.invoices = invoices;
+    }
+
 
     public BookingModel toModel() {
         logger.info("objects: " + this.toString() + ", msg: Transformation BookingDto to BookingModel.");
@@ -75,11 +100,14 @@ public class BookingDto extends AbstractDto {
     @Override
     public String toString() {
         return "BookingDto{" +
-                "checkInDateTime=" + checkInDateTime +
+                "bookingNumber=" + bookingNumber +
+                ", checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +
                 ", rooms=" + rooms +
+                ", chargeableItems=" + chargeableItems +
+                ", invoices=" + invoices +
                 '}';
     }
 }

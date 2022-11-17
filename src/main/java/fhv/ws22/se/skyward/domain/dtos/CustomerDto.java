@@ -9,12 +9,14 @@ public class CustomerDto extends AbstractDto {
     private static final Logger logger = LogManager.getLogger("CustomerDto");
     private String firstName;
     private String lastName;
+    private AddressDto address;
 
     public CustomerDto() {
     }
-    public CustomerDto(String firstName, String lastName) {
+    public CustomerDto(String firstName, String lastName, AddressDto address) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
     }
 
     public String getFirstName() {
@@ -29,6 +31,13 @@ public class CustomerDto extends AbstractDto {
     }
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public AddressDto getAddress() {
+        return address;
+    }
+    public void setAddress(AddressDto address) {
+        this.address = address;
     }
 
     public CustomerModel toModel() {
@@ -46,6 +55,7 @@ public class CustomerDto extends AbstractDto {
         return "CustomerDto{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", address=" + address +
                 '}';
     }
 }

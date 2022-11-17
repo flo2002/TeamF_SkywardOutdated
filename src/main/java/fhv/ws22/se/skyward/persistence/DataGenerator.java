@@ -1,8 +1,7 @@
 package fhv.ws22.se.skyward.persistence;
 
-import fhv.ws22.se.skyward.domain.model.BookingModel;
-import fhv.ws22.se.skyward.domain.model.CustomerModel;
-import fhv.ws22.se.skyward.domain.model.RoomModel;
+import fhv.ws22.se.skyward.domain.model.*;
+import fhv.ws22.se.skyward.persistence.entity.Address;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,27 +11,31 @@ public class DataGenerator {
     public static void generateData() {
         DatabaseFacade dbf = DatabaseFacade.getInstance();
 
-        RoomModel r = new RoomModel(101, "Single", new BigDecimal(100), "cleaned");
-        RoomModel r1 = new RoomModel(102, "Single", new BigDecimal(100), "cleaned");
-        RoomModel r2 = new RoomModel(201, "Double", new BigDecimal(200), "cleaned");
-        RoomModel r3 = new RoomModel(202, "Double", new BigDecimal(200), "cleaned");
-        RoomModel r4 = new RoomModel(301, "Double", new BigDecimal(300), "cleaned");
-        RoomModel r5 = new RoomModel(303, "Triple", new BigDecimal(300), "cleaned");
+        RoomModel r0 = new RoomModel(101, "Single", "cleaned");
+        RoomModel r1 = new RoomModel(102, "Single", "cleaned");
+        RoomModel r2 = new RoomModel(201, "Double", "cleaned");
+        RoomModel r3 = new RoomModel(202, "Double", "cleaned");
+        RoomModel r4 = new RoomModel(301, "Double", "cleaned");
+        RoomModel r5 = new RoomModel(303, "Triple", "cleaned");
 
-        CustomerModel john = new CustomerModel("John", "Doe");
-        CustomerModel jane = new CustomerModel("Jane", "Doe");
+        AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
+
+        CustomerModel john = new CustomerModel("John", "Doe", customerAddress);
+        CustomerModel jane = new CustomerModel("Jane", "Doe", customerAddress);
 
         BookingModel b = new BookingModel(LocalDateTime.now(), LocalDateTime.now().plusDays(1), false, List.of(john, jane), List.of(r2));
         BookingModel b2 = new BookingModel(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), true, List.of(john), List.of(r3));
 
-        dbf.add(john);
-        dbf.add(jane);
-        dbf.add(r);
+
+        dbf.add(r0);
         dbf.add(r1);
         dbf.add(r2);
         dbf.add(r3);
         dbf.add(r4);
         dbf.add(r5);
+        dbf.add(customerAddress);
+        dbf.add(john);
+        dbf.add(jane);
         dbf.add(b);
         dbf.add(b2);
     }

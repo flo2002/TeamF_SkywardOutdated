@@ -1,0 +1,77 @@
+package fhv.ws22.se.skyward.domain.dtos;
+
+import fhv.ws22.se.skyward.domain.model.AddressModel;
+import org.modelmapper.ModelMapper;
+
+public class AddressDto extends AbstractDto {
+    private String street;
+    private String houseNumber;
+    private String zipCode;
+    private String city;
+    private String country;
+
+    public AddressDto() {
+    }
+    public AddressDto(String street, String houseNumber, String zipCode, String city, String country) {
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.country = country;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHouseNumber() {
+        return houseNumber;
+    }
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public AddressModel toModel() {
+        return modelMapper.map(this, AddressModel.class);
+    }
+
+    public static AddressDto fromModel(AddressModel model) {
+        ModelMapper mm = new ModelMapper();
+        return mm.map(model, AddressDto.class);
+    }
+
+    @Override
+    public String toString() {
+        return "AddressDto{" +
+                "street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
+}

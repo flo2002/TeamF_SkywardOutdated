@@ -1,21 +1,26 @@
 package fhv.ws22.se.skyward.domain.model;
 
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
+import fhv.ws22.se.skyward.persistence.entity.AbstractEntity;
 import fhv.ws22.se.skyward.persistence.entity.Booking;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class BookingModel extends AbstractModel {
     private static final Logger logger = LogManager.getLogger("BookingDto");
+    private BigInteger bookingNumber;
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
     private Boolean isCheckedIn;
     private List<CustomerModel> customers;
     private List<RoomModel> rooms;
+    private List<ChargeableItemModel> chargeableItems;
+    private List<InvoiceModel> invoices;
 
     public BookingModel() {
     }
@@ -25,6 +30,13 @@ public class BookingModel extends AbstractModel {
         setIsCheckedIn(isCheckedIn);
         setCustomers(customers);
         setRooms(rooms);
+    }
+
+    public BigInteger getBookingNumber() {
+        return bookingNumber;
+    }
+    public void setBookingNumber(BigInteger bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 
     public LocalDateTime getCheckInDateTime() {
@@ -65,6 +77,20 @@ public class BookingModel extends AbstractModel {
         this.rooms = rooms;
     }
 
+    public List<ChargeableItemModel> getChargeableItems() {
+        return chargeableItems;
+    }
+    public void setChargeableItems(List<ChargeableItemModel> chargeableItems) {
+        this.chargeableItems = chargeableItems;
+    }
+
+    public List<InvoiceModel> getInvoices() {
+        return invoices;
+    }
+    public void setInvoices(List<InvoiceModel> invoices) {
+        this.invoices = invoices;
+    }
+
 
     public BookingDto toDto() {
         logger.info("objects: " + this.toString() + ", msg: Transformation BookingModel to BookingDto.");
@@ -87,12 +113,15 @@ public class BookingModel extends AbstractModel {
 
     @Override
     public String toString() {
-        return "BookingDto{" +
-                "checkInDateTime=" + checkInDateTime +
+        return "BookingModel{" +
+                "bookingNumber=" + bookingNumber +
+                ", checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +
                 ", rooms=" + rooms +
+                ", chargeableItems=" + chargeableItems +
+                ", invoices=" + invoices +
                 '}';
     }
 }

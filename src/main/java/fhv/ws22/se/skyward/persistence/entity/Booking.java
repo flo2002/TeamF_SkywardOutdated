@@ -1,13 +1,17 @@
 package fhv.ws22.se.skyward.persistence.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-//@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"checkInDateTime", "checkOutDateTime", "room_id", "customer_id"}))
 public class Booking extends AbstractEntity {
+    @Column(unique = true)
+    private BigInteger bookingNumber;
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
     private Boolean isCheckedIn;
@@ -21,8 +25,22 @@ public class Booking extends AbstractEntity {
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private List<Room> rooms;
+    @OneToMany(mappedBy = "booking")
+    private List<ChargeableItem> chargeableItems;
+    @OneToMany(mappedBy = "booking")
+    private List<Invoice> invoices;
 
     public Booking() {
+    }
+
+    public BigInteger getBookingNumber() {
+        if (bookingNumber == null) {
+            setBookingNumber(AbstractEntity.getBookingNum());
+        }
+        return bookingNumber;
+    }
+    public void setBookingNumber(BigInteger bookingNumber) {
+        this.bookingNumber = bookingNumber;
     }
 
     public LocalDateTime getCheckInDateTime() {
@@ -60,14 +78,31 @@ public class Booking extends AbstractEntity {
         this.rooms = rooms;
     }
 
+    public List<ChargeableItem> getChargeableItems() {
+        return chargeableItems;
+    }
+    public void setChargeableItems(List<ChargeableItem> chargeableItems) {
+        this.chargeableItems = chargeableItems;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
-                "checkInDateTime=" + checkInDateTime +
+                "bookingNumber=" + bookingNumber +
+                ", checkInDateTime=" + checkInDateTime +
                 ", checkOutDateTime=" + checkOutDateTime +
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +
                 ", rooms=" + rooms +
+                ", chargeableItems=" + chargeableItems +
+                ", invoices=" + invoices +
                 '}';
     }
 }
