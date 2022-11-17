@@ -37,30 +37,7 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
     }
 
     public void add(InvoiceModel invoice) {
-        BookingModel bookingModel = invoice.getBooking();
-        AddressModel addressModel = invoice.getHotelAddress();
 
-        System.out.println(bookingModel);
-
-        entityManager.getTransaction().begin();
-        Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE checkInDateTime = :checkInDateTime AND checkOutDateTime = :checkOutDateTime AND isCheckedIn = :isCheckedIn")
-            .setParameter("checkInDateTime", bookingModel.getCheckInDateTime())
-            .setParameter("checkOutDateTime", bookingModel.getCheckOutDateTime())
-            .setParameter("isCheckedIn", bookingModel.getIsCheckedIn())
-            .getSingleResult();
-        Address address = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :housenumber AND zipCode = :zipcode AND city = :city")
-            .setParameter("street", addressModel.getStreet())
-            .setParameter("housenumber", addressModel.getHouseNumber())
-            .setParameter("zipcode", addressModel.getZipCode())
-            .setParameter("city", addressModel.getCity())
-            .getSingleResult();
-
-        Invoice invoiceEntity = invoice.toEntity();
-        invoiceEntity.setBooking(booking);
-        invoiceEntity.setHotelAddress(address);
-
-        entityManager.persist(invoiceEntity);
-        entityManager.getTransaction().commit();
     }
 
     public void update(UUID id, InvoiceModel invoice) {

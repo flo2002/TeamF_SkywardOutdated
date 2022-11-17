@@ -22,7 +22,8 @@ public class BookingModel extends AbstractModel {
 
     public BookingModel() {
     }
-    public BookingModel(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerModel> customers, List<RoomModel> rooms) {
+    public BookingModel(BigInteger bookingNumber, LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerModel> customers, List<RoomModel> rooms) {
+        setBookingNumber(bookingNumber);
         setCheckInDateTime(checkInDateTime);
         setCheckOutDateTime(checkOutDateTime);
         setIsCheckedIn(isCheckedIn);

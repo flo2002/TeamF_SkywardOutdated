@@ -27,7 +27,7 @@ public class DataGenerator {
         BookingModel b = new BookingModel(LocalDateTime.now(), LocalDateTime.now().plusDays(1), false, List.of(john, jane), List.of(r2));
         BookingModel b2 = new BookingModel(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), true, List.of(john), List.of(r3));
 
-        InvoiceModel i = new InvoiceModel("Skyward International", hotelAddress, b, false);
+        //InvoiceModel i = new InvoiceModel("Skyward International", hotelAddress, b, false);
 
         dbf.add(r);
         dbf.add(r1);

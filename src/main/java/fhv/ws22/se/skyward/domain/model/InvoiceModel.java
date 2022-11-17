@@ -4,19 +4,28 @@ import fhv.ws22.se.skyward.domain.dtos.InvoiceDto;
 import fhv.ws22.se.skyward.persistence.entity.Invoice;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigInteger;
+
 public class InvoiceModel extends AbstractModel {
+    private BigInteger invoiceNumber;
     private String companyName;
     private AddressModel hotelAddress;
-    private BookingModel booking;
     private Boolean isPaid;
 
     public InvoiceModel() {
     }
-    public InvoiceModel(String companyName, AddressModel address, BookingModel booking, Boolean isPaid) {
+    public InvoiceModel(BigInteger invoiceNumber, String companyName, AddressModel address, Boolean isPaid) {
+        this.invoiceNumber = invoiceNumber;
         this.companyName = companyName;
         this.hotelAddress = address;
-        this.booking = booking;
         this.isPaid = isPaid;
+    }
+
+    public BigInteger getInvoiceNumber() {
+        return invoiceNumber;
+    }
+    public void setInvoiceNumber(BigInteger invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 
     public String getCompanyName() {
@@ -31,13 +40,6 @@ public class InvoiceModel extends AbstractModel {
     }
     public void setHotelAddress(AddressModel hotelAddress) {
         this.hotelAddress = hotelAddress;
-    }
-
-    public BookingModel getBooking() {
-        return booking;
-    }
-    public void setBooking(BookingModel booking) {
-        this.booking = booking;
     }
 
     public Boolean getIsPaid() {
@@ -66,9 +68,9 @@ public class InvoiceModel extends AbstractModel {
     @Override
     public String toString() {
         return "InvoiceDto{" +
+                "invoiceNumber=" + invoiceNumber +
                 "companyName='" + companyName + '\'' +
                 ", hotelAddress=" + hotelAddress +
-                ", booking=" + booking +
                 ", isPaid=" + isPaid +
                 '}';
     }
