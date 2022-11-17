@@ -82,8 +82,11 @@ public class Session {
         // check if any booking is in the same time frame to remove it from the available rooms
         for (BookingModel booking : modelBookings) {
             if (booking.getCheckInDateTime().isBefore(checkOut) || booking.getCheckOutDateTime().isAfter(checkIn)) {
-                for (RoomModel room : booking.getRooms()) {
-                    availableRooms.remove(room.toDto());
+                List<RoomModel> blockedRooms = booking.getRooms();
+                if (blockedRooms != null) {
+                    for (RoomModel room : blockedRooms) {
+                        availableRooms.remove(room.toDto());
+                    }
                 }
             }
         }
