@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 public class Booking extends AbstractEntity {
-    //@Column(unique = true)
+    @Column(unique = true)
     private BigInteger bookingNumber;
     private LocalDateTime checkInDateTime;
     private LocalDateTime checkOutDateTime;
