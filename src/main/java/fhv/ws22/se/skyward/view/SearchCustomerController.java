@@ -56,6 +56,11 @@ public class SearchCustomerController {
     }
 
     @FXML
+    public void onSearchButtonClick(ActionEvent event) {
+        updateTable(searchTextField.getText());
+    }
+
+    @FXML
     public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
         NotificationUtil.getInstance().showSuccessNotification("The guests were added to the booking", event);
