@@ -17,11 +17,11 @@ public class AddressModel extends AbstractModel {
     public AddressModel() {
     }
     public AddressModel(String street, String houseNumber, String zipCode, String city, String country) {
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.country = country;
+        setStreet(street);
+        setHouseNumber(houseNumber);
+        setZipCode(zipCode);
+        setCity(city);
+        setCountry(country);
     }
 
     public String getStreet() {

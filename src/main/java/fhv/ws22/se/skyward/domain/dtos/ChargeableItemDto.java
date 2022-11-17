@@ -5,17 +5,17 @@ import org.modelmapper.ModelMapper;
 
 public class ChargeableItemDto extends AbstractDto {
     private String name;
-    private String description;
     private Double price;
     private Integer quantity;
+    private BookingDto booking;
 
     public ChargeableItemDto() {
     }
-    public ChargeableItemDto(String name, String description, Double price, Integer quantity) {
+    public ChargeableItemDto(String name, Double price, Integer quantity, BookingDto booking) {
         this.name = name;
-        this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.booking = booking;
     }
 
     public String getName() {
@@ -24,14 +24,6 @@ public class ChargeableItemDto extends AbstractDto {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -46,6 +38,13 @@ public class ChargeableItemDto extends AbstractDto {
         this.quantity = quantity;
     }
 
+    public BookingDto getBooking() {
+        return booking;
+    }
+    public void setBooking(BookingDto booking) {
+        this.booking = booking;
+    }
+
     public ChargeableItemModel toModel() {
         return modelMapper.map(this, ChargeableItemModel.class);
     }
@@ -57,9 +56,9 @@ public class ChargeableItemDto extends AbstractDto {
     public String toString() {
         return "ChargeableItemDto{" +
                 "name='" + name + '\'' +
-                ", description='" + description + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
+                ", booking=" + booking +
                 '}';
     }
 }

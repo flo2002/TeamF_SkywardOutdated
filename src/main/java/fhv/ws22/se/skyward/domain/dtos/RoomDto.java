@@ -11,15 +11,13 @@ public class RoomDto extends AbstractDto {
     private static final Logger logger = LogManager.getLogger("RoomDto");
     private int roomNumber;
     private String roomTypeName;
-    private BigDecimal roomTypePrice;
     private String roomStateName;
 
     public RoomDto() {
     }
-    public RoomDto(int roomNumber, String roomTypeName, BigDecimal roomTypePrice, String roomStateName) {
+    public RoomDto(int roomNumber, String roomTypeName, String roomStateName) {
         this.roomNumber = roomNumber;
         this.roomTypeName = roomTypeName;
-        this.roomTypePrice = roomTypePrice;
         this.roomStateName = roomStateName;
     }
 
@@ -34,12 +32,6 @@ public class RoomDto extends AbstractDto {
     }
     public void setRoomTypeName(String roomTypeName) {
         this.roomTypeName = roomTypeName;
-    }
-    public BigDecimal getRoomTypePrice() {
-        return roomTypePrice;
-    }
-    public void setRoomTypePrice(BigDecimal roomTypePrice) {
-        this.roomTypePrice = roomTypePrice;
     }
 
     public String getRoomStateName() {
@@ -64,7 +56,6 @@ public class RoomDto extends AbstractDto {
         return "RoomDto{" +
                 "roomNumber=" + roomNumber +
                 ", roomTypeName='" + roomTypeName + '\'' +
-                ", roomTypePrice=" + roomTypePrice +
                 ", roomStateName='" + roomStateName + '\'' +
                 '}';
     }

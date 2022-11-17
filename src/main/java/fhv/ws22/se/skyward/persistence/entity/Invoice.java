@@ -14,6 +14,9 @@ public class Invoice extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address hotelAddress;
+    @ManyToOne
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
 
     public Invoice() {
     }
@@ -46,12 +49,21 @@ public class Invoice extends AbstractEntity {
         this.hotelAddress = hotelAddress;
     }
 
+    public Booking getBooking() {
+        return booking;
+    }
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
+
     @Override
     public String toString() {
         return "Invoice{" +
-                "companyName='" + companyName + '\'' +
+                "invoiceNumber=" + invoiceNumber +
+                ", companyName='" + companyName + '\'' +
                 ", hotelAddress=" + hotelAddress +
                 ", isPaid=" + isPaid +
+                ", booking=" + booking +
                 '}';
     }
 }

@@ -11,16 +11,16 @@ import java.math.BigInteger;
 public class ChargeableItemModel extends AbstractModel {
     private String name;
     private BigInteger price;
+    private Integer quantity;
     private BookingModel booking;
-    private InvoiceModel invoice;
 
     public ChargeableItemModel() {
     }
-    public ChargeableItemModel(String name, BigInteger price, BookingModel booking, InvoiceModel invoice) {
-        this.name = name;
-        this.price = price;
-        this.booking = booking;
-        this.invoice = invoice;
+    public ChargeableItemModel(String name, BigInteger price, Integer quantity, BookingModel booking) {
+        setName(name);
+        setPrice(price);
+        setQuantity(quantity);
+        setBooking(booking);
     }
 
     public String getName() {
@@ -37,18 +37,18 @@ public class ChargeableItemModel extends AbstractModel {
         this.price = price;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public BookingModel getBooking() {
         return booking;
     }
     public void setBooking(BookingModel booking) {
         this.booking = booking;
-    }
-
-    public InvoiceModel getInvoice() {
-        return invoice;
-    }
-    public void setInvoice(InvoiceModel invoice) {
-        this.invoice = invoice;
     }
 
     public ChargeableItemDto toDto() {
@@ -72,8 +72,8 @@ public class ChargeableItemModel extends AbstractModel {
         return "ChargableItemModel{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
+                ", quantity=" + quantity +
                 ", booking=" + booking +
-                ", invoice=" + invoice +
                 '}';
     }
 }

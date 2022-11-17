@@ -17,6 +17,8 @@ public class BookingDto extends AbstractDto {
     private Boolean isCheckedIn;
     private List<CustomerDto> customers;
     private List<RoomDto> rooms;
+    private List<ChargeableItemDto> chargeableItems;
+    private List<InvoiceDto> invoices;
 
     public BookingDto() {
     }
@@ -70,6 +72,20 @@ public class BookingDto extends AbstractDto {
         this.rooms = rooms;
     }
 
+    public List<ChargeableItemDto> getChargeableItems() {
+        return chargeableItems;
+    }
+    public void setChargeableItems(List<ChargeableItemDto> chargeableItems) {
+        this.chargeableItems = chargeableItems;
+    }
+
+    public List<InvoiceDto> getInvoices() {
+        return invoices;
+    }
+    public void setInvoices(List<InvoiceDto> invoices) {
+        this.invoices = invoices;
+    }
+
 
     public BookingModel toModel() {
         logger.info("objects: " + this.toString() + ", msg: Transformation BookingDto to BookingModel.");
@@ -89,6 +105,8 @@ public class BookingDto extends AbstractDto {
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +
                 ", rooms=" + rooms +
+                ", chargeableItems=" + chargeableItems +
+                ", invoices=" + invoices +
                 '}';
     }
 }

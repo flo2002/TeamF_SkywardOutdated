@@ -8,12 +8,10 @@ import java.math.BigDecimal;
 public class ChargeableItem extends AbstractEntity {
     private String name;
     private BigDecimal price;
+    private Integer quantity;
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private Booking booking;
-    @ManyToOne
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
 
 
     public ChargeableItem() {
@@ -34,18 +32,18 @@ public class ChargeableItem extends AbstractEntity {
         this.price = price;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public Booking getBooking() {
         return booking;
     }
     public void setBooking(Booking booking) {
         this.booking = booking;
-    }
-
-    public Invoice getInvoice() {
-        return invoice;
-    }
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
     }
 
 
@@ -54,6 +52,8 @@ public class ChargeableItem extends AbstractEntity {
         return "ChargeableItem{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
+                ", quantity=" + quantity +
+                ", booking=" + booking +
                 '}';
     }
 }

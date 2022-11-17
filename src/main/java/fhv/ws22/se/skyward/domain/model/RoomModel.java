@@ -13,15 +13,13 @@ public class RoomModel extends AbstractModel {
     private static final Logger logger = LogManager.getLogger("RoomDto");
     private int roomNumber;
     private String roomTypeName;
-    private BigDecimal roomTypePrice;
     private String roomStateName;
 
     public RoomModel() {
     }
-    public RoomModel(int roomNumber, String roomTypeName, BigDecimal roomTypePrice, String roomStateName) {
+    public RoomModel(int roomNumber, String roomTypeName, String roomStateName) {
         setRoomNumber(roomNumber);
         setRoomTypeName(roomTypeName);
-        setRoomTypePrice(roomTypePrice);
         setRoomStateName(roomStateName);
     }
 
@@ -40,12 +38,6 @@ public class RoomModel extends AbstractModel {
     }
     public void setRoomTypeName(String roomTypeName) {
         this.roomTypeName = roomTypeName;
-    }
-    public BigDecimal getRoomTypePrice() {
-        return roomTypePrice;
-    }
-    public void setRoomTypePrice(BigDecimal roomTypePrice) {
-        this.roomTypePrice = roomTypePrice;
     }
 
     public String getRoomStateName() {
@@ -82,7 +74,6 @@ public class RoomModel extends AbstractModel {
         return "RoomDto{" +
                 "roomNumber=" + roomNumber +
                 ", roomTypeName='" + roomTypeName + '\'' +
-                ", roomTypePrice=" + roomTypePrice +
                 ", roomStateName='" + roomStateName + '\'' +
                 '}';
     }

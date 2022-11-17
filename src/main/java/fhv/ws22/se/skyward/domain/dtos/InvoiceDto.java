@@ -5,19 +5,29 @@ import fhv.ws22.se.skyward.persistence.entity.Address;
 import fhv.ws22.se.skyward.persistence.entity.Booking;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigInteger;
+
 public class InvoiceDto extends AbstractDto {
+    private BigInteger invoiceNumber;
     private String companyName;
-    private Address hotelAddress;
-    private Booking booking;
     private Boolean isPaid;
+    private Address hotelAddress;
+    private BookingDto booking;
 
     public InvoiceDto() {
     }
-    public InvoiceDto(String companyName, Address hotelAddress, Booking booking, Boolean isPaid) {
+    public InvoiceDto(String companyName, Boolean isPaid, Address hotelAddress, BookingDto booking) {
         this.companyName = companyName;
+        this.isPaid = isPaid;
         this.hotelAddress = hotelAddress;
         this.booking = booking;
-        this.isPaid = isPaid;
+    }
+
+    public BigInteger getInvoiceNumber() {
+        return invoiceNumber;
+    }
+    public void setInvoiceNumber(BigInteger invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
     }
 
     public String getCompanyName() {
@@ -34,10 +44,10 @@ public class InvoiceDto extends AbstractDto {
         this.hotelAddress = hotelAddress;
     }
 
-    public Booking getBooking() {
+    public BookingDto getBooking() {
         return booking;
     }
-    public void setBooking(Booking booking) {
+    public void setBooking(BookingDto booking) {
         this.booking = booking;
     }
 
@@ -59,10 +69,11 @@ public class InvoiceDto extends AbstractDto {
     @Override
     public String toString() {
         return "InvoiceDto{" +
-                "companyName='" + companyName + '\'' +
+                "invoiceNumber=" + invoiceNumber +
+                ", companyName='" + companyName + '\'' +
+                ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
                 ", booking=" + booking +
-                ", isPaid=" + isPaid +
                 '}';
     }
 }

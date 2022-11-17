@@ -9,15 +9,17 @@ import java.math.BigInteger;
 public class InvoiceModel extends AbstractModel {
     private BigInteger invoiceNumber;
     private String companyName;
-    private AddressModel hotelAddress;
     private Boolean isPaid;
+    private AddressModel hotelAddress;
+    private BookingModel booking;
 
     public InvoiceModel() {
     }
-    public InvoiceModel(String companyName, AddressModel address, Boolean isPaid) {
-        this.companyName = companyName;
-        this.hotelAddress = address;
-        this.isPaid = isPaid;
+    public InvoiceModel(String companyName, Boolean isPaid, AddressModel address, BookingModel booking) {
+        setCompanyName(companyName);
+        setIsPaid(isPaid);
+        setHotelAddress(address);
+        setBooking(booking);
     }
 
     public BigInteger getInvoiceNumber() {
@@ -34,6 +36,13 @@ public class InvoiceModel extends AbstractModel {
         this.companyName = companyName;
     }
 
+    public Boolean getIsPaid() {
+        return isPaid;
+    }
+    public void setIsPaid(Boolean isPaid) {
+        this.isPaid = isPaid;
+    }
+
     public AddressModel getHotelAddress() {
         return hotelAddress;
     }
@@ -41,11 +50,11 @@ public class InvoiceModel extends AbstractModel {
         this.hotelAddress = hotelAddress;
     }
 
-    public Boolean getIsPaid() {
-        return isPaid;
+    public BookingModel getBooking() {
+        return booking;
     }
-    public void setIsPaid(Boolean isPaid) {
-        this.isPaid = isPaid;
+    public void setBooking(BookingModel booking) {
+        this.booking = booking;
     }
 
 
@@ -66,11 +75,12 @@ public class InvoiceModel extends AbstractModel {
 
     @Override
     public String toString() {
-        return "InvoiceDto{" +
+        return "InvoiceModel{" +
                 "invoiceNumber=" + invoiceNumber +
-                "companyName='" + companyName + '\'' +
-                ", hotelAddress=" + hotelAddress +
+                ", companyName='" + companyName + '\'' +
                 ", isPaid=" + isPaid +
+                ", hotelAddress=" + hotelAddress +
+                ", booking=" + booking +
                 '}';
     }
 }
