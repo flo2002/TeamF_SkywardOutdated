@@ -1,6 +1,7 @@
 package fhv.ws22.se.skyward.domain.model;
 
 import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
+import fhv.ws22.se.skyward.domain.dtos.ChargeableItemDto;
 import fhv.ws22.se.skyward.persistence.entity.ChargeableItem;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.modelmapper.ModelMapper;
@@ -50,9 +51,12 @@ public class ChargeableItemModel extends AbstractModel {
         this.invoice = invoice;
     }
 
-    public AbstractDto toDto() {
-        // not implemented, because view does not need the chargeableItem, but AbstractModel requires it
-        throw new NotYetImplementedException();
+    public ChargeableItemDto toDto() {
+        return modelMapper.map(this, ChargeableItemDto.class);
+    }
+    public static ChargeableItemModel toModel(ChargeableItemDto chargeableItem) {
+        ModelMapper mm = new ModelMapper();
+        return mm.map(chargeableItem, ChargeableItemModel.class);
     }
 
     public ChargeableItem toEntity() {

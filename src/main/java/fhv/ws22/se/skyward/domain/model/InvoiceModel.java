@@ -14,8 +14,7 @@ public class InvoiceModel extends AbstractModel {
 
     public InvoiceModel() {
     }
-    public InvoiceModel(BigInteger invoiceNumber, String companyName, AddressModel address, Boolean isPaid) {
-        this.invoiceNumber = invoiceNumber;
+    public InvoiceModel(String companyName, AddressModel address, Boolean isPaid) {
         this.companyName = companyName;
         this.hotelAddress = address;
         this.isPaid = isPaid;
