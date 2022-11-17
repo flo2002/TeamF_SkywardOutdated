@@ -16,12 +16,14 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class InvoiceInformationController {
     private static final Logger logger = LogManager.getLogger("BookingController");
     private static final BigInteger clientSessionID = new BigInteger("1");
     private Session session;
     private BookingDto tmpBooking;
+    private InvoiceDto tmpInvoice;
 
     @FXML
     private Button payButton;
@@ -36,16 +38,16 @@ public class InvoiceInformationController {
     private Label namePlaceholder;
     @FXML
     private Label invoiceDatePlaceholder;
+    @FXML
+    private Label invoiceNumberPlaceholder;
+    @FXML
+    private Label bookingNumberPlaceholder;
 
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
         tmpBooking = session.getTmpBooking();
-
-        if (tmpBooking.getInvoices() == null) {
-            AddressDto hotelAddress = new AddressDto("ExampleStreet", "2", "1234", "New York", "United States");
-            InvoiceDto invoice = new InvoiceDto("Skyward International", LocalDateTime.now(), false, hotelAddress, tmpBooking);
-        }
+        tmpInvoice = session.getTmpInvoice();
 
         updateData();
     }
@@ -53,12 +55,14 @@ public class InvoiceInformationController {
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+        session.update(tmpInvoice.getId(), tmpInvoice);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
     @FXML
     public void onBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
+        session.update(tmpInvoice.getId(), tmpInvoice);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
@@ -70,11 +74,13 @@ public class InvoiceInformationController {
     @FXML
     public void onPayButtonClick(ActionEvent event){
         if (payButton.getText().equals("Pay")) {
+            tmpInvoice.setIsPaid(true);
+            updateData();
             payButton.setText("Unpay");
-            payPlaceholder.setText("Yes");
         } else if (payButton.getText().equals("Unpay")){
+            tmpInvoice.setIsPaid(false);
+            updateData();
             payButton.setText("Pay");
-            payPlaceholder.setText("No");
         }
     }
 
@@ -92,18 +98,17 @@ public class InvoiceInformationController {
     }
 
     public void updateData(){
-        if (tmpBooking.getCheckInDateTime() != null) {
-            checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toLocalDate().toString());
-        }
-        if (tmpBooking.getCheckOutDateTime() != null) {
-            checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toLocalDate().toString());
-        }
-        if (tmpBooking.getCustomers() != null) {
-            namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
-        }
-        if (tmpBooking.getInvoices() != null) {
-            invoiceDatePlaceholder.setText(tmpBooking.getInvoices().get(0).getInvoiceDateTime().toLocalDate().toString());
-            payPlaceholder.setText(tmpBooking.getInvoices().get(0).getIsPaid() ? "Yes" : "No");
+        tmpBooking.setInvoices(List.of(tmpInvoice));
+
+        checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toLocalDate().toString());
+        checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toLocalDate().toString());
+        namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
+
+        if (tmpInvoice != null) {
+            invoiceDatePlaceholder.setText(tmpInvoice.getInvoiceDateTime().toLocalDate().toString());
+            payPlaceholder.setText(tmpInvoice.getIsPaid() ? "Yes" : "No");
+            invoiceNumberPlaceholder.setText(tmpInvoice.getInvoiceNumber().toString());
+            bookingNumberPlaceholder.setText(tmpBooking.getBookingNumber().toString());
         }
     }
 }

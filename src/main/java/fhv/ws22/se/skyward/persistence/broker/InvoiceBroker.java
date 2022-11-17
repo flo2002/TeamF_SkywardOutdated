@@ -37,7 +37,10 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
     }
 
     public void add(InvoiceModel invoice) {
-
+        Invoice i = invoice.toEntity();
+        entityManager.getTransaction().begin();
+        entityManager.persist(i);
+        entityManager.getTransaction().commit();
     }
 
     public void update(UUID id, InvoiceModel invoice) {

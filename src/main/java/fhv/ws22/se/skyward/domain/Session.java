@@ -10,6 +10,7 @@ import java.util.*;
 public class Session {
     private final DatabaseFacade dbf;
     private UUID tmpBookingId;
+    private UUID tmpInvoiceId;
     private HashMap<String, Boolean> filterMap;
     private Map<Class, Class> dtoModelClassMap;
 
@@ -94,16 +95,9 @@ public class Session {
         return availableRooms;
     }
 
-    public void resetTmpBooking() {
-        tmpBookingId = null;
-    }
-    public void setTmpBooking(BookingDto booking) {
-        BookingModel tmpBid = dbf.get(booking.getId(), BookingModel.class);
-        if (tmpBid == null) {
-            throw new IllegalArgumentException("Booking could not be added");
-        }
-        tmpBookingId = tmpBid.getId();
-    }
+
+
+
     public BookingDto getTmpBooking() {
         if (tmpBookingId == null) {
             BookingModel booking = new BookingModel();
@@ -115,6 +109,33 @@ public class Session {
 
         return booking.toDto();
     }
+    public void resetTmpBooking() {
+        tmpBookingId = null;
+    }
+    public void setTmpBooking(BookingDto booking) {
+        BookingModel tmpBid = dbf.get(booking.getId(), BookingModel.class);
+        if (tmpBid == null) {
+            throw new IllegalArgumentException("Booking could not be added");
+        }
+        tmpBookingId = tmpBid.getId();
+    }
+
+
+
+
+    public InvoiceDto getTmpInvoice() {
+        if (tmpInvoiceId == null) {
+            InvoiceModel invoice = new InvoiceModel();
+            invoice.setInvoiceDateTime(LocalDateTime.now());
+            invoice.setIsPaid(false);
+            tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
+        }
+        InvoiceModel invoice = dbf.get(tmpInvoiceId, InvoiceModel.class);
+
+        return invoice.toDto();
+    }
+
+
 
     public void setFilterMap(HashMap<String, Boolean> filterMap) {
         this.filterMap = filterMap;

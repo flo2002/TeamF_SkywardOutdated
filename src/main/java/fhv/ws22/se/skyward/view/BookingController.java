@@ -71,7 +71,6 @@ public class BookingController {
     }
 
     private void configureListener() {
-
         checkInDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 LocalDateTime checkInDateTime = LocalDateTime.of(newValue.getYear(), newValue.getMonth(), newValue.getDayOfMonth(), 15, 0);
@@ -134,6 +133,12 @@ public class BookingController {
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Guests");
     }
 
+    @FXML
+    public void onInvoiceButtonClick(ActionEvent event) {
+        session.update(tmpBooking.getId(), tmpBooking);
+        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
+    }
+
     public void updateData() {
         if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
             checkInCheckOutButton.setText("Check-out");
@@ -165,11 +170,5 @@ public class BookingController {
                 roomTable.getItems().add(room);
             }
         }
-    }
-
-    @FXML
-    public void onInvoiceButtonClick(ActionEvent event) {
-        session.update(tmpBooking.getId(), tmpBooking);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
     }
 }
