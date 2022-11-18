@@ -46,7 +46,7 @@
                   <URL value="@css/styles.css" />
                </stylesheets>
             </Button>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" text="Guests" textFill="WHITE">
+            <Button onAction="#onInvoicePageButtonClick" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" text="Invoice" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

@@ -3,55 +3,48 @@ package fhv.ws22.se.skyward.view;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.domain.dtos.InvoiceDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class HomescreenController {
+public class InvoiceOverviewController {
     private Session session;
     private static final BigInteger clientSessionID = new BigInteger("1");
 
     @FXML
-    private TableView<BookingDto> table;
+    private TableView<InvoiceDto> table;
     @FXML
-    private TableColumn<BookingDto, BigInteger> bookingNumberCol;
+    private TableColumn<InvoiceDto, BigInteger> invoiceNumberCol;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
+    private TableColumn<InvoiceDto, LocalDateTime> invoiceDateTimeCol;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol;
-    @FXML
-    private TableColumn<BookingDto, Boolean> isCheckedInCol;
+    private TableColumn<InvoiceDto, Boolean> isPaidCol;
 
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
 
-        bookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
-        checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
-        checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
-        isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
+        invoiceNumberCol.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
+        invoiceDateTimeCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, LocalDateTime>("invoiceDateTime"));
+        isPaidCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, Boolean>("isPaid"));
 
         updateTable();
-        table.setRowFactory(bookingDtoTableView -> {
-            TableRow<BookingDto> row = new TableRow<>();
+        table.setRowFactory(invoiceDtoTableView -> {
+            TableRow<InvoiceDto> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
                 if (mouseEvent.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    BookingDto rowData = row.getItem();
-                    session.setTmpBooking(rowData);
-                    ControllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+                    InvoiceDto rowData = row.getItem();
+                    session.setTmpInvoice(rowData);
+                    ControllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
                 }
             });
             return row;
@@ -72,13 +65,12 @@ public class HomescreenController {
     public void onInvoicePageButtonClick(ActionEvent event) {
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
+
     public void updateTable() {
         table.getItems().clear();
-        List<BookingDto> bookings = session.getAll(BookingDto.class);
-        for (BookingDto booking : bookings) {
-            table.getItems().add(booking);
+        List<InvoiceDto> invoices = session.getAll(InvoiceDto.class);
+        for (InvoiceDto invoice : invoices) {
+            table.getItems().add(invoice);
         }
     }
-
-
 }
