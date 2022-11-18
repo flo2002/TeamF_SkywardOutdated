@@ -153,7 +153,6 @@ public class BookingController {
             checkInCheckOutButton.setText("Check-in");
         }
 
-
         if (tmpBooking.getCheckInDateTime() != null) {
             checkInDatePicker.setValue(tmpBooking.getCheckInDateTime().toLocalDate());
         }
