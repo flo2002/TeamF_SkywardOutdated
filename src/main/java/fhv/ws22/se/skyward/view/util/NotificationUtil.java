@@ -33,6 +33,7 @@ public class NotificationUtil {
         final Popup popup = new Popup();
         popup.setAutoFix(true);
         popup.setAutoHide(true);
+        popup.setConsumeAutoHidingEvents(false);
         popup.setHideOnEscape(true);
         Label label = new Label(message);
         label.setOnMouseReleased(new EventHandler<MouseEvent>() {
