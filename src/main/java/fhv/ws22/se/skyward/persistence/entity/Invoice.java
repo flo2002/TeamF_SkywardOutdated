@@ -13,10 +13,13 @@ public class Invoice extends AbstractEntity {
     private LocalDateTime invoiceDateTime;
     private Boolean isPaid;
     @ManyToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "hotelInvoices_id")
     private Address hotelAddress;
     @ManyToOne
-    @JoinColumn(name = "booking_id")
+    @JoinColumn(name = "customerInvoices_id")
+    private Address customerAddress;
+    @ManyToOne
+    @JoinColumn(name = "customers")
     private Booking booking;
 
     public Invoice() {
@@ -60,6 +63,13 @@ public class Invoice extends AbstractEntity {
         this.hotelAddress = hotelAddress;
     }
 
+    public Address getCustomerAddress() {
+        return customerAddress;
+    }
+    public void setCustomerAddress(Address customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
     public Booking getBooking() {
         return booking;
     }
@@ -75,7 +85,7 @@ public class Invoice extends AbstractEntity {
                 ", invoiceDateTime=" + invoiceDateTime +
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
-                ", booking=" + booking +
+                ", customerAddress=" + customerAddress +
                 '}';
     }
 }

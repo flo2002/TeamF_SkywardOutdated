@@ -14,15 +14,17 @@ public class InvoiceModel extends AbstractModel {
     private LocalDateTime invoiceDateTime;
     private Boolean isPaid;
     private AddressModel hotelAddress;
+    private AddressModel customerAddress;
     private BookingModel booking;
 
     public InvoiceModel() {
     }
-    public InvoiceModel(String companyName, LocalDateTime invoiceDateTime, Boolean isPaid, AddressModel address, BookingModel booking) {
-        setCompanyName(companyName);
+    public InvoiceModel(LocalDateTime invoiceDateTime, Boolean isPaid, AddressModel customerAddress, BookingModel booking) {
+        setCompanyName("Skyward International");
         setInvoiceDateTime(invoiceDateTime);
         setIsPaid(isPaid);
-        setHotelAddress(address);
+        setHotelAddress(new AddressModel("ExampleStreet", "2", "1234", "New York", "United States"));
+        setCustomerAddress(customerAddress);
         setBooking(booking);
     }
 
@@ -61,6 +63,13 @@ public class InvoiceModel extends AbstractModel {
         this.hotelAddress = hotelAddress;
     }
 
+    public AddressModel getCustomerAddress() {
+        return customerAddress;
+    }
+    public void setCustomerAddress(AddressModel customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
     public BookingModel getBooking() {
         return booking;
     }
@@ -92,7 +101,7 @@ public class InvoiceModel extends AbstractModel {
                 ", invoiceDateTime=" + invoiceDateTime +
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
-                ", booking=" + booking +
+                ", customerAddress=" + customerAddress +
                 '}';
     }
 }

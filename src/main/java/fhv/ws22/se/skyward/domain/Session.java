@@ -125,9 +125,9 @@ public class Session {
     public InvoiceDto getTmpInvoice() {
         if (tmpInvoiceId == null) {
             if (getTmpBooking().getInvoices() == null || getTmpBooking().getInvoices().isEmpty()) {
-                AddressModel customerAddress = new AddressModel("ExampleStreet", "2", "1234", "New York", "United States");
+                AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
                 dbf.add(customerAddress);
-                InvoiceModel invoice = new InvoiceModel("Skyward International", LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
+                InvoiceModel invoice = new InvoiceModel(LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
                 tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
             } else {
                 tmpInvoiceId = getTmpBooking().getInvoices().get(0).getId();
