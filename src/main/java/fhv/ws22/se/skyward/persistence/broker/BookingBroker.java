@@ -1,15 +1,10 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.domain.model.BookingModel;
-import fhv.ws22.se.skyward.domain.model.CustomerModel;
-import fhv.ws22.se.skyward.domain.model.InvoiceModel;
-import fhv.ws22.se.skyward.domain.model.RoomModel;
-import fhv.ws22.se.skyward.persistence.entity.Booking;
-import fhv.ws22.se.skyward.persistence.entity.Customer;
-import fhv.ws22.se.skyward.persistence.entity.Invoice;
-import fhv.ws22.se.skyward.persistence.entity.Room;
+import fhv.ws22.se.skyward.domain.model.*;
+import fhv.ws22.se.skyward.persistence.entity.*;
 import jakarta.persistence.EntityManager;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,6 +34,16 @@ public class BookingBroker extends BrokerBase<BookingModel> {
     }
 
     public void add(BookingModel booking) {
+        List<ChargeableItemModel> newChargeableItems = new ArrayList<ChargeableItemModel>();
+        if (booking.getRooms() != null) {
+            for (RoomModel room : booking.getRooms()) {
+                String name = room.getRoomTypeName() + "room";
+                newChargeableItems.add(new ChargeableItemModel(name, new BigDecimal("100"), 1));
+            }
+        }
+        booking.setChargeableItems(newChargeableItems);
+
+
         List<CustomerModel> customerModels = booking.getCustomers();
         List<Customer> customers = new ArrayList<Customer>();
         if (customerModels != null) {
@@ -52,6 +57,24 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         if (roomModels != null) {
             for (RoomModel roomModel : roomModels) {
                 rooms.add(roomModel.toEntity());
+            }
+        }
+
+        List<ChargeableItemModel> chargeableItemModels = booking.getChargeableItems();
+        List<ChargeableItem> chargeableItems = new ArrayList<ChargeableItem>();
+        if (chargeableItemModels != null) {
+            for (ChargeableItemModel chargeableItemModel : chargeableItemModels) {
+                ChargeableItem c = chargeableItemModel.toEntity();
+                chargeableItems.add(c);
+                if (entityManager.createQuery("FROM ChargeableItem c WHERE c.name = :name AND c.price = :price AND c.quantity = :quantity")
+                        .setParameter("name", c.getName())
+                        .setParameter("price", c.getPrice())
+                        .setParameter("quantity", c.getQuantity())
+                        .getResultList().isEmpty()) {
+                    entityManager.getTransaction().begin();
+                    entityManager.persist(c);
+                    entityManager.getTransaction().commit();
+                }
             }
         }
 
@@ -84,11 +107,18 @@ public class BookingBroker extends BrokerBase<BookingModel> {
                 .setParameter("number", i.getInvoiceNumber())
                 .getSingleResult());
         }
+        List<ChargeableItem> chargeableItemsInDb = new ArrayList<ChargeableItem>();
+        for (ChargeableItem ci : chargeableItems) {
+            chargeableItemsInDb.add((ChargeableItem) entityManager.createQuery("FROM ChargeableItem WHERE name = :name")
+                .setParameter("name", ci.getName())
+                .getSingleResult());
+        }
 
         Booking bookingEntity = booking.toEntity();
         bookingEntity.setCustomers(customersInDb);
         bookingEntity.setRooms(roomsInDb);
         bookingEntity.setInvoices(invoicesInDb);
+        bookingEntity.setChargeableItems(chargeableItemsInDb);
 
         entityManager.persist(bookingEntity);
         entityManager.getTransaction().commit();
