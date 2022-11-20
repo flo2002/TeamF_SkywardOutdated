@@ -18,6 +18,7 @@ import java.net.URL;
 public class NotificationUtil {
 
     private static final Logger logger = LogManager.getLogger("NotificationController");
+    private static final int POPUP_OFFSET = 15;
 
     private static NotificationUtil singleton;
 
@@ -59,8 +60,8 @@ public class NotificationUtil {
         popup.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
-                popup.setX(stage.getX());
-                popup.setY(stage.getY() + stage.getHeight() - popup.getHeight());
+                popup.setX(stage.getX() + POPUP_OFFSET);
+                popup.setY(stage.getY() + stage.getHeight() - popup.getHeight() - POPUP_OFFSET);
             }
         });
         popup.getContent().get(0).getStyleClass().add("success_popup");
@@ -74,8 +75,8 @@ public class NotificationUtil {
         popup.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent e) {
-                popup.setX(stage.getX());
-                popup.setY(stage.getY() + stage.getHeight() - popup.getHeight());
+                popup.setX(stage.getX() + POPUP_OFFSET);
+                popup.setY(stage.getY() + stage.getHeight() - popup.getHeight() - POPUP_OFFSET);
             }
         });
         popup.getContent().get(0).getStyleClass().add("error_popup");
