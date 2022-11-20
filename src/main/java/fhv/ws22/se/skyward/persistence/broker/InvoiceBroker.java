@@ -86,7 +86,6 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
 
         tmpInvoice.setHotelAddress(address);
 
-
         entityManager.persist(tmpInvoice);
         entityManager.getTransaction().commit();
         return tmpInvoice.getId();

@@ -2,14 +2,12 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.ChargeableItemDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.SelectionMode;
@@ -21,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,8 +35,6 @@ public class AddRoomController {
     private TableColumn<RoomDto, Integer> roomNumberCol;
     @FXML
     private TableColumn<RoomDto, String> roomTypeNameCol;
-    @FXML
-    private TableColumn<RoomDto, BigDecimal> roomTypePriceCol;
     @FXML
     private TableColumn<RoomDto, String> roomStateNameCol;
 
@@ -59,7 +55,6 @@ public class AddRoomController {
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
-        roomTypePriceCol.setCellValueFactory(new PropertyValueFactory<RoomDto, BigDecimal>("roomTypePrice"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
 
         tmpBooking = session.getTmpBooking();
