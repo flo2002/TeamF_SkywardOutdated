@@ -1,26 +1,23 @@
 package fhv.ws22.se.skyward.domain.model;
 
-import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
 import fhv.ws22.se.skyward.domain.dtos.ChargeableItemDto;
 import fhv.ws22.se.skyward.persistence.entity.ChargeableItem;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.modelmapper.ModelMapper;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 public class ChargeableItemModel extends AbstractModel {
     private String name;
-    private BigInteger price;
+    private BigDecimal price;
     private Integer quantity;
     private BookingModel booking;
 
     public ChargeableItemModel() {
     }
-    public ChargeableItemModel(String name, BigInteger price, Integer quantity, BookingModel booking) {
+    public ChargeableItemModel(String name, BigDecimal price, Integer quantity) {
         setName(name);
         setPrice(price);
         setQuantity(quantity);
-        setBooking(booking);
     }
 
     public String getName() {
@@ -30,10 +27,10 @@ public class ChargeableItemModel extends AbstractModel {
         this.name = name;
     }
 
-    public BigInteger getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(BigInteger price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

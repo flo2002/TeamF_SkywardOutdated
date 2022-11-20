@@ -124,10 +124,14 @@ public class Session {
 
     public InvoiceDto getTmpInvoice() {
         if (tmpInvoiceId == null) {
-            AddressModel customerAddress = new AddressModel("ExampleStreet", "2", "1234", "New York", "United States");
-            dbf.add(customerAddress);
-            InvoiceModel invoice = new InvoiceModel("Skyward International", LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
-            tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
+            if (getTmpBooking().getInvoices() == null || getTmpBooking().getInvoices().isEmpty()) {
+                AddressModel customerAddress = new AddressModel("ExampleStreet", "2", "1234", "New York", "United States");
+                dbf.add(customerAddress);
+                InvoiceModel invoice = new InvoiceModel("Skyward International", LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
+                tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
+            } else {
+                tmpInvoiceId = getTmpBooking().getInvoices().get(0).getId();
+            }
         }
         InvoiceModel invoice = dbf.get(tmpInvoiceId, InvoiceModel.class);
 

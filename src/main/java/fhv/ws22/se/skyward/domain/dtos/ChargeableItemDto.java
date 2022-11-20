@@ -3,19 +3,20 @@ package fhv.ws22.se.skyward.domain.dtos;
 import fhv.ws22.se.skyward.domain.model.ChargeableItemModel;
 import org.modelmapper.ModelMapper;
 
+import java.math.BigDecimal;
+
 public class ChargeableItemDto extends AbstractDto {
     private String name;
-    private Double price;
+    private BigDecimal price;
     private Integer quantity;
     private BookingDto booking;
 
     public ChargeableItemDto() {
     }
-    public ChargeableItemDto(String name, Double price, Integer quantity, BookingDto booking) {
+    public ChargeableItemDto(String name, BigDecimal price, Integer quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.booking = booking;
     }
 
     public String getName() {
@@ -24,10 +25,10 @@ public class ChargeableItemDto extends AbstractDto {
     public void setName(String name) {
         this.name = name;
     }
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
