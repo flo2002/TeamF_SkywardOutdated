@@ -1,17 +1,15 @@
 .success_popup {
-    -fx-background-color: green;
-    -fx-padding: 10;
-    -fx-border-color: black;
-    -fx-border-width: 5;
-    -fx-font-size: 16;
+    -fx-padding: 20px;
+    -fx-background-color: #00ff00;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
 }
 
 .error_popup {
-    -fx-background-color: red;
-    -fx-padding: 10;
-    -fx-border-color: black;
-    -fx-border-width: 5;
-    -fx-font-size: 16;
+    -fx-padding: 20px;
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
 }
 
 .button
