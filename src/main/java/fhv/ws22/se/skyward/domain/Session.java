@@ -124,7 +124,7 @@ public class Session {
 
     public InvoiceDto getTmpInvoice() {
         if (tmpInvoiceId == null) {
-            if (getTmpBooking().getInvoices().isEmpty()) {
+            if (getTmpBooking().getInvoices() == null || getTmpBooking().getInvoices().isEmpty()) {
                 AddressModel customerAddress = new AddressModel("ExampleStreet", "2", "1234", "New York", "United States");
                 dbf.add(customerAddress);
                 InvoiceModel invoice = new InvoiceModel("Skyward International", LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());

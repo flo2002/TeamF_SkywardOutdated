@@ -36,8 +36,6 @@ public class AddRoomController {
     @FXML
     private TableColumn<RoomDto, String> roomTypeNameCol;
     @FXML
-    private TableColumn<RoomDto, BigDecimal> roomTypePriceCol;
-    @FXML
     private TableColumn<RoomDto, String> roomStateNameCol;
 
     @FXML
@@ -57,7 +55,6 @@ public class AddRoomController {
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
-        roomTypePriceCol.setCellValueFactory(new PropertyValueFactory<RoomDto, BigDecimal>("roomTypePrice"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
 
         tmpBooking = session.getTmpBooking();
