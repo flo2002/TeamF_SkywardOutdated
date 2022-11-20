@@ -3,19 +3,19 @@ package fhv.ws22.se.skyward.view;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.*;
-import fhv.ws22.se.skyward.domain.model.AddressModel;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class InvoiceInformationController {
@@ -43,11 +43,40 @@ public class InvoiceInformationController {
     @FXML
     private Label bookingNumberPlaceholder;
 
+
+    @FXML
+    private Label hotelNamePlaceholder;
+    @FXML
+    private Label hotelStreetPlaceholder;
+    @FXML
+    private Label hotelCityPlaceholder;
+    @FXML
+    private Label hotelCountryPlaceholder;
+
+    @FXML
+    private Label customerStreetPlaceholder;
+    @FXML
+    private Label customerCityPlaceholder;
+    @FXML
+    private Label customerCountryPlaceholder;
+
+
+    @FXML
+    private TableView<ChargeableItemDto> chargeableItemTable;
+    @FXML
+    private TableColumn<ChargeableItemDto, String> itemNameCol;
+    @FXML
+    private TableColumn<ChargeableItemDto, BigDecimal> itemPriceCol;
+
+
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
         tmpBooking = session.getTmpBooking();
         tmpInvoice = session.getTmpInvoice();
+
+        itemNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        itemPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         updateData();
     }
@@ -105,6 +134,15 @@ public class InvoiceInformationController {
         tmpBooking.setInvoices(List.of(tmpInvoice));
         session.update(tmpBooking.getId(), tmpBooking);
 
+        hotelNamePlaceholder.setText(tmpInvoice.getCompanyName());
+        hotelStreetPlaceholder.setText(tmpInvoice.getHotelAddress().getStreet() + " " + tmpInvoice.getHotelAddress().getHouseNumber());
+        hotelCityPlaceholder.setText(tmpInvoice.getHotelAddress().getZipCode() + " " + tmpInvoice.getHotelAddress().getCity());
+        hotelCountryPlaceholder.setText(tmpInvoice.getHotelAddress().getCountry());
+
+        customerStreetPlaceholder.setText(tmpInvoice.getCustomerAddress().getStreet() + " " + tmpInvoice.getCustomerAddress().getHouseNumber());
+        customerCityPlaceholder.setText(tmpInvoice.getCustomerAddress().getZipCode() + " " + tmpInvoice.getCustomerAddress().getCity());
+        customerCountryPlaceholder.setText(tmpInvoice.getCustomerAddress().getCountry());
+
         checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toLocalDate().toString());
         checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toLocalDate().toString());
         namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
@@ -114,6 +152,12 @@ public class InvoiceInformationController {
             payPlaceholder.setText(tmpInvoice.getIsPaid() ? "Yes" : "No");
             invoiceNumberPlaceholder.setText(tmpInvoice.getInvoiceNumber().toString());
             bookingNumberPlaceholder.setText(tmpBooking.getBookingNumber().toString());
+        }
+
+        chargeableItemTable.getItems().clear();
+        List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
+        for (ChargeableItemDto chargeableItem : chargeableItems) {
+            chargeableItemTable.getItems().add(chargeableItem);
         }
     }
 }

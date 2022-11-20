@@ -1,8 +1,11 @@
 package fhv.ws22.se.skyward.persistence.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+
+import java.util.List;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"street", "houseNumber", "zipCode", "city", "country"}))
@@ -12,6 +15,10 @@ public class Address extends AbstractEntity {
     private String zipCode;
     private String city;
     private String country;
+    @OneToMany(mappedBy = "hotelAddress")
+    private List<Invoice> hotelInvoices;
+    @OneToMany(mappedBy = "customerAddress")
+    private List<Invoice> customerInvoices;
 
     public Address() {
     }

@@ -14,15 +14,17 @@ public class InvoiceDto extends AbstractDto {
     private LocalDateTime invoiceDateTime;
     private Boolean isPaid;
     private AddressDto hotelAddress;
+    private AddressDto customerAddress;
     private BookingDto booking;
 
     public InvoiceDto() {
     }
-    public InvoiceDto(String companyName, LocalDateTime invoiceDateTime, Boolean isPaid, AddressDto hotelAddress, BookingDto booking) {
+    public InvoiceDto(String companyName, LocalDateTime invoiceDateTime, Boolean isPaid, AddressDto hotelAddress, AddressDto customerAddress, BookingDto booking) {
         this.companyName = companyName;
         this.invoiceDateTime = invoiceDateTime;
         this.isPaid = isPaid;
         this.hotelAddress = hotelAddress;
+        this.customerAddress = customerAddress;
         this.booking = booking;
     }
 
@@ -52,6 +54,13 @@ public class InvoiceDto extends AbstractDto {
     }
     public void setHotelAddress(AddressDto hotelAddress) {
         this.hotelAddress = hotelAddress;
+    }
+
+    public AddressDto getCustomerAddress() {
+        return customerAddress;
+    }
+    public void setCustomerAddress(AddressDto customerAddress) {
+        this.customerAddress = customerAddress;
     }
 
     public BookingDto getBooking() {
@@ -84,7 +93,7 @@ public class InvoiceDto extends AbstractDto {
                 ", invoiceDateTime=" + invoiceDateTime +
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
-                ", booking=" + booking +
+                ", customerAddress=" + customerAddress +
                 '}';
     }
 }

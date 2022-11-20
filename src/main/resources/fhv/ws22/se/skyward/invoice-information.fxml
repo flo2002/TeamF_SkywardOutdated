@@ -162,10 +162,10 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-               <TableView prefHeight="94.0" prefWidth="223.0" stylesheets="@css/styles.css">
+               <TableView fx:id="chargeableItemTable" prefHeight="94.0" prefWidth="223.0" stylesheets="@css/styles.css">
                  <columns>
-                   <TableColumn prefWidth="106.39996337890625" text="Items" />
-                   <TableColumn prefWidth="116.79998779296875" text="Price" />
+                   <TableColumn fx:id="itemNameCol" prefWidth="106.39996337890625" text="Items" />
+                   <TableColumn fx:id="itemPriceCol" prefWidth="116.79998779296875" text="Price" />
                  </columns>
                </TableView>
             </children>
@@ -178,37 +178,37 @@
                <Line endX="47.300018310546875" layoutX="241.0" layoutY="34.0" startX="-91.89999389648438" />
             </children>
          </Pane>
-         <Label layoutX="299.0" layoutY="67.0" text="SkyWard Hotel">
+         <Label fx:id="hotelNamePlaceholder layoutX="299.0" layoutY="67.0" text="SkyWard Hotel">
             <font>
                <Font size="10.0" />
             </font>
          </Label>
-         <Label layoutX="300.0" layoutY="82.0" text="our Address">
+         <Label fx:id="hotelStreetPlaceholder" layoutX="300.0" layoutY="82.0" text="our Address">
             <font>
                <Font size="10.0" />
             </font>
          </Label>
-         <Label layoutX="311.0" layoutY="96.0" text="our Tel">
+         <Label fx:id="hotelCityPlaceholder layoutX="311.0" layoutY="96.0" text="our Tel">
             <font>
                <Font size="10.0" />
             </font>
          </Label>
-         <Label layoutX="304.0" layoutY="111.0" prefHeight="15.0" prefWidth="46.0" text="our Email">
+         <Label fx:id="hotelCountryPlaceholder" layoutX="304.0" layoutY="111.0" prefHeight="15.0" prefWidth="46.0" text="our Email">
             <font>
                <Font size="10.0" />
             </font>
          </Label>
-         <Label layoutX="12.0" layoutY="126.0" text="Address">
+         <Label fx:id="customerStreetPlaceholder" layoutX="12.0" layoutY="126.0" text="Address">
             <font>
                <Font size="10.0" />
             </font>
          </Label>
-         <Label layoutX="23.0" layoutY="141.0" text="Tel">
+         <Label fx:id="customerCityPlaceholder" layoutX="23.0" layoutY="141.0" text="Tel">
             <font>
                <Font size="10.0" />
             </font>
          </Label>
-         <Label layoutX="16.0" layoutY="157.0" prefHeight="15.0" prefWidth="36.0" text="Email">
+         <Label fx:id="customerCountryPlaceholder" layoutX="16.0" layoutY="157.0" prefHeight="15.0" prefWidth="36.0" text="Email">
             <font>
                <Font size="10.0" />
             </font>

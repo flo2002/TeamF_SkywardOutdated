@@ -34,6 +34,7 @@ public class DatabaseFacade {
         brokers.put(BookingModel.class, new BookingBroker(entityManager));
         brokers.put(InvoiceModel.class, new InvoiceBroker(entityManager));
         brokers.put(AddressModel.class, new AddressBroker(entityManager));
+        brokers.put(ChargeableItemModel.class, new ChargeableItemBroker(entityManager));
     }
 
     public <T extends AbstractModel> List getAll(Class<T> clazz) {

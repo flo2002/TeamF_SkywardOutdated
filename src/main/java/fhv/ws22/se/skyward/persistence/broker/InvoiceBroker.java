@@ -37,22 +37,64 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
     }
 
     public void add(InvoiceModel invoice) {
+        Address hotelAddress = null;
+        Address customerAddress = null;
+
         entityManager.getTransaction().begin();
+        if (entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
+                .setParameter("street", invoice.getHotelAddress().getStreet())
+                .setParameter("number", invoice.getHotelAddress().getHouseNumber())
+                .setParameter("zip", invoice.getHotelAddress().getZipCode())
+                .setParameter("city", invoice.getHotelAddress().getCity())
+                .getResultList().isEmpty()) {
+            hotelAddress = new Address();
+            hotelAddress.setStreet(invoice.getHotelAddress().getStreet());
+            hotelAddress.setHouseNumber(invoice.getHotelAddress().getHouseNumber());
+            hotelAddress.setZipCode(invoice.getHotelAddress().getZipCode());
+            hotelAddress.setCity(invoice.getHotelAddress().getCity());
+            entityManager.persist(hotelAddress);
+            entityManager.flush();
+        }
+        if (entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
+                .setParameter("street", invoice.getCustomerAddress().getStreet())
+                .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
+                .setParameter("zip", invoice.getCustomerAddress().getZipCode())
+                .setParameter("city", invoice.getCustomerAddress().getCity())
+                .getResultList().isEmpty()) {
+            customerAddress = new Address();
+            customerAddress.setStreet(invoice.getCustomerAddress().getStreet());
+            customerAddress.setHouseNumber(invoice.getCustomerAddress().getHouseNumber());
+            customerAddress.setZipCode(invoice.getCustomerAddress().getZipCode());
+            customerAddress.setCity(invoice.getCustomerAddress().getCity());
+            entityManager.persist(customerAddress);
+            entityManager.flush();
+        }
+
         Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE bookingNumber = :bookingNumber")
             .setParameter("bookingNumber", invoice.getBooking().getBookingNumber())
             .getSingleResult();
 
-        Address address = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :houseNumber AND zipCode = :zipCode AND city = :city AND country = :country")
-            .setParameter("street", invoice.getHotelAddress().getStreet())
-            .setParameter("houseNumber", invoice.getHotelAddress().getHouseNumber())
-            .setParameter("zipCode", invoice.getHotelAddress().getZipCode())
-            .setParameter("city", invoice.getHotelAddress().getCity())
-            .setParameter("country", invoice.getHotelAddress().getCountry())
-            .getSingleResult();
+        if (hotelAddress == null) {
+            hotelAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
+                    .setParameter("street", invoice.getHotelAddress().getStreet())
+                    .setParameter("number", invoice.getHotelAddress().getHouseNumber())
+                    .setParameter("zip", invoice.getHotelAddress().getZipCode())
+                    .setParameter("city", invoice.getHotelAddress().getCity())
+                    .getSingleResult();
+        }
+        if (customerAddress == null) {
+            customerAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
+                    .setParameter("street", invoice.getCustomerAddress().getStreet())
+                    .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
+                    .setParameter("zip", invoice.getCustomerAddress().getZipCode())
+                    .setParameter("city", invoice.getCustomerAddress().getCity())
+                    .getSingleResult();
+        }
 
         Invoice i = invoice.toEntity();
         i.setBooking(booking);
-        i.setHotelAddress(address);
+        i.setHotelAddress(hotelAddress);
+        i.setCustomerAddress(customerAddress);
 
         entityManager.persist(i);
         entityManager.flush();
@@ -73,21 +115,73 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
     }
 
     public UUID addAndReturnId(InvoiceModel invoice) {
-        Invoice tmpInvoice = invoice.toEntity();
+        Address hotelAddress = null;
+        Address customerAddress = null;
 
         entityManager.getTransaction().begin();
-        Address address = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :houseNumber AND zipCode = :zipCode AND city = :city AND country = :country")
+        if (entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
                 .setParameter("street", invoice.getHotelAddress().getStreet())
-                .setParameter("houseNumber", invoice.getHotelAddress().getHouseNumber())
-                .setParameter("zipCode", invoice.getHotelAddress().getZipCode())
+                .setParameter("number", invoice.getHotelAddress().getHouseNumber())
+                .setParameter("zip", invoice.getHotelAddress().getZipCode())
                 .setParameter("city", invoice.getHotelAddress().getCity())
                 .setParameter("country", invoice.getHotelAddress().getCountry())
+                .getResultList().isEmpty()) {
+            hotelAddress = new Address();
+            hotelAddress.setStreet(invoice.getHotelAddress().getStreet());
+            hotelAddress.setHouseNumber(invoice.getHotelAddress().getHouseNumber());
+            hotelAddress.setZipCode(invoice.getHotelAddress().getZipCode());
+            hotelAddress.setCity(invoice.getHotelAddress().getCity());
+            hotelAddress.setCountry(invoice.getHotelAddress().getCountry());
+            entityManager.persist(hotelAddress);
+            entityManager.flush();
+        }
+        if (entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
+                .setParameter("street", invoice.getCustomerAddress().getStreet())
+                .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
+                .setParameter("zip", invoice.getCustomerAddress().getZipCode())
+                .setParameter("city", invoice.getCustomerAddress().getCity())
+                .setParameter("country", invoice.getCustomerAddress().getCountry())
+                .getResultList().isEmpty()) {
+            customerAddress = new Address();
+            customerAddress.setStreet(invoice.getCustomerAddress().getStreet());
+            customerAddress.setHouseNumber(invoice.getCustomerAddress().getHouseNumber());
+            customerAddress.setZipCode(invoice.getCustomerAddress().getZipCode());
+            customerAddress.setCity(invoice.getCustomerAddress().getCity());
+            customerAddress.setCountry(invoice.getCustomerAddress().getCountry());
+            entityManager.persist(customerAddress);
+            entityManager.flush();
+        }
+
+        Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE bookingNumber = :bookingNumber")
+                .setParameter("bookingNumber", invoice.getBooking().getBookingNumber())
                 .getSingleResult();
 
-        tmpInvoice.setHotelAddress(address);
+        if (hotelAddress == null) {
+            hotelAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
+                    .setParameter("street", invoice.getHotelAddress().getStreet())
+                    .setParameter("number", invoice.getHotelAddress().getHouseNumber())
+                    .setParameter("zip", invoice.getHotelAddress().getZipCode())
+                    .setParameter("city", invoice.getHotelAddress().getCity())
+                    .setParameter("country", invoice.getHotelAddress().getCountry())
+                    .getSingleResult();
+        }
+        if (customerAddress == null) {
+            customerAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
+                    .setParameter("street", invoice.getCustomerAddress().getStreet())
+                    .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
+                    .setParameter("zip", invoice.getCustomerAddress().getZipCode())
+                    .setParameter("city", invoice.getCustomerAddress().getCity())
+                    .setParameter("country", invoice.getCustomerAddress().getCountry())
+                    .getSingleResult();
+        }
 
-        entityManager.persist(tmpInvoice);
+        Invoice i = invoice.toEntity();
+        i.setBooking(booking);
+        i.setHotelAddress(hotelAddress);
+        i.setCustomerAddress(customerAddress);
+
+        entityManager.persist(i);
         entityManager.getTransaction().commit();
-        return tmpInvoice.getId();
+        return i.getId();
     }
 }
