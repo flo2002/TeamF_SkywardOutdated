@@ -2,7 +2,6 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.ChargeableItemDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
@@ -17,9 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -70,40 +67,40 @@ public class AddRoomController {
     }
 
     private void configureListener() {
-        if (session.getFilterMap().size() == 0) {
+        if (session.getRoomFilterMap().size() == 0) {
             HashMap<String, Boolean> filterMap = new HashMap<String, Boolean>();
             filterMap.put("Single", false);
             filterMap.put("Double", false);
             filterMap.put("Triple", false);
             filterMap.put("Twin", false);
             filterMap.put("Queen", false);
-            session.setFilterMap(filterMap);
+            session.setRoomFilterMap(filterMap);
         }
-        HashMap<String, Boolean> filterMap = session.getFilterMap();
+        HashMap<String, Boolean> filterMap = session.getRoomFilterMap();
 
         filterSingleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
             filterMap.put("Single", filterSingleRoom.isSelected());
-            session.setFilterMap(filterMap);
+            session.setRoomFilterMap(filterMap);
             updateData();
         });
         filterDoubleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
             filterMap.put("Double", filterDoubleRoom.isSelected());
-            session.setFilterMap(filterMap);
+            session.setRoomFilterMap(filterMap);
             updateData();
         });
         filterTripleRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
             filterMap.put("Triple", filterTripleRoom.isSelected());
-            session.setFilterMap(filterMap);
+            session.setRoomFilterMap(filterMap);
             updateData();
         });
         filterTwinRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
             filterMap.put("Twin", filterTwinRoom.isSelected());
-            session.setFilterMap(filterMap);
+            session.setRoomFilterMap(filterMap);
             updateData();
         });
         filterQueenRoom.selectedProperty().addListener((observable, oldValue, newValue) -> {
             filterMap.put("Queen", filterQueenRoom.isSelected());
-            session.setFilterMap(filterMap);
+            session.setRoomFilterMap(filterMap);
             updateData();
         });
     }
@@ -132,7 +129,7 @@ public class AddRoomController {
 
     public void updateData() {
 
-        HashMap<String, Boolean> filterMap = session.getFilterMap();
+        HashMap<String, Boolean> filterMap = session.getRoomFilterMap();
         if (filterMap.get("Single")) {
             filterSingleRoom.setSelected(true);
         }
