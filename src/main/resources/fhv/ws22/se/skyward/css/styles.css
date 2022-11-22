@@ -1,36 +1,36 @@
 .success_popup {
-    -fx-background-color: green;
-    -fx-padding: 10;
-    -fx-border-color: black;
-    -fx-border-width: 5;
-    -fx-font-size: 16;
+    -fx-padding: 20px;
+    -fx-background-color: #00ff00;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-radius: 5px;
 }
 
 .error_popup {
-    -fx-background-color: red;
-    -fx-padding: 10;
-    -fx-border-color: black;
-    -fx-border-width: 5;
-    -fx-font-size: 16;
+    -fx-padding: 20px;
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-radius:5px;
 }
 
 .button
 {
-    -fx-background-color : #89CFF0;
+    -fx-background-color :  #008080;
 }
 .button:hover
 {
-    -fx-background-color :  #0047AB ;
+    -fx-background-color :  #80004C ;
 }
 .button:pressed
 {
-    -fx-background-color : #89CFF0 ;
+    -fx-background-color : #80004C ;
 }
 
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size : 20;
-    -fx-background-color:   #7393B3;
+    -fx-background-color:   #80004C;
 }
 .table-view .column-header .label{
 
@@ -40,13 +40,12 @@
 }
 .table-view .cell{
     -fx-cell-size: 30;
-    -fx-alignment: center-left;
     -fx-text-fill: #000000;
     -fx-alignment: CENTER_LEFT;
 }
 
 .table-row-cell:selected {
-    -fx-background-color:  rgb(127, 172, 243);
+    -fx-background-color:  #80004C;
 }
 .table-row-cell:selected .text {
     -fx-fill : white ;
@@ -65,7 +64,7 @@
 .table-view .scroll-bar:horizontal .track,
 .table-view .scroll-bar:vertical .track{
     -fx-background-color: transparent;
-    -fx-border-color:derive(  #2D75E8,80%);
+    -fx-border-color:derive(  #80004C,80%);
     -fx-background-radius: 2em;
     -fx-border-radius:2em;
 }
@@ -73,7 +72,7 @@
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .table-view .scroll-bar:horizontal .thumb,
 .table-view .scroll-bar:vertical .thumb {
-    -fx-background-color:derive( #2D75E8,90%);
+    -fx-background-color:derive( #80004C,90%);
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 
@@ -96,17 +95,20 @@
 }
 
 #addroom {
-    -fx-background-color: #7393B3;
+    -fx-background-color: #80004C;
 }
 
 #addguest {
-    -fx-background-color: #7393B3;
+    -fx-background-color: #80004C;
 }
 
 #confirm {
-    -fx-background-color: #7393B3;
+    -fx-background-color:  #80004C;
 }
 
+#search {
+    -fx-background-color:  #80004C;
+}
 
 
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.AddGuestController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.AddGuestController">
    <children>
-      <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #89CFF0;">
+      <VBox prefHeight="530.0" prefWidth="170.0" style="-fx-background-color: #008080;">
          <children>
             <Pane prefHeight="111.0" prefWidth="170.0">
                <children>
@@ -23,55 +24,92 @@
                         <Image url="@../../../../SkyWardIcon.png" />
                      </image>
                   </ImageView>
+                  <Pane layoutX="166.0" prefHeight="130.0" prefWidth="605.0" style="-fx-background-color: #008080;">
+                     <children>
+                        <Text fill="WHITE" layoutX="211.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Guests">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                <stylesheets>
                   <URL value="@css/styles.css" />
                </stylesheets>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Icons/homeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </Button>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                <stylesheets>
                   <URL value="@css/styles.css" />
                </stylesheets>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Icons/bookingIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </Button>
-            <Button onAction="#onInvoicePageButtonClick" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="170.0" text="Invoice" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onInvoicePageButtonClick" prefHeight="65.0" prefWidth="170.0" text="Invoice" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
                <stylesheets>
                   <URL value="@css/styles.css" />
                </stylesheets>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Icons/invoiceIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
             </Button>
          </children>
       </VBox>
-      <HBox layoutX="223.0" layoutY="61.0" prefHeight="330.0" prefWidth="394.0">
+      <HBox layoutX="246.0" layoutY="191.0" prefHeight="315.0" prefWidth="482.0">
          <children>
-            <AnchorPane prefHeight="330.0" prefWidth="397.0">
+            <AnchorPane prefHeight="315.0" prefWidth="485.0">
                <children>
-                  <TextField fx:id="firstNameTextField" layoutX="109.0" layoutY="14.0" />
-                  <TextField fx:id="lastNameTextField" layoutX="109.0" layoutY="57.0" />
-                  <TextField layoutX="109.0" layoutY="102.0" />
-                  <TextField layoutX="109.0" layoutY="139.0" />
-                  <Button id="addguest" layoutX="168.0" layoutY="236.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="Confirm" />
-                  <Text layoutX="35.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname" />
-                  <Text layoutX="35.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname" />
-                  <Text layoutX="43.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adress" />
-                  <Text layoutX="30.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail-adress" />
-                  <TextField layoutX="108.0" layoutY="179.0" />
-                  <Text layoutX="42.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel.Nr." />
+                  <TextField fx:id="firstNameTextField" layoutX="138.0" layoutY="13.0" />
+                  <TextField fx:id="lastNameTextField" layoutX="138.0" layoutY="56.0" />
+                  <TextField layoutX="138.0" layoutY="101.0" />
+                  <TextField layoutX="138.0" layoutY="139.0" />
+                  <Button id="addguest" layoutX="196.0" layoutY="220.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="26.0" prefWidth="90.0" stylesheets="@css/styles.css" text="Confirm" textFill="WHITE" />
+                  <Text layoutX="59.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname" />
+                  <Text layoutX="59.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname" />
+                  <Text layoutX="67.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adress" />
+                  <Text layoutX="54.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail-adress" />
+                  <TextField layoutX="138.0" layoutY="175.0" />
+                  <Text layoutX="68.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel.Nr." />
                </children>
             </AnchorPane>
          </children>
       </HBox>
-      <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
-      <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0" />
-      <Button id="confirm" layoutX="337.0" layoutY="34.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" prefHeight="26.0" prefWidth="142.0" stylesheets="@css/styles.css" text="Search Guest" />
+      <Button id="confirm" layoutX="385.0" layoutY="164.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" prefHeight="26.0" prefWidth="150.0" stylesheets="@css/styles.css" text="Search Guest" textFill="WHITE" />
    </children>
 </AnchorPane>
