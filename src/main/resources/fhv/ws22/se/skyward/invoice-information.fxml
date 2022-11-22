@@ -162,17 +162,18 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-               <TableView fx:id="chargeableItemTable" prefHeight="94.0" prefWidth="223.0" stylesheets="@css/styles.css">
+               <TableView fx:id="chargeableItemTable" prefHeight="94.0" prefWidth="1000" stylesheets="@css/styles.css">
                  <columns>
-                   <TableColumn fx:id="itemNameCol" prefWidth="106.39996337890625" text="Items" />
-                   <TableColumn fx:id="itemPriceCol" prefWidth="116.79998779296875" text="Price" />
+                   <TableColumn fx:id="itemNameCol" prefWidth="100" text="Items" />
+                   <TableColumn fx:id="itemPriceCol" prefWidth="100" text="Price" />
+                   <TableColumn fx:id="itemQuantityCol" prefWidth="100" text="Nights/Quantity" />
                  </columns>
                </TableView>
             </children>
          </GridPane>
          <Pane layoutX="68.0" layoutY="446.0" prefHeight="46.0" prefWidth="366.0" style="-fx-background-color: white;">
             <children>
-               <Label layoutX="183.0" layoutY="8.0" text="PricePlaceHolder" />
+               <Label fx:id="totalPricePlaceholder" layoutX="183.0" layoutY="8.0" text="PricePlaceHolder" />
                <Label layoutX="149.0" layoutY="8.0" text="Total:" />
                <Line endX="66.69998168945312" layoutX="220.0" layoutY="28.0" startX="-70.10000610351562" />
                <Line endX="47.300018310546875" layoutX="241.0" layoutY="34.0" startX="-91.89999389648438" />

@@ -67,7 +67,11 @@ public class InvoiceInformationController {
     private TableColumn<ChargeableItemDto, String> itemNameCol;
     @FXML
     private TableColumn<ChargeableItemDto, BigDecimal> itemPriceCol;
+    @FXML
+    private TableColumn<ChargeableItemDto, Integer> itemQuantityCol;
 
+    @FXML
+    private Label totalPricePlaceholder;
 
     @FXML
     protected void initialize() {
@@ -77,6 +81,7 @@ public class InvoiceInformationController {
 
         itemNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         itemPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        itemQuantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         updateData();
     }
@@ -156,8 +161,12 @@ public class InvoiceInformationController {
 
         chargeableItemTable.getItems().clear();
         List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
+        BigDecimal totalPrice = new BigDecimal(0);
         for (ChargeableItemDto chargeableItem : chargeableItems) {
             chargeableItemTable.getItems().add(chargeableItem);
+            totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
         }
+
+        totalPricePlaceholder.setText(totalPrice.toString());
     }
 }

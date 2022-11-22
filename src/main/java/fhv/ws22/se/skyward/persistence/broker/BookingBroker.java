@@ -5,6 +5,7 @@ import fhv.ws22.se.skyward.persistence.entity.*;
 import jakarta.persistence.EntityManager;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +39,8 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         if (booking.getRooms() != null) {
             for (RoomModel room : booking.getRooms()) {
                 String name = room.getRoomTypeName() + "room";
-                newChargeableItems.add(new ChargeableItemModel(name, new BigDecimal("100"), 1));
+                Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays();
+                newChargeableItems.add(new ChargeableItemModel(name, new BigDecimal("100"), quantity));
             }
         }
         booking.setChargeableItems(newChargeableItems);
@@ -109,8 +111,10 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         }
         List<ChargeableItem> chargeableItemsInDb = new ArrayList<ChargeableItem>();
         for (ChargeableItem ci : chargeableItems) {
-            chargeableItemsInDb.add((ChargeableItem) entityManager.createQuery("FROM ChargeableItem WHERE name = :name")
+            chargeableItemsInDb.add((ChargeableItem) entityManager.createQuery("FROM ChargeableItem WHERE name = :name AND price = :price AND quantity = :quantity")
                 .setParameter("name", ci.getName())
+                .setParameter("price", ci.getPrice())
+                .setParameter("quantity", ci.getQuantity())
                 .getSingleResult());
         }
 
