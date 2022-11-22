@@ -1,6 +1,11 @@
 package fhv.ws22.se.skyward;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import fhv.ws22.se.skyward.domain.Session;
+import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.persistence.DataGenerator;
+import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class MainApplication extends Application {
     private static final Logger logger = LogManager.getLogger("SkyWard");
@@ -27,7 +33,14 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        DataGenerator.generateData();
+        Injector injector = Guice.createInjector(new AppConfig());
+
+        Session session = SessionFactory.getInstance().getSession(new BigInteger("1"));
+        DataGenerator dataGenerator = new DataGenerator();
+        injector.injectMembers(session);
+        injector.injectMembers(dataGenerator);
+
+        dataGenerator.generateData();
         launch();
     }
 }

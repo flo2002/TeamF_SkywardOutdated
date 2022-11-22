@@ -1,5 +1,7 @@
 package fhv.ws22.se.skyward.domain;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import fhv.ws22.se.skyward.domain.dtos.*;
 import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
@@ -7,8 +9,10 @@ import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Singleton
 public class Session {
-    private final DatabaseFacade dbf;
+    @Inject
+    private DatabaseFacade dbf;
     private UUID tmpBookingId;
     private UUID tmpInvoiceId;
     private HashMap<String, Boolean> filterMap;
@@ -16,7 +20,6 @@ public class Session {
 
 
     public Session() {
-        dbf = DatabaseFacade.getInstance();
         filterMap = new HashMap<String, Boolean>();
         dtoModelClassMap = new HashMap<Class, Class>();
         dtoModelClassMap.put(CustomerDto.class, CustomerModel.class);
