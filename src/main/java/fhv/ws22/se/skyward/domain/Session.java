@@ -102,10 +102,14 @@ public class Session {
 
     public BookingDto getTmpBooking() {
         if (tmpBookingId == null) {
-            BookingModel booking = new BookingModel();
-            booking.setCheckInDateTime(LocalDateTime.now());
-            booking.setIsCheckedIn(false);
-            tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
+            try {
+                BookingModel booking = new BookingModel();
+                booking.setCheckInDateTime(LocalDateTime.now());
+                booking.setIsCheckedIn(false);
+                tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
+            } catch (BookingDateNotValidException e) {
+                e.printStackTrace();
+            }
         }
         BookingModel booking = dbf.get(tmpBookingId, BookingModel.class);
 
