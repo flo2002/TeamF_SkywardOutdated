@@ -31,16 +31,16 @@ public class AddressModel extends AbstractModel {
     }
 
     public String getStreet() {
+        return street;
+    }
+    public void setStreet(String street) {
         String regex = "^[A-Za-z]{2,64}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(street);
 
         if(!matcher.matches()) {
-           logger.error("Street is not valid");
+            logger.error("Street is not valid");
         }
-        return street;
-    }
-    public void setStreet(String street) {
         this.street = street;
     }
 
