@@ -15,10 +15,11 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class HomescreenController implements ControllerService {
+public class HomescreenController {
     @Inject
     private Session session;
-    private static final BigInteger clientSessionID = new BigInteger("1");
+    @Inject
+    private ControllerNavigationUtil controllerNavigationUtil;
 
     @FXML
     private TableView<BookingDto> table;
@@ -45,7 +46,7 @@ public class HomescreenController implements ControllerService {
                 if (mouseEvent.getClickCount() == 2 && (! row.isEmpty()) ) {
                     BookingDto rowData = row.getItem();
                     session.setTmpBooking(rowData);
-                    ControllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+                    controllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
                 }
             });
             return row;
@@ -54,17 +55,17 @@ public class HomescreenController implements ControllerService {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
     @FXML
     public void onBookingButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
     public void onInvoicePageButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
     public void updateData() {
         table.getItems().clear();

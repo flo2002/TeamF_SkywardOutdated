@@ -61,7 +61,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/bookingIcon.png" />
+                        <Image url="@icons/bookingIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -79,7 +79,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/invoiceIcon.png" />
+                        <Image url="@icons/invoiceIcon.png" />
                      </image>
                   </ImageView>
                </graphic>

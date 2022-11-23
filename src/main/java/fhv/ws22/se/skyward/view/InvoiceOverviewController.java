@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
+import com.google.inject.Inject;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
@@ -17,8 +18,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class InvoiceOverviewController {
+    @Inject
     private Session session;
-    private static final BigInteger clientSessionID = new BigInteger("1");
+    @Inject
+    private ControllerNavigationUtil controllerNavigationUtil;
 
     @FXML
     private TableView<InvoiceDto> table;
@@ -31,8 +34,6 @@ public class InvoiceOverviewController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession(clientSessionID);
-
         invoiceNumberCol.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
         invoiceDateTimeCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, LocalDateTime>("invoiceDateTime"));
         isPaidCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, Boolean>("isPaid"));
@@ -44,7 +45,7 @@ public class InvoiceOverviewController {
                 if (mouseEvent.getClickCount() == 2 && (! row.isEmpty()) ) {
                     InvoiceDto rowData = row.getItem();
                     session.setTmpInvoice(rowData);
-                    ControllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
+                    controllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
                 }
             });
             return row;
@@ -53,17 +54,17 @@ public class InvoiceOverviewController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
     @FXML
     public void onBookingButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
     public void onInvoicePageButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
 
     public void updateTable() {

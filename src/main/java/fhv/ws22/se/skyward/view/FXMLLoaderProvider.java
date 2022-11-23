@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 
 public class FXMLLoaderProvider implements Provider<FXMLLoader> {
     @Inject
-    Injector injector;
+    public Injector injector;
 
     @Override
     public FXMLLoader get() {
