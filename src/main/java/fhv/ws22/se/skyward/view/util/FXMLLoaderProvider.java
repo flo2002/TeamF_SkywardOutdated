@@ -1,4 +1,4 @@
-package fhv.ws22.se.skyward.view;
+package fhv.ws22.se.skyward.view.util;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;

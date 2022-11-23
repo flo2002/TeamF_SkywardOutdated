@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -30,14 +31,14 @@ public class DashboardController {
     @FXML
     private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol;
     @FXML
-    private TableColumn<BookingDto, Boolean> isCheckedInCol;
+    private TableColumn<BookingDto, String> isCheckedInCol;
 
     @FXML
     protected void initialize() {
         bookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
-        checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkInDateTime"));
-        checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
-        isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
+        checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("checkInDateTime"));
+        checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("checkOutDateTime"));
+        isCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
 
         updateData();
         table.setRowFactory(bookingDtoTableView -> {
@@ -70,8 +71,6 @@ public class DashboardController {
     public void updateData() {
         table.getItems().clear();
         List<BookingDto> bookings = session.getAll(BookingDto.class);
-        for (BookingDto booking : bookings) {
-            table.getItems().add(booking);
-        }
+        table.getItems().addAll(bookings);
     }
 }
