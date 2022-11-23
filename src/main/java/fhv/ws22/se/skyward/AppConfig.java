@@ -6,6 +6,7 @@ import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import fhv.ws22.se.skyward.view.*;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
+import fhv.ws22.se.skyward.view.util.FXMLLoaderProvider;
 import fhv.ws22.se.skyward.view.util.NavigationService;
 import javafx.fxml.FXMLLoader;
 

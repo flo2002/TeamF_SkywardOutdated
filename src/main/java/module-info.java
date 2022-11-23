@@ -15,7 +15,6 @@ module fhv.ws22.se.skyward {
     exports fhv.ws22.se.skyward.view;
     opens fhv.ws22.se.skyward.view to javafx.fxml, com.google.guice;
     exports fhv.ws22.se.skyward.view.util;
-    opens fhv.ws22.se.skyward.view.util to javafx.fxml;
 
     exports fhv.ws22.se.skyward.persistence;
     exports fhv.ws22.se.skyward.persistence.entity;
@@ -25,4 +24,5 @@ module fhv.ws22.se.skyward {
     exports fhv.ws22.se.skyward.domain;
     opens fhv.ws22.se.skyward.domain to com.google.guice;
     exports fhv.ws22.se.skyward.domain.model;
+    opens fhv.ws22.se.skyward.view.util to com.google.guice, javafx.fxml;
 }

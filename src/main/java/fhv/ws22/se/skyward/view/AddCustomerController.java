@@ -2,9 +2,7 @@ package fhv.ws22.se.skyward.view;
 
 import com.google.inject.Inject;
 import fhv.ws22.se.skyward.domain.Session;
-import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.AddressDto;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
@@ -14,11 +12,7 @@ import javafx.scene.control.TextField;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-
-public class AddGuestController {
+public class AddCustomerController {
     private static final Logger logger = LogManager.getLogger("AddGuestController");
     @Inject
     private Session session;
@@ -59,7 +53,7 @@ public class AddGuestController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
     @FXML

@@ -92,14 +92,14 @@ public class BookingController {
 
     @FXML
     public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
-        if (checkInCheckOutButton.getText().equals("Check-in")) {
+        if (checkInCheckOutButton.getText().equals("Check-In")) {
             tmpBooking.setIsCheckedIn(true);
             updateData();
-            checkInCheckOutButton.setText("Check-out");
-        } else if (checkInCheckOutButton.getText().equals("Check-out")){
+            checkInCheckOutButton.setText("Check-Out");
+        } else if (checkInCheckOutButton.getText().equals("Check-Out")){
             tmpBooking.setIsCheckedIn(false);
             updateData();
-            checkInCheckOutButton.setText("Check-in");
+            checkInCheckOutButton.setText("Check-In");
         }
     }
 
@@ -114,7 +114,7 @@ public class BookingController {
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
     @FXML
@@ -144,15 +144,15 @@ public class BookingController {
     @FXML
     public void onInvoiceButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
     }
 
     public void updateData() {
         if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
-            checkInCheckOutButton.setText("Check-out");
+            checkInCheckOutButton.setText("Check-Out");
         }
         if (tmpBooking.getIsCheckedIn() != null && !tmpBooking.getIsCheckedIn()) {
-            checkInCheckOutButton.setText("Check-in");
+            checkInCheckOutButton.setText("Check-In");
         }
 
         if (tmpBooking.getCheckInDateTime() != null) {

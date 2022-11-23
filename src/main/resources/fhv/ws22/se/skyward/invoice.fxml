@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="530.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.InvoiceInformationController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="530.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.InvoiceController">
     <VBox prefHeight="531.0" prefWidth="170.0" style="-fx-background-color: #008080;">
         <children>
             <Pane prefHeight="111.0" prefWidth="170.0">
@@ -230,7 +230,7 @@
       <children>
          <Button layoutX="29.0" layoutY="94.0" mnemonicParsing="false" onAction="#onSplitButtonClick" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: #80004C;" stylesheets="@css/styles.css" text="Split" textFill="WHITE" />
          <Button fx:id="payButton" layoutX="29.0" layoutY="44.0" mnemonicParsing="false" onAction="#onPayButtonClick" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: #80004C;" stylesheets="@css/styles.css" text="Pay" textFill="WHITE" />
-         <Button layoutX="15.0" layoutY="413.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #53e089;" stylesheets="@css/styles.css" text="Confirm" textFill="WHITE" />
+         <Button layoutX="15.0" layoutY="413.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="46.0" prefWidth="101.0" style="-fx-background-color: #53e089;" stylesheets="@css/styles.css" text="Save Invoice" textFill="WHITE" />
          <Button layoutX="29.0" layoutY="146.0" mnemonicParsing="false" onAction="#onEditButtonClick" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: #80004C;" stylesheets="@css/styles.css" text=" Edit" textFill="WHITE" />
          <Button layoutX="29.0" layoutY="197.0" mnemonicParsing="false" onAction="#onPrintButtonClick" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: #80004C;" stylesheets="@css/styles.css" text="Print" textFill="WHITE" />
       </children>

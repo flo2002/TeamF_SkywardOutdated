@@ -1,10 +1,7 @@
 package fhv.ws22.se.skyward.view.util;
 
-import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import fhv.ws22.se.skyward.view.FXMLLoaderProvider;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
