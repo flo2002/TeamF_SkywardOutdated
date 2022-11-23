@@ -1,16 +1,18 @@
 package fhv.ws22.se.skyward.persistence;
 
+import com.google.inject.Inject;
 import fhv.ws22.se.skyward.domain.model.*;
-import fhv.ws22.se.skyward.persistence.entity.Address;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class DataGenerator {
-    public static void generateData() {
-        DatabaseFacade dbf = DatabaseFacade.getInstance();
+    @Inject
+    public DatabaseFacade dbf;
 
+    public DataGenerator() {
+    }
+
+    public void generateData() {
         RoomModel r0 = new RoomModel(101, "Single", "cleaned");
         RoomModel r1 = new RoomModel(102, "Single", "cleaned");
         RoomModel r2 = new RoomModel(201, "Double", "cleaned");

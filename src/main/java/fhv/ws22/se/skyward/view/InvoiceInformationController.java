@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
+import com.google.inject.Inject;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.*;
@@ -20,8 +21,10 @@ import java.util.List;
 
 public class InvoiceInformationController {
     private static final Logger logger = LogManager.getLogger("BookingController");
-    private static final BigInteger clientSessionID = new BigInteger("1");
+    @Inject
     private Session session;
+    @Inject
+    private ControllerNavigationUtil controllerNavigationUtil;
     private BookingDto tmpBooking;
     private InvoiceDto tmpInvoice;
 
@@ -75,7 +78,6 @@ public class InvoiceInformationController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession(clientSessionID);
         tmpBooking = session.getTmpBooking();
         tmpInvoice = session.getTmpInvoice();
 
@@ -89,18 +91,18 @@ public class InvoiceInformationController {
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         session.resetTmpInvoice();
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
     }
 
     @FXML
     public void onBookingButtonClick(ActionEvent event) {
         session.resetTmpInvoice();
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
     public void onInvoicePageButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
 
     @FXML
@@ -124,7 +126,7 @@ public class InvoiceInformationController {
     @FXML
     public void onConfirmButtonClick(ActionEvent event){
         session.resetTmpInvoice();
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
     @FXML
     public void onEditButtonClick(ActionEvent event){

@@ -1,5 +1,10 @@
 package fhv.ws22.se.skyward.view.util;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import fhv.ws22.se.skyward.view.FXMLLoaderProvider;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,13 +18,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class ControllerNavigationUtil {
+public class ControllerNavigationUtil implements NavigationService {
     private static final Logger logger = LogManager.getLogger("ControllerNavigationUtil");
+    @Inject
+    public Injector injector;
 
-    public static void navigate(Event event, String path, String stageTitle) {
+    public void navigate(Event event, String path, String stageTitle) {
         try {
+            FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
             URL url = new File(path).toURI().toURL();
-            Parent parent = FXMLLoader.load(url);
+            fxmlLoader.setLocation(url);
+            Parent parent = fxmlLoader.load();
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle(stageTitle);

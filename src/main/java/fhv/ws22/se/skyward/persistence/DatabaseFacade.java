@@ -1,5 +1,7 @@
 package fhv.ws22.se.skyward.persistence;
 
+import com.google.inject.Singleton;
+import fhv.ws22.se.skyward.domain.DataService;
 import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.broker.*;
 
@@ -11,18 +13,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class DatabaseFacade {
+@Singleton
+public class DatabaseFacade implements DataService {
     private final EntityManager entityManager;
     private Map<Class, BrokerBase> brokers;
-
-    private static DatabaseFacade singleton;
-
-    public static synchronized DatabaseFacade getInstance() {
-        if (singleton == null) {
-            singleton = new DatabaseFacade();
-        }
-        return singleton;
-    }
 
     public DatabaseFacade() {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("skyward");

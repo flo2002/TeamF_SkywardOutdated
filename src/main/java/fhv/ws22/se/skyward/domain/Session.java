@@ -1,14 +1,19 @@
 package fhv.ws22.se.skyward.domain;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import fhv.ws22.se.skyward.domain.dtos.*;
 import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+import fhv.ws22.se.skyward.view.SessionService;
 
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class Session {
-    private final DatabaseFacade dbf;
+@Singleton
+public class Session implements SessionService {
+    @Inject
+    private DatabaseFacade dbf;
     private UUID tmpBookingId;
     private UUID tmpInvoiceId;
     private HashMap<String, Boolean> filterMap;
@@ -16,7 +21,6 @@ public class Session {
 
 
     public Session() {
-        dbf = DatabaseFacade.getInstance();
         filterMap = new HashMap<String, Boolean>();
         dtoModelClassMap = new HashMap<Class, Class>();
         dtoModelClassMap.put(CustomerDto.class, CustomerModel.class);
@@ -150,10 +154,10 @@ public class Session {
 
 
 
-    public void setFilterMap(HashMap<String, Boolean> filterMap) {
+    public void setRoomFilterMap(HashMap<String, Boolean> filterMap) {
         this.filterMap = filterMap;
     }
-    public HashMap<String, Boolean> getFilterMap() {
+    public HashMap<String, Boolean> getRoomFilterMap() {
         return filterMap;
     }
 }
