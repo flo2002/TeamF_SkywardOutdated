@@ -6,6 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CustomerModel extends AbstractModel {
     private static final Logger logger = LogManager.getLogger("CustomerDto");
     private String firstName;
@@ -25,6 +28,12 @@ public class CustomerModel extends AbstractModel {
         return firstName;
     }
     public void setFirstName(String firstName) {
+        String regex = "^[A-Z][a-zA-z ]{1,29}$"; // first letter of every word must be uppercase
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(firstName);
+        if(!matcher.matches()){
+            logger.error("First name is not valid");
+        }
         this.firstName = firstName;
     }
 
@@ -32,6 +41,12 @@ public class CustomerModel extends AbstractModel {
         return lastName;
     }
     public void setLastName(String lastName) {
+        String regex = "^[A-Z][a-zA-z ]{1,29}$"; // first letter of every word must be uppercase
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(lastName);
+        if(!matcher.matches()){
+            logger.error("Last name is not valid");
+        }
         this.lastName = lastName;
     }
 

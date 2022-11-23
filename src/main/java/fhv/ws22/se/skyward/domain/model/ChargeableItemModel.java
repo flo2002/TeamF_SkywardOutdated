@@ -2,11 +2,16 @@ package fhv.ws22.se.skyward.domain.model;
 
 import fhv.ws22.se.skyward.domain.dtos.ChargeableItemDto;
 import fhv.ws22.se.skyward.persistence.entity.ChargeableItem;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChargeableItemModel extends AbstractModel {
+    private static final Logger logger = LogManager.getLogger("ChargeableItemsModel");
     private String name;
     private BigDecimal price;
     private Integer quantity;
@@ -31,6 +36,7 @@ public class ChargeableItemModel extends AbstractModel {
         return price;
     }
     public void setPrice(BigDecimal price) {
+
         this.price = price;
     }
 
@@ -38,6 +44,7 @@ public class ChargeableItemModel extends AbstractModel {
         return quantity;
     }
     public void setQuantity(Integer quantity) {
+
         this.quantity = quantity;
     }
 

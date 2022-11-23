@@ -48,6 +48,13 @@ public class AddressModel extends AbstractModel {
         return houseNumber;
     }
     public void setHouseNumber(String houseNumber) {
+        String regex = "^\\d+(\\s|-)?\\w*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(houseNumber);
+
+        if(!matcher.matches()){
+            logger.error("House is not valid");
+        }
         this.houseNumber = houseNumber;
     }
 
@@ -55,6 +62,13 @@ public class AddressModel extends AbstractModel {
         return zipCode;
     }
     public void setZipCode(String zipCode) {
+
+        String regex = " ^[0-9]{5}(?:-[0-9]{4})?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(zipCode);
+        if(!matcher.matches()){
+            logger.error("Zip Code number is not valid");
+        }
         this.zipCode = zipCode;
     }
 
@@ -62,6 +76,12 @@ public class AddressModel extends AbstractModel {
         return city;
     }
     public void setCity(String city) {
+        String regex = "^([a-zA-Z\\u0080-\\u024F]+(?:. |-| |'))*[a-zA-Z\\u0080-\\u024F]*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(city);
+        if(!matcher.matches()){
+            logger.error("City not valid");
+        }
         this.city = city;
     }
 
@@ -69,6 +89,12 @@ public class AddressModel extends AbstractModel {
         return country;
     }
     public void setCountry(String country) {
+        String regex = "^[A-Z][a-z]+( [A-Z][a-z]+)*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(country);
+        if(!matcher.matches()){
+            logger.error("Country not valid");
+        }
         this.country = country;
     }
 
