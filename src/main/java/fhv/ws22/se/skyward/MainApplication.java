@@ -34,18 +34,20 @@ public class MainApplication extends Application {
 
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
 
-        try (InputStream inputStream = getClass().getResourceAsStream("homescreen.fxml")) {
-            System.out.println(inputStream);
-            Parent parent = fxmlLoader.load(inputStream);
-            Scene scene = new Scene(parent, 770,530);
-            stage.getIcons().add(new Image("fhv/ws22/se/Icons/SkyWardIcon.png"));
-            stage.setTitle("SkyWard");
-            stage.setScene(scene);
-            stage.show();
-            stage.setOnCloseRequest(windowEvent -> {
-                System.exit(0);
-            });
+        fxmlLoader.setLocation(getClass().getResource("homescreen.fxml"));
+        Parent parent = fxmlLoader.load();
+        Scene scene = new Scene(parent, 770,530);
+        try {
+            stage.getIcons().add(new Image(getClass().getResource("icons/SkyWardIcon.png").toURI().toString()));
+        } catch (Exception e) {
+            logger.error("Could not load icon", e);
         }
+        stage.setTitle("SkyWard");
+        stage.setScene(scene);
+        stage.show();
+        stage.setOnCloseRequest(windowEvent -> {
+            System.exit(0);
+        });
     }
 
     public static void main(String[] args) {
