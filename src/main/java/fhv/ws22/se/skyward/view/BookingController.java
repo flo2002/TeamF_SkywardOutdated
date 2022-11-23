@@ -6,6 +6,7 @@ import fhv.ws22.se.skyward.domain.Session;
 
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.domain.model.BookingDateNotValidException;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
@@ -56,7 +57,11 @@ public class BookingController {
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
-        tmpBooking = session.getTmpBooking();
+        try {
+            tmpBooking = session.getTmpBooking();
+        } catch (Exception e) {
+            logger.error("Error while getting tmpBooking", e);
+        }
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
@@ -111,8 +116,13 @@ public class BookingController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        session.update(tmpBooking.getId(), tmpBooking);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        try {
+            session.update(tmpBooking.getId(), tmpBooking);
+            ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            NotificationUtil.getInstance().showErrorNotification(e.getMessage(), event);
+        }
     }
 
     @FXML

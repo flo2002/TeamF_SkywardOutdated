@@ -72,9 +72,12 @@ public class InvoiceInformationController {
     @FXML
     protected void initialize() {
         session = SessionFactory.getInstance().getSession(clientSessionID);
-        tmpBooking = session.getTmpBooking();
-        tmpInvoice = session.getTmpInvoice();
-
+        try {
+            tmpBooking = session.getTmpBooking();
+            tmpInvoice = session.getTmpInvoice();
+        } catch (Exception e) {
+            logger.error("Error while loading booking", e);
+        }
         itemNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         itemPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 

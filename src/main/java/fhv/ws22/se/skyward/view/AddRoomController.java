@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.tool.schema.Action;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -57,7 +58,11 @@ public class AddRoomController {
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
 
-        tmpBooking = session.getTmpBooking();
+        try {
+            tmpBooking = session.getTmpBooking();
+        } catch (Exception e) {
+            logger.error("Error while getting tmpBooking", e);
+        }
         roomTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         roomTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {

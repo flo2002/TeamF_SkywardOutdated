@@ -2,12 +2,18 @@ package fhv.ws22.se.skyward.domain.model;
 
 import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
 import fhv.ws22.se.skyward.persistence.entity.Address;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.NotImplementedYetException;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.hibernate.query.IllegalQueryOperationException;
 import org.modelmapper.ModelMapper;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AddressModel extends AbstractModel {
+    private static final Logger logger = LogManager.getLogger("AddressModel");
     private String street;
     private String houseNumber;
     private String zipCode;
@@ -25,6 +31,13 @@ public class AddressModel extends AbstractModel {
     }
 
     public String getStreet() {
+        String regex = "^[A-Za-z]{2,64}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(street);
+
+        if(!matcher.matches()) {
+           logger.error("Street is not valid");
+        }
         return street;
     }
     public void setStreet(String street) {

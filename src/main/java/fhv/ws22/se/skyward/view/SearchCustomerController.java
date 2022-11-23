@@ -45,7 +45,11 @@ public class SearchCustomerController {
 
         updateTable("");
 
-        tmpBooking = session.getTmpBooking();
+        try {
+            tmpBooking = session.getTmpBooking();
+        } catch (Exception e) {
+            logger.error("Error while getting tmpBooking", e);
+        }
         customerTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         customerTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {

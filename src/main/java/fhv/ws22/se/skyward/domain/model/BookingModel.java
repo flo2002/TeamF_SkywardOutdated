@@ -24,7 +24,8 @@ public class BookingModel extends AbstractModel {
 
     public BookingModel() {
     }
-    public BookingModel(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerModel> customers, List<RoomModel> rooms) {
+
+    public BookingModel(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerModel> customers, List<RoomModel> rooms) throws Exception {
         setCheckInDateTime(checkInDateTime);
         setCheckOutDateTime(checkOutDateTime);
         setIsCheckedIn(isCheckedIn);
@@ -44,7 +45,7 @@ public class BookingModel extends AbstractModel {
     }
     public void setCheckInDateTime(LocalDateTime checkInDateTime) throws BookingDateNotValidException {
         if (checkInDateTime.isBefore(LocalDateTime.now().toLocalDate().atStartOfDay())) {
-
+            logger.error("CheckInDateTime is before today");
             throw new BookingDateNotValidException("CheckInDateTime is in the past");
         }
         this.checkInDateTime = checkInDateTime;

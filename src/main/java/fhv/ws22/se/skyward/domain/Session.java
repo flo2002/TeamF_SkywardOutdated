@@ -100,16 +100,12 @@ public class Session {
 
 
 
-    public BookingDto getTmpBooking() {
+    public BookingDto getTmpBooking() throws BookingDateNotValidException {
         if (tmpBookingId == null) {
-            try {
-                BookingModel booking = new BookingModel();
-                booking.setCheckInDateTime(LocalDateTime.now());
-                booking.setIsCheckedIn(false);
-                tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
-            } catch (BookingDateNotValidException e) {
-                e.printStackTrace();
-            }
+            BookingModel booking = new BookingModel();
+            booking.setCheckInDateTime(LocalDateTime.now());
+            booking.setIsCheckedIn(false);
+            tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
         }
         BookingModel booking = dbf.get(tmpBookingId, BookingModel.class);
 
@@ -126,7 +122,7 @@ public class Session {
         tmpBookingId = tmpBid.getId();
     }
 
-    public InvoiceDto getTmpInvoice() {
+    public InvoiceDto getTmpInvoice() throws BookingDateNotValidException {
         if (tmpInvoiceId == null) {
             if (getTmpBooking().getInvoices() == null || getTmpBooking().getInvoices().isEmpty()) {
                 AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
