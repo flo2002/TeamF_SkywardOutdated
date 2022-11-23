@@ -104,7 +104,7 @@
                             <columns>
                                 <TableColumn fx:id="invoiceNumberCol" prefWidth="20.0" text="Invoice Number" />
                                 <TableColumn fx:id="invoiceDateTimeCol" prefWidth="75.0" text="Invoice Date" />
-                                <TableColumn fx:id="isPaidCol" prefWidth="158.4000244140625" text="isPaid?" />
+                                <TableColumn fx:id="isPaidCol" prefWidth="158.4000244140625" text="Paid" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

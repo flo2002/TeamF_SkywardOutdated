@@ -85,11 +85,11 @@
       </VBox>
       <Pane layoutX="170.0" prefHeight="130.0" prefWidth="601.0" style="-fx-background-color: #008080;">
          <children>
-            <Button layoutX="22.0" layoutY="26.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: #50C878;" text="Create new Booking" textFill="WHITE">
+            <Button layoutX="22.0" layoutY="26.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: #50C878;" text="Create New Booking" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="checkInCheckOutButton" layoutX="227.0" layoutY="26.0" mnemonicParsing="false" onAction="#onCheckInCheckOutButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #80004C;" text="Check-in" textFill="WHITE">
+            <Button fx:id="checkInCheckOutButton" layoutX="227.0" layoutY="26.0" mnemonicParsing="false" onAction="#onCheckInCheckOutButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #80004C;" text="Check-In" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font></Button>
@@ -105,7 +105,7 @@
          <children>
             <TableView fx:id="roomTable" prefHeight="300.0" prefWidth="342.0" stylesheets="@css/styles.css">
               <columns>
-                <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="120.7999267578125" styleClass="css/style.css" text="RoomNr." />
+                <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="120.7999267578125" styleClass="css/style.css" text="Room Number" />
                 <TableColumn fx:id="roomTypeNameCol" minWidth="0.0" prefWidth="87.99993896484375" text="Type" />
                  <TableColumn fx:id="roomStateNameCol" prefWidth="91.2000732421875" text="State" />
               </columns>
@@ -123,7 +123,7 @@
       </HBox>
       <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
       <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0" />
-      <Button id="addroom" layoutX="368.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/styles.css" text="add Room" textFill="WHITE" />
-      <Button id="addguest" layoutX="642.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/styles.css" text="add Guest" textFill="WHITE" />
+      <Button id="addroom" layoutX="368.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room" textFill="WHITE" />
+      <Button id="addguest" layoutX="642.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest" textFill="WHITE" />
    </children>
 </AnchorPane>

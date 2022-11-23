@@ -15,7 +15,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class HomescreenController {
+public class DashboardController {
     @Inject
     private Session session;
     @Inject
@@ -55,7 +55,7 @@ public class HomescreenController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
     @FXML

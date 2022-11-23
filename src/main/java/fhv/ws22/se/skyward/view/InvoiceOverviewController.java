@@ -45,7 +45,7 @@ public class InvoiceOverviewController {
                 if (mouseEvent.getClickCount() == 2 && (! row.isEmpty()) ) {
                     InvoiceDto rowData = row.getItem();
                     session.setTmpInvoice(rowData);
-                    controllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
+                    controllerNavigationUtil.navigate(mouseEvent,"src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
                 }
             });
             return row;
@@ -54,7 +54,7 @@ public class InvoiceOverviewController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
     @FXML

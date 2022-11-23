@@ -32,7 +32,7 @@ public class MainApplication extends Application {
         dataGenerator.generateData();
 
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
-        fxmlLoader.setLocation(getClass().getResource("homescreen.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("dashboard.fxml"));
         Parent parent = fxmlLoader.load();
         Scene scene = new Scene(parent, 770,530);
         stage.setTitle("SkyWard");

@@ -91,10 +91,11 @@
          <children>
             <TableView fx:id="roomTable" prefHeight="319.0" prefWidth="569.0" stylesheets="@css/styles.css">
                <columns>
-                  <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="141.6000213623047" styleClass="css/style.css" text="RoomNr." />
+                  <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="141.6000213623047" styleClass="css/style.css" text="Room Number" />
                   <TableColumn fx:id="roomTypeNameCol" prefWidth="118.39996337890625" text="Type" />
                   <TableColumn fx:id="roomTypePriceCol" prefWidth="109.5999755859375" text="Cost" />
-                  <TableColumn fx:id="roomStateNameCol" prefWidth="95.19989013671875" text="Select" />
+                  <TableColumn fx:id="roomStateNameCol" prefWidth="95.19989013671875" text="State" />
+                  <TableColumn fx:id="roomSelectCol" prefWidth="95.19989013671875" text="Select" />
                </columns>
             </TableView>
          </children>
@@ -115,6 +116,6 @@
             </Text>
          </children>
       </Pane>
-      <Button id="addguest" layoutX="633.0" layoutY="476.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="122.0" stylesheets="@css/styles.css" text="Confirm" textFill="WHITE" />
+      <Button id="addguest" layoutX="583.0" layoutY="476.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="172.0" stylesheets="@css/styles.css" text="Add Rooms to Booking" textFill="WHITE" />
    </children>
 </AnchorPane>
