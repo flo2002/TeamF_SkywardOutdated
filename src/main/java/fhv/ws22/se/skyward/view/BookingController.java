@@ -33,6 +33,8 @@ public class BookingController {
 
     @FXML
     private Button checkInCheckOutButton;
+    @FXML
+    private Button invoiceButton;
 
 
     @FXML
@@ -177,5 +179,12 @@ public class BookingController {
                 roomTable.getItems().add(room);
             }
         }
+
+        if (rooms != null && customers != null && tmpBooking.getCheckOutDateTime() != null) {
+            invoiceButton.setDisable(false);
+        } else {
+            invoiceButton.setDisable(true);
+        }
+
     }
 }
