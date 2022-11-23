@@ -15,7 +15,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class HomescreenController {
+public class HomescreenController implements ControllerService {
     @Inject
     private Session session;
     private static final BigInteger clientSessionID = new BigInteger("1");
@@ -38,7 +38,7 @@ public class HomescreenController {
         checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<BookingDto, LocalDateTime>("checkOutDateTime"));
         isCheckedInCol.setCellValueFactory(new PropertyValueFactory<BookingDto, Boolean>("isCheckedIn"));
 
-        updateTable();
+        updateData();
         table.setRowFactory(bookingDtoTableView -> {
             TableRow<BookingDto> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
@@ -66,7 +66,7 @@ public class HomescreenController {
     public void onInvoicePageButtonClick(ActionEvent event) {
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
-    public void updateTable() {
+    public void updateData() {
         table.getItems().clear();
         List<BookingDto> bookings = session.getAll(BookingDto.class);
         for (BookingDto booking : bookings) {

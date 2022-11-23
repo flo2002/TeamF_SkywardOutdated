@@ -21,7 +21,7 @@
                <children>
                   <ImageView fitHeight="132.0" fitWidth="150.0" layoutX="19.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../SkyWardIcon.png" />
+                        <Image url="@../Icons/SkyWardIcon.png" />
                      </image>
                   </ImageView>
                   <Pane layoutX="166.0" prefHeight="130.0" prefWidth="605.0" style="-fx-background-color: #008080;">
@@ -45,7 +45,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Icons/homeIcon.png" />
+                        <Image url="@../Icons/homeIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -63,7 +63,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Icons/bookingIcon.png" />
+                        <Image url="@../Icons/bookingIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -81,7 +81,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../Icons/invoiceIcon.png" />
+                        <Image url="@../Icons/invoiceIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
