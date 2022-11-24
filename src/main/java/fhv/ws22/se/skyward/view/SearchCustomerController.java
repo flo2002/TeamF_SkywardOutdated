@@ -70,7 +70,7 @@ public class SearchCustomerController {
 
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
     @FXML
@@ -80,7 +80,7 @@ public class SearchCustomerController {
 
     @FXML
     public void onCreateButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-customers.fxml", "Home");
     }
 
     @FXML

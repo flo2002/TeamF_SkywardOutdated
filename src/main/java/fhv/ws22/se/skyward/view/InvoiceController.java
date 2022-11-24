@@ -2,7 +2,6 @@ package fhv.ws22.se.skyward.view;
 
 import com.google.inject.Inject;
 import fhv.ws22.se.skyward.domain.Session;
-import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.*;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.event.ActionEvent;
@@ -16,10 +15,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
-public class InvoiceInformationController {
+public class InvoiceController {
     private static final Logger logger = LogManager.getLogger("BookingController");
     @Inject
     private Session session;
@@ -91,7 +89,7 @@ public class InvoiceInformationController {
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         session.resetTmpInvoice();
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
     @FXML

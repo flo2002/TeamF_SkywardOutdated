@@ -114,7 +114,7 @@ public class BookingController {
     @FXML
     public void onHomeButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
     @FXML
@@ -144,7 +144,7 @@ public class BookingController {
     @FXML
     public void onInvoiceButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
     }
 
     public void updateData() {
