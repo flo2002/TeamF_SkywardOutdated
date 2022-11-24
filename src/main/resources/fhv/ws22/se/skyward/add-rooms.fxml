@@ -15,28 +15,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.AddRoomController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.AddRoomController">
    <children>
-      <VBox prefHeight="530.0" prefWidth="170.0" style="-fx-background-color: #008080;" AnchorPane.bottomAnchor="-0.39999999999997726" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="700.0" prefWidth="230.0" style="-fx-background-color: #008080;" AnchorPane.bottomAnchor="-0.39999999999997726" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="111.0" prefWidth="170.0">
                <children>
-                  <ImageView fitHeight="132.0" fitWidth="150.0" layoutX="19.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="20.0" layoutY="-30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/SkyWardIcon.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="85.0" prefWidth="230.0" text="Home" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <stylesheets>
                   <URL value="@css/styles.css" />
                </stylesheets>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/homeIcon.png" />
                      </image>
@@ -46,15 +46,15 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="85.0" prefWidth="230.0" text="Booking" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <stylesheets>
                   <URL value="@css/styles.css" />
                </stylesheets>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/bookingIcon.png" />
                      </image>
@@ -64,15 +64,15 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onInvoicePageButtonClick" prefHeight="65.0" prefWidth="170.0" text="Invoice" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onInvoicePageButtonClick" prefHeight="85.0" prefWidth="230.0" text="Invoice" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <stylesheets>
                   <URL value="@css/styles.css" />
                </stylesheets>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/invoiceIcon.png" />
                      </image>
@@ -87,37 +87,51 @@
             </Button>
          </children>
       </VBox>
-      <HBox layoutX="187.0" layoutY="140.0" prefHeight="319.0" prefWidth="568.0">
+      <HBox layoutX="263.0" layoutY="187.0" prefHeight="460.0" prefWidth="951.0">
          <children>
-            <TableView fx:id="roomTable" prefHeight="319.0" prefWidth="569.0" stylesheets="@css/styles.css">
+            <TableView fx:id="roomTable" prefHeight="460.0" prefWidth="951.0" stylesheets="@css/styles.css">
                <columns>
-                  <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="141.6000213623047" styleClass="css/style.css" text="RoomNr." />
-                  <TableColumn fx:id="roomTypeNameCol" prefWidth="118.39996337890625" text="Type" />
-                  <TableColumn fx:id="roomTypePriceCol" prefWidth="109.5999755859375" text="Cost" />
-                  <TableColumn fx:id="roomStateNameCol" prefWidth="95.19989013671875" text="Select" />
+                  <TableColumn fx:id="checkboxCol" prefWidth="119.99996948242188" text="Checkbox" />
+                  <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="195.20001220703125" styleClass="css/style.css" text="RoomNr." />
+                  <TableColumn fx:id="roomTypeNameCol" prefWidth="200.800048828125" text="Type" />
+                  <TableColumn fx:id="roomTypePriceCol" prefWidth="182.39996337890625" text="Cost" />
+                  <TableColumn fx:id="roomStateNameCol" prefWidth="250.39995117187505" text="Select" />
                </columns>
             </TableView>
          </children>
       </HBox>
-      <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
-      <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0" />
-      <Pane layoutX="167.0" prefHeight="78.0" prefWidth="604.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="-1.0">
+      <Pane layoutX="228.0" prefHeight="114.0" prefWidth="1073.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="-1.0">
          <children>
-            <Text fill="WHITE" layoutX="230.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Rooms">
+            <Text fill="WHITE" layoutX="450.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Rooms">
                <font>
-                  <Font size="36.0" />
+                  <Font size="48.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <Button id="addguest" layoutX="633.0" layoutY="476.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="122.0" stylesheets="@css/styles.css" text="Confirm" textFill="WHITE" />
-      <Pane layoutX="187.0" layoutY="101.0" prefHeight="38.0" prefWidth="568.0" style="-fx-background-color: #80004C;">
+      <Button id="addguest" layoutX="1091.0" layoutY="647.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="122.0" stylesheets="@css/styles.css" text="Confirm" textFill="WHITE" />
+      <Pane layoutX="265.0" layoutY="136.0" prefHeight="36.0" prefWidth="946.0" style="-fx-background-color: #008080;">
          <children>
-            <CheckBox fx:id="filterSingleRoom" layoutX="66.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="Single" textFill="WHITE" />
-            <CheckBox fx:id="filterDoubleRoom" layoutX="154.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Double" textFill="WHITE" />
-            <CheckBox fx:id="filterTripleRoom" layoutX="257.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Triple" textFill="WHITE" />
-            <CheckBox fx:id="filterTwinRoom" layoutX="352.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Twin" textFill="WHITE" />
-            <CheckBox fx:id="filterQueenRoom" layoutX="441.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Queen" textFill="WHITE" />
+            <CheckBox fx:id="filterSingleRoom" layoutX="64.0" layoutY="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="69.0" stylesheets="@css/styles.css" text="Single" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="filterDoubleRoom" layoutX="233.0" layoutY="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="92.0" text="Double" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="filterTripleRoom" layoutX="432.0" layoutY="8.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Triple" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="filterTwinRoom" layoutX="621.0" layoutY="8.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Twin" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="filterQueenRoom" layoutX="800.0" layoutY="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="77.0" text="Queen" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
          </children>
       </Pane>
    </children>

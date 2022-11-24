@@ -17,28 +17,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="530.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.InvoiceOverviewController">
+<AnchorPane prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.InvoiceOverviewController">
     <children>
-        <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #008080;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="700.0" prefWidth="230.0" style="-fx-background-color: #008080;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Pane prefHeight="111.0" prefWidth="170.0">
                     <children>
-                        <ImageView fitHeight="132.0" fitWidth="150.0" layoutX="19.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="20.0" layoutY="-30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/SkyWardIcon.png" />
                             </image>
                         </ImageView>
                     </children>
                 </Pane>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="71.0" prefWidth="170.0" text="Home" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="85.0" prefWidth="230.0" text="Home" textFill="WHITE">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                     </font>
                     <stylesheets>
                         <URL value="@css/styles.css" />
                     </stylesheets>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/homeIcon.png" />
                      </image>
@@ -48,15 +48,15 @@
                   <Insets left="50.0" />
                </padding>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="61.0" prefWidth="170.0" text="Booking" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="85.0" prefWidth="230.0" text="Booking" textFill="WHITE">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                     </font>
                     <stylesheets>
                         <URL value="@css/styles.css" />
                     </stylesheets>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/bookingIcon.png" />
                      </image>
@@ -66,15 +66,15 @@
                   <Insets left="50.0" />
                </padding>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onInvoicePageButtonClick" prefHeight="65.0" prefWidth="170.0" text="Invoice" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onInvoicePageButtonClick" prefHeight="85.0" prefWidth="230.0" text="Invoice" textFill="WHITE">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="18.0" />
                     </font>
                     <stylesheets>
                         <URL value="@css/styles.css" />
                     </stylesheets>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/invoiceIcon.png" />
                      </image>
@@ -86,21 +86,21 @@
                 </Button>
             </children>
         </VBox>
-        <VBox layoutX="182.0" layoutY="141.0" prefHeight="365.0" prefWidth="574.0">
+        <VBox layoutX="325.0" layoutY="157.0" prefHeight="491.0" prefWidth="867.0">
             <children>
-                <GridPane prefHeight="349.0" prefWidth="476.0">
+                <GridPane prefHeight="494.0" prefWidth="867.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-                        <RowConstraints maxHeight="160.59998168945313" minHeight="10.0" prefHeight="39.19999389648437" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="310.39997558593757" minHeight="10.0" prefHeight="276.0000061035156" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="160.59998168945313" minHeight="10.0" prefHeight="26.4000213623047" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="444.7999786376953" minHeight="10.0" prefHeight="444.7999786376953" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <TextField prefHeight="26.0" prefWidth="142.0" GridPane.rowIndex="1" />
                         <Button id="search" mnemonicParsing="false" prefHeight="0.0" prefWidth="52.0" stylesheets="@css/styles.css" text="Search" textFill="WHITE" GridPane.rowIndex="1" />
-                        <TableView fx:id="table" prefHeight="258.0" prefWidth="462.0" stylesheets="@css/styles.css" GridPane.rowIndex="2">
+                        <TableView fx:id="table" prefHeight="366.0" prefWidth="867.0" stylesheets="@css/styles.css" GridPane.rowIndex="2">
                             <columns>
                                 <TableColumn fx:id="invoiceNumberCol" prefWidth="20.0" text="Invoice Number" />
                                 <TableColumn fx:id="invoiceDateTimeCol" prefWidth="75.0" text="Invoice Date" />
@@ -114,9 +114,9 @@
                 </GridPane>
             </children>
         </VBox>
-        <Pane layoutX="170.0" layoutY="-6.0" prefHeight="130.0" prefWidth="499.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="-1.0">
+        <Pane layoutX="230.0" layoutY="-6.0" prefHeight="120.0" prefWidth="1071.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="-1.0">
             <children>
-                <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="144.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invoice Overview">
+                <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="378.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invoice Overview">
                     <font>
                         <Font size="42.0" />
                     </font>
