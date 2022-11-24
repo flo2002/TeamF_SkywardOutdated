@@ -101,13 +101,8 @@
       </HBox>
       <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
       <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0" />
-      <Pane layoutX="167.0" prefHeight="130.0" prefWidth="604.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="-1.0">
+      <Pane layoutX="167.0" prefHeight="78.0" prefWidth="604.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="-1.0">
          <children>
-            <CheckBox fx:id="filterSingleRoom" layoutX="80.0" layoutY="84.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="Single" textFill="WHITE" />
-            <CheckBox fx:id="filterDoubleRoom" layoutX="168.0" layoutY="84.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Double" textFill="WHITE" />
-            <CheckBox fx:id="filterTripleRoom" layoutX="271.0" layoutY="84.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Triple" textFill="WHITE" />
-            <CheckBox fx:id="filterTwinRoom" layoutX="366.0" layoutY="84.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Twin" textFill="WHITE" />
-            <CheckBox fx:id="filterQueenRoom" layoutX="455.0" layoutY="84.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Queen" textFill="WHITE" />
             <Text fill="WHITE" layoutX="230.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Rooms">
                <font>
                   <Font size="36.0" />
@@ -116,5 +111,14 @@
          </children>
       </Pane>
       <Button id="addguest" layoutX="633.0" layoutY="476.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="122.0" stylesheets="@css/styles.css" text="Confirm" textFill="WHITE" />
+      <Pane layoutX="187.0" layoutY="101.0" prefHeight="38.0" prefWidth="568.0" style="-fx-background-color: #80004C;">
+         <children>
+            <CheckBox fx:id="filterSingleRoom" layoutX="66.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" stylesheets="@css/styles.css" text="Single" textFill="WHITE" />
+            <CheckBox fx:id="filterDoubleRoom" layoutX="154.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Double" textFill="WHITE" />
+            <CheckBox fx:id="filterTripleRoom" layoutX="257.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Triple" textFill="WHITE" />
+            <CheckBox fx:id="filterTwinRoom" layoutX="352.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Twin" textFill="WHITE" />
+            <CheckBox fx:id="filterQueenRoom" layoutX="441.0" layoutY="11.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Queen" textFill="WHITE" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="530.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.HomescreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.HomescreenController">
    <children>
       <VBox prefHeight="465.0" prefWidth="170.0" style="-fx-background-color: #008080;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -41,7 +41,7 @@
                <graphic>
                </graphic>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/homeIcon.png" />
                      </image>
@@ -97,12 +97,11 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-                <RowConstraints maxHeight="160.59998168945313" minHeight="10.0" prefHeight="44.6" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="310.39997558593757" minHeight="10.0" prefHeight="310.39997558593757" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="160.59998168945313" minHeight="10.0" prefHeight="20.800006103515628" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="339.1999877929687" minHeight="10.0" prefHeight="328.79999389648435" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="table" prefHeight="308.0" prefWidth="341.0" stylesheets="@css/styles.css" GridPane.rowIndex="2">
+                  <TableView fx:id="table" prefHeight="308.0" prefWidth="341.0" stylesheets="@css/styles.css" GridPane.rowIndex="1">
                     <columns>
                         <TableColumn fx:id="bookingNumberCol" prefWidth="20.0" text="Booking Number" />
                       <TableColumn fx:id="checkInDateTimeCol" prefWidth="75.0" text="Check-In Date" />
@@ -113,7 +112,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <TableView fx:id="table1" prefHeight="308.0" prefWidth="341.0" stylesheets="@css/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TableView fx:id="table1" prefHeight="308.0" prefWidth="341.0" stylesheets="@css/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
                         <TableColumn fx:id="bookingNumberCol1" prefWidth="20.0" text="Booking Number" />
                         <TableColumn fx:id="checkInDateTimeCol1" prefWidth="75.0" text="Check-In Date" />
@@ -124,20 +123,20 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Pane prefHeight="18.0" prefWidth="287.0" style="-fx-background-color: #008080;" GridPane.rowIndex="1">
+                  <Pane prefHeight="14.0" prefWidth="287.0" style="-fx-background-color: #008080;">
                      <children>
-                        <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="110.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival">
+                        <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="126.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="14.0" />
                            </font>
                         </Text>
                      </children>
                   </Pane>
-                  <Pane prefHeight="18.0" prefWidth="287.0" style="-fx-background-color: #008080;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Pane prefHeight="18.0" prefWidth="287.0" style="-fx-background-color: #008080;" GridPane.columnIndex="1">
                      <children>
-                        <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="90.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departure">
+                        <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="112.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departure">
                            <font>
-                              <Font size="24.0" />
+                              <Font size="14.0" />
                            </font>
                         </Text>
                      </children>
@@ -148,14 +147,14 @@
       </VBox>
       <Pane layoutX="170.0" layoutY="-6.0" prefHeight="92.0" prefWidth="504.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="151.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="198.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
                <font>
                   <Font size="42.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <TextField layoutX="225.0" layoutY="122.0" prefHeight="26.0" prefWidth="526.0" />
+      <TextField layoutX="234.0" layoutY="122.0" prefHeight="26.0" prefWidth="522.0" promptText="Search by Guestname" />
       <Button fx:id="search" layoutX="182.0" layoutY="122.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="52.0" stylesheets="@css/styles.css" text="Search" textFill="WHITE" />
    </children>
 </AnchorPane>
