@@ -36,7 +36,6 @@ public class MainApplication extends Application {
         Parent parent = fxmlLoader.load();
         Scene scene = new Scene(parent);
         stage.setTitle("SkyWard");
-        //stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(windowEvent -> {
