@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.BookingController">
    <children>
@@ -83,25 +84,16 @@
             </Button>
          </children>
       </VBox>
-      <Pane layoutX="170.0" prefHeight="130.0" prefWidth="601.0" style="-fx-background-color: #008080;">
+      <Pane layoutX="170.0" prefHeight="90.0" prefWidth="602.0" style="-fx-background-color: #008080;">
          <children>
-            <Button layoutX="22.0" layoutY="26.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: #50C878;" text="Create new Booking" textFill="WHITE">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="225.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
                <font>
-                  <Font size="16.0" />
-               </font></Button>
-            <Button fx:id="checkInCheckOutButton" layoutX="227.0" layoutY="26.0" mnemonicParsing="false" onAction="#onCheckInCheckOutButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #80004C;" text="Check-in" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
-            <DatePicker fx:id="checkInDatePicker" layoutX="22.0" layoutY="97.0" prefHeight="25.0" prefWidth="195.0" promptText="From" />
-            <DatePicker fx:id="checkOutDatePicker" layoutX="259.0" layoutY="97.0" prefHeight="25.0" prefWidth="195.0" promptText="To" />
-            <Button layoutX="414.0" layoutY="26.0" mnemonicParsing="false" onAction="#onInvoiceButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #80004C;" text="Invoice" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
+                  <Font size="42.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
-      <HBox layoutX="196.0" layoutY="151.0" prefHeight="300.0" prefWidth="550.0">
+      <HBox layoutX="196.0" layoutY="161.0" prefHeight="289.0" prefWidth="550.0">
          <children>
             <TableView fx:id="roomTable" prefHeight="300.0" prefWidth="342.0" stylesheets="@css/styles.css">
               <columns>
@@ -123,7 +115,24 @@
       </HBox>
       <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
       <AnchorPane layoutX="409.0" layoutY="424.0" prefHeight="38.0" prefWidth="250.0" />
-      <Button id="addroom" layoutX="368.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/styles.css" text="add Room" textFill="WHITE" />
-      <Button id="addguest" layoutX="642.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="40.0" prefWidth="100.0" stylesheets="@css/styles.css" text="add Guest" textFill="WHITE" />
+      <Button id="addroom" layoutX="196.0" layoutY="448.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="27.0" prefWidth="81.0" stylesheets="@css/styles.css" text="add Room" textFill="WHITE" />
+      <Button id="addguest" layoutX="477.0" layoutY="449.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="25.0" prefWidth="82.0" stylesheets="@css/styles.css" text="add Guest" textFill="WHITE" />
+      <Button layoutX="616.0" layoutY="486.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="27.0" prefWidth="139.0" style="-fx-background-color: #50C878;" text="Create new Booking" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="checkInDatePicker" layoutX="195.0" layoutY="118.0" prefHeight="25.0" prefWidth="195.0" promptText="From" />
+      <DatePicker fx:id="checkOutDatePicker" layoutX="409.0" layoutY="118.0" prefHeight="25.0" prefWidth="195.0" promptText="To" />
+      <Button fx:id="checkInCheckOutButton" layoutX="659.0" layoutY="117.0" mnemonicParsing="false" onAction="#onCheckInCheckOutButtonClick" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #80004C;" text="Check-in" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="518.0" layoutY="486.0" mnemonicParsing="false" onAction="#onInvoiceButtonClick" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #80004C;" text="Invoice" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
