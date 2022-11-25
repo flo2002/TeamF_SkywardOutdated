@@ -7,6 +7,7 @@ import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.apache.logging.log4j.LogManager;
@@ -47,7 +48,7 @@ public class AddCustomerController {
     }
 
     @FXML
-    public void onSearchCustomerButtonClick(ActionEvent event) {
+    public void onSearchCustomerButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Search");
     }
 
@@ -57,7 +58,7 @@ public class AddCustomerController {
     }
 
     @FXML
-    public void onBookingButtonClick(ActionEvent event) {
+    public void onBookingButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 

@@ -47,7 +47,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="230.0" text="Booking" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="230.0" styleClass="active-item" text="Booking" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -98,7 +98,7 @@
          <children>
             <TableView fx:id="roomTable" prefHeight="380.0" prefWidth="590.0" stylesheets="@css/styles.css">
               <columns>
-                <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="120.7999267578125" styleClass="css/style.css" text="Room Number" />
+                <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="120.7999267578125" text="Room Number" />
                 <TableColumn fx:id="roomTypeNameCol" minWidth="0.0" prefWidth="87.99993896484375" text="Type" />
                  <TableColumn fx:id="roomStateNameCol" prefWidth="253.6000244140625" text="State" />
               </columns>
@@ -115,8 +115,8 @@
          </children>
       </HBox>
       <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
-      <Button id="addroom" layoutX="310.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room" textFill="WHITE" />
-      <Button id="addguest" layoutX="771.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest" textFill="WHITE" />
+      <Button id="addroom" layoutX="310.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room..." textFill="WHITE" />
+      <Button id="addguest" layoutX="771.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest..." textFill="WHITE" />
       <Button layoutX="1098.0" layoutY="639.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="46.0" prefWidth="187.0" style="-fx-background-color: #50C878;" text="Create new Booking" textFill="WHITE">
          <font>
             <Font size="13.0" />
@@ -129,7 +129,7 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <Button layoutX="972.0" layoutY="647.0" mnemonicParsing="false" onAction="#onInvoiceButtonClick" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #80004C;" text="Invoice" textFill="WHITE">
+      <Button fx:id="invoiceButton" layoutX="972.0" layoutY="647.0" mnemonicParsing="false" onAction="#onInvoiceButtonClick" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #80004C;" text="Invoice..." textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
@@ -141,6 +141,14 @@
       <Label layoutX="524.0" layoutY="131.0" text="To">
          <font>
             <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="732.0" layoutY="149.0" prefHeight="26.0" prefWidth="112.0" text="Booking Number:" textFill="#008080">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="bNrPlaceholder" layoutX="849.0" layoutY="149.0" prefHeight="26.0" prefWidth="30.0" text="bid" textFill="#008080">
+         <font>
+            <Font size="14.0" />
          </font></Label>
    </children>
 </AnchorPane>

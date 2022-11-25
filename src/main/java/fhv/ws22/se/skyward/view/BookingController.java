@@ -36,6 +36,9 @@ public class BookingController {
     @FXML
     private Button invoiceButton;
 
+    @FXML
+    public Label bNrPlaceholder;
+
 
     @FXML
     private DatePicker checkInDatePicker;
@@ -185,6 +188,7 @@ public class BookingController {
         } else {
             invoiceButton.setDisable(true);
         }
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
 
     }
 }
