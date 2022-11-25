@@ -31,7 +31,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="homeButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="86.0" prefWidth="234.0" text="Home" textFill="WHITE">
+            <Button fx:id="homeButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="86.0" prefWidth="234.0" styleClass="active-item" text="Home" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -94,13 +94,14 @@
             <GridPane prefHeight="474.0" prefWidth="918.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="160.59998168945313" minHeight="10.0" prefHeight="21.533334350585932" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="452.266665649414" minHeight="10.0" prefHeight="452.266665649414" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="table" prefHeight="453.0" prefWidth="469.0" stylesheets="@css/styles.css" GridPane.rowIndex="1">
+                  <TableView fx:id="table" prefHeight="453.0" prefWidth="475.0" stylesheets="@css/styles.css" GridPane.rowIndex="1">
                     <columns>
                         <TableColumn fx:id="bookingNumberCol" prefWidth="20.0" text="Booking Number" />
                       <TableColumn fx:id="checkInDateTimeCol" prefWidth="75.0" text="Check-In Date" />
@@ -111,7 +112,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <TableView fx:id="table1" prefHeight="308.0" prefWidth="341.0" stylesheets="@css/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView fx:id="table1" prefHeight="453.0" prefWidth="475.0" stylesheets="@css/styles.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
                         <TableColumn fx:id="bookingNumberCol1" prefWidth="20.0" text="Booking Number" />
                         <TableColumn fx:id="checkInDateTimeCol1" prefWidth="75.0" text="Check-In Date" />

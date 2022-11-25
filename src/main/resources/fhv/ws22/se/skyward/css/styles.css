@@ -110,6 +110,10 @@
     -fx-background-color:  #80004C;
 }
 
+.active-item {
+    -fx-background-color: #139b9b;
+}
+
 
 
 
