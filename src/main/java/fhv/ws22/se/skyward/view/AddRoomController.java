@@ -34,6 +34,8 @@ public class AddRoomController {
     @FXML
     private TableColumn<RoomDto, Integer> roomNumberCol;
     @FXML
+    private TableColumn<RoomDto, Boolean> checkboxCol;
+    @FXML
     private TableColumn<RoomDto, String> roomTypeNameCol;
     @FXML
     private TableColumn<RoomDto, String> roomStateNameCol;

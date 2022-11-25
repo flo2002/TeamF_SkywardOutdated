@@ -34,7 +34,7 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
         fxmlLoader.setLocation(getClass().getResource("dashboard.fxml"));
         Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent, 770,530);
+        Scene scene = new Scene(parent);
         stage.setTitle("SkyWard");
         stage.setScene(scene);
         stage.show();
