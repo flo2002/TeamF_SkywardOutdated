@@ -8,23 +8,20 @@ import fhv.ws22.se.skyward.persistence.broker.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+
+import java.util.*;
 
 @Singleton
 public class DatabaseFacade implements DataService {
-    private final EntityManager entityManager;
     private Map<Class, BrokerBase> brokers;
 
     public DatabaseFacade() {
         EntityManagerFactory fact = Persistence.createEntityManagerFactory("skyward");
-        this.entityManager = fact.createEntityManager();
+        EntityManager entityManager = fact.createEntityManager();
 
         brokers = new HashMap<Class, BrokerBase>();
         brokers.put(CustomerModel.class, new CustomerBroker(entityManager));
-        brokers.put(RoomModel.class, new RoomBroker(entityManager));
+        brokers.put(RoomModel.class, new RoomBroker());
         brokers.put(BookingModel.class, new BookingBroker(entityManager));
         brokers.put(InvoiceModel.class, new InvoiceBroker(entityManager));
         brokers.put(AddressModel.class, new AddressBroker(entityManager));
@@ -47,7 +44,6 @@ public class DatabaseFacade implements DataService {
         brokers.get(t.getClass()).update(id, t);
     };
     public <T extends AbstractModel> void delete(UUID id, Class<T> clazz) {
-        brokers.get(clazz).delete(id);
+        brokers.get(clazz).delete(id, clazz);
     };
-
 }

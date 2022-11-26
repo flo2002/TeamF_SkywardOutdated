@@ -25,7 +25,6 @@ public class InvoiceController {
     private ControllerNavigationUtil controllerNavigationUtil;
     private BookingDto tmpBooking;
     private InvoiceDto tmpInvoice;
-
     @FXML
     private Button payButton;
 
@@ -162,9 +161,11 @@ public class InvoiceController {
         chargeableItemTable.getItems().clear();
         List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
         BigDecimal totalPrice = new BigDecimal(0);
-        for (ChargeableItemDto chargeableItem : chargeableItems) {
-            chargeableItemTable.getItems().add(chargeableItem);
-            totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
+        if (chargeableItems != null) {
+            for (ChargeableItemDto chargeableItem : chargeableItems) {
+                chargeableItemTable.getItems().add(chargeableItem);
+                totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
+            }
         }
 
         totalPricePlaceholder.setText(totalPrice.toString());

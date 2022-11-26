@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class RoomBroker extends BrokerBase<RoomModel> {
-    private final EntityManager entityManager;
+public class RoomBroker extends BrokerBase<RoomModel> implements PersistenceRepository<RoomModel> {
 
-    public RoomBroker(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public RoomBroker() {
     }
 
     @SuppressWarnings("unchecked")
@@ -34,7 +32,7 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         return RoomModel.toModel(room);
     }
 
-    public void add(RoomModel room) {
+    private void addDependenciesIfNotExists(RoomModel room) {
         RoomState roomState = null;
         RoomType roomType = null;
 
@@ -55,24 +53,31 @@ public class RoomBroker extends BrokerBase<RoomModel> {
             entityManager.persist(roomType);
             entityManager.flush();
         }
+        entityManager.getTransaction().commit();
+    }
 
-        if (roomState == null) {
-            roomState = (RoomState) entityManager.createQuery("FROM RoomState WHERE name = :name")
+    public UUID addAndReturnId(RoomModel room) {
+        addDependenciesIfNotExists(room);
+
+        RoomState roomState = (RoomState) entityManager.createQuery("FROM RoomState WHERE name = :name")
                 .setParameter("name", room.getRoomStateName())
                 .getSingleResult();
-        }
-        if (roomType == null) {
-            roomType = (RoomType) entityManager.createQuery("FROM RoomType WHERE name = :name")
+        RoomType roomType = (RoomType) entityManager.createQuery("FROM RoomType WHERE name = :name")
                 .setParameter("name", room.getRoomTypeName())
                 .getSingleResult();
-        }
 
         Room roomEntity = room.toEntity();
         roomEntity.setRoomState(roomState);
         roomEntity.setRoomType(roomType);
 
+        entityManager.getTransaction().begin();
         entityManager.persist(roomEntity);
         entityManager.getTransaction().commit();
+        return roomEntity.getId();
+    }
+
+    public void add(RoomModel room) {
+        addAndReturnId(room);
     }
 
     public void update(UUID id, RoomModel room) {
@@ -81,19 +86,5 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         entityManager.getTransaction().begin();
         entityManager.merge(tmpRoom);
         entityManager.getTransaction().commit();
-    }
-
-    public void delete(UUID id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(Room.class, id));
-        entityManager.getTransaction().commit();
-    }
-
-    public UUID addAndReturnId(RoomModel room) {
-        Room tmpRoom = room.toEntity();
-        entityManager.getTransaction().begin();
-        entityManager.persist(tmpRoom);
-        entityManager.getTransaction().commit();
-        return tmpRoom.getId();
     }
 }
