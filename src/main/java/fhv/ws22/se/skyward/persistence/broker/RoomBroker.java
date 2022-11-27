@@ -1,6 +1,8 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
+import fhv.ws22.se.skyward.domain.model.AbstractModel;
 import fhv.ws22.se.skyward.domain.model.RoomModel;
+import fhv.ws22.se.skyward.persistence.entity.AbstractEntity;
 import fhv.ws22.se.skyward.persistence.entity.Room;
 
 import fhv.ws22.se.skyward.persistence.entity.RoomState;
@@ -10,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class RoomBroker extends BrokerBase<RoomModel> implements PersistenceRepository<RoomModel> {
-
-    public RoomBroker() {
+public class RoomBroker extends BrokerBase<RoomModel> {
+    public RoomBroker(EntityManager entityManager) {
+        super(entityManager);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,9 +29,8 @@ public class RoomBroker extends BrokerBase<RoomModel> implements PersistenceRepo
         return roomModels;
     }
 
-    public RoomModel get(UUID id) {
-        Room room = entityManager.find(Room.class, id);
-        return RoomModel.toModel(room);
+    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
+        return super.get(id, entityClazz);
     }
 
     private void addDependenciesIfNotExists(RoomModel room) {
@@ -53,10 +54,11 @@ public class RoomBroker extends BrokerBase<RoomModel> implements PersistenceRepo
             entityManager.persist(roomType);
             entityManager.flush();
         }
-        entityManager.getTransaction().commit();
     }
 
-    public UUID addAndReturnId(RoomModel room) {
+
+    public <S extends AbstractModel> UUID addAndReturnId(S s) {
+        RoomModel room = (RoomModel) s;
         addDependenciesIfNotExists(room);
 
         RoomState roomState = (RoomState) entityManager.createQuery("FROM RoomState WHERE name = :name")
@@ -70,21 +72,26 @@ public class RoomBroker extends BrokerBase<RoomModel> implements PersistenceRepo
         roomEntity.setRoomState(roomState);
         roomEntity.setRoomType(roomType);
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(roomEntity);
-        entityManager.getTransaction().commit();
+        if (entityManager.createQuery("FROM Room WHERE number = :number")
+                .setParameter("number", room.getRoomNumber())
+                .getSingleResult() != null) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(roomEntity);
+            entityManager.getTransaction().commit();
+        }
+
         return roomEntity.getId();
     }
 
-    public void add(RoomModel room) {
-        addAndReturnId(room);
+    public <S extends AbstractModel> void add(S s) {
+        addAndReturnId(s);
     }
 
-    public void update(UUID id, RoomModel room) {
-        Room tmpRoom = room.toEntity();
-        tmpRoom.setId(id);
-        entityManager.getTransaction().begin();
-        entityManager.merge(tmpRoom);
-        entityManager.getTransaction().commit();
+    public <S extends AbstractModel> void update(UUID id, S s) {
+        super.update(id, s);
+    }
+
+    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
+        super.delete(id, clazz);
     }
 }

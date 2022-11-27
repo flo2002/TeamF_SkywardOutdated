@@ -64,7 +64,7 @@ public class Session implements SessionService {
         if (checkIn == null || checkOut == null) {
             return null;
         }
-        List<RoomModel> modelRooms = dbf.getAll(RoomModel.class);
+        List<RoomModel> modelRooms = (List<RoomModel>) dbf.getAll(RoomModel.class);
         List<RoomDto> rooms = new ArrayList<RoomDto>();
         for (RoomModel model : modelRooms) {
             rooms.add(model.toDto());
@@ -85,7 +85,7 @@ public class Session implements SessionService {
             }
         }
 
-        List<BookingModel> modelBookings = dbf.getAll(BookingModel.class);
+        List<BookingModel> modelBookings = (List<BookingModel>) dbf.getAll(BookingModel.class);
         // check if any booking is in the same time frame to remove it from the available rooms
         for (BookingModel booking : modelBookings) {
             if (booking.getCheckInDateTime().isBefore(checkOut) || booking.getCheckOutDateTime().isAfter(checkIn)) {

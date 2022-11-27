@@ -1,7 +1,11 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
+import com.google.inject.Inject;
+import fhv.ws22.se.skyward.domain.model.AbstractModel;
 import fhv.ws22.se.skyward.domain.model.BookingModel;
 import fhv.ws22.se.skyward.domain.model.ChargeableItemModel;
+import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+import fhv.ws22.se.skyward.persistence.entity.AbstractEntity;
 import fhv.ws22.se.skyward.persistence.entity.Booking;
 import fhv.ws22.se.skyward.persistence.entity.ChargeableItem;
 import jakarta.persistence.EntityManager;
@@ -11,10 +15,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class ChargeableItemBroker extends BrokerBase<ChargeableItemModel> {
-    private final EntityManager entityManager;
-
     public ChargeableItemBroker(EntityManager entityManager) {
-        this.entityManager = entityManager;
+        super(entityManager);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,48 +31,35 @@ public class ChargeableItemBroker extends BrokerBase<ChargeableItemModel> {
         return chargeableItemModels;
     }
 
-    public ChargeableItemModel get(UUID id) {
-        ChargeableItem chargeableItem = entityManager.find(ChargeableItem.class, id);
-        return ChargeableItemModel.toModel(chargeableItem);
+    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
+        return super.get(id, entityClazz);
     }
 
-    public void add(ChargeableItemModel chargeableItem) {
-        entityManager.getTransaction().begin();
+    public <S extends AbstractModel> UUID addAndReturnId(S s) {
+        ChargeableItemModel chargeableItem = (ChargeableItemModel) s;
+
         Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE bookingNumber = :bookingNumber")
                 .setParameter("bookingNumber", chargeableItem.getBooking().getBookingNumber())
                 .getSingleResult();
 
-        ChargeableItem c = chargeableItem.toEntity();
-        c.setBooking(booking);
+        ChargeableItem ci = chargeableItem.toEntity();
+        ci.setBooking(booking);
 
-        entityManager.persist(c);
-        entityManager.getTransaction().commit();
-    }
-
-    public void update(UUID id, ChargeableItemModel chargeableItem) {
-        ChargeableItem tmpChargeableItem = chargeableItem.toEntity();
-        tmpChargeableItem.setId(id);
         entityManager.getTransaction().begin();
-        entityManager.merge(tmpChargeableItem);
+        entityManager.persist(ci);
         entityManager.getTransaction().commit();
+        return ci.getId();
     }
 
-    public void delete(UUID id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(ChargeableItem.class, id));
-        entityManager.getTransaction().commit();
+    public <S extends AbstractModel> void add(S s) {
+        addAndReturnId(s);
     }
 
-    public UUID addAndReturnId(ChargeableItemModel chargeableItem) {
-        Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE bookingNumber = :bookingNumber")
-                .setParameter("bookingNumber", chargeableItem.getBooking().getBookingNumber())
-                .getSingleResult();
+    public <S extends AbstractModel> void update(UUID id, S s) {
+        super.update(id, s);
+    }
 
-        ChargeableItem c = chargeableItem.toEntity();
-        c.setBooking(booking);
-
-        entityManager.persist(c);
-        entityManager.getTransaction().commit();
-        return c.getId();
+    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
+        super.delete(id, clazz);
     }
 }
