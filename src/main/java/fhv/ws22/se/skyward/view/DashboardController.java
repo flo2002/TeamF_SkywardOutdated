@@ -6,6 +6,7 @@ import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -16,12 +17,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DashboardController {
-    @Inject
-    private Session session;
-    @Inject
-    private ControllerNavigationUtil controllerNavigationUtil;
-
+public class DashboardController extends AbstractController {
     @FXML
     private TableView<BookingDto> table;
 
@@ -81,20 +77,7 @@ public class DashboardController {
         });
     }
 
-    @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
-    }
 
-    @FXML
-    public void onBookingButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
-    }
     public void updateData() {
         table.getItems().clear();
         List<BookingDto> bookings = session.getAll(BookingDto.class);
