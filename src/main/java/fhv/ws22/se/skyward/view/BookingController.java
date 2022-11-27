@@ -22,15 +22,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
-public class BookingController {
-    private static final Logger logger = LogManager.getLogger("BookingController");
-    @Inject
-    private Session session;
-    @Inject
-    private ControllerNavigationUtil controllerNavigationUtil;
-    private BookingDto tmpBooking;
-
-
+public class BookingController extends AbstractController {
     @FXML
     private Button checkInCheckOutButton;
     @FXML
@@ -115,18 +107,6 @@ public class BookingController {
         NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
-
-    @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        session.update(tmpBooking.getId(), tmpBooking);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
-    }
-
 
     @FXML
     public void onAddRoomButtonClick(ActionEvent event) {

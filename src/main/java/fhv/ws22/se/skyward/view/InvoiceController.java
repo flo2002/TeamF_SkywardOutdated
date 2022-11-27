@@ -17,15 +17,7 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class InvoiceController {
-    private static final Logger logger = LogManager.getLogger("BookingController");
-    @Inject
-    private Session session;
-    @Inject
-    private ControllerNavigationUtil controllerNavigationUtil;
-    private BookingDto tmpBooking;
-    private InvoiceDto tmpInvoice;
-
+public class InvoiceController extends AbstractController {
     @FXML
     private Button payButton;
 
@@ -84,23 +76,6 @@ public class InvoiceController {
         itemQuantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         updateData();
-    }
-
-    @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        session.resetTmpInvoice();
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
-    }
-
-    @FXML
-    public void onBookingButtonClick(ActionEvent event) {
-        session.resetTmpInvoice();
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
 
     @FXML

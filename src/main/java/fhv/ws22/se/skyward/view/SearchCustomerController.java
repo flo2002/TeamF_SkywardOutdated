@@ -18,14 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigInteger;
 import java.util.List;
 
-public class SearchCustomerController {
-    private static final Logger logger = LogManager.getLogger("SearchCustomerController");
-    @Inject
-    private Session session;
-    @Inject
-    private ControllerNavigationUtil controllerNavigationUtil;
-    private BookingDto tmpBooking;
-
+public class SearchCustomerController extends AbstractController {
     @FXML
     private TextField searchTextField;
 
@@ -65,24 +58,12 @@ public class SearchCustomerController {
     }
 
     @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
-    }
-
-    @FXML
     public void onCreateButtonClick(ActionEvent event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-customers.fxml", "Home");
     }
 
-    @FXML
-    public void onBookingButtonClick(Event event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
+
+
 
     public void updateTable(String filter) {
         customerTable.getItems().clear();

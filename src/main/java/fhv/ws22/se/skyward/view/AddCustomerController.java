@@ -13,13 +13,7 @@ import javafx.scene.control.TextField;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class AddCustomerController {
-    private static final Logger logger = LogManager.getLogger("AddGuestController");
-    @Inject
-    private Session session;
-    @Inject
-    private ControllerNavigationUtil controllerNavigationUtil;
-
+public class AddCustomerController extends AbstractController {
     @FXML
     private TextField firstNameTextField;
     @FXML
@@ -52,18 +46,5 @@ public class AddCustomerController {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Search");
     }
 
-    @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
-    }
 
-    @FXML
-    public void onBookingButtonClick(Event event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
-    }
 }
