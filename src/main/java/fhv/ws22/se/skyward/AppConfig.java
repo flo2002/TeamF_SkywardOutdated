@@ -5,7 +5,6 @@ import fhv.ws22.se.skyward.domain.DataService;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import fhv.ws22.se.skyward.persistence.EntityManagerLoader;
-import fhv.ws22.se.skyward.persistence.broker.BrokerInstanceFactory;
 import fhv.ws22.se.skyward.view.*;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.FXMLLoaderProvider;
@@ -21,6 +20,5 @@ public class AppConfig extends AbstractModule {
         bind(FXMLLoader.class).toProvider(FXMLLoaderProvider.class);
         bind(NavigationService.class).to(ControllerNavigationUtil.class);
         bind(EntityManager.class).toProvider(EntityManagerLoader.class);
-        requestStaticInjection(BrokerInstanceFactory.class);
     }
 }

@@ -2,11 +2,10 @@ package fhv.ws22.se.skyward;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import fhv.ws22.se.skyward.domain.DataService;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.persistence.DataGenerator;
-import fhv.ws22.se.skyward.persistence.broker.BrokerInstanceFactory;
-import fhv.ws22.se.skyward.persistence.broker.CustomerBroker;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigInteger;
 
 public class MainApplication extends Application {
@@ -26,14 +24,12 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Session session = SessionFactory.getInstance().getSession(new BigInteger("1"));
-        DataGenerator dataGenerator = new DataGenerator();
-        BrokerInstanceFactory brokerInstanceFactory = BrokerInstanceFactory.getInstance();
 
         Injector injector = Guice.createInjector(new AppConfig());
         injector.injectMembers(session);
-        injector.injectMembers(dataGenerator);
-        injector.injectMembers(brokerInstanceFactory);
+        DataGenerator dataGenerator = new DataGenerator(injector.getInstance(DataService.class));
         dataGenerator.generateData();
+        injector.injectMembers(dataGenerator);
 
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
         fxmlLoader.setLocation(getClass().getResource("dashboard.fxml"));

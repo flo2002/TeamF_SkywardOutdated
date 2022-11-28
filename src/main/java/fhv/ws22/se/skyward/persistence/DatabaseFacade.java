@@ -6,11 +6,7 @@ import fhv.ws22.se.skyward.domain.DataService;
 import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.broker.*;
 
-import fhv.ws22.se.skyward.persistence.entity.AbstractEntity;
-import fhv.ws22.se.skyward.persistence.entity.ChargeableItem;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.util.*;
 
@@ -32,13 +28,12 @@ public class DatabaseFacade implements DataService {
     public DatabaseFacade() {
         brokersClassMap = new HashMap<>();
 
-        BrokerInstanceFactory brokerInstanceFactory = BrokerInstanceFactory.getInstance();
-        customerBroker = brokerInstanceFactory.getCustomerBroker();
-        roomBroker = brokerInstanceFactory.getRoomBroker();
-        bookingBroker = brokerInstanceFactory.getBookingBroker();
-        addressBroker = brokerInstanceFactory.getAddressBroker();
-        invoiceBroker = brokerInstanceFactory.getInvoiceBroker();
-        chargeableItemBroker = brokerInstanceFactory.getChargeableItemBroker();
+        customerBroker = new CustomerBroker(this, entityManager);
+        roomBroker = new RoomBroker(entityManager);
+        bookingBroker = new BookingBroker(this, entityManager);
+        addressBroker = new AddressBroker(entityManager);
+        invoiceBroker = new InvoiceBroker(this, entityManager);
+        chargeableItemBroker = new ChargeableItemBroker(entityManager);
 
         brokersClassMap.put(CustomerModel.class, customerBroker);
         brokersClassMap.put(RoomModel.class, roomBroker);

@@ -5,6 +5,7 @@ import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import fhv.ws22.se.skyward.persistence.entity.*;
 import jakarta.persistence.EntityManager;
+import javafx.scene.chart.PieChart;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -13,14 +14,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class BookingBroker extends BrokerBase<BookingModel> {
-    @Inject
-    DatabaseFacade dbf;
     CustomerBroker customerBroker;
     RoomBroker roomBroker;
     InvoiceBroker invoiceBroker;
     ChargeableItemBroker chargeableItemBroker;
 
-    public BookingBroker(EntityManager entityManager) {
+    public BookingBroker(DatabaseFacade dbf, EntityManager entityManager) {
         super(entityManager);
         customerBroker = dbf.getCustomerBroker();
         roomBroker = dbf.getRoomBroker();

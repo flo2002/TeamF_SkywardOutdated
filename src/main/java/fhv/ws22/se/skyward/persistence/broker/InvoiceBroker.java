@@ -14,12 +14,10 @@ import java.util.List;
 import java.util.UUID;
 
 public class InvoiceBroker extends BrokerBase<InvoiceModel> {
-    @Inject
-    DatabaseFacade dbf;
     AddressBroker addressBroker;
     BookingBroker bookingBroker;
 
-    public InvoiceBroker(EntityManager em) {
+    public InvoiceBroker(DatabaseFacade dbf, EntityManager em) {
         super(em);
         this.addressBroker = dbf.getAddressBroker();
         this.bookingBroker = dbf.getBookingBroker();
