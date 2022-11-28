@@ -135,9 +135,11 @@ public class InvoiceController extends AbstractController {
         }
 
         chargeableItemTable.getItems().clear();
-        List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
-        BigDecimal totalPrice = new BigDecimal(0);
+        List<ChargeableItemDto> chargeableItems = session.getAll(ChargeableItemDto.class);
+        chargeableItems.removeIf(chargeableItemDto -> !chargeableItemDto.getBooking().getId().equals(tmpInvoice.getBooking().getId()));
         chargeableItemTable.getItems().addAll(chargeableItems);
+
+        BigDecimal totalPrice = new BigDecimal(0);
         for (ChargeableItemDto chargeableItem : chargeableItems) {
             totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
         }

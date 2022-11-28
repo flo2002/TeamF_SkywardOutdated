@@ -1,8 +1,9 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
-import fhv.ws22.se.skyward.domain.model.AddressModel;
-import fhv.ws22.se.skyward.domain.model.BookingModel;
-import fhv.ws22.se.skyward.domain.model.InvoiceModel;
+import com.google.inject.Inject;
+import fhv.ws22.se.skyward.domain.model.*;
+import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+import fhv.ws22.se.skyward.persistence.entity.AbstractEntity;
 import fhv.ws22.se.skyward.persistence.entity.Address;
 import fhv.ws22.se.skyward.persistence.entity.Booking;
 import fhv.ws22.se.skyward.persistence.entity.Invoice;
@@ -13,10 +14,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class InvoiceBroker extends BrokerBase<InvoiceModel> {
-    public final EntityManager entityManager;
+    AddressBroker addressBroker;
+    BookingBroker bookingBroker;
 
-    public InvoiceBroker(EntityManager em) {
-        entityManager = em;
+    public InvoiceBroker(DatabaseFacade dbf, EntityManager em) {
+        super(em);
+        this.addressBroker = dbf.getAddressBroker();
+        this.bookingBroker = dbf.getBookingBroker();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,157 +35,59 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
         return invoiceModels;
     }
 
-    public InvoiceModel get(UUID id) {
-        Invoice invoice = entityManager.find(Invoice.class, id);
-        return InvoiceModel.toModel(invoice);
+    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
+        return super.get(id, entityClazz);
     }
 
-    public void add(InvoiceModel invoice) {
-        Address hotelAddress = null;
-        Address customerAddress = null;
-
-        entityManager.getTransaction().begin();
-        if (entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
-                .setParameter("street", invoice.getHotelAddress().getStreet())
-                .setParameter("number", invoice.getHotelAddress().getHouseNumber())
-                .setParameter("zip", invoice.getHotelAddress().getZipCode())
-                .setParameter("city", invoice.getHotelAddress().getCity())
-                .getResultList().isEmpty()) {
-            hotelAddress = new Address();
-            hotelAddress.setStreet(invoice.getHotelAddress().getStreet());
-            hotelAddress.setHouseNumber(invoice.getHotelAddress().getHouseNumber());
-            hotelAddress.setZipCode(invoice.getHotelAddress().getZipCode());
-            hotelAddress.setCity(invoice.getHotelAddress().getCity());
-            entityManager.persist(hotelAddress);
-            entityManager.flush();
-        }
-        if (entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
-                .setParameter("street", invoice.getCustomerAddress().getStreet())
-                .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
-                .setParameter("zip", invoice.getCustomerAddress().getZipCode())
-                .setParameter("city", invoice.getCustomerAddress().getCity())
-                .getResultList().isEmpty()) {
-            customerAddress = new Address();
-            customerAddress.setStreet(invoice.getCustomerAddress().getStreet());
-            customerAddress.setHouseNumber(invoice.getCustomerAddress().getHouseNumber());
-            customerAddress.setZipCode(invoice.getCustomerAddress().getZipCode());
-            customerAddress.setCity(invoice.getCustomerAddress().getCity());
-            entityManager.persist(customerAddress);
-            entityManager.flush();
-        }
-
-        Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE bookingNumber = :bookingNumber")
-            .setParameter("bookingNumber", invoice.getBooking().getBookingNumber())
-            .getSingleResult();
-
-        if (hotelAddress == null) {
-            hotelAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
-                    .setParameter("street", invoice.getHotelAddress().getStreet())
-                    .setParameter("number", invoice.getHotelAddress().getHouseNumber())
-                    .setParameter("zip", invoice.getHotelAddress().getZipCode())
-                    .setParameter("city", invoice.getHotelAddress().getCity())
-                    .getSingleResult();
-        }
-        if (customerAddress == null) {
-            customerAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND number = :number AND zip = :zip AND city = :city")
-                    .setParameter("street", invoice.getCustomerAddress().getStreet())
-                    .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
-                    .setParameter("zip", invoice.getCustomerAddress().getZipCode())
-                    .setParameter("city", invoice.getCustomerAddress().getCity())
-                    .getSingleResult();
-        }
-
-        Invoice i = invoice.toEntity();
-        i.setBooking(booking);
-        i.setHotelAddress(hotelAddress);
-        i.setCustomerAddress(customerAddress);
-
-        entityManager.persist(i);
-        entityManager.flush();
+    private void addDependenciesIfNotExists(InvoiceModel invoice) {
+        addressBroker.add(invoice.getHotelAddress());
+        addressBroker.add(invoice.getCustomerAddress());
     }
 
-    public void update(UUID id, InvoiceModel invoice) {
-        Invoice tmpInvoice = invoice.toEntity();
-        tmpInvoice.setId(id);
-        entityManager.getTransaction().begin();
-        entityManager.merge(tmpInvoice);
-        entityManager.getTransaction().commit();
-    }
-
-    public void delete(UUID id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(Invoice.class, id));
-        entityManager.getTransaction().commit();
-    }
-
-    public UUID addAndReturnId(InvoiceModel invoice) {
-        Address hotelAddress = null;
-        Address customerAddress = null;
-
-        entityManager.getTransaction().begin();
-        if (entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
-                .setParameter("street", invoice.getHotelAddress().getStreet())
-                .setParameter("number", invoice.getHotelAddress().getHouseNumber())
-                .setParameter("zip", invoice.getHotelAddress().getZipCode())
-                .setParameter("city", invoice.getHotelAddress().getCity())
-                .setParameter("country", invoice.getHotelAddress().getCountry())
-                .getResultList().isEmpty()) {
-            hotelAddress = new Address();
-            hotelAddress.setStreet(invoice.getHotelAddress().getStreet());
-            hotelAddress.setHouseNumber(invoice.getHotelAddress().getHouseNumber());
-            hotelAddress.setZipCode(invoice.getHotelAddress().getZipCode());
-            hotelAddress.setCity(invoice.getHotelAddress().getCity());
-            hotelAddress.setCountry(invoice.getHotelAddress().getCountry());
-            entityManager.persist(hotelAddress);
-            entityManager.flush();
-        }
-        if (entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
-                .setParameter("street", invoice.getCustomerAddress().getStreet())
-                .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
-                .setParameter("zip", invoice.getCustomerAddress().getZipCode())
-                .setParameter("city", invoice.getCustomerAddress().getCity())
-                .setParameter("country", invoice.getCustomerAddress().getCountry())
-                .getResultList().isEmpty()) {
-            customerAddress = new Address();
-            customerAddress.setStreet(invoice.getCustomerAddress().getStreet());
-            customerAddress.setHouseNumber(invoice.getCustomerAddress().getHouseNumber());
-            customerAddress.setZipCode(invoice.getCustomerAddress().getZipCode());
-            customerAddress.setCity(invoice.getCustomerAddress().getCity());
-            customerAddress.setCountry(invoice.getCustomerAddress().getCountry());
-            entityManager.persist(customerAddress);
-            entityManager.flush();
-        }
+    public <S extends AbstractModel> UUID addAndReturnId(S s) {
+        InvoiceModel invoice = (InvoiceModel) s;
+        addDependenciesIfNotExists(invoice);
 
         Booking booking = (Booking) entityManager.createQuery("FROM Booking WHERE bookingNumber = :bookingNumber")
                 .setParameter("bookingNumber", invoice.getBooking().getBookingNumber())
                 .getSingleResult();
 
-        if (hotelAddress == null) {
-            hotelAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
-                    .setParameter("street", invoice.getHotelAddress().getStreet())
-                    .setParameter("number", invoice.getHotelAddress().getHouseNumber())
-                    .setParameter("zip", invoice.getHotelAddress().getZipCode())
-                    .setParameter("city", invoice.getHotelAddress().getCity())
-                    .setParameter("country", invoice.getHotelAddress().getCountry())
-                    .getSingleResult();
-        }
-        if (customerAddress == null) {
-            customerAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
-                    .setParameter("street", invoice.getCustomerAddress().getStreet())
-                    .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
-                    .setParameter("zip", invoice.getCustomerAddress().getZipCode())
-                    .setParameter("city", invoice.getCustomerAddress().getCity())
-                    .setParameter("country", invoice.getCustomerAddress().getCountry())
-                    .getSingleResult();
-        }
+        Address hotelAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
+                .setParameter("street", invoice.getHotelAddress().getStreet())
+                .setParameter("number", invoice.getHotelAddress().getHouseNumber())
+                .setParameter("zip", invoice.getHotelAddress().getZipCode())
+                .setParameter("city", invoice.getHotelAddress().getCity())
+                .setParameter("country", invoice.getHotelAddress().getCountry())
+                .getSingleResult();
 
-        Invoice i = invoice.toEntity();
-        i.setBooking(booking);
-        i.setHotelAddress(hotelAddress);
-        i.setCustomerAddress(customerAddress);
+        Address customerAddress = (Address) entityManager.createQuery("FROM Address WHERE street = :street AND houseNumber = :number AND zipCode = :zip AND city = :city AND country = :country")
+                .setParameter("street", invoice.getCustomerAddress().getStreet())
+                .setParameter("number", invoice.getCustomerAddress().getHouseNumber())
+                .setParameter("zip", invoice.getCustomerAddress().getZipCode())
+                .setParameter("city", invoice.getCustomerAddress().getCity())
+                .setParameter("country", invoice.getCustomerAddress().getCountry())
+                .getSingleResult();
 
-        entityManager.persist(i);
+        Invoice invoiceEntity = invoice.toEntity();
+        invoiceEntity.setBooking(booking);
+        invoiceEntity.setHotelAddress(hotelAddress);
+        invoiceEntity.setCustomerAddress(customerAddress);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(invoiceEntity);
         entityManager.getTransaction().commit();
-        return i.getId();
+        return invoiceEntity.getId();
+    }
+
+    public <S extends AbstractModel> void add(S s) {
+        addAndReturnId(s);
+    }
+
+    public <S extends AbstractModel> void update(UUID id, S s) {
+        super.update(id, s);
+    }
+
+    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
+        super.delete(id, clazz);
     }
 }

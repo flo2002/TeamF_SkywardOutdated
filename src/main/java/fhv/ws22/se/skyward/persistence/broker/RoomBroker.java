@@ -1,6 +1,8 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
+import fhv.ws22.se.skyward.domain.model.AbstractModel;
 import fhv.ws22.se.skyward.domain.model.RoomModel;
+import fhv.ws22.se.skyward.persistence.entity.AbstractEntity;
 import fhv.ws22.se.skyward.persistence.entity.Room;
 
 import fhv.ws22.se.skyward.persistence.entity.RoomState;
@@ -11,10 +13,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class RoomBroker extends BrokerBase<RoomModel> {
-    private final EntityManager entityManager;
-
     public RoomBroker(EntityManager entityManager) {
-        this.entityManager = entityManager;
+        super(entityManager);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,12 +29,11 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         return roomModels;
     }
 
-    public RoomModel get(UUID id) {
-        Room room = entityManager.find(Room.class, id);
-        return RoomModel.toModel(room);
+    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
+        return super.get(id, entityClazz);
     }
 
-    public void add(RoomModel room) {
+    private void addDependenciesIfNotExists(RoomModel room) {
         RoomState roomState = null;
         RoomType roomType = null;
 
@@ -55,45 +54,45 @@ public class RoomBroker extends BrokerBase<RoomModel> {
             entityManager.persist(roomType);
             entityManager.flush();
         }
+        entityManager.getTransaction().commit();
+    }
 
-        if (roomState == null) {
-            roomState = (RoomState) entityManager.createQuery("FROM RoomState WHERE name = :name")
+
+    public <S extends AbstractModel> UUID addAndReturnId(S s) {
+        RoomModel room = (RoomModel) s;
+        addDependenciesIfNotExists(room);
+
+        RoomState roomState = (RoomState) entityManager.createQuery("FROM RoomState WHERE name = :name")
                 .setParameter("name", room.getRoomStateName())
                 .getSingleResult();
-        }
-        if (roomType == null) {
-            roomType = (RoomType) entityManager.createQuery("FROM RoomType WHERE name = :name")
+        RoomType roomType = (RoomType) entityManager.createQuery("FROM RoomType WHERE name = :name")
                 .setParameter("name", room.getRoomTypeName())
                 .getSingleResult();
-        }
 
         Room roomEntity = room.toEntity();
         roomEntity.setRoomState(roomState);
         roomEntity.setRoomType(roomType);
 
-        entityManager.persist(roomEntity);
-        entityManager.getTransaction().commit();
+        if (entityManager.createQuery("FROM Room WHERE roomNumber = :number")
+                .setParameter("number", room.getRoomNumber())
+                .getResultList().isEmpty()) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(roomEntity);
+            entityManager.getTransaction().commit();
+        }
+
+        return roomEntity.getId();
     }
 
-    public void update(UUID id, RoomModel room) {
-        Room tmpRoom = room.toEntity();
-        tmpRoom.setId(id);
-        entityManager.getTransaction().begin();
-        entityManager.merge(tmpRoom);
-        entityManager.getTransaction().commit();
+    public <S extends AbstractModel> void add(S s) {
+        addAndReturnId(s);
     }
 
-    public void delete(UUID id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(Room.class, id));
-        entityManager.getTransaction().commit();
+    public <S extends AbstractModel> void update(UUID id, S s) {
+        super.update(id, s);
     }
 
-    public UUID addAndReturnId(RoomModel room) {
-        Room tmpRoom = room.toEntity();
-        entityManager.getTransaction().begin();
-        entityManager.persist(tmpRoom);
-        entityManager.getTransaction().commit();
-        return tmpRoom.getId();
+    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
+        super.delete(id, clazz);
     }
 }

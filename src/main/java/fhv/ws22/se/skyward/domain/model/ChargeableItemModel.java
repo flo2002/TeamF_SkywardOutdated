@@ -14,10 +14,11 @@ public class ChargeableItemModel extends AbstractModel {
 
     public ChargeableItemModel() {
     }
-    public ChargeableItemModel(String name, BigDecimal price, Integer quantity) {
+    public ChargeableItemModel(String name, BigDecimal price, Integer quantity, BookingModel booking) {
         setName(name);
         setPrice(price);
         setQuantity(quantity);
+        setBooking(booking);
     }
 
     public String getName() {
