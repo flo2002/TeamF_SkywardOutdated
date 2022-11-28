@@ -41,7 +41,7 @@ public class AddressBroker extends BrokerBase<AddressModel> {
                 .setParameter("postalCode", addressEntity.getZipCode())
                 .setParameter("city", addressEntity.getCity())
                 .setParameter("country", addressEntity.getCountry())
-                .getSingleResult() == null) {
+                .getResultList().isEmpty()) {
             addressEntity.setStreet(addressEntity.getStreet());
             addressEntity.setHouseNumber(addressEntity.getHouseNumber());
             addressEntity.setZipCode(addressEntity.getZipCode());

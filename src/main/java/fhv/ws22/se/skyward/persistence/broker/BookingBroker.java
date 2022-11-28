@@ -14,17 +14,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class BookingBroker extends BrokerBase<BookingModel> {
-    CustomerBroker customerBroker;
-    RoomBroker roomBroker;
-    InvoiceBroker invoiceBroker;
-    ChargeableItemBroker chargeableItemBroker;
+    private final DatabaseFacade dbf;
 
-    public BookingBroker(DatabaseFacade dbf, EntityManager entityManager) {
+    public BookingBroker(DatabaseFacade databaseFacade, EntityManager entityManager) {
         super(entityManager);
-        customerBroker = dbf.getCustomerBroker();
-        roomBroker = dbf.getRoomBroker();
-        invoiceBroker = dbf.getInvoiceBroker();
-        chargeableItemBroker = dbf.getChargeableItemBroker();
+        dbf = databaseFacade;
     }
 
     @SuppressWarnings("unchecked")
@@ -45,16 +39,16 @@ public class BookingBroker extends BrokerBase<BookingModel> {
 
     private void addDependenciesIfNotExists(BookingModel booking) {
         List<CustomerModel> customerModels = booking.getCustomers();
-        customerModels.forEach(customerBroker::add);
+        customerModels.forEach(dbf::add);
 
         List<RoomModel> roomModels = booking.getRooms();
-        roomModels.forEach(roomBroker::add);
+        roomModels.forEach(dbf::add);
 
         List<ChargeableItemModel> chargeableItemModels = booking.getChargeableItems();
-        chargeableItemModels.forEach(chargeableItemBroker::add);
+        chargeableItemModels.forEach(dbf::add);
 
         List<InvoiceModel> invoiceModels = booking.getInvoices();
-        invoiceModels.forEach(invoiceBroker::add);
+        invoiceModels.forEach(dbf::add);
     }
 
     public<S extends AbstractModel> UUID addAndReturnId(S s) {

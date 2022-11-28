@@ -12,8 +12,7 @@ import java.util.*;
 
 @Singleton
 public class DatabaseFacade implements DataService {
-    @Inject
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     private final CustomerBroker customerBroker;
     private final RoomBroker roomBroker;
@@ -25,9 +24,11 @@ public class DatabaseFacade implements DataService {
     private Map<Class<? extends AbstractModel>,
             BrokerBase<? extends AbstractModel>> brokersClassMap;
 
-    public DatabaseFacade() {
-        brokersClassMap = new HashMap<>();
+    @Inject
+    public DatabaseFacade(EntityManager em) {
+        this.entityManager = em;
 
+        brokersClassMap = new HashMap<>();
         customerBroker = new CustomerBroker(this, entityManager);
         roomBroker = new RoomBroker(entityManager);
         bookingBroker = new BookingBroker(this, entityManager);

@@ -16,9 +16,9 @@ public class AppConfig extends AbstractModule {
     @Override
     protected void configure() {
         bind(DataService.class).to(DatabaseFacade.class);
+        bind(EntityManager.class).toProvider(EntityManagerLoader.class);
         bind(SessionService.class).to(Session.class);
         bind(FXMLLoader.class).toProvider(FXMLLoaderProvider.class);
         bind(NavigationService.class).to(ControllerNavigationUtil.class);
-        bind(EntityManager.class).toProvider(EntityManagerLoader.class);
     }
 }

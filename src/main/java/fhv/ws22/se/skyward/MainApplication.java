@@ -6,6 +6,10 @@ import fhv.ws22.se.skyward.domain.DataService;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.persistence.DataGenerator;
+import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,11 +29,11 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         Session session = SessionFactory.getInstance().getSession(new BigInteger("1"));
         DataGenerator dataGenerator = new DataGenerator();
-        dataGenerator.generateData();
 
         Injector injector = Guice.createInjector(new AppConfig());
         injector.injectMembers(session);
         injector.injectMembers(dataGenerator);
+        dataGenerator.generateData();
 
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
         fxmlLoader.setLocation(getClass().getResource("dashboard.fxml"));

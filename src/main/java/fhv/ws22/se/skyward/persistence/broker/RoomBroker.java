@@ -54,6 +54,7 @@ public class RoomBroker extends BrokerBase<RoomModel> {
             entityManager.persist(roomType);
             entityManager.flush();
         }
+        entityManager.getTransaction().commit();
     }
 
 
@@ -72,9 +73,11 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         roomEntity.setRoomState(roomState);
         roomEntity.setRoomType(roomType);
 
-        if (entityManager.createQuery("FROM Room WHERE number = :number")
+        System.out.println(entityManager);
+
+        if (entityManager.createQuery("FROM Room WHERE roomNumber = :number")
                 .setParameter("number", room.getRoomNumber())
-                .getSingleResult() != null) {
+                .getResultList().isEmpty()) {
             entityManager.getTransaction().begin();
             entityManager.persist(roomEntity);
             entityManager.getTransaction().commit();

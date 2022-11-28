@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class CustomerBroker extends BrokerBase<CustomerModel> {
-    private final AddressBroker addressBroker;
+    private final DatabaseFacade dbf;
 
-    public CustomerBroker(DatabaseFacade dbf, EntityManager em) {
+    public CustomerBroker(DatabaseFacade databaseFacade, EntityManager em) {
         super(em);
-        this.addressBroker = dbf.getAddressBroker();
+        dbf = databaseFacade;
     }
 
     @SuppressWarnings("unchecked")
@@ -41,7 +41,7 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
     }
 
     private void addDependenciesIfNotExists(CustomerModel customer) {
-        addressBroker.add(customer.getAddress());
+        dbf.add(customer.getAddress());
     }
 
     public <S extends AbstractModel> UUID addAndReturnId(S s) {
