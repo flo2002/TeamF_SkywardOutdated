@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class DataGenerator {
+    @Inject
     public DatabaseFacade dbf;
 
-    public DataGenerator(DatabaseFacade dbf) {
-        this.dbf = dbf;
+    public DataGenerator() {
     }
 
     public void generateData() {

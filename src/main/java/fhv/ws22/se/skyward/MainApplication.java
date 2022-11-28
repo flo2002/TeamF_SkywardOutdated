@@ -24,11 +24,11 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Session session = SessionFactory.getInstance().getSession(new BigInteger("1"));
+        DataGenerator dataGenerator = new DataGenerator();
+        dataGenerator.generateData();
 
         Injector injector = Guice.createInjector(new AppConfig());
         injector.injectMembers(session);
-        DataGenerator dataGenerator = new DataGenerator(injector.getInstance(DataService.class));
-        dataGenerator.generateData();
         injector.injectMembers(dataGenerator);
 
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
