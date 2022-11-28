@@ -159,13 +159,13 @@ public class InvoiceController {
         }
 
         chargeableItemTable.getItems().clear();
-        List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
+        List<ChargeableItemDto> chargeableItems = session.getAll(ChargeableItemDto.class);
+        chargeableItems.removeIf(chargeableItemDto -> !chargeableItemDto.getBooking().getId().equals(tmpInvoice.getBooking().getId()));
+        chargeableItemTable.getItems().addAll(chargeableItems);
+
         BigDecimal totalPrice = new BigDecimal(0);
-        if (chargeableItems != null) {
-            for (ChargeableItemDto chargeableItem : chargeableItems) {
-                chargeableItemTable.getItems().add(chargeableItem);
-                totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
-            }
+        for (ChargeableItemDto chargeableItem : chargeableItems) {
+            totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
         }
 
         totalPricePlaceholder.setText(totalPrice.toString());

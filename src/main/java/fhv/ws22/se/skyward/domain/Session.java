@@ -7,6 +7,8 @@ import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import fhv.ws22.se.skyward.view.SessionService;
 
+import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -128,13 +130,25 @@ public class Session implements SessionService {
 
     public InvoiceDto getTmpInvoice() {
         if (tmpInvoiceId == null) {
-            if (getTmpBooking().getInvoices() == null || getTmpBooking().getInvoices().isEmpty()) {
+            BookingDto booking = getTmpBooking();
+            if (booking.getInvoices() == null || booking.getInvoices().isEmpty()) {
                 AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
                 dbf.add(customerAddress);
-                InvoiceModel invoice = new InvoiceModel(LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
+                InvoiceModel invoice = new InvoiceModel(LocalDateTime.now(), false, customerAddress, booking.toModel());
                 tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
+
+                List<ChargeableItemDto> chargeableItemModels = new ArrayList<>();
+                for (RoomDto room : booking.getRooms()) {
+                    Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays() + 1;
+                    ChargeableItemModel chargeableItem = new ChargeableItemModel(room.getRoomTypeName(), new BigDecimal(100), quantity, booking.toModel());
+                    chargeableItemModels.add(chargeableItem.toDto());
+                    dbf.add(chargeableItem);
+                }
+
+                booking.setChargeableItems(chargeableItemModels);
+                dbf.update(booking.getId(), booking.toModel());
             } else {
-                tmpInvoiceId = getTmpBooking().getInvoices().get(0).getId();
+                tmpInvoiceId = booking.getInvoices().get(0).getId();
             }
         }
         InvoiceModel invoice = dbf.get(tmpInvoiceId, InvoiceModel.class);
