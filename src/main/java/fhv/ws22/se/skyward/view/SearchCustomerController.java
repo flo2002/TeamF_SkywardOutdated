@@ -5,6 +5,7 @@ import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
@@ -28,6 +29,9 @@ public class SearchCustomerController extends AbstractController {
     private TableColumn<CustomerDto, String> firstNameCol;
     @FXML
     private TableColumn<CustomerDto, String> lastNameCol;
+    @FXML
+    public Label bNrPlaceholder;
+
 
     @FXML
     protected void initialize() {
@@ -48,6 +52,7 @@ public class SearchCustomerController extends AbstractController {
                 tmpBooking.setCustomers(selectedCustomers);
             }
         });
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
 
     @FXML
@@ -62,7 +67,10 @@ public class SearchCustomerController extends AbstractController {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-customers.fxml", "Home");
     }
 
-
+    @FXML
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
 
 
     public void updateTable(String filter) {

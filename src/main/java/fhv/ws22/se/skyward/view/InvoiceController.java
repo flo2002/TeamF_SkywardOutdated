@@ -110,6 +110,11 @@ public class InvoiceController extends AbstractController {
 
     }
 
+    @FXML
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
+
     public void updateData(){
         tmpBooking.setInvoices(List.of(tmpInvoice));
         session.update(tmpBooking.getId(), tmpBooking);

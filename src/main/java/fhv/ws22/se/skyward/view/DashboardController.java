@@ -1,12 +1,7 @@
 package fhv.ws22.se.skyward.view;
 
-import com.google.inject.Inject;
-import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -15,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DashboardController extends AbstractController {
@@ -76,7 +72,6 @@ public class DashboardController extends AbstractController {
             return row;
         });
     }
-
 
     public void updateData() {
         table.getItems().clear();

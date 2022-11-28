@@ -18,9 +18,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.util.HashMap;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class BookingController extends AbstractController {
     @FXML
@@ -31,6 +36,8 @@ public class BookingController extends AbstractController {
     @FXML
     public Label bNrPlaceholder;
 
+    @FXML
+    public Label nights;
 
     @FXML
     private DatePicker checkInDatePicker;
@@ -84,6 +91,7 @@ public class BookingController extends AbstractController {
                 updateData();
             }
         });
+
     }
 
 
@@ -169,6 +177,6 @@ public class BookingController extends AbstractController {
             invoiceButton.setDisable(true);
         }
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
-
+        //nights.setText(String.valueOf(DAYS.between(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime())));
     }
 }

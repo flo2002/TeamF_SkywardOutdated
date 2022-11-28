@@ -10,10 +10,7 @@ import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,6 +41,9 @@ public class AddRoomController extends AbstractController {
     private CheckBox filterTwinRoom;
     @FXML
     private CheckBox filterQueenRoom;
+
+    @FXML
+    public Label bNrPlaceholder;
 
     @FXML
     protected void initialize() {
@@ -109,6 +109,11 @@ public class AddRoomController extends AbstractController {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
+    @FXML
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
+
     public void updateData() {
 
         HashMap<String, Boolean> filterMap = session.getRoomFilterMap();
@@ -137,5 +142,7 @@ public class AddRoomController extends AbstractController {
                 roomTable.getItems().add(room);
             }
         }
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
+
     }
 }
