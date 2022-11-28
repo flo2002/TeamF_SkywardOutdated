@@ -137,8 +137,8 @@ public class InvoiceController extends AbstractController {
         chargeableItemTable.getItems().clear();
         List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
         BigDecimal totalPrice = new BigDecimal(0);
+        chargeableItemTable.getItems().addAll(chargeableItems);
         for (ChargeableItemDto chargeableItem : chargeableItems) {
-            chargeableItemTable.getItems().add(chargeableItem);
             totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
         }
 

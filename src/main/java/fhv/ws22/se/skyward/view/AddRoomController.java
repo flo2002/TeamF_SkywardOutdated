@@ -133,9 +133,7 @@ public class AddRoomController extends AbstractController {
 
         List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
         if (rooms != null) {
-            for (RoomDto room : rooms) {
-                roomTable.getItems().add(room);
-            }
+            roomTable.getItems().addAll(rooms);
         }
     }
 }
