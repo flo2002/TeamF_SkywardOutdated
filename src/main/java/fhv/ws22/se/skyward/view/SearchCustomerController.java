@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchCustomerController extends AbstractController {
@@ -68,10 +69,13 @@ public class SearchCustomerController extends AbstractController {
     public void updateTable(String filter) {
         customerTable.getItems().clear();
         List<CustomerDto> customers = session.getAll(CustomerDto.class);
+        List<CustomerDto> filteredCustomers = new ArrayList<CustomerDto>();
         for (CustomerDto customer : customers) {
             if (customer.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customer.getLastName().toLowerCase().contains(filter.toLowerCase())) {
-                customerTable.getItems().add(customer);
+                filteredCustomers.add(customer);
             }
         }
+        customerTable.getItems().addAll(filteredCustomers);
+
     }
 }

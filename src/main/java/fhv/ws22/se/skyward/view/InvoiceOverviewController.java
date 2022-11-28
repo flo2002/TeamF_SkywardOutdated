@@ -52,8 +52,6 @@ public class InvoiceOverviewController extends AbstractController {
     public void updateTable() {
         table.getItems().clear();
         List<InvoiceDto> invoices = session.getAll(InvoiceDto.class);
-        for (InvoiceDto invoice : invoices) {
-            table.getItems().add(invoice);
-        }
+        table.getItems().addAll(invoices);
     }
 }

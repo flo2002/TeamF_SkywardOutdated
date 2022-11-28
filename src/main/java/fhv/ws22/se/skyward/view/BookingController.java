@@ -149,18 +149,16 @@ public class BookingController extends AbstractController {
 
         customerTable.getItems().clear();
         List<CustomerDto> customers = tmpBooking.getCustomers();
+
         if (customers != null) {
-            for (CustomerDto customer : customers) {
-                customerTable.getItems().add(customer);
-            }
+            customerTable.getItems().addAll(customers);
         }
 
         roomTable.getItems().clear();
         List<RoomDto> rooms = tmpBooking.getRooms();
+
         if (rooms != null) {
-            for (RoomDto room : rooms) {
-                roomTable.getItems().add(room);
-            }
+            roomTable.getItems().addAll(rooms);
         }
 
         if (rooms != null && customers != null && tmpBooking.getCheckOutDateTime() != null) {
