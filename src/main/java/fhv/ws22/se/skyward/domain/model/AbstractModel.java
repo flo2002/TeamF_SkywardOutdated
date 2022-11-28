@@ -1,13 +1,9 @@
 package fhv.ws22.se.skyward.domain.model;
 
 import fhv.ws22.se.skyward.domain.dtos.AbstractDto;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.persistence.entity.*;
 import org.modelmapper.ModelMapper;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -32,7 +28,12 @@ public abstract class AbstractModel {
     }
 
     public static Class<? extends AbstractEntity> getEntityClass(Class<? extends AbstractModel> modelClass) {
-        return entityModelClassMap.get(modelClass);
+        for (Map.Entry<Class, Class> entry : entityModelClassMap.entrySet()) {
+            if (entry.getValue().equals(modelClass)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
     public abstract <T extends AbstractDto> T toDto();
