@@ -39,16 +39,24 @@ public class BookingBroker extends BrokerBase<BookingModel> {
 
     private void addDependenciesIfNotExists(BookingModel booking) {
         List<CustomerModel> customerModels = booking.getCustomers();
-        customerModels.forEach(dbf::add);
+        if (customerModels != null) {
+            customerModels.forEach(dbf::add);
+        }
 
         List<RoomModel> roomModels = booking.getRooms();
-        roomModels.forEach(dbf::add);
+        if (roomModels != null) {
+            roomModels.forEach(dbf::add);
+        }
 
         List<ChargeableItemModel> chargeableItemModels = booking.getChargeableItems();
-        chargeableItemModels.forEach(dbf::add);
+        if (chargeableItemModels != null) {
+            chargeableItemModels.forEach(dbf::add);
+        }
 
         List<InvoiceModel> invoiceModels = booking.getInvoices();
-        invoiceModels.forEach(dbf::add);
+        if (invoiceModels != null) {
+            invoiceModels.forEach(dbf::add);
+        }
     }
 
     public<S extends AbstractModel> UUID addAndReturnId(S s) {
@@ -56,36 +64,44 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         addDependenciesIfNotExists(booking);
 
         List<Customer> customers = new ArrayList<Customer>();
-        booking.getCustomers().forEach(customer -> customers.add(
-            entityManager.createQuery("FROM Customer c WHERE c.firstName = :firstName AND c.lastName = :lastName", Customer.class)
-                .setParameter("firstName", customer.getFirstName())
-                .setParameter("lastName", customer.getLastName())
-                .getSingleResult()
-        ));
+        if (booking.getCustomers() != null) {
+            booking.getCustomers().forEach(customer -> customers.add(
+                entityManager.createQuery("FROM Customer c WHERE c.firstName = :firstName AND c.lastName = :lastName", Customer.class)
+                    .setParameter("firstName", customer.getFirstName())
+                    .setParameter("lastName", customer.getLastName())
+                    .getSingleResult()
+            ));
+        }
 
 
         List<Room> rooms = new ArrayList<Room>();
-        booking.getRooms().forEach(room -> rooms.add(
-            entityManager.createQuery("FROM Room WHERE roomNumber = :number", Room.class)
-                .setParameter("number", room.getRoomNumber())
-                .getSingleResult()
-        ));
+        if (booking.getRooms() != null) {
+            booking.getRooms().forEach(room -> rooms.add(
+                entityManager.createQuery("FROM Room WHERE roomNumber = :number", Room.class)
+                    .setParameter("number", room.getRoomNumber())
+                    .getSingleResult()
+            ));
+        }
 
         List<Invoice> invoices = new ArrayList<Invoice>();
-        booking.getInvoices().forEach(invoice -> invoices.add(
-            entityManager.createQuery("FROM Invoice WHERE invoiceNumber = :number", Invoice.class)
-                .setParameter("number", invoice.getInvoiceNumber())
-                .getSingleResult()
-        ));
+        if (booking.getInvoices() != null) {
+            booking.getInvoices().forEach(invoice -> invoices.add(
+                entityManager.createQuery("FROM Invoice WHERE invoiceNumber = :number", Invoice.class)
+                    .setParameter("number", invoice.getInvoiceNumber())
+                    .getSingleResult()
+            ));
+        }
 
         List<ChargeableItem> chargeableItems = new ArrayList<ChargeableItem>();
-        booking.getChargeableItems().forEach(chargeableItem -> chargeableItems.add(
+        if (booking.getChargeableItems() != null) {
+            booking.getChargeableItems().forEach(chargeableItem -> chargeableItems.add(
                 entityManager.createQuery("FROM ChargeableItem WHERE name = :name AND price = :price AND quantity = :quantity", ChargeableItem.class)
-                        .setParameter("name", chargeableItem.getName())
-                        .setParameter("price", chargeableItem.getPrice())
-                        .setParameter("quantity", chargeableItem.getQuantity())
-                        .getSingleResult()
-        ));
+                    .setParameter("name", chargeableItem.getName())
+                    .setParameter("price", chargeableItem.getPrice())
+                    .setParameter("quantity", chargeableItem.getQuantity())
+                    .getSingleResult()
+            ));
+        }
 
         Booking bookingEntity = booking.toEntity();
         bookingEntity.setCustomers(customers);

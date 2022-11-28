@@ -73,8 +73,6 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         roomEntity.setRoomState(roomState);
         roomEntity.setRoomType(roomType);
 
-        System.out.println(entityManager);
-
         if (entityManager.createQuery("FROM Room WHERE roomNumber = :number")
                 .setParameter("number", room.getRoomNumber())
                 .getResultList().isEmpty()) {

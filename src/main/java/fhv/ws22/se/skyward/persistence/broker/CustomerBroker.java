@@ -59,10 +59,17 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
         Customer customerEntity = customer.toEntity();
         customerEntity.setBillingAddress(address);
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(customerEntity);
-        entityManager.getTransaction().commit();
-        return customerEntity.getId();
+        if (entityManager.createQuery("FROM Customer WHERE firstName = :firstName AND lastName = :lastName AND billingAddress = :address")
+                .setParameter("firstName", customerEntity.getFirstName())
+                .setParameter("lastName", customerEntity.getLastName())
+                .setParameter("address", customerEntity.getBillingAddress())
+                .getResultList().isEmpty()) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(customerEntity);
+            entityManager.getTransaction().commit();
+            return customerEntity.getId();
+        }
+        return null;
     }
 
 
