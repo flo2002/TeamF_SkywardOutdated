@@ -22,10 +22,10 @@ public abstract class BrokerBase<T> {
     }
     public abstract <S extends AbstractModel> void add(S t);
     public <S extends AbstractModel> void update(UUID id, S s) {
-        Room tmpRoom = s.toEntity();
-        tmpRoom.setId(id);
+        AbstractEntity entity = s.toEntity();
+        entity.setId(id);
         entityManager.getTransaction().begin();
-        entityManager.merge(tmpRoom);
+        entityManager.merge(entity);
         entityManager.getTransaction().commit();
     }
     public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
