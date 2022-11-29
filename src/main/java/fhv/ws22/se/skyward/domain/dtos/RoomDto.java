@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class RoomDto extends AbstractDto {
     private static final Logger logger = LogManager.getLogger("RoomDto");
-    private int roomNumber;
+    private Integer roomNumber;
     private String roomTypeName;
     private String roomStateName;
 
