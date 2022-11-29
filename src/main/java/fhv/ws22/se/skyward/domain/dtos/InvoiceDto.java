@@ -22,12 +22,13 @@ public class InvoiceDto extends AbstractDto {
     public InvoiceDto() {
     }
     public InvoiceDto(LocalDateTime invoiceDateTime, Boolean isPaid, AddressDto customerAddress, BookingDto booking) {
-        setCompanyName("Skyward International");
-        setInvoiceDateTime(invoiceDateTime);
-        setIsPaid(isPaid);
-        setHotelAddress(new AddressDto("ExampleStreet", "2", "1234", "New York", "United States"));
-        setCustomerAddress(customerAddress);
-        setBooking(booking);
+        this.invoiceDateTime = invoiceDateTime;
+        this.isPaid = isPaid;
+        this.customerAddress = customerAddress;
+        this.booking = booking;
+
+        this.companyName = "Skyward International";
+        this.hotelAddress = new AddressDto("ExampleStreet", "2", "1234", "New York", "United States");
     }
 
     public BigInteger getInvoiceNumber() {
