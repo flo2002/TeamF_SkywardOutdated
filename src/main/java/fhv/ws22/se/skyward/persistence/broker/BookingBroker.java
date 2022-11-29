@@ -47,16 +47,6 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         if (roomModels != null) {
             roomModels.forEach(dbf::add);
         }
-
-        List<ChargeableItemModel> chargeableItemModels = booking.getChargeableItems();
-        if (chargeableItemModels != null) {
-            chargeableItemModels.forEach(dbf::add);
-        }
-
-        List<InvoiceModel> invoiceModels = booking.getInvoices();
-        if (invoiceModels != null) {
-            invoiceModels.forEach(dbf::add);
-        }
     }
 
     public<S extends AbstractModel> UUID addAndReturnId(S s) {
@@ -83,31 +73,10 @@ public class BookingBroker extends BrokerBase<BookingModel> {
             ));
         }
 
-        List<Invoice> invoices = new ArrayList<Invoice>();
-        if (booking.getInvoices() != null) {
-            booking.getInvoices().forEach(invoice -> invoices.add(
-                entityManager.createQuery("FROM Invoice WHERE invoiceNumber = :number", Invoice.class)
-                    .setParameter("number", invoice.getInvoiceNumber())
-                    .getSingleResult()
-            ));
-        }
-
-        List<ChargeableItem> chargeableItems = new ArrayList<ChargeableItem>();
-        if (booking.getChargeableItems() != null) {
-            booking.getChargeableItems().forEach(chargeableItem -> chargeableItems.add(
-                entityManager.createQuery("FROM ChargeableItem WHERE name = :name AND price = :price AND quantity = :quantity", ChargeableItem.class)
-                    .setParameter("name", chargeableItem.getName())
-                    .setParameter("price", chargeableItem.getPrice())
-                    .setParameter("quantity", chargeableItem.getQuantity())
-                    .getSingleResult()
-            ));
-        }
 
         Booking bookingEntity = booking.toEntity();
         bookingEntity.setCustomers(customers);
         bookingEntity.setRooms(rooms);
-        bookingEntity.setInvoices(invoices);
-        bookingEntity.setChargeableItems(chargeableItems);
 
         entityManager.getTransaction().begin();
         entityManager.persist(bookingEntity);

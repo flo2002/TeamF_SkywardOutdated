@@ -24,8 +24,8 @@ public class InvoiceOverviewController extends AbstractController {
     @FXML
     protected void initialize() {
         invoiceNumberCol.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
-        invoiceDateTimeCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, LocalDateTime>("invoiceDateTime"));
-        isPaidCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, Boolean>("isPaid"));
+        invoiceDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("invoiceDateTime"));
+        isPaidCol.setCellValueFactory(new PropertyValueFactory<>("isPaid"));
 
         updateTable();
         table.setRowFactory(invoiceDtoTableView -> {

@@ -101,7 +101,6 @@ public class AddRoomController extends AbstractController {
     }
 
     public void updateData() {
-
         HashMap<String, Boolean> filterMap = session.getRoomFilterMap();
         if (filterMap.get("Single")) {
             filterSingleRoom.setSelected(true);
@@ -120,7 +119,6 @@ public class AddRoomController extends AbstractController {
         }
 
         roomTable.getItems().clear();
-
 
         List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
         if (rooms != null) {

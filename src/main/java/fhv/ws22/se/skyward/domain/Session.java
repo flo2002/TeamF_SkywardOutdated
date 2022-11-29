@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import fhv.ws22.se.skyward.domain.dtos.*;
 import fhv.ws22.se.skyward.domain.model.*;
-import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import fhv.ws22.se.skyward.view.SessionService;
 
 import java.math.BigDecimal;
@@ -41,6 +40,10 @@ public class Session implements SessionService {
             dtoList.add((T) model.toDto());
         }
         return dtoList;
+    }
+
+    public <T extends AbstractDto> T get(UUID id, Class<T> clazz) {
+        return dataService.get(id, dtoModelClassMap.get(clazz)).toDto();
     }
 
     public <T extends AbstractDto> void add(T t) {
@@ -108,20 +111,18 @@ public class Session implements SessionService {
 
     public BookingDto getTmpBooking() {
         if (tmpBookingId == null) {
-            BookingModel booking = new BookingModel();
+            BookingDto booking = new BookingDto();
             booking.setCheckInDateTime(LocalDateTime.now());
             booking.setIsCheckedIn(false);
-            tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
+            tmpBookingId = addAndReturnId(BookingDto.class, booking);
         }
-        BookingModel booking = dataService.get(tmpBookingId, BookingModel.class);
-
-        return booking.toDto();
+        return get(tmpBookingId, BookingDto.class);
     }
     public void resetTmpBooking() {
         tmpBookingId = null;
     }
     public void setTmpBooking(BookingDto booking) {
-        BookingModel tmpBid = dataService.get(booking.getId(), BookingModel.class);
+        BookingDto tmpBid = get(booking.getId(), BookingDto.class);
         if (tmpBid == null) {
             throw new IllegalArgumentException("Booking could not be added");
         }
@@ -131,35 +132,35 @@ public class Session implements SessionService {
     public InvoiceDto getTmpInvoice() {
         if (tmpInvoiceId == null) {
             BookingDto booking = getTmpBooking();
-            if (booking.getInvoices() == null || booking.getInvoices().isEmpty()) {
-                AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
-                dataService.add(customerAddress);
-                InvoiceModel invoice = new InvoiceModel(LocalDateTime.now(), false, customerAddress, booking.toModel());
-                tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
 
-                List<ChargeableItemDto> chargeableItemModels = new ArrayList<>();
+            List<InvoiceDto> invoices = getAll(InvoiceDto.class);
+            invoices.removeIf(invoice -> invoice.getBooking().getId() != booking.getId());
+
+            if (invoices.isEmpty()) {
+                AddressDto customerAddress = new AddressDto("MainStreet", "43", "1234", "Vienna", "Austria");
+                add(customerAddress);
+                InvoiceDto invoice = new InvoiceDto(LocalDateTime.now(), false, customerAddress, booking);
+                tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice);
+
+                List<ChargeableItemDto> chargeableItemDtos = new ArrayList<>();
                 for (RoomDto room : booking.getRooms()) {
                     Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays() + 1;
-                    ChargeableItemModel chargeableItem = new ChargeableItemModel(room.getRoomTypeName(), new BigDecimal(100), quantity, booking.toModel());
-                    chargeableItemModels.add(chargeableItem.toDto());
-                    dataService.add(chargeableItem);
+                    ChargeableItemDto chargeableItem = new ChargeableItemDto(room.getRoomTypeName(), new BigDecimal(100), quantity, booking);
+                    chargeableItemDtos.add(chargeableItem);
+                    add(chargeableItem);
                 }
-
-                booking.setChargeableItems(chargeableItemModels);
-                dataService.update(booking.getId(), booking.toModel());
             } else {
-                tmpInvoiceId = booking.getInvoices().get(0).getId();
+                tmpInvoiceId = invoices.get(0).getId();
             }
         }
-        InvoiceModel invoice = dataService.get(tmpInvoiceId, InvoiceModel.class);
 
-        return invoice.toDto();
+        return get(tmpInvoiceId, InvoiceDto.class);
     }
     public void resetTmpInvoice() {
         tmpInvoiceId = null;
     }
     public void setTmpInvoice(InvoiceDto invoice) {
-        InvoiceModel tmpIid = dataService.get(invoice.getId(), InvoiceModel.class);
+        InvoiceDto tmpIid = get(invoice.getId(), InvoiceDto.class);
         if (tmpIid == null) {
             throw new IllegalArgumentException("Invoice could not be added");
         }

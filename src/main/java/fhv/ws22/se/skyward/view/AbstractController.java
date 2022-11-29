@@ -25,7 +25,10 @@ public abstract class AbstractController {
         if (tmpBooking != null) {
             session.update(tmpBooking.getId(), tmpBooking);
         }
-        session.resetTmpInvoice();
+        if (tmpInvoice != null) {
+            session.update(tmpInvoice.getId(), tmpInvoice);
+            session.resetTmpInvoice();
+        }
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Home");
     }
 
@@ -34,7 +37,10 @@ public abstract class AbstractController {
         if (tmpBooking != null) {
             session.update(tmpBooking.getId(), tmpBooking);
         }
-        session.resetTmpInvoice();
+        if (tmpInvoice != null) {
+            session.update(tmpInvoice.getId(), tmpInvoice);
+            session.resetTmpInvoice();
+        }
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
@@ -43,7 +49,10 @@ public abstract class AbstractController {
         if (tmpBooking != null) {
             session.update(tmpBooking.getId(), tmpBooking);
         }
-        session.resetTmpInvoice();
+        if (tmpInvoice != null) {
+            session.update(tmpInvoice.getId(), tmpInvoice);
+            session.resetTmpInvoice();
+        }
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
 }

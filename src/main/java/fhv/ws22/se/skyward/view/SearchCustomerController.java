@@ -23,8 +23,8 @@ public class SearchCustomerController extends AbstractController {
 
     @FXML
     protected void initialize() {
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             updateTable(newValue);

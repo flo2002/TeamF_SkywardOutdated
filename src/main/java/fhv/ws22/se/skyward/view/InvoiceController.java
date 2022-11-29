@@ -93,6 +93,7 @@ public class InvoiceController extends AbstractController {
 
     @FXML
     public void onConfirmButtonClick(ActionEvent event){
+        session.update(tmpInvoice.getId(), tmpInvoice);
         session.resetTmpInvoice();
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
@@ -106,9 +107,6 @@ public class InvoiceController extends AbstractController {
     }
 
     public void updateData(){
-        tmpBooking.setInvoices(List.of(tmpInvoice));
-        session.update(tmpBooking.getId(), tmpBooking);
-
         hotelNamePlaceholder.setText(tmpInvoice.getCompanyName());
         hotelStreetPlaceholder.setText(tmpInvoice.getHotelAddress().getStreet() + " " + tmpInvoice.getHotelAddress().getHouseNumber());
         hotelCityPlaceholder.setText(tmpInvoice.getHotelAddress().getZipCode() + " " + tmpInvoice.getHotelAddress().getCity());
