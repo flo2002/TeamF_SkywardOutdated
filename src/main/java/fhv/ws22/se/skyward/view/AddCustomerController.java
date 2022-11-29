@@ -1,17 +1,12 @@
 package fhv.ws22.se.skyward.view;
 
-import com.google.inject.Inject;
-import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.dtos.AddressDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class AddCustomerController extends AbstractController {
     @FXML
@@ -45,6 +40,4 @@ public class AddCustomerController extends AbstractController {
     public void onSearchCustomerButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Search");
     }
-
-
 }

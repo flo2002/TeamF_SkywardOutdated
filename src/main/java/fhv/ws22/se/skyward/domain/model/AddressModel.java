@@ -75,7 +75,12 @@ public class AddressModel extends AbstractModel {
 
     @Override
     public String toString() {
-        return "AddressModel [city=" + city + ", country=" + country + ", houseNumber=" + houseNumber + ", street="
-                + street + ", zipCode=" + zipCode + "]";
+        return "AddressModel{" +
+                "street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                '}';
     }
 }

@@ -13,10 +13,11 @@ public class ChargeableItemDto extends AbstractDto {
 
     public ChargeableItemDto() {
     }
-    public ChargeableItemDto(String name, BigDecimal price, Integer quantity) {
+    public ChargeableItemDto(String name, BigDecimal price, Integer quantity, BookingDto booking) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.booking = booking;
     }
 
     public String getName() {

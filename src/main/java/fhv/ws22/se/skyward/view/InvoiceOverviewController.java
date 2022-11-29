@@ -1,13 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
-import com.google.inject.Inject;
-import fhv.ws22.se.skyward.domain.Session;
-import fhv.ws22.se.skyward.domain.SessionFactory;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.InvoiceDto;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -31,8 +24,8 @@ public class InvoiceOverviewController extends AbstractController {
     @FXML
     protected void initialize() {
         invoiceNumberCol.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
-        invoiceDateTimeCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, LocalDateTime>("invoiceDateTime"));
-        isPaidCol.setCellValueFactory(new PropertyValueFactory<InvoiceDto, Boolean>("isPaid"));
+        invoiceDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("invoiceDateTime"));
+        isPaidCol.setCellValueFactory(new PropertyValueFactory<>("isPaid"));
 
         updateTable();
         table.setRowFactory(invoiceDtoTableView -> {

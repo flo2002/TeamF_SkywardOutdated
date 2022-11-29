@@ -102,6 +102,7 @@ public class InvoiceModel extends AbstractModel {
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
                 ", customerAddress=" + customerAddress +
+                ", booking=" + booking +
                 '}';
     }
 }
