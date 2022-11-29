@@ -41,6 +41,7 @@ public class Customer extends AbstractEntity {
         return "Customer{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", billingAddress=" + billingAddress +
                 '}';
     }
 }

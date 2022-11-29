@@ -96,6 +96,7 @@ public class InvoiceDto extends AbstractDto {
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
                 ", customerAddress=" + customerAddress +
+                ", booking=" + booking +
                 '}';
     }
 }
