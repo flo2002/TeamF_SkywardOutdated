@@ -15,7 +15,7 @@ import java.util.*;
 @Singleton
 public class Session implements SessionService {
     @Inject
-    private DatabaseFacade dbf;
+    private DataService dataService;
     private UUID tmpBookingId;
     private UUID tmpInvoiceId;
     private HashMap<String, Boolean> filterMap;
@@ -35,7 +35,7 @@ public class Session implements SessionService {
 
 
     public <T extends AbstractDto> List getAll(Class<T> clazz) {
-        List<? extends AbstractModel> modelList = dbf.getAll(dtoModelClassMap.get(clazz));
+        List<? extends AbstractModel> modelList = dataService.getAll(dtoModelClassMap.get(clazz));
         List<T> dtoList = new ArrayList<T>();
         for (AbstractModel model : modelList) {
             dtoList.add((T) model.toDto());
@@ -45,28 +45,28 @@ public class Session implements SessionService {
 
     public <T extends AbstractDto> void add(T t) {
         AbstractModel model = t.toModel();
-        dbf.add(model);
+        dataService.add(model);
     }
 
     private <T extends AbstractDto> UUID addAndReturnId(Class<T> clazz, T t) {
         AbstractModel model = t.toModel();
-        return dbf.addAndReturnId(dtoModelClassMap.get(clazz), model);
+        return dataService.addAndReturnId(dtoModelClassMap.get(clazz), model);
     }
 
     public <T extends AbstractDto> void update(UUID id, T t) {
         AbstractModel model = t.toModel();
-        dbf.update(id, model);
+        dataService.update(id, model);
     }
 
     public <T extends AbstractDto> void delete(UUID id, Class<T> clazz) {
-        dbf.delete(id, dtoModelClassMap.get(clazz));
+        dataService.delete(id, dtoModelClassMap.get(clazz));
     }
 
     public List<RoomDto> getAvailableRooms(LocalDateTime checkIn, LocalDateTime checkOut) {
         if (checkIn == null || checkOut == null) {
             return null;
         }
-        List<RoomModel> modelRooms = (List<RoomModel>) dbf.getAll(RoomModel.class);
+        List<RoomModel> modelRooms = (List<RoomModel>) dataService.getAll(RoomModel.class);
         List<RoomDto> rooms = new ArrayList<RoomDto>();
         for (RoomModel model : modelRooms) {
             rooms.add(model.toDto());
@@ -87,7 +87,7 @@ public class Session implements SessionService {
             }
         }
 
-        List<BookingModel> modelBookings = (List<BookingModel>) dbf.getAll(BookingModel.class);
+        List<BookingModel> modelBookings = (List<BookingModel>) dataService.getAll(BookingModel.class);
         // check if any booking is in the same time frame to remove it from the available rooms
         for (BookingModel booking : modelBookings) {
             if (booking.getCheckInDateTime().isBefore(checkOut) || booking.getCheckOutDateTime().isAfter(checkIn)) {
@@ -113,7 +113,7 @@ public class Session implements SessionService {
             booking.setIsCheckedIn(false);
             tmpBookingId = addAndReturnId(BookingDto.class, booking.toDto());
         }
-        BookingModel booking = dbf.get(tmpBookingId, BookingModel.class);
+        BookingModel booking = dataService.get(tmpBookingId, BookingModel.class);
 
         return booking.toDto();
     }
@@ -121,7 +121,7 @@ public class Session implements SessionService {
         tmpBookingId = null;
     }
     public void setTmpBooking(BookingDto booking) {
-        BookingModel tmpBid = dbf.get(booking.getId(), BookingModel.class);
+        BookingModel tmpBid = dataService.get(booking.getId(), BookingModel.class);
         if (tmpBid == null) {
             throw new IllegalArgumentException("Booking could not be added");
         }
@@ -133,7 +133,7 @@ public class Session implements SessionService {
             BookingDto booking = getTmpBooking();
             if (booking.getInvoices() == null || booking.getInvoices().isEmpty()) {
                 AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
-                dbf.add(customerAddress);
+                dataService.add(customerAddress);
                 InvoiceModel invoice = new InvoiceModel(LocalDateTime.now(), false, customerAddress, booking.toModel());
                 tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());
 
@@ -142,16 +142,16 @@ public class Session implements SessionService {
                     Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays() + 1;
                     ChargeableItemModel chargeableItem = new ChargeableItemModel(room.getRoomTypeName(), new BigDecimal(100), quantity, booking.toModel());
                     chargeableItemModels.add(chargeableItem.toDto());
-                    dbf.add(chargeableItem);
+                    dataService.add(chargeableItem);
                 }
 
                 booking.setChargeableItems(chargeableItemModels);
-                dbf.update(booking.getId(), booking.toModel());
+                dataService.update(booking.getId(), booking.toModel());
             } else {
                 tmpInvoiceId = booking.getInvoices().get(0).getId();
             }
         }
-        InvoiceModel invoice = dbf.get(tmpInvoiceId, InvoiceModel.class);
+        InvoiceModel invoice = dataService.get(tmpInvoiceId, InvoiceModel.class);
 
         return invoice.toDto();
     }
@@ -159,7 +159,7 @@ public class Session implements SessionService {
         tmpInvoiceId = null;
     }
     public void setTmpInvoice(InvoiceDto invoice) {
-        InvoiceModel tmpIid = dbf.get(invoice.getId(), InvoiceModel.class);
+        InvoiceModel tmpIid = dataService.get(invoice.getId(), InvoiceModel.class);
         if (tmpIid == null) {
             throw new IllegalArgumentException("Invoice could not be added");
         }
