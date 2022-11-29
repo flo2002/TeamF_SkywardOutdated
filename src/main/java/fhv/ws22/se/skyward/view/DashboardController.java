@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -24,7 +25,7 @@ public class DashboardController extends AbstractController {
     @FXML
     private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol;
+    private TableColumn<BookingDto, LocalDate> checkOutDateTimeCol;
     @FXML
     private TableColumn<BookingDto, String> isCheckedInCol;
 
@@ -40,7 +41,8 @@ public class DashboardController extends AbstractController {
     protected void initialize() {
         bookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
         checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("checkInDateTime"));
-        checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("checkOutDateTime"));
+        //checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("checkOutDateTime"));
+        checkOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime().toLocalDate()));
         isCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
 
         bookingNumberCol1.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
