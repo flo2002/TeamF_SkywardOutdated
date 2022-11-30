@@ -7,13 +7,13 @@ import fhv.ws22.se.skyward.domain.model.*;
 import fhv.ws22.se.skyward.persistence.broker.*;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 import java.util.*;
 
 @Singleton
 public class DatabaseFacade implements DataService {
-    private EntityManager entityManager;
-
     private final CustomerBroker customerBroker;
     private final RoomBroker roomBroker;
     private final BookingBroker bookingBroker;
@@ -25,8 +25,9 @@ public class DatabaseFacade implements DataService {
             BrokerBase<? extends AbstractModel>> brokersClassMap;
 
     @Inject
-    public DatabaseFacade(EntityManager em) {
-        this.entityManager = em;
+    public DatabaseFacade() {
+        EntityManagerFactory fact = Persistence.createEntityManagerFactory("skyward");
+        EntityManager entityManager = fact.createEntityManager();
 
         brokersClassMap = new HashMap<>();
         customerBroker = new CustomerBroker(this, entityManager);
