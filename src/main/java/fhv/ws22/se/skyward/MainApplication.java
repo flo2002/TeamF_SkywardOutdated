@@ -36,7 +36,7 @@ public class MainApplication extends Application {
         dataGenerator.generateData();
 
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
-        fxmlLoader.setLocation(getClass().getResource("room-capacity.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("dashboard.fxml"));
         Parent parent = fxmlLoader.load();
         Scene scene = new Scene(parent);
         stage.setTitle("SkyWard");

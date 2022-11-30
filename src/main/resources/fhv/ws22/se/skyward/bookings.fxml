@@ -115,8 +115,8 @@
          </children>
       </HBox>
       <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
-      <Button id="addroom" layoutX="310.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room..." textFill="WHITE" />
-      <Button id="addguest" layoutX="771.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest..." textFill="WHITE" />
+      <Button fx:id="addRoomButton" id="addroom" layoutX="310.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room..." textFill="WHITE" />
+      <Button fx:id="addCustomerButton" id="addguest" layoutX="771.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest..." textFill="WHITE" />
       <Button layoutX="1098.0" layoutY="639.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="46.0" prefWidth="187.0" style="-fx-background-color: #50C878;" text="Create new Booking" textFill="WHITE">
          <font>
             <Font size="13.0" />

@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.persistence.entity.Room;
 import javafx.beans.property.SimpleObjectProperty;
@@ -17,36 +18,36 @@ import java.util.Map;
 
 public class RoomCapacityController extends AbstractController {
     @FXML
-    private TableView table;
+    private TableView<RoomDto> table;
 
     @FXML
     protected void initialize() {
-        List<TableColumn> columns = new ArrayList<>();
+        List<TableColumn<RoomDto, String>> columns = new ArrayList<>();
 
         TableColumn<RoomDto, String> roomNumberCol = new TableColumn<>("Room Number");
-        roomNumberCol.setCellValueFactory(entry -> {
-            String roomNumber = Integer.valueOf(entry.getValue().getRoomNumber()).toString();
-            return new SimpleObjectProperty<>(roomNumber);
-        });
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomNumberCol.setPrefWidth(100);
         columns.add(roomNumberCol);
 
-        for (int i = 0; i < 5; i++) {
+        /*for (int i = 0; i < 5; i++) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM");
             TableColumn<Map, String> column = new TableColumn<>(LocalDate.now().plusDays(i).format(formatter));
             column.setCellValueFactory(entry -> new SimpleObjectProperty<>());
             column.setMinWidth(20);
             columns.add(column);
-        }
+        }*/
 
-        for (TableColumn col : columns) {
+        for (TableColumn<RoomDto, String> col : columns) {
             table.getColumns().add(col);
         }
 
-        for (RoomDto room : (List<RoomDto>) session.getAll(RoomDto.class)) {
-            table.getItems().add("asdf");
-        }
+        updateData();
     }
 
+    public void updateData() {
+        table.getItems().clear();
+        List<RoomDto> rooms = session.getAll(RoomDto.class);
+        table.getItems().addAll(rooms);
+    }
 
 }
