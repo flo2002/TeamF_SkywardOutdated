@@ -27,10 +27,6 @@ public class AddressBroker extends BrokerBase<AddressModel> {
         return addressModels;
     }
 
-    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
-        return super.get(id, entityClazz);
-    }
-
     public <S extends AbstractModel> UUID addAndReturnId(S s) {
         AddressModel address = (AddressModel) s;
         Address addressEntity = address.toEntity();
@@ -53,17 +49,5 @@ public class AddressBroker extends BrokerBase<AddressModel> {
         }
 
         return addressEntity.getId();
-    }
-
-    public <S extends AbstractModel> void add(S s) {
-        addAndReturnId(s);
-    }
-
-    public <S extends AbstractModel> void update(UUID id, S s) {
-        super.update(id, s);
-    }
-
-    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
-        super.delete(id, clazz);
     }
 }

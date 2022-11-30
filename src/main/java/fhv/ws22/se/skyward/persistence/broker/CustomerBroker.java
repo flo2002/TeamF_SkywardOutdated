@@ -36,10 +36,6 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
         return customerModels;
     }
 
-    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
-        return super.get(id, entityClazz);
-    }
-
     private void addDependenciesIfNotExists(CustomerModel customer) {
         dbf.add(customer.getAddress());
     }
@@ -70,18 +66,5 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
             return customerEntity.getId();
         }
         return null;
-    }
-
-
-    public <S extends AbstractModel> void add(S s) {
-        addAndReturnId(s);
-    }
-
-    public <S extends AbstractModel> void update(UUID id, S s) {
-        super.update(id, s);
-    }
-
-    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
-        super.delete(id, clazz);
     }
 }

@@ -29,10 +29,6 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         return roomModels;
     }
 
-    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
-        return super.get(id, entityClazz);
-    }
-
     private void addDependenciesIfNotExists(RoomModel room) {
         RoomState roomState = null;
         RoomType roomType = null;
@@ -82,17 +78,5 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         }
 
         return roomEntity.getId();
-    }
-
-    public <S extends AbstractModel> void add(S s) {
-        addAndReturnId(s);
-    }
-
-    public <S extends AbstractModel> void update(UUID id, S s) {
-        super.update(id, s);
-    }
-
-    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
-        super.delete(id, clazz);
     }
 }

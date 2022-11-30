@@ -16,11 +16,16 @@ public abstract class BrokerBase<T> {
     }
 
     public abstract List<T> getAll();
+    public abstract <S extends AbstractModel> UUID addAndReturnId(S s);
+
+
     public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
         AbstractEntity aE = entityManager.find(entityClazz, id);
         return S.toModel(aE);
     }
-    public abstract <S extends AbstractModel> void add(S t);
+    public <S extends AbstractModel> void add(S s) {
+        addAndReturnId(s);
+    }
     public <S extends AbstractModel> void update(UUID id, S s) {
         AbstractEntity entity = s.toEntity();
         entity.setId(id);
@@ -33,5 +38,4 @@ public abstract class BrokerBase<T> {
         entityManager.remove(entityManager.find(clazz, id));
         entityManager.getTransaction().commit();
     }
-    public abstract <S extends AbstractModel> UUID addAndReturnId(S s);
 }
