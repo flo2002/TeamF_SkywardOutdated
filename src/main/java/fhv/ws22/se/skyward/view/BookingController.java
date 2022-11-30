@@ -91,10 +91,9 @@ public class BookingController extends AbstractController {
         } else if (checkInCheckOutButton.getText().equals("Check-Out")){
             tmpBooking.setIsCheckedIn(false);
             updateData();
-            checkInCheckOutButton.setText("Check-In");
-            if (!editable) {
-                controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
-            }
+            checkInCheckOutButton.setText("Checked-Out");
+            session.update(tmpBooking.getId(), tmpBooking);
+            controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
         }
     }
 
@@ -134,7 +133,6 @@ public class BookingController extends AbstractController {
         if (!tmpBooking.getIsCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
             editable = false;
         }
-        System.out.println(editable);
         
         if (!editable) {
             checkInCheckOutButton.setDisable(true);
