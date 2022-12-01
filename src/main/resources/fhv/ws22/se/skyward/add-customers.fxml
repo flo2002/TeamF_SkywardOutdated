@@ -33,14 +33,20 @@
                         </Text>
                         <AnchorPane layoutX="-1.0" layoutY="82.0" prefHeight="25.0" prefWidth="1073.0" style="-fx-background-color: #017373;">
                            <children>
-                              <Label layoutX="9.0" layoutY="4.0" onMouseClicked="#onBookingButtonClick" text="Booking" textFill="#d4d4d4" />
-                              <Label layoutX="54.0" layoutY="-5.0" text="&gt;" textFill="#d4d4d4">
+                              <Label layoutX="9.0" layoutY="4.0" onMouseClicked="#onBookingButtonClick" text="Booking" textFill="#d4d4d4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <Label layoutX="77.0" layoutY="-2.0" text="&gt;" textFill="#d4d4d4">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="73.0" layoutY="4.0" onMouseClicked="#onSearchCustomerButtonClick" text="Search Guest" textFill="#d4d4d4" />
-                              <Label layoutX="144.0" layoutY="-5.0" text="&gt;" textFill="#d4d4d4">
+                              <Label layoutX="100.0" layoutY="1.0" onMouseClicked="#onSearchCustomerButtonClick" text="Add Guests" textFill="#d4d4d4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <Label layoutX="203.0" layoutY="-4.0" text="&gt;" textFill="#d4d4d4">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -129,7 +135,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button id="addguest" layoutX="301.0" layoutY="302.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="35.0" prefWidth="106.0" stylesheets="@css/styles.css" text="Save Guest" textFill="WHITE">
+            <Button id="addguest" layoutX="323.0" layoutY="305.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="29.0" prefWidth="84.0" stylesheets="@css/styles.css" text="Save Guest" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -166,7 +172,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <Button id="confirm" layoutX="283.0" layoutY="154.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" prefHeight="42.0" prefWidth="181.0" stylesheets="@css/styles.css" text="Search Guest" textFill="WHITE">
+      <Button id="confirm" layoutX="283.0" layoutY="154.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" prefHeight="30.0" prefWidth="105.0" stylesheets="@css/styles.css" text="Search Guest" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

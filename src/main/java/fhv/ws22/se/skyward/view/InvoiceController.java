@@ -106,6 +106,11 @@ public class InvoiceController extends AbstractController {
 
     }
 
+    @FXML
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
+
     public void updateData(){
         hotelNamePlaceholder.setText(tmpInvoice.getCompanyName());
         hotelStreetPlaceholder.setText(tmpInvoice.getHotelAddress().getStreet() + " " + tmpInvoice.getHotelAddress().getHouseNumber());
