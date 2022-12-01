@@ -31,7 +31,6 @@ public abstract class BrokerBase<T> {
     }
     public abstract <S extends AbstractModel> UUID addAndReturnId(S s);
 
-
     public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
         AbstractEntity aE = entityManager.find(entityClazz, id);
         return S.toModel(aE);
