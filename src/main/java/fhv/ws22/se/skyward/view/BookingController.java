@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class BookingController extends AbstractController {
     @FXML
     private TableColumn<RoomDto, String> roomStateNameCol;
 
+    @FXML
+    private Label nights;
     @FXML
     private TableView<CustomerDto> customerTable;
     @FXML
@@ -156,6 +159,6 @@ public class BookingController extends AbstractController {
             invoiceButton.setDisable(true);
         }
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
-
+        nights.setText(String.valueOf(Duration.between(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime()).toDays() + 1));
     }
 }
