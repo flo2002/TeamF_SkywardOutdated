@@ -19,36 +19,51 @@ import java.util.Map;
 
 public class RoomCapacityController extends AbstractController {
     @FXML
-    private TableView<RoomDto> table;
+    private TableView<RoomCapacity> table;
+
+    private Boolean isOccupied(List<BookingDto> bookings, RoomDto room, LocalDate date) {
+        //session.getAvailableRooms(date, date);
+        return false;
+    }
 
     @FXML
     protected void initialize() {
-        /*TableColumn<RoomCapacity, String>> columns = new ArrayList<>();
+        List<RoomDto> rooms = session.getAll(RoomDto.class);
+        List<BookingDto> bookings = session.getAll(BookingDto.class);
+        List<RoomCapacity> roomCaps = new ArrayList<>();
 
-        TableColumn<RoomDto, String> roomNumberCol = new TableColumn<>("Room Number");
-        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        roomNumberCol.setPrefWidth(100);
-        columns.add(roomNumberCol);
+        for (RoomDto room : rooms) {
+            RoomCapacity roomCap = new RoomCapacity();
 
-        for (int i = 0; i < 5; i++) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM");
-            TableColumn<Object, String> column = new TableColumn<>(LocalDate.now().plusDays(i).format(formatter));
-            column.setCellValueFactory(entry -> new SimpleObjectProperty<>());
-            column.setMinWidth(20);
-            columns.add(column);
+            roomCap.setRoomNumber(room.getRoomNumber());
+            roomCap.setDay1(isOccupied(bookings, room, LocalDate.now()));
+            roomCap.setDay2(isOccupied(bookings, room, LocalDate.now().plusDays(1)));
+            roomCap.setDay3(isOccupied(bookings, room, LocalDate.now().plusDays(2)));
+            roomCap.setDay4(isOccupied(bookings, room, LocalDate.now().plusDays(3)));
+            roomCap.setDay5(isOccupied(bookings, room, LocalDate.now().plusDays(4)));
+
+            roomCaps.add(roomCap);
         }
 
-        for (TableColumn<Object, String> col : columns) {
-            table.getColumns().add(col);
-        }*/
+        TableColumn<RoomCapacity, String> roomNumberCol = new TableColumn<>("Room Number");
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
 
-        updateData();
+        TableColumn<RoomCapacity, String> day1Col = new TableColumn<>("Day 1");
+        day1Col.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay1() ? "occupied" : "free"));
+
+        TableColumn<RoomCapacity, Boolean> day2Col = new TableColumn<>("Day 2");
+        day2Col.setCellValueFactory(new PropertyValueFactory<>("day2"));
+
+        TableColumn<RoomCapacity, Boolean> day3Col = new TableColumn<>("Day 3");
+        day3Col.setCellValueFactory(new PropertyValueFactory<>("day3"));
+
+        TableColumn<RoomCapacity, Boolean> day4Col = new TableColumn<>("Day 4");
+        day4Col.setCellValueFactory(new PropertyValueFactory<>("day4"));
+
+        TableColumn<RoomCapacity, Boolean> day5Col = new TableColumn<>("Day 5");
+        day5Col.setCellValueFactory(new PropertyValueFactory<>("day5"));
+
+        table.getColumns().addAll(roomNumberCol, day1Col, day2Col, day3Col, day4Col, day5Col);
+        table.getItems().addAll(roomCaps);
     }
-
-    public void updateData() {
-        table.getItems().clear();
-        List<RoomDto> rooms = session.getAll(RoomDto.class);
-        table.getItems().addAll(rooms);
-    }
-
 }

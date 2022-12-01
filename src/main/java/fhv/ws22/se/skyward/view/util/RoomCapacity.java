@@ -1,14 +1,18 @@
 package fhv.ws22.se.skyward.view.util;
 
 public class RoomCapacity {
-    private String roomNumber;
-    private String day1;
-    private String day2;
-    private String day3;
-    private String day4;
-    private String day5;
+    private Integer roomNumber;
+    private Boolean day1;
+    private Boolean day2;
+    private Boolean day3;
+    private Boolean day4;
+    private Boolean day5;
 
-    public RoomCapacity(String roomNumber, String day1, String day2, String day3, String day4, String day5) {
+    public RoomCapacity() {
+
+    }
+
+    public RoomCapacity(Integer roomNumber, Boolean day1, Boolean day2, Boolean day3, Boolean day4, Boolean day5) {
         this.roomNumber = roomNumber;
         this.day1 = day1;
         this.day2 = day2;
@@ -17,45 +21,45 @@ public class RoomCapacity {
         this.day5 = day5;
     }
 
-    public String getRoomNumber() {
+    public Integer getRoomNumber() {
         return roomNumber;
     }
-    public void setRoomNumber(String roomNumber) {
+    public void setRoomNumber(Integer roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    public String getDay1() {
+    public Boolean getDay1() {
         return day1;
     }
-    public void setDay1(String day1) {
+    public void setDay1(Boolean day1) {
         this.day1 = day1;
     }
 
-    public String getDay2() {
+    public Boolean getDay2() {
         return day2;
     }
-    public void setDay2(String day2) {
+    public void setDay2(Boolean day2) {
         this.day2 = day2;
     }
 
-    public String getDay3() {
+    public Boolean getDay3() {
         return day3;
     }
-    public void setDay3(String day3) {
+    public void setDay3(Boolean day3) {
         this.day3 = day3;
     }
 
-    public String getDay4() {
+    public Boolean getDay4() {
         return day4;
     }
-    public void setDay4(String day4) {
+    public void setDay4(Boolean day4) {
         this.day4 = day4;
     }
 
-    public String getDay5() {
+    public Boolean getDay5() {
         return day5;
     }
-    public void setDay5(String day5) {
+    public void setDay5(Boolean day5) {
         this.day5 = day5;
     }
 }
