@@ -22,8 +22,8 @@ public class Session implements SessionService {
 
 
     public Session() {
-        filterMap = new HashMap<String, Boolean>();
-        dtoModelClassMap = new HashMap<Class, Class>();
+        filterMap = new HashMap<>();
+        dtoModelClassMap = new HashMap<>();
         dtoModelClassMap.put(CustomerDto.class, CustomerModel.class);
         dtoModelClassMap.put(RoomDto.class, RoomModel.class);
         dtoModelClassMap.put(BookingDto.class, BookingModel.class);
@@ -32,7 +32,7 @@ public class Session implements SessionService {
         dtoModelClassMap.put(ChargeableItemDto.class, ChargeableItemModel.class);
     }
 
-
+    @SuppressWarnings("unchecked")
     public <T extends AbstractDto> List getAll(Class<T> clazz) {
         List<? extends AbstractModel> modelList = dataService.getAll(dtoModelClassMap.get(clazz));
         List<T> dtoList = new ArrayList<T>();
@@ -145,7 +145,7 @@ public class Session implements SessionService {
                 List<ChargeableItemDto> chargeableItemDtos = new ArrayList<>();
                 for (RoomDto room : booking.getRooms()) {
                     Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays() + 1;
-                    ChargeableItemDto chargeableItem = new ChargeableItemDto(room.getRoomTypeName(), new BigDecimal(100), quantity, booking);
+                    ChargeableItemDto chargeableItem = new ChargeableItemDto(room.getRoomTypeName() + " Room: " + room.getRoomNumber(), new BigDecimal(100), quantity, booking);
                     chargeableItemDtos.add(chargeableItem);
                     add(chargeableItem);
                 }

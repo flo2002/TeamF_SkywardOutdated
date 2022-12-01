@@ -55,4 +55,16 @@ public abstract class AbstractController {
         }
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
+
+    @FXML
+    public void onRoomCapacityButtonClick(Event event) {
+        if (tmpBooking != null) {
+            session.update(tmpBooking.getId(), tmpBooking);
+        }
+        if (tmpInvoice != null) {
+            session.update(tmpInvoice.getId(), tmpInvoice);
+            session.resetTmpInvoice();
+        }
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/room-capacity.fxml", "Room Capacity");
+    }
 }

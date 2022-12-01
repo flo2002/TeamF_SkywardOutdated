@@ -8,16 +8,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 
 
 public class BookingController extends AbstractController {
+    private Boolean editable = true;
     @FXML
     private Button checkInCheckOutButton;
     @FXML
     private Button invoiceButton;
+    @FXML
+    private Button addRoomButton;
+    @FXML
+    private Button addCustomerButton;
 
     @FXML
     public Label bNrPlaceholder;
@@ -50,12 +56,12 @@ public class BookingController extends AbstractController {
     protected void initialize() {
         tmpBooking = session.getTmpBooking();
 
-        roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
-        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
-        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
+        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
 
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         configureListener();
 
@@ -82,7 +88,7 @@ public class BookingController extends AbstractController {
 
 
     @FXML
-    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
+    public void onCheckInCheckOutButtonClick(ActionEvent event) {
         if (checkInCheckOutButton.getText().equals("Check-In")) {
             tmpBooking.setIsCheckedIn(true);
             updateData();
@@ -90,7 +96,9 @@ public class BookingController extends AbstractController {
         } else if (checkInCheckOutButton.getText().equals("Check-Out")){
             tmpBooking.setIsCheckedIn(false);
             updateData();
-            checkInCheckOutButton.setText("Check-In");
+            checkInCheckOutButton.setText("Checked-Out");
+            session.update(tmpBooking.getId(), tmpBooking);
+            controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
         }
     }
 
@@ -127,6 +135,21 @@ public class BookingController extends AbstractController {
     }
 
     public void updateData() {
+        if (tmpBooking.getCheckInDateTime() != null && tmpBooking.getCheckOutDateTime() != null) {
+            if (!tmpBooking.getIsCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
+                editable = false;
+            }
+        }
+        
+        if (!editable) {
+            checkInCheckOutButton.setDisable(true);
+            invoiceButton.setDisable(true);
+            addRoomButton.setDisable(true);
+            addCustomerButton.setDisable(true);
+            checkInDatePicker.setDisable(true);
+            checkOutDatePicker.setDisable(true);
+        }
+        
         if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
             checkInCheckOutButton.setText("Check-Out");
         }

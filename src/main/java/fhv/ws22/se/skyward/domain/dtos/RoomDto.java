@@ -9,19 +9,19 @@ import java.math.BigDecimal;
 
 public class RoomDto extends AbstractDto {
     private static final Logger logger = LogManager.getLogger("RoomDto");
-    private int roomNumber;
+    private Integer roomNumber;
     private String roomTypeName;
     private String roomStateName;
 
     public RoomDto() {
     }
-    public RoomDto(int roomNumber, String roomTypeName, String roomStateName) {
+    public RoomDto(Integer roomNumber, String roomTypeName, String roomStateName) {
         this.roomNumber = roomNumber;
         this.roomTypeName = roomTypeName;
         this.roomStateName = roomStateName;
     }
 
-    public int getRoomNumber() {
+    public Integer getRoomNumber() {
         return roomNumber;
     }
     public void setRoomNumber(int roomNumber) {

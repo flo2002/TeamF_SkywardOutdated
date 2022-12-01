@@ -23,22 +23,6 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
         this.bookingBroker = dbf.getBookingBroker();
     }
 
-    @SuppressWarnings("unchecked")
-    public List<InvoiceModel> getAll() {
-        List<Invoice> invoices = entityManager.createQuery("FROM Invoice").getResultList();
-
-        List<InvoiceModel> invoiceModels = new ArrayList<InvoiceModel>();
-        for (Invoice i : invoices) {
-            invoiceModels.add(InvoiceModel.toModel(i));
-        }
-
-        return invoiceModels;
-    }
-
-    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
-        return super.get(id, entityClazz);
-    }
-
     private void addDependenciesIfNotExists(InvoiceModel invoice) {
         addressBroker.add(invoice.getHotelAddress());
         addressBroker.add(invoice.getCustomerAddress());
@@ -77,17 +61,5 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
         entityManager.persist(invoiceEntity);
         entityManager.getTransaction().commit();
         return invoiceEntity.getId();
-    }
-
-    public <S extends AbstractModel> void add(S s) {
-        addAndReturnId(s);
-    }
-
-    public <S extends AbstractModel> void update(UUID id, S s) {
-        super.update(id, s);
-    }
-
-    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
-        super.delete(id, clazz);
     }
 }

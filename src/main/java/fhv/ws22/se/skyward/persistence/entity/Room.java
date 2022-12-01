@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Room extends AbstractEntity {
     @Column(unique = true)
-    private int roomNumber;
+    private Integer roomNumber;
     @ManyToOne
     @JoinColumn(name = "roomType_id")
     private RoomType roomType;
@@ -16,7 +16,7 @@ public class Room extends AbstractEntity {
 
     public Room() {}
 
-    public int getRoomNumber() {
+    public Integer getRoomNumber() {
         return roomNumber;
     }
     public void setRoomNumber(int roomNumber) {

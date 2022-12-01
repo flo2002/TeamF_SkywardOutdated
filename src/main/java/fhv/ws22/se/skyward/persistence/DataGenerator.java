@@ -28,7 +28,7 @@ public class DataGenerator {
         BookingModel b = new BookingModel(LocalDateTime.now(), LocalDateTime.now().plusDays(1), true, List.of(john, jane), List.of(r2));
         BookingModel b2 = new BookingModel(LocalDateTime.now().plusWeeks(2), LocalDateTime.now().plusWeeks(3), false, List.of(john), List.of(r1));
         BookingModel b3 = new BookingModel(LocalDateTime.now().plusWeeks(4), LocalDateTime.now().plusWeeks(5), false, List.of(jane), List.of(r4, r5));
-
+        BookingModel b4 = new BookingModel(LocalDateTime.now().minusWeeks(1), LocalDateTime.now(), true, List.of(john, jane), List.of(r2, r3));
 
         dbf.add(r0);
         dbf.add(r1);
@@ -42,5 +42,6 @@ public class DataGenerator {
         dbf.add(b);
         dbf.add(b2);
         dbf.add(b3);
+        dbf.add(b4);
     }
 }
