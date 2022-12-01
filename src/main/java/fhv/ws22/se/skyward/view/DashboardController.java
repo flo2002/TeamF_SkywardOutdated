@@ -2,6 +2,7 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -82,5 +83,9 @@ public class DashboardController extends AbstractController {
         table1.getItems().clear();
         List<BookingDto> bookings1 = session.getAll(BookingDto.class);
         table1.getItems().addAll(bookings1);
+    }
+
+    public void onCreateBookingButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 }

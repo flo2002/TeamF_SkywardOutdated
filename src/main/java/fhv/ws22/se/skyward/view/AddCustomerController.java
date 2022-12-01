@@ -6,6 +6,7 @@ import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class AddCustomerController extends AbstractController {
@@ -14,8 +15,12 @@ public class AddCustomerController extends AbstractController {
     @FXML
     private TextField lastNameTextField;
 
+    public Label bNrPlaceholder;
+
     @FXML
     private void initialize() {
+        tmpBooking = session.getTmpBooking();
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
 
     @FXML
@@ -39,5 +44,9 @@ public class AddCustomerController extends AbstractController {
     @FXML
     public void onSearchCustomerButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Search");
+    }
+
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 }

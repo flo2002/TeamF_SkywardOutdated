@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
@@ -107,7 +108,14 @@ public class BookingController extends AbstractController {
         session.update(tmpBooking.getId(), tmpBooking);
         session.resetTmpBooking();
         NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+    }
+
+    public void onDeleteBookingButtonClick(ActionEvent event) {
+        session.delete(tmpBooking.getId(), BookingDto.class);
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+        session.resetTmpBooking();
+        NotificationUtil.getInstance().showSuccessNotification("The Booking was deleted", event);
     }
 
     @FXML
