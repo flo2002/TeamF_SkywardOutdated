@@ -3,6 +3,7 @@ package fhv.ws22.se.skyward.view;
 import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.persistence.entity.Room;
+import fhv.ws22.se.skyward.view.util.RoomCapacity;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -22,24 +23,24 @@ public class RoomCapacityController extends AbstractController {
 
     @FXML
     protected void initialize() {
-        List<TableColumn<RoomDto, String>> columns = new ArrayList<>();
+        /*TableColumn<RoomCapacity, String>> columns = new ArrayList<>();
 
         TableColumn<RoomDto, String> roomNumberCol = new TableColumn<>("Room Number");
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomNumberCol.setPrefWidth(100);
         columns.add(roomNumberCol);
 
-        /*for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM");
-            TableColumn<Map, String> column = new TableColumn<>(LocalDate.now().plusDays(i).format(formatter));
+            TableColumn<Object, String> column = new TableColumn<>(LocalDate.now().plusDays(i).format(formatter));
             column.setCellValueFactory(entry -> new SimpleObjectProperty<>());
             column.setMinWidth(20);
             columns.add(column);
-        }*/
-
-        for (TableColumn<RoomDto, String> col : columns) {
-            table.getColumns().add(col);
         }
+
+        for (TableColumn<Object, String> col : columns) {
+            table.getColumns().add(col);
+        }*/
 
         updateData();
     }

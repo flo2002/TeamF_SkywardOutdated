@@ -145,7 +145,8 @@ public class Session implements SessionService {
                 List<ChargeableItemDto> chargeableItemDtos = new ArrayList<>();
                 for (RoomDto room : booking.getRooms()) {
                     Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays() + 1;
-                    ChargeableItemDto chargeableItem = new ChargeableItemDto(room.getRoomTypeName() + " Room: " + room.getRoomNumber(), new BigDecimal(100), quantity, booking);
+                    BigDecimal price = getPrice(room.getRoomTypeName());
+                    ChargeableItemDto chargeableItem = new ChargeableItemDto(room.getRoomTypeName() + " Room: " + room.getRoomNumber(), price, quantity, booking);
                     chargeableItemDtos.add(chargeableItem);
                     add(chargeableItem);
                 }
@@ -156,6 +157,24 @@ public class Session implements SessionService {
 
         return get(tmpInvoiceId, InvoiceDto.class);
     }
+
+    private BigDecimal getPrice(String roomTypeName) {
+        switch (roomTypeName) {
+            case "Single":
+                return new BigDecimal(100);
+            case "Double":
+                return new BigDecimal(150);
+            case "Triple":
+                return new BigDecimal(200);
+            case "Twin":
+                return new BigDecimal(150);
+            case "Queen":
+                return new BigDecimal(300);
+            default:
+                return new BigDecimal(0);
+        }
+    }
+
     public void resetTmpInvoice() {
         tmpInvoiceId = null;
     }
