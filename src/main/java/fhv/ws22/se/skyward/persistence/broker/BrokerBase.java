@@ -1,10 +1,13 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
 import fhv.ws22.se.skyward.domain.model.AbstractModel;
+import fhv.ws22.se.skyward.domain.model.BookingModel;
 import fhv.ws22.se.skyward.persistence.entity.AbstractEntity;
+import fhv.ws22.se.skyward.persistence.entity.Booking;
 import fhv.ws22.se.skyward.persistence.entity.Room;
 import jakarta.persistence.EntityManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +18,17 @@ public abstract class BrokerBase<T> {
         this.entityManager = entityManager;
     }
 
-    public abstract List<T> getAll();
+    @SuppressWarnings("unchecked")
+    public <S extends AbstractModel> List<? extends AbstractModel> getAll(Class<? extends AbstractEntity> entityClazz) {
+        List<AbstractEntity> entities = entityManager.createQuery("FROM " + entityClazz.getSimpleName()).getResultList();
+
+        List<AbstractModel> models = new ArrayList<>();
+        for (AbstractEntity entity : entities) {
+            models.add(AbstractModel.toModel(entity));
+        }
+
+        return models;
+    }
     public abstract <S extends AbstractModel> UUID addAndReturnId(S s);
 
 

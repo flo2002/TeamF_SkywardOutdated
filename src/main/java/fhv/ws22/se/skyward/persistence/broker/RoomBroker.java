@@ -17,18 +17,6 @@ public class RoomBroker extends BrokerBase<RoomModel> {
         super(entityManager);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<RoomModel> getAll() {
-        List<Room> rooms = entityManager.createQuery("FROM Room").getResultList();
-
-        List<RoomModel> roomModels = new ArrayList<RoomModel>();
-        for (Room r : rooms) {
-            roomModels.add(RoomModel.toModel(r));
-        }
-
-        return roomModels;
-    }
-
     private void addDependenciesIfNotExists(RoomModel room) {
         RoomState roomState = null;
         RoomType roomType = null;

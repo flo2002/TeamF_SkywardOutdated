@@ -15,18 +15,6 @@ public class AddressBroker extends BrokerBase<AddressModel> {
         super(entityManager);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<AddressModel> getAll() {
-        List<Address> addresses = entityManager.createQuery("FROM Address a").getResultList();
-
-        List<AddressModel> addressModels = new ArrayList<AddressModel>();
-        for (Address a : addresses) {
-            addressModels.add(AddressModel.toModel(a));
-        }
-
-        return addressModels;
-    }
-
     public <S extends AbstractModel> UUID addAndReturnId(S s) {
         AddressModel address = (AddressModel) s;
         Address addressEntity = address.toEntity();

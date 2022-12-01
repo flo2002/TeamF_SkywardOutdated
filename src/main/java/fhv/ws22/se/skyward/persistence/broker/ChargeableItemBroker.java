@@ -19,18 +19,6 @@ public class ChargeableItemBroker extends BrokerBase<ChargeableItemModel> {
         super(entityManager);
     }
 
-    @SuppressWarnings("unchecked")
-    public List<ChargeableItemModel> getAll() {
-        List<ChargeableItem> chargeableItems = entityManager.createQuery("FROM ChargeableItem").getResultList();
-
-        List<ChargeableItemModel> chargeableItemModels = new ArrayList<ChargeableItemModel>();
-        for (ChargeableItem c : chargeableItems) {
-            chargeableItemModels.add(ChargeableItemModel.toModel(c));
-        }
-
-        return chargeableItemModels;
-    }
-
     public <S extends AbstractModel> UUID addAndReturnId(S s) {
         ChargeableItemModel chargeableItem = (ChargeableItemModel) s;
 

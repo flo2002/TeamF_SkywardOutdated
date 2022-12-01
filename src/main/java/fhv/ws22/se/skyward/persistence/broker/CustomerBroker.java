@@ -24,18 +24,6 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
         dbf = databaseFacade;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<CustomerModel> getAll() {
-        List<Customer> customers = entityManager.createQuery("FROM Customer").getResultList();
-
-        List<CustomerModel> customerModels = new ArrayList<CustomerModel>();
-        for (Customer p : customers) {
-            customerModels.add(CustomerModel.toModel(p));
-        }
-
-        return customerModels;
-    }
-
     private void addDependenciesIfNotExists(CustomerModel customer) {
         dbf.add(customer.getAddress());
     }

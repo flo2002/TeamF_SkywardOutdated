@@ -23,18 +23,6 @@ public class InvoiceBroker extends BrokerBase<InvoiceModel> {
         this.bookingBroker = dbf.getBookingBroker();
     }
 
-    @SuppressWarnings("unchecked")
-    public List<InvoiceModel> getAll() {
-        List<Invoice> invoices = entityManager.createQuery("FROM Invoice").getResultList();
-
-        List<InvoiceModel> invoiceModels = new ArrayList<InvoiceModel>();
-        for (Invoice i : invoices) {
-            invoiceModels.add(InvoiceModel.toModel(i));
-        }
-
-        return invoiceModels;
-    }
-
     private void addDependenciesIfNotExists(InvoiceModel invoice) {
         addressBroker.add(invoice.getHotelAddress());
         addressBroker.add(invoice.getCustomerAddress());

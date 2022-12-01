@@ -21,17 +21,6 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         dbf = databaseFacade;
     }
 
-    @SuppressWarnings("unchecked")
-    public List<BookingModel> getAll() {
-        List<Booking> rooms = entityManager.createQuery("FROM Booking").getResultList();
-
-        List<BookingModel> roomModels = new ArrayList<BookingModel>();
-        for (Booking r : rooms) {
-            roomModels.add(BookingModel.toModel(r));
-        }
-
-        return roomModels;
-    }
     private void addDependenciesIfNotExists(BookingModel booking) {
         List<CustomerModel> customerModels = booking.getCustomers();
         if (customerModels != null) {
