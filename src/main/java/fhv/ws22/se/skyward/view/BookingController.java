@@ -120,8 +120,8 @@ public class BookingController {
             session.update(tmpBooking.getId(), tmpBooking);
             ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
         } catch (Exception e) {
-            logger.error(e.getMessage());
-            NotificationUtil.getInstance().showErrorNotification(e.getMessage(), event);
+            logger.error(e.getCause().getCause().getCause().getMessage());
+            NotificationUtil.getInstance().showErrorNotification(e.getCause().getCause().getCause().getMessage(), event);
         }
     }
 
