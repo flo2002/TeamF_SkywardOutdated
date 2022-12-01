@@ -41,9 +41,6 @@ public class BookingModel extends AbstractModel {
         return checkInDateTime;
     }
     public void setCheckInDateTime(LocalDateTime checkInDateTime) {
-        if (checkInDateTime.isBefore(LocalDateTime.now().toLocalDate().atStartOfDay())) {
-            throw new IllegalArgumentException("CheckInDateTime is in the past");
-        }
         this.checkInDateTime = checkInDateTime;
     }
 

@@ -4,7 +4,6 @@ import com.google.inject.AbstractModule;
 import fhv.ws22.se.skyward.domain.DataService;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.persistence.DatabaseFacade;
-import fhv.ws22.se.skyward.persistence.EntityManagerLoader;
 import fhv.ws22.se.skyward.view.*;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.FXMLLoaderProvider;
@@ -16,7 +15,6 @@ public class AppConfig extends AbstractModule {
     @Override
     protected void configure() {
         bind(DataService.class).to(DatabaseFacade.class);
-        bind(EntityManager.class).toProvider(EntityManagerLoader.class);
         bind(SessionService.class).to(Session.class);
         bind(FXMLLoader.class).toProvider(FXMLLoaderProvider.class);
         bind(NavigationService.class).to(ControllerNavigationUtil.class);
