@@ -115,7 +115,6 @@ public class Session implements SessionService {
             booking.setCheckInDateTime(LocalDateTime.now());
             booking.setIsCheckedIn(false);
             tmpBookingId = addAndReturnId(BookingDto.class, booking);
-            System.out.println("tmpBookingId: " + tmpBookingId);
         }
         return get(tmpBookingId, BookingDto.class);
     }

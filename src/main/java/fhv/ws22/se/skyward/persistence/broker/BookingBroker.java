@@ -65,6 +65,6 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         entityManager.getTransaction().begin();
         entityManager.persist(bookingEntity);
         entityManager.getTransaction().commit();
-        return booking.getId();
+        return bookingEntity.getId();
     }
 }
