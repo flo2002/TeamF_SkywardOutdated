@@ -125,7 +125,10 @@ public class Session {
     public InvoiceDto getTmpInvoice() throws BookingDateNotValidException {
         if (tmpInvoiceId == null) {
             if (getTmpBooking().getInvoices() == null || getTmpBooking().getInvoices().isEmpty()) {
-                AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
+                AddressModel customerAddress = null;
+                try {
+                    customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
+                } catch (AddressNotValidException e) {e.printStackTrace();}
                 dbf.add(customerAddress);
                 InvoiceModel invoice = new InvoiceModel(LocalDateTime.now(), false, customerAddress, getTmpBooking().toModel());
                 tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice.toDto());

@@ -18,7 +18,7 @@ public class CustomerModel extends AbstractModel {
     public CustomerModel() {
     }
 
-    public CustomerModel(String firstName, String lastName, AddressModel address) {
+    public CustomerModel(String firstName, String lastName, AddressModel address) throws NameNotValidException {
         setFirstName(firstName);
         setLastName(lastName);
         setAddress(address);
@@ -27,12 +27,13 @@ public class CustomerModel extends AbstractModel {
     public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) throws NameNotValidException {
         String regex = "^[A-Z][a-zA-z ]{1,29}$"; // first letter of every word must be uppercase
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(firstName);
         if(!matcher.matches()){
             logger.error("First name is not valid");
+            throw new NameNotValidException("First name not valid");
         }
         this.firstName = firstName;
     }
@@ -40,12 +41,13 @@ public class CustomerModel extends AbstractModel {
     public String getLastName() {
         return lastName;
     }
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) throws NameNotValidException {
         String regex = "^[A-Z][a-zA-z ]{1,29}$"; // first letter of every word must be uppercase
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(lastName);
         if(!matcher.matches()){
             logger.error("Last name is not valid");
+            throw new NameNotValidException("Last name not valid");
         }
         this.lastName = lastName;
     }

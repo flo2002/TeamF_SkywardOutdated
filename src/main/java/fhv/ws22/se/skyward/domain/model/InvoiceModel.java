@@ -23,7 +23,10 @@ public class InvoiceModel extends AbstractModel {
         setCompanyName("Skyward International");
         setInvoiceDateTime(invoiceDateTime);
         setIsPaid(isPaid);
-        setHotelAddress(new AddressModel("ExampleStreet", "2", "1234", "New York", "United States"));
+        try {
+            setHotelAddress(new AddressModel("ExampleStreet", "2", "1234", "New York", "United States"));
+
+        }catch (Exception e){e.printStackTrace();}
         setCustomerAddress(customerAddress);
         setBooking(booking);
     }

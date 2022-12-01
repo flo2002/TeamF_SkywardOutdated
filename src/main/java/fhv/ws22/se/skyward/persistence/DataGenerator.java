@@ -18,10 +18,17 @@ public class DataGenerator {
         RoomModel r4 = new RoomModel(301, "Double", "cleaned");
         RoomModel r5 = new RoomModel(303, "Triple", "cleaned");
 
-        AddressModel customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
-
-        CustomerModel john = new CustomerModel("John", "Doe", customerAddress);
-        CustomerModel jane = new CustomerModel("Jane", "Doe", customerAddress);
+        AddressModel customerAddress = null;
+        try{        customerAddress = new AddressModel("MainStreet", "43", "1234", "Vienna", "Austria");
+        }catch(Exception e){e.printStackTrace();}
+        CustomerModel john = null;
+        try {
+            john = new CustomerModel("John", "Doe", customerAddress);
+        } catch (NameNotValidException e) {e.printStackTrace();}
+        CustomerModel jane = null;
+        try {
+            jane = new CustomerModel("Jane", "Doe", customerAddress);
+        } catch (NameNotValidException e) {e.printStackTrace();}
 
         dbf.add(r0);
         dbf.add(r1);

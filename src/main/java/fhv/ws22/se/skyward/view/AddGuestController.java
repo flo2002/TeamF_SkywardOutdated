@@ -43,8 +43,14 @@ public class AddGuestController {
             return;
         }
 
-        CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(), new AddressDto("MainStreet", "43", "1234", "Vienna", "Austria"));
-        session.add(customerDto);
+try {
+    CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(), new AddressDto("MainStreet", "43", "1234", "Vienna", "Austria"));
+    session.add(customerDto);
+}catch (Exception e){
+    NotificationUtil.getInstance().showErrorNotification(e.getCause().getCause().getCause().getMessage(), event);
+}
+
+
 
         NotificationUtil.getInstance().showSuccessNotification("The guest was added to the database and booking", event);
         ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
