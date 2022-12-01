@@ -23,7 +23,7 @@ public class DashboardController extends AbstractController {
     @FXML
     private TableColumn<BookingDto, BigInteger> bookingNumberCol;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol;
+    private TableColumn<BookingDto, LocalDate> checkInDateTimeCol;
     @FXML
     private TableColumn<BookingDto, LocalDate> checkOutDateTimeCol;
     @FXML
@@ -32,22 +32,21 @@ public class DashboardController extends AbstractController {
     @FXML
     private TableColumn<BookingDto, BigInteger> bookingNumberCol1;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkInDateTimeCol1;
+    private TableColumn<BookingDto, LocalDate> checkInDateTimeCol1;
     @FXML
-    private TableColumn<BookingDto, LocalDateTime> checkOutDateTimeCol1;
+    private TableColumn<BookingDto, LocalDate> checkOutDateTimeCol1;
     @FXML
     private TableColumn<BookingDto, String> isCheckedInCol1;
     @FXML
     protected void initialize() {
         bookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
-        checkInDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("checkInDateTime"));
-        //checkOutDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("checkOutDateTime"));
+        checkInDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime().toLocalDate()));
         checkOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime().toLocalDate()));
         isCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
 
         bookingNumberCol1.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
-        checkInDateTimeCol1.setCellValueFactory(new PropertyValueFactory<>("checkInDateTime"));
-        checkOutDateTimeCol1.setCellValueFactory(new PropertyValueFactory<>("checkOutDateTime"));
+        checkInDateTimeCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime().toLocalDate()));
+        checkOutDateTimeCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime().toLocalDate()));
         isCheckedInCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
 
         updateData();
