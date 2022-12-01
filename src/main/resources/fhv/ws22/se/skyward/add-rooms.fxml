@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,9 +21,9 @@
    <children>
       <VBox prefHeight="700.0" prefWidth="230.0" style="-fx-background-color: #008080;" AnchorPane.bottomAnchor="-0.39999999999997726" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="111.0" prefWidth="170.0">
+            <Pane prefHeight="136.0" prefWidth="170.0">
                <children>
-                  <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="20.0" layoutY="-30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="40.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/SkyWardIcon.png" />
                      </image>
@@ -88,9 +89,9 @@
             </Button>
          </children>
       </VBox>
-      <HBox layoutX="263.0" layoutY="187.0" prefHeight="460.0" prefWidth="951.0">
+      <HBox layoutX="300.0" layoutY="246.0" prefHeight="318.0" prefWidth="948.0">
          <children>
-            <TableView fx:id="roomTable" prefHeight="460.0" prefWidth="951.0" stylesheets="@css/styles.css">
+            <TableView fx:id="roomTable" prefHeight="307.0" prefWidth="948.0" stylesheets="@css/styles.css">
                <columns>
                   <TableColumn fx:id="checkboxCol" prefWidth="119.99996948242188" text="Checkbox" />
                   <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="195.20001220703125" styleClass="css/style.css" text="Room Number" />
@@ -101,49 +102,77 @@
             </TableView>
          </children>
       </HBox>
-      <Pane layoutX="228.0" prefHeight="114.0" prefWidth="1073.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="-1.0">
+      <Pane layoutX="228.0" prefHeight="135.0" prefWidth="1073.0" style="-fx-background-color: #008080;" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="-1.0">
          <children>
-            <Text fill="WHITE" layoutX="450.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Rooms">
+            <Text fill="WHITE" layoutX="460.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Rooms">
                <font>
-                  <Font size="48.0" />
+                  <Font size="42.0" />
                </font>
             </Text>
-            <AnchorPane layoutY="88.0" prefHeight="25.0" prefWidth="1073.0" style="-fx-background-color: #017373;">
-               <children>
-                  <Label onMouseClicked="#onBookingButtonClick" layoutX="9.0" layoutY="4.0" text="Booking" textFill="#d4d4d4" />
-                  <Label layoutX="54.0" layoutY="-5.0" text="&gt;" textFill="#d4d4d4">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
+            <Label layoutX="15.0" layoutY="90.0" onMouseClicked="#onBookingButtonClick" text="Booking" textFill="#d4d4d4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="90.0" text="&gt;" textFill="#d4d4d4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="155.0" layoutY="90.0" onMouseClicked="#onBookingButtonClick" text="Add Rooms" textFill="#d4d4d4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Button id="addguest" layoutX="1062.0" layoutY="647.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="152.0" stylesheets="@css/styles.css" text="Add Rooms to Booking" textFill="WHITE" />
-      <Pane layoutX="265.0" layoutY="136.0" prefHeight="36.0" prefWidth="946.0" style="-fx-background-color: #008080;">
+      <Button id="addguest" layoutX="1097.0" layoutY="586.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="30.0" prefWidth="152.0" stylesheets="@css/styles.css" text="Add Rooms to Booking" textFill="WHITE" />
+      <Pane layoutX="300.0" layoutY="198.0" prefHeight="36.0" prefWidth="946.0">
          <children>
-            <CheckBox fx:id="filterSingleRoom" layoutX="64.0" layoutY="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="69.0" stylesheets="@css/styles.css" text="Single" textFill="WHITE">
+            <CheckBox fx:id="filterSingleRoom" layoutX="146.0" layoutY="6.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="69.0" stylesheets="@css/styles.css" text="Single">
                <font>
                   <Font size="14.0" />
                </font></CheckBox>
-            <CheckBox fx:id="filterDoubleRoom" layoutX="233.0" layoutY="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="92.0" text="Double" textFill="WHITE">
+            <CheckBox fx:id="filterDoubleRoom" layoutX="278.0" layoutY="7.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="92.0" text="Double">
                <font>
                   <Font size="14.0" />
                </font></CheckBox>
-            <CheckBox fx:id="filterTripleRoom" layoutX="432.0" layoutY="8.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Triple" textFill="WHITE">
+            <CheckBox fx:id="filterTripleRoom" layoutX="432.0" layoutY="8.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Triple">
                <font>
                   <Font size="14.0" />
                </font></CheckBox>
-            <CheckBox fx:id="filterTwinRoom" layoutX="621.0" layoutY="8.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Twin" textFill="WHITE">
+            <CheckBox fx:id="filterTwinRoom" layoutX="576.0" layoutY="8.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="Twin">
                <font>
                   <Font size="14.0" />
                </font></CheckBox>
-            <CheckBox fx:id="filterQueenRoom" layoutX="800.0" layoutY="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="77.0" text="Queen" textFill="WHITE">
+            <CheckBox fx:id="filterQueenRoom" layoutX="727.0" layoutY="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="77.0" text="Queen">
                <font>
                   <Font size="14.0" />
                </font></CheckBox>
+            <Label layoutY="-2.0" prefHeight="35.0" prefWidth="109.0" text="Select Room:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
+         <effect>
+            <ColorAdjust />
+         </effect>
       </Pane>
+      <Label layoutX="300.0" layoutY="155.0" prefHeight="35.0" prefWidth="278.0" text="Current Booking number:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="bNrPlaceholder" layoutX="579.0" layoutY="155.0" prefHeight="35.0" prefWidth="47.0" text="bid">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button id="confirm" layoutX="300.0" layoutY="586.0" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="30.0" prefWidth="82.0" stylesheets="@css/styles.css" text="Back" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

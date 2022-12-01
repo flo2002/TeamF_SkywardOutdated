@@ -20,9 +20,9 @@
    <children>
       <VBox prefHeight="700.0" prefWidth="230.0" style="-fx-background-color: #008080;">
          <children>
-            <Pane prefHeight="111.0" prefWidth="170.0">
+            <Pane prefHeight="136.0" prefWidth="230.0">
                <children>
-                  <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="20.0" layoutY="-30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="40.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/SkyWardIcon.png" />
                      </image>
@@ -85,25 +85,28 @@
             </Button>
          </children>
       </VBox>
-      <Pane layoutX="230.0" prefHeight="111.0" prefWidth="1070.0" style="-fx-background-color: #008080;">
+      <Pane layoutX="230.0" prefHeight="135.0" prefWidth="1070.0" style="-fx-background-color: #008080;">
          <children>
-            <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="459.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
+            <Text boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" layoutX="460.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
                <font>
                   <Font size="42.0" />
                </font>
             </Text>
+            <Label layoutX="15.0" layoutY="90.0" onMouseClicked="#onBookingButtonClick" text="Booking" textFill="#d4d4d4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="90.0" text="&gt;" textFill="#d4d4d4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <HBox layoutX="310.0" layoutY="200.0" prefHeight="380.0" prefWidth="935.0">
+      <HBox layoutX="300.0" layoutY="275.0" prefHeight="300.0" prefWidth="934.0">
          <children>
-            <TableView fx:id="roomTable" prefHeight="380.0" prefWidth="590.0" stylesheets="@css/styles.css">
-              <columns>
-                <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="120.7999267578125" text="Room Number" />
-                <TableColumn fx:id="roomTypeNameCol" minWidth="0.0" prefWidth="87.99993896484375" text="Type" />
-                 <TableColumn fx:id="roomStateNameCol" prefWidth="253.6000244140625" text="State" />
-              </columns>
-            </TableView>
-            <TableView fx:id="customerTable" prefHeight="380.0" prefWidth="600.0" stylesheets="@css/styles.css">
+            <TableView fx:id="customerTable" prefHeight="308.0" prefWidth="582.0" stylesheets="@css/styles.css">
               <columns>
                 <TableColumn fx:id="firstNameCol" prefWidth="133.60007321834564" text="Firstname" />
                 <TableColumn fx:id="lastNameCol" prefWidth="144.79998779296875" text="Lastname" />
@@ -112,43 +115,60 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+            <TableView fx:id="roomTable" prefHeight="380.0" prefWidth="590.0" stylesheets="@css/styles.css">
+              <columns>
+                <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="168.53338927030563" text="Room Number" />
+                <TableColumn fx:id="roomTypeNameCol" minWidth="0.0" prefWidth="157.0666961669922" text="Type" />
+                 <TableColumn fx:id="roomStateNameCol" prefWidth="143.99998779296874" text="State" />
+              </columns>
+            </TableView>
          </children>
       </HBox>
       <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
-      <Button fx:id="addRoomButton" id="addroom" layoutX="310.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room..." textFill="WHITE" />
-      <Button fx:id="addCustomerButton" id="addguest" layoutX="771.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="38.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest..." textFill="WHITE" />
-      <Button layoutX="1098.0" layoutY="639.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="46.0" prefWidth="187.0" style="-fx-background-color: #50C878;" text="Create new Booking" textFill="WHITE">
+      <Button fx:id="addRoomButton" id="addroom" layoutX="766.0" layoutY="590.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room &gt;" textFill="WHITE" />
+      <Button fx:id="addCustomerButton" id="addguest" layoutX="300.0" layoutY="590.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="29.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest &gt;" textFill="WHITE" />
+      <Button layoutX="1099.0" layoutY="647.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #50C878;" text="Save Booking" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <DatePicker fx:id="checkInDatePicker" layoutX="310.0" layoutY="150.0" prefHeight="25.0" prefWidth="195.0" />
-      <DatePicker fx:id="checkOutDatePicker" layoutX="524.0" layoutY="150.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="checkInCheckOutButton" layoutX="1126.0" layoutY="143.0" mnemonicParsing="false" onAction="#onCheckInCheckOutButtonClick" prefHeight="38.0" prefWidth="118.0" style="-fx-background-color: #80004C;" text="Check-In" textFill="WHITE">
+      <DatePicker fx:id="checkInDatePicker" layoutX="300.0" layoutY="230.0" prefHeight="25.0" prefWidth="195.0" stylesheets="@css/styles.css" />
+      <DatePicker fx:id="checkOutDatePicker" layoutX="534.0" layoutY="230.0" prefHeight="25.0" prefWidth="195.0" stylesheets="@css/styles.css" />
+      <Button fx:id="checkInCheckOutButton" layoutX="1125.0" layoutY="230.0" mnemonicParsing="false" onAction="#onCheckInCheckOutButtonClick" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #80004C;" text="Check-In" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="invoiceButton" layoutX="972.0" layoutY="647.0" mnemonicParsing="false" onAction="#onInvoiceButtonClick" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #80004C;" text="Invoice..." textFill="WHITE">
+      <Button fx:id="invoiceButton" layoutX="976.0" layoutY="647.0" mnemonicParsing="false" onAction="#onInvoiceButtonClick" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #80004C;" text="Invoice &gt;" textFill="WHITE">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="311.0" layoutY="131.0" text="From">
+      <Label layoutX="300.0" layoutY="203.0" text="From">
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Label layoutX="524.0" layoutY="131.0" text="To">
+      <Label layoutX="527.0" layoutY="203.0" text="To">
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Label layoutX="732.0" layoutY="149.0" prefHeight="26.0" prefWidth="112.0" text="Booking Number:" textFill="#008080">
+      <Label layoutX="300.0" layoutY="155.0" prefHeight="35.0" prefWidth="279.0" text="Current Booking number:">
          <font>
-            <Font size="14.0" />
+            <Font size="24.0" />
          </font></Label>
-      <Label fx:id="bNrPlaceholder" layoutX="849.0" layoutY="149.0" prefHeight="26.0" prefWidth="30.0" text="bid" textFill="#008080">
+      <Label fx:id="bNrPlaceholder" layoutX="579.0" layoutY="155.0" prefHeight="35.0" prefWidth="49.0" text="bid">
          <font>
-            <Font size="14.0" />
+            <Font size="24.0" />
          </font></Label>
+      <Label layoutX="756.0" layoutY="225.0" prefHeight="35.0" prefWidth="68.0" text="Nights:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="nights" layoutX="827.0" layoutY="225.0" prefHeight="35.0" prefWidth="23.0" text="x">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

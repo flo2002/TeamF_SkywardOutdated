@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+
 public class BookingController extends AbstractController {
     private Boolean editable = true;
     @FXML
@@ -26,6 +28,8 @@ public class BookingController extends AbstractController {
     @FXML
     public Label bNrPlaceholder;
 
+    @FXML
+    public Label nights;
 
     @FXML
     private DatePicker checkInDatePicker;
@@ -79,6 +83,7 @@ public class BookingController extends AbstractController {
                 updateData();
             }
         });
+
     }
 
 
@@ -179,6 +184,6 @@ public class BookingController extends AbstractController {
             invoiceButton.setDisable(true);
         }
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
-
+        
     }
 }
