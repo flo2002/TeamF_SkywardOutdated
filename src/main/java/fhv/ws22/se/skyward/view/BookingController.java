@@ -1,31 +1,15 @@
 package fhv.ws22.se.skyward.view;
 
-import com.google.inject.Inject;
-import fhv.ws22.se.skyward.domain.SessionFactory;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.Session;
-
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.util.HashMap;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class BookingController extends AbstractController {
     @FXML
@@ -36,8 +20,6 @@ public class BookingController extends AbstractController {
     @FXML
     public Label bNrPlaceholder;
 
-    @FXML
-    public Label nights;
 
     @FXML
     private DatePicker checkInDatePicker;
@@ -91,7 +73,6 @@ public class BookingController extends AbstractController {
                 updateData();
             }
         });
-
     }
 
 
@@ -157,18 +138,16 @@ public class BookingController extends AbstractController {
 
         customerTable.getItems().clear();
         List<CustomerDto> customers = tmpBooking.getCustomers();
+
         if (customers != null) {
-            for (CustomerDto customer : customers) {
-                customerTable.getItems().add(customer);
-            }
+            customerTable.getItems().addAll(customers);
         }
 
         roomTable.getItems().clear();
         List<RoomDto> rooms = tmpBooking.getRooms();
+
         if (rooms != null) {
-            for (RoomDto room : rooms) {
-                roomTable.getItems().add(room);
-            }
+            roomTable.getItems().addAll(rooms);
         }
 
         if (rooms != null && customers != null && tmpBooking.getCheckOutDateTime() != null) {
@@ -177,6 +156,6 @@ public class BookingController extends AbstractController {
             invoiceButton.setDisable(true);
         }
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
-        //nights.setText(String.valueOf(DAYS.between(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime())));
+
     }
 }

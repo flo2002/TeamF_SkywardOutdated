@@ -1,9 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
-import com.google.inject.Inject;
-import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.dtos.*;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,8 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -98,6 +93,7 @@ public class InvoiceController extends AbstractController {
 
     @FXML
     public void onConfirmButtonClick(ActionEvent event){
+        session.update(tmpInvoice.getId(), tmpInvoice);
         session.resetTmpInvoice();
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
@@ -116,9 +112,6 @@ public class InvoiceController extends AbstractController {
     }
 
     public void updateData(){
-        tmpBooking.setInvoices(List.of(tmpInvoice));
-        session.update(tmpBooking.getId(), tmpBooking);
-
         hotelNamePlaceholder.setText(tmpInvoice.getCompanyName());
         hotelStreetPlaceholder.setText(tmpInvoice.getHotelAddress().getStreet() + " " + tmpInvoice.getHotelAddress().getHouseNumber());
         hotelCityPlaceholder.setText(tmpInvoice.getHotelAddress().getZipCode() + " " + tmpInvoice.getHotelAddress().getCity());
@@ -140,10 +133,12 @@ public class InvoiceController extends AbstractController {
         }
 
         chargeableItemTable.getItems().clear();
-        List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
+        List<ChargeableItemDto> chargeableItems = session.getAll(ChargeableItemDto.class);
+        chargeableItems.removeIf(chargeableItemDto -> !chargeableItemDto.getBooking().getId().equals(tmpInvoice.getBooking().getId()));
+        chargeableItemTable.getItems().addAll(chargeableItems);
+
         BigDecimal totalPrice = new BigDecimal(0);
         for (ChargeableItemDto chargeableItem : chargeableItems) {
-            chargeableItemTable.getItems().add(chargeableItem);
             totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
         }
 

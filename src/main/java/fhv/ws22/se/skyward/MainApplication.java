@@ -2,9 +2,14 @@ package fhv.ws22.se.skyward;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import fhv.ws22.se.skyward.domain.DataService;
 import fhv.ws22.se.skyward.domain.Session;
 import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.persistence.DataGenerator;
+import fhv.ws22.se.skyward.persistence.DatabaseFacade;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +20,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigInteger;
 
 public class MainApplication extends Application {

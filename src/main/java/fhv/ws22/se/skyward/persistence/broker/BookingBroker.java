@@ -1,8 +1,11 @@
 package fhv.ws22.se.skyward.persistence.broker;
 
+import com.google.inject.Inject;
 import fhv.ws22.se.skyward.domain.model.*;
+import fhv.ws22.se.skyward.persistence.DatabaseFacade;
 import fhv.ws22.se.skyward.persistence.entity.*;
 import jakarta.persistence.EntityManager;
+import javafx.scene.chart.PieChart;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -11,10 +14,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class BookingBroker extends BrokerBase<BookingModel> {
-    private final EntityManager entityManager;
+    private final DatabaseFacade dbf;
 
-    public BookingBroker(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public BookingBroker(DatabaseFacade databaseFacade, EntityManager entityManager) {
+        super(entityManager);
+        dbf = databaseFacade;
     }
 
     @SuppressWarnings("unchecked")
@@ -29,122 +33,66 @@ public class BookingBroker extends BrokerBase<BookingModel> {
         return roomModels;
     }
 
-    public BookingModel get(UUID id) {
-        Booking booking = entityManager.find(Booking.class, id);
-        return BookingModel.toModel(booking);
+    public <S extends AbstractModel> S get(UUID id, Class<? extends AbstractEntity> entityClazz) {
+        return super.get(id, entityClazz);
     }
 
-    public void add(BookingModel booking) {
-        List<ChargeableItemModel> newChargeableItems = new ArrayList<ChargeableItemModel>();
-        if (booking.getRooms() != null) {
-            for (RoomModel room : booking.getRooms()) {
-                String name = room.getRoomTypeName() + "room";
-                Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays();
-                newChargeableItems.add(new ChargeableItemModel(name, new BigDecimal("100"), quantity));
-            }
-        }
-        booking.setChargeableItems(newChargeableItems);
-
-
+    private void addDependenciesIfNotExists(BookingModel booking) {
         List<CustomerModel> customerModels = booking.getCustomers();
-        List<Customer> customers = new ArrayList<Customer>();
         if (customerModels != null) {
-            for (CustomerModel customerModel : customerModels) {
-                customers.add(customerModel.toEntity());
-            }
+            customerModels.forEach(dbf::add);
         }
 
         List<RoomModel> roomModels = booking.getRooms();
-        List<Room> rooms = new ArrayList<Room>();
         if (roomModels != null) {
-            for (RoomModel roomModel : roomModels) {
-                rooms.add(roomModel.toEntity());
-            }
+            roomModels.forEach(dbf::add);
         }
+    }
 
-        List<ChargeableItemModel> chargeableItemModels = booking.getChargeableItems();
-        List<ChargeableItem> chargeableItems = new ArrayList<ChargeableItem>();
-        if (chargeableItemModels != null) {
-            for (ChargeableItemModel chargeableItemModel : chargeableItemModels) {
-                ChargeableItem c = chargeableItemModel.toEntity();
-                chargeableItems.add(c);
-                if (entityManager.createQuery("FROM ChargeableItem c WHERE c.name = :name AND c.price = :price AND c.quantity = :quantity")
-                        .setParameter("name", c.getName())
-                        .setParameter("price", c.getPrice())
-                        .setParameter("quantity", c.getQuantity())
-                        .getResultList().isEmpty()) {
-                    entityManager.getTransaction().begin();
-                    entityManager.persist(c);
-                    entityManager.getTransaction().commit();
-                }
-            }
-        }
+    public<S extends AbstractModel> UUID addAndReturnId(S s) {
+        BookingModel booking = (BookingModel) s;
+        addDependenciesIfNotExists(booking);
 
-        List<InvoiceModel> invoiceModels = booking.getInvoices();
-        List<Invoice> invoices = new ArrayList<Invoice>();
-        if (invoiceModels != null) {
-            for (InvoiceModel invoiceModel : invoiceModels) {
-                invoices.add(invoiceModel.toEntity());
-            }
+        List<Customer> customers = new ArrayList<Customer>();
+        if (booking.getCustomers() != null) {
+            booking.getCustomers().forEach(customer -> customers.add(
+                entityManager.createQuery("FROM Customer c WHERE c.firstName = :firstName AND c.lastName = :lastName", Customer.class)
+                    .setParameter("firstName", customer.getFirstName())
+                    .setParameter("lastName", customer.getLastName())
+                    .getSingleResult()
+            ));
         }
 
 
-        entityManager.getTransaction().begin();
-        List<Customer> customersInDb = new ArrayList<Customer>();
-        for (Customer c : customers) {
-            customersInDb.add((Customer) entityManager.createQuery("FROM Customer WHERE firstName = :firstname AND lastName = :lastname")
-                .setParameter("firstname", c.getFirstName())
-                .setParameter("lastname", c.getLastName())
-                .getSingleResult());
+        List<Room> rooms = new ArrayList<Room>();
+        if (booking.getRooms() != null) {
+            booking.getRooms().forEach(room -> rooms.add(
+                entityManager.createQuery("FROM Room WHERE roomNumber = :number", Room.class)
+                    .setParameter("number", room.getRoomNumber())
+                    .getSingleResult()
+            ));
         }
-        List<Room> roomsInDb = new ArrayList<Room>();
-        for (Room r : rooms) {
-            roomsInDb.add((Room) entityManager.createQuery("FROM Room WHERE roomNumber = :number")
-                .setParameter("number", r.getRoomNumber())
-                .getSingleResult());
-        }
-        List<Invoice> invoicesInDb = new ArrayList<Invoice>();
-        for (Invoice i : invoices) {
-            invoicesInDb.add((Invoice) entityManager.createQuery("FROM Invoice WHERE invoiceNumber = :number")
-                .setParameter("number", i.getInvoiceNumber())
-                .getSingleResult());
-        }
-        List<ChargeableItem> chargeableItemsInDb = new ArrayList<ChargeableItem>();
-        for (ChargeableItem ci : chargeableItems) {
-            chargeableItemsInDb.add((ChargeableItem) entityManager.createQuery("FROM ChargeableItem WHERE name = :name AND price = :price AND quantity = :quantity")
-                .setParameter("name", ci.getName())
-                .setParameter("price", ci.getPrice())
-                .setParameter("quantity", ci.getQuantity())
-                .getSingleResult());
-        }
+
 
         Booking bookingEntity = booking.toEntity();
-        bookingEntity.setCustomers(customersInDb);
-        bookingEntity.setRooms(roomsInDb);
-        bookingEntity.setInvoices(invoicesInDb);
-        bookingEntity.setChargeableItems(chargeableItemsInDb);
+        bookingEntity.setCustomers(customers);
+        bookingEntity.setRooms(rooms);
 
+        entityManager.getTransaction().begin();
         entityManager.persist(bookingEntity);
         entityManager.getTransaction().commit();
+        return booking.getId();
     }
 
-    public void update(UUID id, BookingModel booking) {
-        entityManager.getTransaction().begin();
-        entityManager.merge(booking.toEntity());
-        entityManager.getTransaction().commit();
+    public <S extends AbstractModel> void add(S s) {
+        addAndReturnId(s);
     }
 
-    public void delete(UUID id) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(entityManager.find(Booking.class, id));
-        entityManager.getTransaction().commit();
+    public <S extends AbstractModel> void update(UUID id, S s) {
+        super.update(id, s);
     }
 
-    public UUID addAndReturnId(BookingModel booking) {
-        Booking tmpBooking = booking.toEntity();
-        entityManager.getTransaction().begin();
-        entityManager.persist(tmpBooking);
-        entityManager.getTransaction().commit();
-        return tmpBooking.getId();
+    public void delete(UUID id, Class<? extends AbstractEntity> clazz) {
+        super.delete(id, clazz);
     }
 }

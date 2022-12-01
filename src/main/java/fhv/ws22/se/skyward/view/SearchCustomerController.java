@@ -1,22 +1,13 @@
 package fhv.ws22.se.skyward.view;
 
-import com.google.inject.Inject;
-import fhv.ws22.se.skyward.domain.Session;
-import fhv.ws22.se.skyward.domain.SessionFactory;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchCustomerController extends AbstractController {
@@ -29,14 +20,11 @@ public class SearchCustomerController extends AbstractController {
     private TableColumn<CustomerDto, String> firstNameCol;
     @FXML
     private TableColumn<CustomerDto, String> lastNameCol;
-    @FXML
-    public Label bNrPlaceholder;
-
 
     @FXML
     protected void initialize() {
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             updateTable(newValue);
@@ -52,7 +40,6 @@ public class SearchCustomerController extends AbstractController {
                 tmpBooking.setCustomers(selectedCustomers);
             }
         });
-        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
 
     @FXML
@@ -67,19 +54,19 @@ public class SearchCustomerController extends AbstractController {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-customers.fxml", "Home");
     }
 
-    @FXML
-    public void backButtonClick(ActionEvent event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
+
 
 
     public void updateTable(String filter) {
         customerTable.getItems().clear();
         List<CustomerDto> customers = session.getAll(CustomerDto.class);
+        List<CustomerDto> filteredCustomers = new ArrayList<CustomerDto>();
         for (CustomerDto customer : customers) {
             if (customer.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customer.getLastName().toLowerCase().contains(filter.toLowerCase())) {
-                customerTable.getItems().add(customer);
+                filteredCustomers.add(customer);
             }
         }
+        customerTable.getItems().addAll(filteredCustomers);
+
     }
 }

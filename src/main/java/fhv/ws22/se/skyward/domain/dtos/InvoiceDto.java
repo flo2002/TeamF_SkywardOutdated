@@ -1,5 +1,7 @@
 package fhv.ws22.se.skyward.domain.dtos;
 
+import fhv.ws22.se.skyward.domain.model.AddressModel;
+import fhv.ws22.se.skyward.domain.model.BookingModel;
 import fhv.ws22.se.skyward.domain.model.InvoiceModel;
 import fhv.ws22.se.skyward.persistence.entity.Address;
 import fhv.ws22.se.skyward.persistence.entity.Booking;
@@ -19,13 +21,14 @@ public class InvoiceDto extends AbstractDto {
 
     public InvoiceDto() {
     }
-    public InvoiceDto(String companyName, LocalDateTime invoiceDateTime, Boolean isPaid, AddressDto hotelAddress, AddressDto customerAddress, BookingDto booking) {
-        this.companyName = companyName;
+    public InvoiceDto(LocalDateTime invoiceDateTime, Boolean isPaid, AddressDto customerAddress, BookingDto booking) {
         this.invoiceDateTime = invoiceDateTime;
         this.isPaid = isPaid;
-        this.hotelAddress = hotelAddress;
         this.customerAddress = customerAddress;
         this.booking = booking;
+
+        this.companyName = "Skyward International";
+        this.hotelAddress = new AddressDto("ExampleStreet", "2", "1234", "New York", "United States");
     }
 
     public BigInteger getInvoiceNumber() {
@@ -94,6 +97,7 @@ public class InvoiceDto extends AbstractDto {
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
                 ", customerAddress=" + customerAddress +
+                ", booking=" + booking +
                 '}';
     }
 }
