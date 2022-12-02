@@ -42,12 +42,12 @@ public class DashboardController extends AbstractController {
         bookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
         checkInDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckInDateTime().toLocalDate()));
         checkOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckOutDateTime().toLocalDate()));
-        isCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
+        isCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().isCheckedIn() ? "Checked-In" : "Checked-Out"));
 
         bookingNumberCol1.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
         checkInDateTimeCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckInDateTime().toLocalDate()));
         checkOutDateTimeCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckOutDateTime().toLocalDate()));
-        isCheckedInCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
+        isCheckedInCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().isCheckedIn() ? "Checked-In" : "Checked-Out"));
 
         updateData();
         table.setRowFactory(bookingDtoTableView -> {

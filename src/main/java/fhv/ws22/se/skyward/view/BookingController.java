@@ -136,7 +136,7 @@ public class BookingController extends AbstractController {
 
     public void updateData() {
         if (tmpBooking.getCheckInDateTime() != null && tmpBooking.getCheckOutDateTime() != null) {
-            if (!tmpBooking.getIsCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
+            if (!tmpBooking.isCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
                 editable = false;
             }
         }
@@ -150,10 +150,10 @@ public class BookingController extends AbstractController {
             checkOutDatePicker.setDisable(true);
         }
         
-        if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
+        if (tmpBooking.isCheckedIn() != null && tmpBooking.isCheckedIn()) {
             checkInCheckOutButton.setText("Check-Out");
         }
-        if (tmpBooking.getIsCheckedIn() != null && !tmpBooking.getIsCheckedIn()) {
+        if (tmpBooking.isCheckedIn() != null && !tmpBooking.isCheckedIn()) {
             checkInCheckOutButton.setText("Check-In");
         }
 

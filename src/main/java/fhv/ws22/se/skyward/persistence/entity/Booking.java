@@ -53,7 +53,7 @@ public class Booking extends AbstractEntity {
         this.checkOutDateTime = checkOutDateTime;
     }
 
-    public Boolean getIsCheckedIn() {
+    public Boolean isCheckedIn() {
         return isCheckedIn;
     }
     public void setIsCheckedIn(Boolean isCheckedIn) {
