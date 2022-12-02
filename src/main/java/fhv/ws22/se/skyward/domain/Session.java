@@ -69,25 +69,11 @@ public class Session implements SessionService {
         if (checkIn == null || checkOut == null) {
             return null;
         }
-        List<RoomModel> modelRooms = (List<RoomModel>) dataService.getAll(RoomModel.class);
-        List<RoomDto> rooms = new ArrayList<RoomDto>();
-        for (RoomModel model : modelRooms) {
-            rooms.add(model.toDto());
-        }
 
+        List<RoomModel> modelRooms = (List<RoomModel>) dataService.getAll(RoomModel.class);
         List<RoomDto> availableRooms = new ArrayList<RoomDto>();
-        for (RoomDto room : rooms) {
-            if (room.getRoomTypeName().equals("Single") && filterMap.get("Single")) {
-                availableRooms.add(room);
-            } else if (room.getRoomTypeName().equals("Double") && filterMap.get("Double")) {
-                availableRooms.add(room);
-            } else if (room.getRoomTypeName().equals("Triple") && filterMap.get("Triple")) {
-                availableRooms.add(room);
-            } else if (room.getRoomTypeName().equals("Twin") && filterMap.get("Twin")) {
-                availableRooms.add(room);
-            } else if (room.getRoomTypeName().equals("Queen") && filterMap.get("Queen")) {
-                availableRooms.add(room);
-            }
+        for (RoomModel model : modelRooms) {
+            availableRooms.add(model.toDto());
         }
 
         List<BookingModel> modelBookings = (List<BookingModel>) dataService.getAll(BookingModel.class);
@@ -103,6 +89,24 @@ public class Session implements SessionService {
             }
         }
 
+        return availableRooms;
+    }
+
+    public List<RoomDto> filterRooms(List<RoomDto> rooms, HashMap<String, Boolean> filterMap) {
+        List<RoomDto> availableRooms = new ArrayList<RoomDto>();
+        for (RoomDto room : rooms) {
+            if (room.getRoomTypeName().equals("Single") && filterMap.get("Single")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Double") && filterMap.get("Double")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Triple") && filterMap.get("Triple")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Twin") && filterMap.get("Twin")) {
+                availableRooms.add(room);
+            } else if (room.getRoomTypeName().equals("Queen") && filterMap.get("Queen")) {
+                availableRooms.add(room);
+            }
+        }
         return availableRooms;
     }
 
