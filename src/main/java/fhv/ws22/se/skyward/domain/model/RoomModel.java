@@ -11,19 +11,19 @@ import java.math.BigDecimal;
 
 public class RoomModel extends AbstractModel {
     private static final Logger logger = LogManager.getLogger("RoomDto");
-    private int roomNumber;
+    private Integer roomNumber;
     private String roomTypeName;
     private String roomStateName;
 
     public RoomModel() {
     }
-    public RoomModel(int roomNumber, String roomTypeName, String roomStateName) {
+    public RoomModel(Integer roomNumber, String roomTypeName, String roomStateName) {
         setRoomNumber(roomNumber);
         setRoomTypeName(roomTypeName);
         setRoomStateName(roomStateName);
     }
 
-    public int getRoomNumber() {
+    public Integer getRoomNumber() {
         return roomNumber;
     }
     public void setRoomNumber(int roomNumber) {

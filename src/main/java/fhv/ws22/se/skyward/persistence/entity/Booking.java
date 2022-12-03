@@ -25,10 +25,6 @@ public class Booking extends AbstractEntity {
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "room_id"))
     private List<Room> rooms;
-    @OneToMany(mappedBy = "booking")
-    private List<ChargeableItem> chargeableItems;
-    @OneToMany(mappedBy = "booking")
-    private List<Invoice> invoices;
 
     public Booking() {
     }
@@ -78,20 +74,6 @@ public class Booking extends AbstractEntity {
         this.rooms = rooms;
     }
 
-    public List<ChargeableItem> getChargeableItems() {
-        return chargeableItems;
-    }
-    public void setChargeableItems(List<ChargeableItem> chargeableItems) {
-        this.chargeableItems = chargeableItems;
-    }
-
-    public List<Invoice> getInvoices() {
-        return invoices;
-    }
-    public void setInvoices(List<Invoice> invoices) {
-        this.invoices = invoices;
-    }
-
     @Override
     public String toString() {
         return "Booking{" +
@@ -101,8 +83,6 @@ public class Booking extends AbstractEntity {
                 ", isCheckedIn=" + isCheckedIn +
                 ", customers=" + customers +
                 ", rooms=" + rooms +
-                ", chargeableItems=" + chargeableItems +
-                ", invoices=" + invoices +
                 '}';
     }
 }

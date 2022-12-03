@@ -86,6 +86,7 @@ public class Invoice extends AbstractEntity {
                 ", isPaid=" + isPaid +
                 ", hotelAddress=" + hotelAddress +
                 ", customerAddress=" + customerAddress +
+                ", booking=" + booking +
                 '}';
     }
 }

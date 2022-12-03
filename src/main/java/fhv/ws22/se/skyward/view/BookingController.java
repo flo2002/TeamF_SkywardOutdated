@@ -1,37 +1,35 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.domain.SessionFactory;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
-import fhv.ws22.se.skyward.domain.Session;
-
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.domain.model.BookingDateNotValidException;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 
-public class BookingController {
-    private static final Logger logger = LogManager.getLogger("BookingController");
-    private static final BigInteger clientSessionID = new BigInteger("1");
-    private Session session;
-    private BookingDto tmpBooking;
 
 
+public class BookingController extends AbstractController {
+    private Boolean editable = true;
     @FXML
     private Button checkInCheckOutButton;
+    @FXML
+    private Button invoiceButton;
+    @FXML
+    private Button addRoomButton;
+    @FXML
+    private Button addCustomerButton;
 
+    @FXML
+    public Label bNrPlaceholder;
+
+    @FXML
+    public Label nights;
 
     @FXML
     private DatePicker checkInDatePicker;
@@ -56,19 +54,14 @@ public class BookingController {
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession(clientSessionID);
-        try {
-            tmpBooking = session.getTmpBooking();
-        } catch (Exception e) {
-            logger.error("Error while getting tmpBooking", e);
-        }
+        tmpBooking = session.getTmpBooking();
 
-        roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
-        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
-        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
+        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
 
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         configureListener();
 
@@ -90,19 +83,22 @@ public class BookingController {
                 updateData();
             }
         });
+
     }
 
 
     @FXML
-    public void onCheckInCheckOutButtonClick(ActionEvent actionEvent) {
-        if (checkInCheckOutButton.getText().equals("Check-in")) {
+    public void onCheckInCheckOutButtonClick(ActionEvent event) {
+        if (checkInCheckOutButton.getText().equals("Check-In")) {
             tmpBooking.setIsCheckedIn(true);
             updateData();
-            checkInCheckOutButton.setText("Check-out");
-        } else if (checkInCheckOutButton.getText().equals("Check-out")){
+            checkInCheckOutButton.setText("Check-Out");
+        } else if (checkInCheckOutButton.getText().equals("Check-Out")){
             tmpBooking.setIsCheckedIn(false);
             updateData();
-            checkInCheckOutButton.setText("Check-in");
+            checkInCheckOutButton.setText("Checked-Out");
+            session.update(tmpBooking.getId(), tmpBooking);
+            controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
         }
     }
 
@@ -111,25 +107,8 @@ public class BookingController {
         session.update(tmpBooking.getId(), tmpBooking);
         session.resetTmpBooking();
         NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
-
-    @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        try {
-            session.update(tmpBooking.getId(), tmpBooking);
-            ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
-        } catch (Exception e) {
-            logger.error(e.getCause().getCause().getCause().getMessage());
-            NotificationUtil.getInstance().showErrorNotification(e.getCause().getCause().getCause().getMessage(), event);
-        }
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
-    }
-
 
     @FXML
     public void onAddRoomButtonClick(ActionEvent event) {
@@ -140,27 +119,42 @@ public class BookingController {
             return;
         }
 
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml", "Rooms");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-rooms.fxml", "Rooms");
     }
 
     @FXML
     public void onAddGuestButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Guests");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Guests");
     }
 
     @FXML
     public void onInvoiceButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-information.fxml", "Invoice");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
     }
 
     public void updateData() {
+        if (tmpBooking.getCheckInDateTime() != null && tmpBooking.getCheckOutDateTime() != null) {
+            if (!tmpBooking.getIsCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
+                editable = false;
+            }
+        }
+        
+        if (!editable) {
+            checkInCheckOutButton.setDisable(true);
+            invoiceButton.setDisable(true);
+            addRoomButton.setDisable(true);
+            addCustomerButton.setDisable(true);
+            checkInDatePicker.setDisable(true);
+            checkOutDatePicker.setDisable(true);
+        }
+        
         if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
-            checkInCheckOutButton.setText("Check-out");
+            checkInCheckOutButton.setText("Check-Out");
         }
         if (tmpBooking.getIsCheckedIn() != null && !tmpBooking.getIsCheckedIn()) {
-            checkInCheckOutButton.setText("Check-in");
+            checkInCheckOutButton.setText("Check-In");
         }
 
         if (tmpBooking.getCheckInDateTime() != null) {
@@ -172,18 +166,24 @@ public class BookingController {
 
         customerTable.getItems().clear();
         List<CustomerDto> customers = tmpBooking.getCustomers();
+
         if (customers != null) {
-            for (CustomerDto customer : customers) {
-                customerTable.getItems().add(customer);
-            }
+            customerTable.getItems().addAll(customers);
         }
 
         roomTable.getItems().clear();
         List<RoomDto> rooms = tmpBooking.getRooms();
+
         if (rooms != null) {
-            for (RoomDto room : rooms) {
-                roomTable.getItems().add(room);
-            }
+            roomTable.getItems().addAll(rooms);
         }
+
+        if (rooms != null && customers != null && tmpBooking.getCheckOutDateTime() != null) {
+            invoiceButton.setDisable(false);
+        } else {
+            invoiceButton.setDisable(true);
+        }
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
+        
     }
 }

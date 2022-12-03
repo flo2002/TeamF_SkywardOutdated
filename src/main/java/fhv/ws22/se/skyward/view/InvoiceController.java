@@ -1,9 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.domain.Session;
-import fhv.ws22.se.skyward.domain.SessionFactory;
 import fhv.ws22.se.skyward.domain.dtos.*;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,20 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
-public class InvoiceInformationController {
-    private static final Logger logger = LogManager.getLogger("BookingController");
-    private static final BigInteger clientSessionID = new BigInteger("1");
-    private Session session;
-    private BookingDto tmpBooking;
-    private InvoiceDto tmpInvoice;
-
+public class InvoiceController extends AbstractController {
     @FXML
     private Button payButton;
 
@@ -67,38 +55,22 @@ public class InvoiceInformationController {
     private TableColumn<ChargeableItemDto, String> itemNameCol;
     @FXML
     private TableColumn<ChargeableItemDto, BigDecimal> itemPriceCol;
+    @FXML
+    private TableColumn<ChargeableItemDto, Integer> itemQuantityCol;
 
+    @FXML
+    private Label totalPricePlaceholder;
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession(clientSessionID);
-        try {
-            tmpBooking = session.getTmpBooking();
-            tmpInvoice = session.getTmpInvoice();
-        } catch (Exception e) {
-            logger.error("Error while loading booking", e);
-        }
+        tmpBooking = session.getTmpBooking();
+        tmpInvoice = session.getTmpInvoice();
+
         itemNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         itemPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        itemQuantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
         updateData();
-    }
-
-    @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        session.resetTmpInvoice();
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
-    }
-
-    @FXML
-    public void onBookingButtonClick(ActionEvent event) {
-        session.resetTmpInvoice();
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
     }
 
     @FXML
@@ -121,8 +93,9 @@ public class InvoiceInformationController {
 
     @FXML
     public void onConfirmButtonClick(ActionEvent event){
+        session.update(tmpInvoice.getId(), tmpInvoice);
         session.resetTmpInvoice();
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
     @FXML
     public void onEditButtonClick(ActionEvent event){
@@ -133,10 +106,12 @@ public class InvoiceInformationController {
 
     }
 
-    public void updateData(){
-        tmpBooking.setInvoices(List.of(tmpInvoice));
-        session.update(tmpBooking.getId(), tmpBooking);
+    @FXML
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
 
+    public void updateData(){
         hotelNamePlaceholder.setText(tmpInvoice.getCompanyName());
         hotelStreetPlaceholder.setText(tmpInvoice.getHotelAddress().getStreet() + " " + tmpInvoice.getHotelAddress().getHouseNumber());
         hotelCityPlaceholder.setText(tmpInvoice.getHotelAddress().getZipCode() + " " + tmpInvoice.getHotelAddress().getCity());
@@ -158,9 +133,15 @@ public class InvoiceInformationController {
         }
 
         chargeableItemTable.getItems().clear();
-        List<ChargeableItemDto> chargeableItems = tmpBooking.getChargeableItems();
+        List<ChargeableItemDto> chargeableItems = session.getAll(ChargeableItemDto.class);
+        chargeableItems.removeIf(chargeableItemDto -> !chargeableItemDto.getBooking().getId().equals(tmpInvoice.getBooking().getId()));
+        chargeableItemTable.getItems().addAll(chargeableItems);
+
+        BigDecimal totalPrice = new BigDecimal(0);
         for (ChargeableItemDto chargeableItem : chargeableItems) {
-            chargeableItemTable.getItems().add(chargeableItem);
+            totalPrice = totalPrice.add(chargeableItem.getPrice().multiply(BigDecimal.valueOf(chargeableItem.getQuantity())));
         }
+
+        totalPricePlaceholder.setText(totalPrice.toString());
     }
 }

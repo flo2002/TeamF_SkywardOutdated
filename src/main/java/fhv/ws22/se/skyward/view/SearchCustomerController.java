@@ -1,27 +1,18 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.domain.Session;
-import fhv.ws22.se.skyward.domain.SessionFactory;
-import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SearchCustomerController {
-    private static final Logger logger = LogManager.getLogger("SearchCustomerController");
-    private static final BigInteger clientSessionID = new BigInteger("1");
-    private Session session;
-    private BookingDto tmpBooking;
-
+public class SearchCustomerController extends AbstractController {
     @FXML
     private TextField searchTextField;
 
@@ -31,13 +22,14 @@ public class SearchCustomerController {
     private TableColumn<CustomerDto, String> firstNameCol;
     @FXML
     private TableColumn<CustomerDto, String> lastNameCol;
+    @FXML
+    public Label bNrPlaceholder;
+
 
     @FXML
     protected void initialize() {
-        session = SessionFactory.getInstance().getSession(clientSessionID);
-
-        firstNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("firstName"));
-        lastNameCol.setCellValueFactory(new PropertyValueFactory<CustomerDto, String>("lastName"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             updateTable(newValue);
@@ -57,47 +49,37 @@ public class SearchCustomerController {
                 tmpBooking.setCustomers(selectedCustomers);
             }
         });
-    }
-
-    @FXML
-    public void onSearchButtonClick(ActionEvent event) {
-        updateTable(searchTextField.getText());
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
 
     @FXML
     public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
         NotificationUtil.getInstance().showSuccessNotification("The guests were added to the booking", event);
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
-    }
-
-    @FXML
-    public void onHomeButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/homescreen.fxml", "Home");
-    }
-
-    @FXML
-    public void onInvoicePageButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice-overview.fxml", "Invoice");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
     public void onCreateButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-guests.fxml", "Home");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-customers.fxml", "Home");
     }
 
     @FXML
-    public void onBookingButtonClick(ActionEvent event) {
-        ControllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
+
 
     public void updateTable(String filter) {
         customerTable.getItems().clear();
         List<CustomerDto> customers = session.getAll(CustomerDto.class);
+        List<CustomerDto> filteredCustomers = new ArrayList<CustomerDto>();
         for (CustomerDto customer : customers) {
             if (customer.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customer.getLastName().toLowerCase().contains(filter.toLowerCase())) {
-                customerTable.getItems().add(customer);
+                filteredCustomers.add(customer);
             }
         }
+        customerTable.getItems().addAll(filteredCustomers);
+
     }
 }
