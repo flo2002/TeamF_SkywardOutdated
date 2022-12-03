@@ -5,6 +5,7 @@ import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -89,7 +90,7 @@ public class BookingController extends AbstractController {
 
 
     @FXML
-    public void onCheckInCheckOutButtonClick(ActionEvent event) {
+    public void onCheckInCheckOutButtonClick(Event event) {
         if (checkInCheckOutButton.getText().equals("Check-In")) {
             tmpBooking.setIsCheckedIn(true);
             updateData();
@@ -104,14 +105,14 @@ public class BookingController extends AbstractController {
     }
 
     @FXML
-    public void onCreateBookingButtonClick(ActionEvent event) {
+    public void onCreateBookingButtonClick(Event event) {
         session.update(tmpBooking.getId(), tmpBooking);
         session.resetTmpBooking();
         NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
     }
 
-    public void onDeleteBookingButtonClick(ActionEvent event) {
+    public void onDeleteBookingButtonClick(Event event) {
         session.delete(tmpBooking.getId(), BookingDto.class);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
         session.resetTmpBooking();
@@ -119,7 +120,7 @@ public class BookingController extends AbstractController {
     }
 
     @FXML
-    public void onAddRoomButtonClick(ActionEvent event) {
+    public void onAddRoomButtonClick(Event event) {
         session.update(tmpBooking.getId(), tmpBooking);
 
         if (tmpBooking.getCheckInDateTime() == null || tmpBooking.getCheckOutDateTime() == null) {
@@ -131,13 +132,13 @@ public class BookingController extends AbstractController {
     }
 
     @FXML
-    public void onAddGuestButtonClick(ActionEvent event) {
+    public void onAddGuestButtonClick(Event event) {
         session.update(tmpBooking.getId(), tmpBooking);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Guests");
     }
 
     @FXML
-    public void onInvoiceButtonClick(ActionEvent event) {
+    public void onInvoiceButtonClick(Event event) {
         session.update(tmpBooking.getId(), tmpBooking);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/invoice.fxml", "Invoice");
     }

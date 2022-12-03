@@ -2,6 +2,7 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.dtos.*;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -74,12 +75,12 @@ public class InvoiceController extends AbstractController {
     }
 
     @FXML
-    public void onSplitButtonClick(ActionEvent event){
+    public void onSplitButtonClick(Event event){
 
     }
 
     @FXML
-    public void onPayButtonClick(ActionEvent event){
+    public void onPayButtonClick(Event event){
         if (payButton.getText().equals("Pay")) {
             payButton.setText("Unpay");
             tmpInvoice.setIsPaid(true);
@@ -92,22 +93,22 @@ public class InvoiceController extends AbstractController {
     }
 
     @FXML
-    public void onConfirmButtonClick(ActionEvent event){
+    public void onConfirmButtonClick(Event event){
         session.update(tmpInvoice.getId(), tmpInvoice);
         session.resetTmpInvoice();
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
     @FXML
-    public void onEditButtonClick(ActionEvent event){
+    public void onEditButtonClick(Event event){
 
     }
     @FXML
-    public void onPrintButtonClick(ActionEvent event){
+    public void onPrintButtonClick(Event event){
 
     }
 
     @FXML
-    public void backButtonClick(ActionEvent event) {
+    public void backButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
