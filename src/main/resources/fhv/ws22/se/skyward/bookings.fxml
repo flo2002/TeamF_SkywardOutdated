@@ -119,7 +119,7 @@
               <columns>
                 <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="168.53338927030563" text="Room Number" />
                 <TableColumn fx:id="roomTypeNameCol" minWidth="0.0" prefWidth="157.0666961669922" text="Type" />
-                 <TableColumn fx:id="roomStateNameCol" prefWidth="143.99998779296874" text="State" />
+                 <TableColumn fx:id="roomStateNameCol" prefWidth="143.99998779296874" text="Condition" />
               </columns>
             </TableView>
          </children>
