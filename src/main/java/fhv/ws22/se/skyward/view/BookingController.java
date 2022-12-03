@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-
 public class BookingController extends AbstractController {
     private Boolean editable = true;
     @FXML
@@ -99,7 +98,6 @@ public class BookingController extends AbstractController {
         });
 
     }
-
 
     @FXML
     public void onCheckInCheckOutButtonClick(ActionEvent event) {

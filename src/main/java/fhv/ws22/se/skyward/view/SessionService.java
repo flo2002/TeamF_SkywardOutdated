@@ -17,6 +17,7 @@ public interface SessionService {
     <T extends AbstractDto> void delete(UUID id, Class<T> clazz);
 
     List<RoomDto> getAvailableRooms(LocalDateTime checkIn, LocalDateTime checkOut);
+    List<RoomDto> filterRooms(List<RoomDto> rooms, HashMap<String, Boolean> filterMap);
     void setRoomFilterMap(HashMap<String, Boolean> filterMap);
     HashMap<String, Boolean> getRoomFilterMap();
 
