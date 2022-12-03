@@ -16,6 +16,7 @@ public class InvoiceModel extends AbstractModel {
     private AddressModel hotelAddress;
     private AddressModel customerAddress;
     private BookingModel booking;
+    private CustomerModel billedCustomer;
 
     public InvoiceModel() {
     }
@@ -26,6 +27,7 @@ public class InvoiceModel extends AbstractModel {
         setHotelAddress(new AddressModel("ExampleStreet", "2", "1234", "New York", "United States"));
         setCustomerAddress(customerAddress);
         setBooking(booking);
+        setBilledCustomer(booking.getCustomers().get(0));
     }
 
     public BigInteger getInvoiceNumber() {
@@ -77,6 +79,14 @@ public class InvoiceModel extends AbstractModel {
         this.booking = booking;
     }
 
+    public CustomerModel getBilledCustomer() {
+        return billedCustomer;
+    }
+    public void setBilledCustomer(CustomerModel billedCustomer) {
+        this.billedCustomer = billedCustomer;
+    }
+
+
 
     public InvoiceDto toDto() {
         return modelMapper.map(this, InvoiceDto.class);
@@ -103,6 +113,7 @@ public class InvoiceModel extends AbstractModel {
                 ", hotelAddress=" + hotelAddress +
                 ", customerAddress=" + customerAddress +
                 ", booking=" + booking +
+                ", billedCustomer=" + billedCustomer +
                 '}';
     }
 }
