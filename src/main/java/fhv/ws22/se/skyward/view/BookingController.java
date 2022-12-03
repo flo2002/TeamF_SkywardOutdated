@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -139,6 +140,7 @@ public class BookingController extends AbstractController {
             if (!tmpBooking.getIsCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
                 editable = false;
             }
+            nights.setText(String.valueOf(Duration.between(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime()).toDays() + 1));
         }
         
         if (!editable) {
@@ -184,6 +186,6 @@ public class BookingController extends AbstractController {
             invoiceButton.setDisable(true);
         }
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
-        
+
     }
 }

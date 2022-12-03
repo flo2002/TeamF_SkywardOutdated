@@ -91,7 +91,7 @@
       </VBox>
       <HBox layoutX="300.0" layoutY="246.0" prefHeight="318.0" prefWidth="948.0">
          <children>
-            <TableView fx:id="roomTable" prefHeight="307.0" prefWidth="948.0" stylesheets="@css/styles.css">
+            <TableView fx:id="roomTable" editable="true" prefHeight="307.0" prefWidth="948.0" stylesheets="@css/styles.css">
                <columns>
                   <TableColumn fx:id="checkboxCol" prefWidth="119.99996948242188" text="Checkbox" />
                   <TableColumn fx:id="roomNumberCol" editable="false" prefWidth="195.20001220703125" styleClass="css/style.css" text="Room Number" />

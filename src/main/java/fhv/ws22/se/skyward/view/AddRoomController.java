@@ -1,14 +1,26 @@
 package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.persistence.entity.Room;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+import org.hibernate.annotations.Check;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class AddRoomController extends AbstractController {
     @FXML
@@ -16,7 +28,7 @@ public class AddRoomController extends AbstractController {
     @FXML
     private TableColumn<RoomDto, Integer> roomNumberCol;
     @FXML
-    private TableColumn<RoomDto, Boolean> checkboxCol;
+    private TableColumn<RoomDto, CheckBox> checkboxCol;
     @FXML
     private TableColumn<RoomDto, String> roomTypeNameCol;
     @FXML
@@ -38,18 +50,35 @@ public class AddRoomController extends AbstractController {
 
     @FXML
     protected void initialize() {
-        roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
-        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
-        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
-
         tmpBooking = session.getTmpBooking();
-        roomTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        List<RoomDto> selectedRooms = new ArrayList<>();
+
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
+        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
+        checkboxCol.setCellValueFactory(entry -> {
+            CheckBox checkBox = new CheckBox();
+
+            for (RoomDto room : tmpBooking.getRooms()) {
+                if (room.getId() == entry.getValue().getId()) {
+                    checkBox.setSelected(true);
+                }
+            }
+
+            checkBox.setOnAction(event -> {
+                selectedRooms.add(entry.getValue());
+                tmpBooking.setRooms(selectedRooms);
+            });
+            return new SimpleObjectProperty<>(checkBox);
+        });
+
+        /*roomTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         roomTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 List<RoomDto> selectedRooms = roomTable.getSelectionModel().getSelectedItems();
                 tmpBooking.setRooms(selectedRooms);
             }
-        });
+        });*/
         configureListener();
         updateData();
     }
@@ -126,10 +155,12 @@ public class AddRoomController extends AbstractController {
         roomTable.getItems().clear();
 
         List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
+
+        List<RoomDto> check = checkboxCol.getTableView().getItems();
+
         if (rooms != null) {
             roomTable.getItems().addAll(rooms);
         }
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
-
     }
 }
