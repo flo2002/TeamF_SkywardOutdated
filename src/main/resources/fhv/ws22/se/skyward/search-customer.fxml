@@ -101,7 +101,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="150.0" layoutY="90.0" onMouseClicked="#onBookingButtonClick" text="Search Guest" textFill="#d4d4d4">
+            <Label layoutX="150.0" layoutY="90.0" text="Search Guest" textFill="#d4d4d4">
                <font>
                   <Font size="24.0" />
                </font>

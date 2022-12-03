@@ -38,7 +38,7 @@ public class AddCustomerController extends AbstractController {
         session.add(customerDto);
 
         NotificationUtil.getInstance().showSuccessNotification("The guest was added to the database and booking", event);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Search Customer");
     }
 
     @FXML
