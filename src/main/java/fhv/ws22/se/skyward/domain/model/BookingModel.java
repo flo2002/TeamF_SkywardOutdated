@@ -22,7 +22,8 @@ public class BookingModel extends AbstractModel {
 
     public BookingModel() {
     }
-    public BookingModel(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerModel> customers, List<RoomModel> rooms) {
+
+    public BookingModel(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerModel> customers, List<RoomModel> rooms) throws Exception {
         setCheckInDateTime(checkInDateTime);
         setCheckOutDateTime(checkOutDateTime);
         setIsCheckedIn(isCheckedIn);
@@ -41,6 +42,7 @@ public class BookingModel extends AbstractModel {
         return checkInDateTime;
     }
     public void setCheckInDateTime(LocalDateTime checkInDateTime) {
+        // validation checks here is too much trouble, because old bookings might have invalid dates --> solution: check in view
         this.checkInDateTime = checkInDateTime;
     }
 

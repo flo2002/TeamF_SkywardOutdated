@@ -55,6 +55,20 @@ public class BookingController extends AbstractController {
     protected void initialize() {
         tmpBooking = session.getTmpBooking();
 
+        checkInDatePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.compareTo(LocalDate.now()) < 0);
+            }
+        });
+        checkOutDatePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.compareTo(LocalDate.now().plusDays(1)) < 0);
+            }
+        });
+
+
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));

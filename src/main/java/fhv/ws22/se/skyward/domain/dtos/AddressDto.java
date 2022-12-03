@@ -5,14 +5,14 @@ import org.modelmapper.ModelMapper;
 
 public class AddressDto extends AbstractDto {
     private String street;
-    private String houseNumber;
-    private String zipCode;
+    private Integer houseNumber;
+    private Integer zipCode;
     private String city;
     private String country;
 
     public AddressDto() {
     }
-    public AddressDto(String street, String houseNumber, String zipCode, String city, String country) {
+    public AddressDto(String street, Integer houseNumber, Integer zipCode, String city, String country) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.zipCode = zipCode;
@@ -27,17 +27,17 @@ public class AddressDto extends AbstractDto {
         this.street = street;
     }
 
-    public String getHouseNumber() {
+    public Integer getHouseNumber() {
         return houseNumber;
     }
-    public void setHouseNumber(String houseNumber) {
+    public void setHouseNumber(Integer houseNumber) {
         this.houseNumber = houseNumber;
     }
 
-    public String getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
-    public void setZipCode(String zipCode) {
+    public void setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
     }
 

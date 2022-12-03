@@ -141,7 +141,7 @@ public class Session implements SessionService {
             invoices.removeIf(invoice -> invoice.getBooking().getId() != booking.getId());
 
             if (invoices.isEmpty()) {
-                AddressDto customerAddress = new AddressDto("MainStreet", "43", "1234", "Vienna", "Austria");
+                AddressDto customerAddress = new AddressDto("MainStreet", 43, 1234, "Vienna", "Austria");
                 add(customerAddress);
                 InvoiceDto invoice = new InvoiceDto(LocalDateTime.now(), false, customerAddress, booking);
                 tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice);

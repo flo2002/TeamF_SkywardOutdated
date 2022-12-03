@@ -38,11 +38,12 @@ public class AddRoomController extends AbstractController {
 
     @FXML
     protected void initialize() {
-        roomNumberCol.setCellValueFactory(new PropertyValueFactory<RoomDto, Integer>("roomNumber"));
-        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomTypeName"));
-        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<RoomDto, String>("roomStateName"));
-
         tmpBooking = session.getTmpBooking();
+
+        roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
+        roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
+
         roomTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         roomTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
