@@ -15,14 +15,14 @@ import java.util.regex.Pattern;
 public class AddressModel extends AbstractModel {
     private static final Logger logger = LogManager.getLogger("AddressModel");
     private String street;
-    private String houseNumber;
-    private String zipCode;
+    private Integer houseNumber;
+    private Integer zipCode;
     private String city;
     private String country;
 
     public AddressModel() {
     }
-    public AddressModel(String street, String houseNumber, String zipCode, String city, String country) throws AddressNotValidException  {
+    public AddressModel(String street, Integer houseNumber, Integer zipCode, String city, String country) throws AddressNotValidException  {
         setStreet(street);
         setHouseNumber(houseNumber);
         setZipCode(zipCode);
@@ -45,13 +45,13 @@ public class AddressModel extends AbstractModel {
         this.street = street;
     }
 
-    public String getHouseNumber() {
+    public Integer getHouseNumber() {
         return houseNumber;
     }
-    public void setHouseNumber(String houseNumber) throws AddressNotValidException{
+    public void setHouseNumber(Integer houseNumber) throws AddressNotValidException{
         String regex = "^\\d+(\\s|-)?\\w*$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(houseNumber);
+        Matcher matcher = pattern.matcher(houseNumber.toString());
 
         if(!matcher.matches()){
             logger.error("House is not valid");
@@ -60,18 +60,17 @@ public class AddressModel extends AbstractModel {
         this.houseNumber = houseNumber;
     }
 
-    public String getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
-    public void setZipCode(String zipCode) throws AddressNotValidException{
-
-       /* String regex = " ^[0-9]{5}(?:-[0-9]{4})?$";
+    public void setZipCode(Integer zipCode) throws AddressNotValidException{
+        String regex = "^[0-9]{4,5}(?:-[0-9]{1,4})?$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(zipCode);
+        Matcher matcher = pattern.matcher(zipCode.toString());
         if(!matcher.matches()){
             logger.error("Zip Code number is not valid");
             throw new AddressNotValidException("Zip Code number is not valid");
-        }*/
+        }
         this.zipCode = zipCode;
     }
 

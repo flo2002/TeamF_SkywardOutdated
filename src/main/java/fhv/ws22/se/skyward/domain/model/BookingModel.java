@@ -41,11 +41,8 @@ public class BookingModel extends AbstractModel {
     public LocalDateTime getCheckInDateTime() {
         return checkInDateTime;
     }
-    public void setCheckInDateTime(LocalDateTime checkInDateTime) throws BookingDateNotValidException {
-        if (checkInDateTime.isBefore(LocalDateTime.now().toLocalDate().atStartOfDay())) {
-            logger.error("CheckInDateTime is before today");
-            throw new BookingDateNotValidException("CheckInDateTime is in the past");
-        }
+    public void setCheckInDateTime(LocalDateTime checkInDateTime) {
+        // validation checks here is too much trouble, because old bookings might have invalid dates --> solution: check in view
         this.checkInDateTime = checkInDateTime;
     }
 

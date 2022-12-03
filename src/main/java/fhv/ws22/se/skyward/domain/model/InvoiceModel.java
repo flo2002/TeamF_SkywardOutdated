@@ -24,7 +24,7 @@ public class InvoiceModel extends AbstractModel {
         setInvoiceDateTime(invoiceDateTime);
         setIsPaid(isPaid);
         try {
-            setHotelAddress(new AddressModel("ExampleStreet", "2", "1234", "New York", "United States"));
+            setHotelAddress(new AddressModel("ExampleStreet", 2, 1234, "New York", "United States"));
 
         }catch (Exception e){e.printStackTrace();}
         setCustomerAddress(customerAddress);
