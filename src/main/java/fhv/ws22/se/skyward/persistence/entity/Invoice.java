@@ -21,6 +21,9 @@ public class Invoice extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "customers")
     private Booking booking;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer billedCustomer;
 
     public Invoice() {
     }
@@ -77,6 +80,13 @@ public class Invoice extends AbstractEntity {
         this.booking = booking;
     }
 
+    public Customer getBilledCustomer() {
+        return billedCustomer;
+    }
+    public void setBilledCustomer(Customer billedCustomer) {
+        this.billedCustomer = billedCustomer;
+    }
+
     @Override
     public String toString() {
         return "Invoice{" +
@@ -87,6 +97,7 @@ public class Invoice extends AbstractEntity {
                 ", hotelAddress=" + hotelAddress +
                 ", customerAddress=" + customerAddress +
                 ", booking=" + booking +
+                ", billedCustomer=" + billedCustomer +
                 '}';
     }
 }

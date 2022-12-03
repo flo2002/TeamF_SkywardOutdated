@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-
 public class BookingController extends AbstractController {
     private Boolean editable = true;
     @FXML
@@ -86,7 +85,6 @@ public class BookingController extends AbstractController {
 
     }
 
-
     @FXML
     public void onCheckInCheckOutButtonClick(ActionEvent event) {
         if (checkInCheckOutButton.getText().equals("Check-In")) {
@@ -136,7 +134,7 @@ public class BookingController extends AbstractController {
 
     public void updateData() {
         if (tmpBooking.getCheckInDateTime() != null && tmpBooking.getCheckOutDateTime() != null) {
-            if (!tmpBooking.isCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
+            if (!tmpBooking.getIsCheckedIn() && tmpBooking.getCheckOutDateTime().toLocalDate().minusDays(1).isBefore(LocalDate.now())) {
                 editable = false;
             }
         }
@@ -150,10 +148,10 @@ public class BookingController extends AbstractController {
             checkOutDatePicker.setDisable(true);
         }
         
-        if (tmpBooking.isCheckedIn() != null && tmpBooking.isCheckedIn()) {
+        if (tmpBooking.getIsCheckedIn() != null && tmpBooking.getIsCheckedIn()) {
             checkInCheckOutButton.setText("Check-Out");
         }
-        if (tmpBooking.isCheckedIn() != null && !tmpBooking.isCheckedIn()) {
+        if (tmpBooking.getIsCheckedIn() != null && !tmpBooking.getIsCheckedIn()) {
             checkInCheckOutButton.setText("Check-In");
         }
 

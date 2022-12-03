@@ -62,4 +62,9 @@ public class RoomCapacity {
     public void setDay5(Boolean day5) {
         this.day5 = day5;
     }
+
+    @Override
+    public String toString() {
+        return "RoomCapacity [roomNumber=" + roomNumber + ", day1=" + day1 + ", day2=" + day2 + ", day3=" + day3 + ", day4=" + day4 + ", day5=" + day5 + "]";
+    }
 }

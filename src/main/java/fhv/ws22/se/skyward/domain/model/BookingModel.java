@@ -51,7 +51,7 @@ public class BookingModel extends AbstractModel {
         this.checkOutDateTime = checkOutDateTime;
     }
 
-    public Boolean isCheckedIn() {
+    public Boolean getIsCheckedIn() {
         return isCheckedIn;
     }
     public void setIsCheckedIn(Boolean isCheckedIn) {

@@ -51,6 +51,7 @@ public class RoomCapacityController extends AbstractController {
             roomCap.setDay4(isOccupied(room, LocalDate.now().plusDays(3)));
             roomCap.setDay5(isOccupied(room, LocalDate.now().plusDays(4)));
 
+            System.out.println(roomCap);
             roomCaps.add(roomCap);
         }
 
@@ -58,9 +59,22 @@ public class RoomCapacityController extends AbstractController {
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
 
         List<TableColumn<RoomCapacity, String>> columns = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             TableColumn<RoomCapacity, String> column = new TableColumn<>(LocalDate.now().plusDays(i).format(DateTimeFormatter.ofPattern("dd.MM")));
-            column.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay1() ? "occupied" : "free"));
+            if (i == 0) {
+                column.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay1() ? "free" : "occupied"));
+            } else if (i == 1) {
+                column.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay2() ? "free" : "occupied"));
+            } else if (i == 2) {
+                column.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay3() ? "free" : "occupied"));
+            } else if (i == 3) {
+                column.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay4() ? "free" : "occupied"));
+            } else if (i == 4) {
+                column.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay5() ? "free" : "occupied"));
+            } else {
+                column.setCellValueFactory(entry -> new SimpleObjectProperty<>(""));
+            }
+
             column.setCellFactory(col -> new TableCell<>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
@@ -71,19 +85,18 @@ public class RoomCapacityController extends AbstractController {
                     } else {
                         setText(item);
                         if (item.equals("occupied")) {
-                            setTextFill(Color.RED);
-                            setStyle("-fx-background-color: #ff0000");
+                            setStyle("-fx-text-fill: #f44336");
                         } else {
-                            setTextFill(Color.GREEN);
-                            setStyle("-fx-background-color: #00ff00");
+                            setStyle("-fx-text-fill: #50c878ff");
                         }
                     }
                 }
             });
+
             columns.add(column);
         }
 
-        table.getColumns().addAll(roomNumberCol, columns.get(0), columns.get(1), columns.get(2), columns.get(3), columns.get(4), columns.get(5));
+        table.getColumns().addAll(roomNumberCol, columns.get(0), columns.get(1), columns.get(2), columns.get(3), columns.get(4));
         table.getItems().addAll(roomCaps);
     }
 }
