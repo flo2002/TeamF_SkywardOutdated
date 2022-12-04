@@ -96,5 +96,4 @@ public class NotificationUtil {
 
         return alert.getResult().getText().equals("OK");
     }
-
 }
