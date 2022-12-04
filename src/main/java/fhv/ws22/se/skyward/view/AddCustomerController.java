@@ -15,6 +15,21 @@ public class AddCustomerController extends AbstractController {
     private TextField lastNameTextField;
 
     @FXML
+    private TextField streetTextField;
+
+    @FXML
+    private TextField zipTextField;
+
+    @FXML
+    private TextField cityTextField;
+
+    @FXML
+    private TextField countryTextField;
+
+    @FXML
+    private TextField numberTextField;
+
+    @FXML
     private void initialize() {
     }
 
@@ -28,9 +43,35 @@ public class AddCustomerController extends AbstractController {
             lastNameTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
             return;
         }
+        if (streetTextField.getText().isEmpty()) {
+            streetTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            return;
+        }
+        if (zipTextField.getText().isEmpty()) {
+            zipTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            return;
+        }
+        if (countryTextField.getText().isEmpty()) {
+            countryTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            return;
+        }
+        if (numberTextField.getText().isEmpty()) {
+            numberTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            return;
+        }
+        if (cityTextField.getText().isEmpty()) {
+            cityTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            return;
+        }
 
-        CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(), new AddressDto("MainStreet", "43", "1234", "Vienna", "Austria"));
+        CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(),
+                new AddressDto(streetTextField.getText(), numberTextField.getText(), zipTextField.getText(),
+                        cityTextField.getText(), countryTextField.getText()));
+
         session.add(customerDto);
+
+        //Test
+        //System.out.println(customerDto);
 
         NotificationUtil.getInstance().showSuccessNotification("The guest was added to the database and booking", event);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");

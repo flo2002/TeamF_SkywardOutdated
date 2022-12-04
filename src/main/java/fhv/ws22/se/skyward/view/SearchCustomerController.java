@@ -1,9 +1,12 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.domain.dtos.AddressDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -23,28 +26,51 @@ public class SearchCustomerController extends AbstractController {
     @FXML
     private TableColumn<CustomerDto, String> lastNameCol;
     @FXML
-    public Label bNrPlaceholder;
+    private TableColumn<CustomerDto, CheckBox> checkboxCol;
 
+    @FXML
+    private TableColumn<CustomerDto, String> adressCol;
+    @FXML
+    public Label bNrPlaceholder;
 
     @FXML
     protected void initialize() {
+        tmpBooking = session.getTmpBooking();
+        List<CustomerDto> selectedCustomer = new ArrayList<>();
+
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        adressCol.setCellValueFactory(new PropertyValueFactory<>("adress"));
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             updateTable(newValue);
         });
 
+        checkboxCol.setCellValueFactory(entry -> {
+            CheckBox checkBox = new CheckBox();
+
+            for (CustomerDto customer : tmpBooking.getCustomers()) {
+                if (customer.getId() == entry.getValue().getId()) {
+                    checkBox.setSelected(false);
+                }
+            }
+
+            checkBox.setOnAction(event -> {
+                selectedCustomer.add(entry.getValue());
+                tmpBooking.setCustomers(selectedCustomer);
+            });
+            return new SimpleObjectProperty<>(checkBox);
+        });
+
         updateTable("");
 
-        tmpBooking = session.getTmpBooking();
-        customerTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        /*customerTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         customerTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 List<CustomerDto> selectedCustomers = customerTable.getSelectionModel().getSelectedItems();
                 tmpBooking.setCustomers(selectedCustomers);
             }
-        });
+        });*/
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
 
@@ -71,7 +97,10 @@ public class SearchCustomerController extends AbstractController {
         List<CustomerDto> customers = session.getAll(CustomerDto.class);
         List<CustomerDto> filteredCustomers = new ArrayList<CustomerDto>();
         for (CustomerDto customer : customers) {
-            if (customer.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customer.getLastName().toLowerCase().contains(filter.toLowerCase())) {
+            if (customer.getFirstName().toLowerCase().contains(filter.toLowerCase())
+                    || customer.getLastName().toLowerCase().contains(filter.toLowerCase())
+                        || customer.getAddress().getStreet().toLowerCase().contains(filter.toLowerCase())
+            ) {
                 filteredCustomers.add(customer);
             }
         }

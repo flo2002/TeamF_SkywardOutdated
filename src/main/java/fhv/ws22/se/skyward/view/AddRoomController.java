@@ -61,7 +61,7 @@ public class AddRoomController extends AbstractController {
 
             for (RoomDto room : tmpBooking.getRooms()) {
                 if (room.getId() == entry.getValue().getId()) {
-                    checkBox.setSelected(true);
+                    checkBox.setSelected(false);
                 }
             }
 
@@ -72,13 +72,6 @@ public class AddRoomController extends AbstractController {
             return new SimpleObjectProperty<>(checkBox);
         });
 
-        /*roomTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        roomTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                List<RoomDto> selectedRooms = roomTable.getSelectionModel().getSelectedItems();
-                tmpBooking.setRooms(selectedRooms);
-            }
-        });*/
         configureListener();
         updateData();
     }
