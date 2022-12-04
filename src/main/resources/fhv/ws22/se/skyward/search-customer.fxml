@@ -113,16 +113,16 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <TextField fx:id="searchTextField" layoutX="300.0" layoutY="225.0" prefHeight="30.0" prefWidth="213.0" promptText="Search name" />
+      <TextField fx:id="searchTextField" layoutX="300.0" layoutY="225.0" prefHeight="30.0" prefWidth="213.0" promptText="Search by Guest-Name" />
       <Button id="confirm" layoutX="528.0" layoutY="225.0" mnemonicParsing="false" onAction="#onCreateButtonClick" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Create Guest &gt;" textFill="WHITE" />
       <VBox layoutX="300.0" layoutY="274.0" prefHeight="329.0" prefWidth="838.0">
          <children>
-            <TableView fx:id="customerTable" prefHeight="330.0" prefWidth="846.0" stylesheets="@css/styles.css">
+            <TableView fx:id="customerTable" prefHeight="330.0" prefWidth="786.0" stylesheets="@css/styles.css">
               <columns>
-                <TableColumn fx:id="firstNameCol" prefWidth="213.86669921875" text="Firstname" />
-                <TableColumn fx:id="lastNameCol" prefWidth="202.13336181640625" text="Lastname" />
-                  <TableColumn prefWidth="275.46673583984375" text="Adress" />
-                  <TableColumn prefWidth="194.933349609375" text="Telephone Number" />
+                  <TableColumn fx:id="checkboxCol" prefWidth="62.933349609375" text="Selected" />
+                <TableColumn fx:id="firstNameCol" prefWidth="200.53335571289062" text="Firstname" />
+                <TableColumn fx:id="lastNameCol" prefWidth="245.066650390625" text="Lastname" />
+                  <TableColumn fx:id="addressCol" prefWidth="331.73345947265625" text="Address" />
               </columns>
             </TableView>
          </children>

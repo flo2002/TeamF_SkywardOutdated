@@ -2,9 +2,13 @@ package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.HashMap;
@@ -16,7 +20,7 @@ public class AddRoomController extends AbstractController {
     @FXML
     private TableColumn<RoomDto, Integer> roomNumberCol;
     @FXML
-    private TableColumn<RoomDto, Boolean> checkboxCol;
+    private TableColumn<RoomDto, CheckBox> checkboxCol;
     @FXML
     private TableColumn<RoomDto, String> roomTypeNameCol;
     @FXML
@@ -39,27 +43,40 @@ public class AddRoomController extends AbstractController {
     @FXML
     protected void initialize() {
         tmpBooking = session.getTmpBooking();
+        List<RoomDto> selectedRooms = tmpBooking.getRooms();
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        roomNumberCol.setSortType(TableColumn.SortType.ASCENDING);
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
+        checkboxCol.setCellValueFactory(entry -> {
+            CheckBox checkBox = new CheckBox();
 
-        roomTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        roomTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                List<RoomDto> selectedRooms = roomTable.getSelectionModel().getSelectedItems();
-                tmpBooking.setRooms(selectedRooms);
+            for (RoomDto room : tmpBooking.getRooms()) {
+                if (room.getId() == entry.getValue().getId()) {
+                    checkBox.setSelected(true);
+                }
             }
+
+            checkBox.setOnAction(event -> {
+                selectedRooms.removeIf(room -> room.getId() == entry.getValue().getId());
+                if (checkBox.isSelected()) {
+                    selectedRooms.add(entry.getValue());
+                }
+                tmpBooking.setRooms(selectedRooms);
+            });
+            return new SimpleObjectProperty<>(checkBox);
         });
+
         configureListener();
         updateData();
     }
 
     private void configureListener() {
         if (session.getRoomFilterMap().size() == 0) {
-            HashMap<String, Boolean> filterMap = new HashMap<String, Boolean>();
-            filterMap.put("Single", false);
-            filterMap.put("Double", false);
+            HashMap<String, Boolean> filterMap = new HashMap<>();
+            filterMap.put("Single", true);
+            filterMap.put("Double", true);
             filterMap.put("Triple", false);
             filterMap.put("Twin", false);
             filterMap.put("Queen", false);
@@ -124,14 +141,14 @@ public class AddRoomController extends AbstractController {
             filterQueenRoom.setSelected(true);
         }
 
-        roomTable.getItems().clear();
-
         List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
         rooms = session.filterRooms(rooms, filterMap);
-        if (rooms != null) {
-            roomTable.getItems().addAll(rooms);
-        }
-        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
+        rooms.addAll(tmpBooking.getRooms());
 
+        roomTable.getItems().clear();
+        roomTable.getItems().addAll(rooms);
+        roomTable.getSortOrder().add(roomNumberCol);
+
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
 }

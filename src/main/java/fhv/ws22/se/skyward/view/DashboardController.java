@@ -7,17 +7,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DashboardController extends AbstractController {
     @FXML
     private TableView<BookingDto> table;
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private TableView<BookingDto> table1;
@@ -45,13 +46,14 @@ public class DashboardController extends AbstractController {
         checkInDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckInDateTime().toLocalDate()));
         checkOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckOutDateTime().toLocalDate()));
         isCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
+        checkInDateTimeCol.setSortType(TableColumn.SortType.DESCENDING);
 
         bookingNumberCol1.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
         checkInDateTimeCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckInDateTime().toLocalDate()));
         checkOutDateTimeCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckOutDateTime().toLocalDate()));
         isCheckedInCol1.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
+        checkOutDateTimeCol1.setSortType(TableColumn.SortType.DESCENDING);
 
-        updateData();
         table.setRowFactory(bookingDtoTableView -> {
             TableRow<BookingDto> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
@@ -74,16 +76,33 @@ public class DashboardController extends AbstractController {
             });
             return row;
         });
+
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateData(newValue);
+        });
+        updateData("");
     }
 
-    public void updateData() {
+    public void updateData(String filter) {
         table.getItems().clear();
         List<BookingDto> bookings = session.getAll(BookingDto.class);
+        if (filter != null && !filter.isEmpty()) {
+            bookings.removeIf(bookingDto -> bookingDto.getCustomers().stream().noneMatch(customerDto -> {
+                return customerDto.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customerDto.getLastName().toLowerCase().contains(filter.toLowerCase());
+            }));
+        }
         table.getItems().addAll(bookings);
+        table.getSortOrder().setAll(checkInDateTimeCol);
 
         table1.getItems().clear();
         List<BookingDto> bookings1 = session.getAll(BookingDto.class);
+        if (filter != null && !filter.isEmpty()) {
+            bookings1.removeIf(booking -> booking.getCustomers().stream().noneMatch(customerDto -> {
+                return customerDto.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customerDto.getLastName().toLowerCase().contains(filter.toLowerCase());
+            }));
+        }
         table1.getItems().addAll(bookings1);
+        table1.getSortOrder().setAll(checkOutDateTimeCol1);
     }
 
     public void onCreateBookingButtonClick(ActionEvent event) {
