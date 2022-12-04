@@ -120,8 +120,12 @@ public class BookingController extends AbstractController {
         session.update(tmpBooking.getId(), tmpBooking);
 
         if (tmpBooking.getCustomers()== null || tmpBooking.getCustomers().isEmpty()) {
-            NotificationUtil.getInstance().showErrorNotification("Please select a Customer", event);
-        }else{
+            NotificationUtil.getInstance().showErrorNotification("Please add a Guest", event);
+
+        }else if (tmpBooking.getRooms()== null || tmpBooking.getRooms().isEmpty()) {
+            NotificationUtil.getInstance().showErrorNotification("Please add a room", event);
+        }
+        else{
             session.resetTmpBooking();
             NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
             controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");

@@ -20,9 +20,6 @@ public class BookingDto extends AbstractDto {
     private List<CustomerDto> customers;
     private List<RoomDto> rooms;
 
-    private List<CustomerDto> selectedCustomers;
-
-    private TableView<CustomerDto> customerTable;
     public BookingDto() {
     }
     public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerDto> customers, List<RoomDto> rooms) {
