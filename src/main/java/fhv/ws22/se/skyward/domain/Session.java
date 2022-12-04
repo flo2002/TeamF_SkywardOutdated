@@ -70,20 +70,20 @@ public class Session implements SessionService {
             return null;
         }
 
-        List<RoomModel> modelRooms = (List<RoomModel>) dataService.getAll(RoomModel.class);
+        List<RoomModel> allRooms = (List<RoomModel>) dataService.getAll(RoomModel.class);
         List<RoomDto> availableRooms = new ArrayList<RoomDto>();
-        for (RoomModel model : modelRooms) {
+        for (RoomModel model : allRooms) {
             availableRooms.add(model.toDto());
         }
 
-        List<BookingModel> modelBookings = (List<BookingModel>) dataService.getAll(BookingModel.class);
+        List<BookingModel> allBookings = (List<BookingModel>) dataService.getAll(BookingModel.class);
         // check if any booking is in the same time frame to remove it from the available rooms
-        for (BookingModel booking : modelBookings) {
-            if (booking.getCheckInDateTime().isBefore(checkOut) || booking.getCheckOutDateTime().isAfter(checkIn)) {
+        for (BookingModel booking : allBookings) {
+            if (booking.getCheckInDateTime().toLocalDate().isBefore(checkOut.toLocalDate()) && booking.getCheckOutDateTime().toLocalDate().isAfter(checkIn.toLocalDate())) {
                 List<RoomModel> blockedRooms = booking.getRooms();
                 if (blockedRooms != null) {
                     for (RoomModel room : blockedRooms) {
-                        availableRooms.remove(room.toDto());
+                        availableRooms.removeIf(roomDto -> roomDto.getId().equals(room.getId()));
                     }
                 }
             }
