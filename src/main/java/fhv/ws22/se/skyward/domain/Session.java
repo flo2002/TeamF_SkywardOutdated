@@ -144,6 +144,7 @@ public class Session implements SessionService {
                 AddressDto customerAddress = new AddressDto("MainStreet", 43, 1234, "Vienna", "Austria");
                 add(customerAddress);
                 InvoiceDto invoice = new InvoiceDto(LocalDateTime.now(), false, customerAddress, booking);
+                invoice.setBilledCustomer(booking.getCustomers().get(0));
                 tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice);
 
                 List<ChargeableItemDto> chargeableItemDtos = new ArrayList<>();

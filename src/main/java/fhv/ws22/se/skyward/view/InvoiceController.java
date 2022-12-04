@@ -123,7 +123,7 @@ public class InvoiceController extends AbstractController {
 
         checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toLocalDate().toString());
         checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toLocalDate().toString());
-        namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
+        namePlaceholder.setText(tmpInvoice.getBilledCustomer().getFirstName() + " " + tmpInvoice.getBilledCustomer().getLastName());
 
         if (tmpInvoice != null) {
             invoiceDatePlaceholder.setText(tmpInvoice.getInvoiceDateTime().toLocalDate().toString());
