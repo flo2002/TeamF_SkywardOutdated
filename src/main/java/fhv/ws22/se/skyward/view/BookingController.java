@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-
 public class BookingController extends AbstractController {
     private Boolean editable = true;
     @FXML
@@ -57,6 +56,20 @@ public class BookingController extends AbstractController {
     protected void initialize() {
         tmpBooking = session.getTmpBooking();
 
+        checkInDatePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.compareTo(LocalDate.now()) < 0);
+            }
+        });
+        checkOutDatePicker.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.compareTo(LocalDate.now().plusDays(1)) < 0);
+            }
+        });
+
+
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
@@ -86,7 +99,6 @@ public class BookingController extends AbstractController {
         });
 
     }
-
 
     @FXML
     public void onCheckInCheckOutButtonClick(ActionEvent event) {
@@ -119,9 +131,12 @@ public class BookingController extends AbstractController {
 
     public void onDeleteBookingButtonClick(ActionEvent event) {
         session.delete(tmpBooking.getId(), BookingDto.class);
+        session.resetTmpBooking();
         NotificationUtil.getInstance().showSuccessNotification("The Booking was deleted", event);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
-        session.resetTmpBooking();
+
+
+
     }
 
     @FXML
@@ -192,11 +207,7 @@ public class BookingController extends AbstractController {
             roomTable.getItems().addAll(rooms);
         }
 
-        if (rooms != null && customers != null && tmpBooking.getCheckOutDateTime() != null) {
-            invoiceButton.setDisable(false);
-        } else {
-            invoiceButton.setDisable(true);
-        }
+        invoiceButton.setDisable(rooms == null || customers == null || rooms.isEmpty() || customers.isEmpty() || tmpBooking.getCheckOutDateTime() == null);
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
         
     }

@@ -17,6 +17,8 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fhv.ws22.se.skyward.view.InvoiceController">
     <VBox prefHeight="711.0" prefWidth="230.0" style="-fx-background-color: #008080;">
         <children>
@@ -47,7 +49,7 @@
                <Insets left="50.0" />
             </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="85.0" prefWidth="230.0" text="Booking" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onBookingButtonClick" prefHeight="85.0" prefWidth="230.0" styleClass="active-item" text="Booking" textFill="WHITE">
                 <font>
                     <Font size="18.0" />
                 </font>
@@ -65,7 +67,7 @@
                <Insets left="50.0" />
             </padding>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onInvoicePageButtonClick" prefHeight="85.0" prefWidth="230.0" styleClass="active-item" text="Invoice" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onInvoicePageButtonClick" prefHeight="85.0" prefWidth="230.0" text="Invoice" textFill="WHITE">
                 <font>
                     <Font size="18.0" />
                 </font>
@@ -111,6 +113,7 @@
             <font>
                <Font size="18.0" />
             </font></Label>
+          <ComboBox fx:id="namePlaceholderInput" layoutX="145.0" layoutY="54.0"></ComboBox>
          <Label fx:id="payPlaceholder" layoutX="484.0" layoutY="570.0" prefHeight="27.0" prefWidth="138.0" text="PaidPlaceHolder">
             <font>
                <Font size="18.0" />
@@ -246,7 +249,7 @@
             <font>
                <Font size="14.0" />
             </font></Button>
-         <Button layoutX="29.0" layoutY="206.0" mnemonicParsing="false" onAction="#onEditButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #80004C;" stylesheets="@css/styles.css" text=" Edit" textFill="WHITE">
+         <Button fx:id="editButton" layoutX="29.0" layoutY="206.0" mnemonicParsing="false" onAction="#onEditButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #80004C;" stylesheets="@css/styles.css" text="Edit" textFill="WHITE">
             <font>
                <Font size="14.0" />
             </font></Button>

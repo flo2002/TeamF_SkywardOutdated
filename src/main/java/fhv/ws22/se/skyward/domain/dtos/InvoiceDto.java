@@ -18,6 +18,7 @@ public class InvoiceDto extends AbstractDto {
     private AddressDto hotelAddress;
     private AddressDto customerAddress;
     private BookingDto booking;
+    private CustomerDto billedCustomer;
 
     public InvoiceDto() {
     }
@@ -28,7 +29,7 @@ public class InvoiceDto extends AbstractDto {
         this.booking = booking;
 
         this.companyName = "Skyward International";
-        this.hotelAddress = new AddressDto("ExampleStreet", "2", "1234", "New York", "United States");
+        this.hotelAddress = new AddressDto("ExampleStreet", 2, 1234, "New York", "United States");
     }
 
     public BigInteger getInvoiceNumber() {
@@ -80,6 +81,14 @@ public class InvoiceDto extends AbstractDto {
         this.isPaid = isPaid;
     }
 
+    public CustomerDto getBilledCustomer() {
+        return billedCustomer;
+    }
+    public void setBilledCustomer(CustomerDto billedCustomer) {
+        this.billedCustomer = billedCustomer;
+    }
+
+
     public InvoiceModel toModel() {
         return modelMapper.map(this, InvoiceModel.class);
     }
@@ -98,6 +107,7 @@ public class InvoiceDto extends AbstractDto {
                 ", hotelAddress=" + hotelAddress +
                 ", customerAddress=" + customerAddress +
                 ", booking=" + booking +
+                ", billedCustomer=" + billedCustomer +
                 '}';
     }
 }
