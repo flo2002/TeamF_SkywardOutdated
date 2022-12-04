@@ -121,9 +121,11 @@ public class BookingController extends AbstractController {
 
         if (tmpBooking.getCustomers()== null || tmpBooking.getCustomers().isEmpty()) {
             NotificationUtil.getInstance().showErrorNotification("Please add a Guest", event);
+            customerTable.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
 
         }else if (tmpBooking.getRooms()== null || tmpBooking.getRooms().isEmpty()) {
             NotificationUtil.getInstance().showErrorNotification("Please add a room", event);
+            roomTable.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
         }
         else{
             session.resetTmpBooking();
@@ -149,6 +151,8 @@ public class BookingController extends AbstractController {
 
         if (tmpBooking.getCheckInDateTime() == null || tmpBooking.getCheckOutDateTime() == null) {
             NotificationUtil.getInstance().showErrorNotification("Please select a Check-in and Check-out date", event);
+            checkInDatePicker.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            checkOutDatePicker.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
             return;
         }
 
