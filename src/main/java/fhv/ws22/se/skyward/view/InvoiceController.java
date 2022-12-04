@@ -1,13 +1,15 @@
 package fhv.ws22.se.skyward.view;
 
 import fhv.ws22.se.skyward.domain.dtos.*;
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.StringConverter;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.List;
 public class InvoiceController extends AbstractController {
     @FXML
     private Button payButton;
+    @FXML
+    private Button editButton;
 
     @FXML
     private Label payPlaceholder;
@@ -24,6 +28,8 @@ public class InvoiceController extends AbstractController {
     private Label checkOutDatePlaceholder;
     @FXML
     private Label namePlaceholder;
+    @FXML
+    private ComboBox<CustomerDto> namePlaceholderInput;
     @FXML
     private Label invoiceDatePlaceholder;
     @FXML
@@ -70,6 +76,24 @@ public class InvoiceController extends AbstractController {
         itemPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
         itemQuantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
+        namePlaceholderInput.getItems().addAll(tmpBooking.getCustomers());
+        namePlaceholderInput.getSelectionModel().selectFirst();
+        namePlaceholderInput.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(CustomerDto customerDto) {
+                if (customerDto == null) {
+                    return "";
+                } else {
+                    return customerDto.getFirstName() + " " + customerDto.getLastName();
+                }
+            }
+            @Override
+            public CustomerDto fromString(String s) {
+                return null;
+            }
+        });
+        namePlaceholderInput.setVisible(false);
+
         updateData();
     }
 
@@ -99,7 +123,17 @@ public class InvoiceController extends AbstractController {
     }
     @FXML
     public void onEditButtonClick(ActionEvent event){
-
+        if (editButton.getText().equals("Edit")) {
+            editButton.setText("Save Edit");
+            namePlaceholder.setVisible(false);
+            namePlaceholderInput.setVisible(true);
+        } else if (editButton.getText().equals("Save Edit")){
+            editButton.setText("Edit");
+            tmpInvoice.setBilledCustomer(namePlaceholderInput.getValue());
+            namePlaceholder.setVisible(true);
+            namePlaceholderInput.setVisible(false);
+            updateData();
+        }
     }
     @FXML
     public void onPrintButtonClick(ActionEvent event){
@@ -123,7 +157,7 @@ public class InvoiceController extends AbstractController {
 
         checkInDatePlaceholder.setText(tmpBooking.getCheckInDateTime().toLocalDate().toString());
         checkOutDatePlaceholder.setText(tmpBooking.getCheckOutDateTime().toLocalDate().toString());
-        namePlaceholder.setText(tmpBooking.getCustomers().get(0).getFirstName() + " " + tmpBooking.getCustomers().get(0).getLastName());
+        namePlaceholder.setText(tmpInvoice.getBilledCustomer().getFirstName() + " " + tmpInvoice.getBilledCustomer().getLastName());
 
         if (tmpInvoice != null) {
             invoiceDatePlaceholder.setText(tmpInvoice.getInvoiceDateTime().toLocalDate().toString());

@@ -119,7 +119,7 @@ public class BookingController extends AbstractController {
         session.update(tmpBooking.getId(), tmpBooking);
         session.resetTmpBooking();
         NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
     }
 
     @FXML
@@ -190,11 +190,7 @@ public class BookingController extends AbstractController {
             roomTable.getItems().addAll(rooms);
         }
 
-        if (rooms != null && customers != null && tmpBooking.getCheckOutDateTime() != null) {
-            invoiceButton.setDisable(false);
-        } else {
-            invoiceButton.setDisable(true);
-        }
+        invoiceButton.setDisable(rooms == null || customers == null || rooms.isEmpty() || customers.isEmpty() || tmpBooking.getCheckOutDateTime() == null);
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
         
     }

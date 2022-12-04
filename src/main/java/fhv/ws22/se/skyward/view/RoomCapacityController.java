@@ -28,9 +28,11 @@ public class RoomCapacityController extends AbstractController {
 
     private Boolean isOccupied(RoomDto askedRoom, LocalDate date) {
         List<RoomDto> availableRooms = session.getAvailableRooms(LocalDateTime.of(date, LocalTime.now()), LocalDateTime.of(date.plusDays(1), LocalTime.now()));
-        for (RoomDto room : availableRooms) {
-            if (room.getId().equals(askedRoom.getId())) {
-                return true;
+        if (availableRooms != null) {
+            for (RoomDto room : availableRooms) {
+                if (room.getId().equals(askedRoom.getId())) {
+                    return true;
+                }
             }
         }
         return false;
@@ -51,7 +53,6 @@ public class RoomCapacityController extends AbstractController {
             roomCap.setDay4(isOccupied(room, LocalDate.now().plusDays(3)));
             roomCap.setDay5(isOccupied(room, LocalDate.now().plusDays(4)));
 
-            System.out.println(roomCap);
             roomCaps.add(roomCap);
         }
 
@@ -60,7 +61,7 @@ public class RoomCapacityController extends AbstractController {
 
         List<TableColumn<RoomCapacity, String>> columns = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            TableColumn<RoomCapacity, String> column = new TableColumn<>(LocalDate.now().plusDays(i).format(DateTimeFormatter.ofPattern("dd.MM")));
+            TableColumn<RoomCapacity, String> column = new TableColumn<>(LocalDate.now().plusDays(i).format(DateTimeFormatter.ofPattern("dd.MM")) + " to " + LocalDate.now().plusDays(i + 1).format(DateTimeFormatter.ofPattern("dd.MM")));
             if (i == 0) {
                 column.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getDay1() ? "free" : "occupied"));
             } else if (i == 1) {
