@@ -22,7 +22,6 @@ public class NotificationUtil {
 
     private static NotificationUtil singleton;
 
-
     public static synchronized NotificationUtil getInstance() {
         if (singleton == null) {
             singleton = new NotificationUtil();
@@ -85,6 +84,7 @@ public class NotificationUtil {
         popup.show(stage);
         logger.info("object: ErrorPopUp, msg: " + message);
     }
+
     public static boolean showAskNotification(String message, Event event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
