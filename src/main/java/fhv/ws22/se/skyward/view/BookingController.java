@@ -106,9 +106,15 @@ public class BookingController extends AbstractController {
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        session.resetTmpBooking();
-        NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+
+        if (tmpBooking.getCustomers()== null || tmpBooking.getCustomers().isEmpty()) {
+            NotificationUtil.getInstance().showErrorNotification("Please select a Customer", event);
+        }else{
+            session.resetTmpBooking();
+            NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
+            controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+        }
+
     }
 
     public void onDeleteBookingButtonClick(ActionEvent event) {
