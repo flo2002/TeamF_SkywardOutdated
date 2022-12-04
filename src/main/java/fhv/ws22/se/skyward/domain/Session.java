@@ -69,12 +69,30 @@ public class Session implements SessionService {
         if (checkIn == null || checkOut == null) {
             return null;
         }
-        List<RoomModel> modelRooms = (List<RoomModel>) dataService.getAll(RoomModel.class);
-        List<RoomDto> rooms = new ArrayList<RoomDto>();
-        for (RoomModel model : modelRooms) {
-            rooms.add(model.toDto());
+
+        List<RoomModel> allRooms = (List<RoomModel>) dataService.getAll(RoomModel.class);
+        List<RoomDto> availableRooms = new ArrayList<RoomDto>();
+        for (RoomModel model : allRooms) {
+            availableRooms.add(model.toDto());
         }
 
+        List<BookingModel> allBookings = (List<BookingModel>) dataService.getAll(BookingModel.class);
+        // check if any booking is in the same time frame to remove it from the available rooms
+        for (BookingModel booking : allBookings) {
+            if (booking.getCheckInDateTime().toLocalDate().isBefore(checkOut.toLocalDate()) && booking.getCheckOutDateTime().toLocalDate().isAfter(checkIn.toLocalDate())) {
+                List<RoomModel> blockedRooms = booking.getRooms();
+                if (blockedRooms != null) {
+                    for (RoomModel room : blockedRooms) {
+                        availableRooms.removeIf(roomDto -> roomDto.getId().equals(room.getId()));
+                    }
+                }
+            }
+        }
+
+        return availableRooms;
+    }
+
+    public List<RoomDto> filterRooms(List<RoomDto> rooms, HashMap<String, Boolean> filterMap) {
         List<RoomDto> availableRooms = new ArrayList<RoomDto>();
         for (RoomDto room : rooms) {
             if (room.getRoomTypeName().equals("Single") && filterMap.get("Single")) {
@@ -89,20 +107,6 @@ public class Session implements SessionService {
                 availableRooms.add(room);
             }
         }
-
-        List<BookingModel> modelBookings = (List<BookingModel>) dataService.getAll(BookingModel.class);
-        // check if any booking is in the same time frame to remove it from the available rooms
-        for (BookingModel booking : modelBookings) {
-            if (booking.getCheckInDateTime().isBefore(checkOut) || booking.getCheckOutDateTime().isAfter(checkIn)) {
-                List<RoomModel> blockedRooms = booking.getRooms();
-                if (blockedRooms != null) {
-                    for (RoomModel room : blockedRooms) {
-                        availableRooms.remove(room.toDto());
-                    }
-                }
-            }
-        }
-
         return availableRooms;
     }
 
@@ -137,15 +141,17 @@ public class Session implements SessionService {
             invoices.removeIf(invoice -> invoice.getBooking().getId() != booking.getId());
 
             if (invoices.isEmpty()) {
-                AddressDto customerAddress = new AddressDto("MainStreet", "43", "1234", "Vienna", "Austria");
+                AddressDto customerAddress = new AddressDto("MainStreet", 43, 1234, "Vienna", "Austria");
                 add(customerAddress);
                 InvoiceDto invoice = new InvoiceDto(LocalDateTime.now(), false, customerAddress, booking);
+                invoice.setBilledCustomer(booking.getCustomers().get(0));
                 tmpInvoiceId = addAndReturnId(InvoiceDto.class, invoice);
 
                 List<ChargeableItemDto> chargeableItemDtos = new ArrayList<>();
                 for (RoomDto room : booking.getRooms()) {
                     Integer quantity = (int) Duration.between(booking.getCheckInDateTime(), booking.getCheckOutDateTime()).toDays() + 1;
-                    ChargeableItemDto chargeableItem = new ChargeableItemDto(room.getRoomTypeName() + " Room: " + room.getRoomNumber(), new BigDecimal(100), quantity, booking);
+                    BigDecimal price = getPrice(room.getRoomTypeName());
+                    ChargeableItemDto chargeableItem = new ChargeableItemDto(room.getRoomTypeName() + " Room: " + room.getRoomNumber(), price, quantity, booking);
                     chargeableItemDtos.add(chargeableItem);
                     add(chargeableItem);
                 }
@@ -156,6 +162,24 @@ public class Session implements SessionService {
 
         return get(tmpInvoiceId, InvoiceDto.class);
     }
+
+    private BigDecimal getPrice(String roomTypeName) {
+        switch (roomTypeName) {
+            case "Single":
+                return new BigDecimal(100);
+            case "Double":
+                return new BigDecimal(150);
+            case "Triple":
+                return new BigDecimal(200);
+            case "Twin":
+                return new BigDecimal(150);
+            case "Queen":
+                return new BigDecimal(300);
+            default:
+                return new BigDecimal(0);
+        }
+    }
+
     public void resetTmpInvoice() {
         tmpInvoiceId = null;
     }

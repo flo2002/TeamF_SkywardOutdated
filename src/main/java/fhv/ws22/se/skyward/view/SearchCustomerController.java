@@ -64,13 +64,6 @@ public class SearchCustomerController extends AbstractController {
 
         updateTable("");
 
-        /*customerTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        customerTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                List<CustomerDto> selectedCustomers = customerTable.getSelectionModel().getSelectedItems();
-                tmpBooking.setCustomers(selectedCustomers);
-            }
-        });*/
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
 

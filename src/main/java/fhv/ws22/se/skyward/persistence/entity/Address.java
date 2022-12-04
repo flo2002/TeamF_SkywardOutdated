@@ -11,8 +11,8 @@ import java.util.List;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"street", "houseNumber", "zipCode", "city", "country"}))
 public class Address extends AbstractEntity {
     private String street;
-    private String houseNumber;
-    private String zipCode;
+    private Integer houseNumber;
+    private Integer zipCode;
     private String city;
     private String country;
     @OneToMany(mappedBy = "hotelAddress")
@@ -30,17 +30,17 @@ public class Address extends AbstractEntity {
         this.street = street;
     }
 
-    public String getHouseNumber() {
+    public Integer getHouseNumber() {
         return houseNumber;
     }
-    public void setHouseNumber(String houseNumber) {
+    public void setHouseNumber(Integer houseNumber) {
         this.houseNumber = houseNumber;
     }
 
-    public String getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
-    public void setZipCode(String zipCode) {
+    public void setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
     }
 

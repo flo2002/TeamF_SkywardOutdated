@@ -16,7 +16,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NotificationUtil {
-
     private static final Logger logger = LogManager.getLogger("NotificationController");
     private static final int POPUP_OFFSET = 15;
 

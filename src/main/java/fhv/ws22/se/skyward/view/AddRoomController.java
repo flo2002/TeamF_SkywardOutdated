@@ -56,6 +56,7 @@ public class AddRoomController extends AbstractController {
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
+
         checkboxCol.setCellValueFactory(entry -> {
             CheckBox checkBox = new CheckBox();
 
@@ -148,8 +149,7 @@ public class AddRoomController extends AbstractController {
         roomTable.getItems().clear();
 
         List<RoomDto> rooms = session.getAvailableRooms(tmpBooking.getCheckInDateTime(), tmpBooking.getCheckOutDateTime());
-
-        List<RoomDto> check = checkboxCol.getTableView().getItems();
+        rooms = session.filterRooms(rooms, filterMap);
 
         if (rooms != null) {
             roomTable.getItems().addAll(rooms);
