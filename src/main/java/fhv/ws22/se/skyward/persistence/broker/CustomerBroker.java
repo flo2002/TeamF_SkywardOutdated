@@ -43,10 +43,9 @@ public class CustomerBroker extends BrokerBase<CustomerModel> {
         Customer customerEntity = customer.toEntity();
         customerEntity.setBillingAddress(address);
 
-        if (entityManager.createQuery("FROM Customer WHERE firstName = :firstName AND lastName = :lastName AND billingAddress = :address")
+        if (entityManager.createQuery("FROM Customer WHERE firstName = :firstName AND lastName = :lastName")
                 .setParameter("firstName", customerEntity.getFirstName())
                 .setParameter("lastName", customerEntity.getLastName())
-                .setParameter("address", customerEntity.getBillingAddress())
                 .getResultList().isEmpty()) {
             entityManager.getTransaction().begin();
             entityManager.persist(customerEntity);

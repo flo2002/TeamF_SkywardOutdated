@@ -29,7 +29,7 @@ public class InvoiceDto extends AbstractDto {
         this.booking = booking;
 
         this.companyName = "Skyward International";
-        this.hotelAddress = new AddressDto("ExampleStreet", "2", "1234", "New York", "United States");
+        this.hotelAddress = new AddressDto("ExampleStreet", 2, 1234, "New York", "United States");
     }
 
     public BigInteger getInvoiceNumber() {
