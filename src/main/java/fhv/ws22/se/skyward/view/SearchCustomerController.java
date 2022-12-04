@@ -40,7 +40,7 @@ public class SearchCustomerController extends AbstractController {
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        adressCol.setCellValueFactory(new PropertyValueFactory<>("adress"));
+        adressCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getAddress().getStreet() + " " + entry.getValue().getAddress().getHouseNumber()));
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             updateTable(newValue);
