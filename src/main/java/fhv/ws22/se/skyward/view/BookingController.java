@@ -190,11 +190,7 @@ public class BookingController extends AbstractController {
             roomTable.getItems().addAll(rooms);
         }
 
-        if (rooms != null && customers != null && tmpBooking.getCheckOutDateTime() != null) {
-            invoiceButton.setDisable(false);
-        } else {
-            invoiceButton.setDisable(true);
-        }
+        invoiceButton.setDisable(rooms == null || customers == null || rooms.isEmpty() || customers.isEmpty() || tmpBooking.getCheckOutDateTime() == null);
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
         
     }
