@@ -17,6 +17,7 @@ public class BookingDto extends AbstractDto {
     private Boolean isCheckedIn;
     private List<CustomerDto> customers;
     private List<RoomDto> rooms;
+
     public BookingDto() {
     }
     public BookingDto(LocalDateTime checkInDateTime, LocalDateTime checkOutDateTime, Boolean isCheckedIn, List<CustomerDto> customers, List<RoomDto> rooms) {

@@ -3,11 +3,10 @@ package fhv.ws22.se.skyward.view;
 import fhv.ws22.se.skyward.domain.dtos.AddressDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.List;
@@ -17,6 +16,8 @@ public class AddCustomerController extends AbstractController {
     private TextField firstNameTextField;
     @FXML
     private TextField lastNameTextField;
+
+    public Label bNrPlaceholder;
 
     @FXML
     private TextField streetTextField;
@@ -35,6 +36,9 @@ public class AddCustomerController extends AbstractController {
 
     @FXML
     private void initialize() {
+        tmpBooking = session.getTmpBooking();
+        bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
+
         zipTextField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             if (!newValue) {
                 if (!zipTextField.getText().matches("^[0-9]{4,5}(?:-[0-9]{1,4})?$")) {
@@ -121,5 +125,9 @@ public class AddCustomerController extends AbstractController {
     @FXML
     public void onSearchCustomerButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Search");
+    }
+
+    public void backButtonClick(ActionEvent event) {
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 }

@@ -1,5 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
@@ -118,9 +119,35 @@ public class BookingController extends AbstractController {
     @FXML
     public void onCreateBookingButtonClick(ActionEvent event) {
         session.update(tmpBooking.getId(), tmpBooking);
-        session.resetTmpBooking();
-        NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+
+        if (tmpBooking.getCustomers()== null || tmpBooking.getCustomers().isEmpty()) {
+            NotificationUtil.getInstance().showErrorNotification("Please add a Guest", event);
+            customerTable.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+
+        }else if (tmpBooking.getRooms()== null || tmpBooking.getRooms().isEmpty()) {
+            NotificationUtil.getInstance().showErrorNotification("Please add a room", event);
+            roomTable.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+        }
+        else{
+            session.resetTmpBooking();
+            NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
+            controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+        }
+
+    }
+
+    public void onDeleteBookingButtonClick(ActionEvent event) {
+        boolean isSure = NotificationUtil.showAskNotification("Are you sure to delete this booking?", event);
+
+        if (isSure){
+            session.delete(tmpBooking.getId(), BookingDto.class);
+            session.resetTmpBooking();
+            NotificationUtil.getInstance().showSuccessNotification("The Booking was deleted", event);
+            controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+        } else {
+            NotificationUtil.getInstance().showSuccessNotification("The Booking wasn't deleted", event);
+        }
+
     }
 
     @FXML
@@ -129,6 +156,8 @@ public class BookingController extends AbstractController {
 
         if (tmpBooking.getCheckInDateTime() == null || tmpBooking.getCheckOutDateTime() == null) {
             NotificationUtil.getInstance().showErrorNotification("Please select a Check-in and Check-out date", event);
+            checkInDatePicker.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            checkOutDatePicker.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
             return;
         }
 

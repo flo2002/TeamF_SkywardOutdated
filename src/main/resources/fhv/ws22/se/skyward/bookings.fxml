@@ -125,8 +125,8 @@
          </children>
       </HBox>
       <AnchorPane layoutX="177.0" layoutY="424.0" prefHeight="37.0" prefWidth="232.0" />
-      <Button fx:id="addRoomButton" id="addroom" layoutX="766.0" layoutY="590.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room &gt;" textFill="WHITE" />
-      <Button fx:id="addCustomerButton" id="addguest" layoutX="300.0" layoutY="590.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="29.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest &gt;" textFill="WHITE" />
+      <Button id="addroom" fx:id="addRoomButton" layoutX="766.0" layoutY="590.0" mnemonicParsing="false" onAction="#onAddRoomButtonClick" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Room &gt;" textFill="WHITE" />
+      <Button id="addguest" fx:id="addCustomerButton" layoutX="300.0" layoutY="590.0" mnemonicParsing="false" onAction="#onAddGuestButtonClick" prefHeight="29.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Add Guest &gt;" textFill="WHITE" />
       <Button layoutX="1099.0" layoutY="647.0" mnemonicParsing="false" onAction="#onCreateBookingButtonClick" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #50C878;" text="Save Booking" textFill="WHITE">
          <font>
             <Font size="13.0" />
@@ -170,5 +170,10 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button layoutX="953.0" layoutY="229.0" mnemonicParsing="false" onAction="#onDeleteBookingButtonClick" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: #d45959;" text="Delete Booking" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -17,42 +17,35 @@
    <children>
       <VBox prefHeight="700.0" prefWidth="230.0" style="-fx-background-color: #008080;">
          <children>
-            <Pane prefHeight="111.0" prefWidth="170.0">
+            <Pane prefHeight="136.0" prefWidth="170.0">
                <children>
-                  <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="20.0" layoutY="-30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="185.0" fitWidth="170.0" layoutX="40.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/SkyWardIcon.png" />
                      </image>
                   </ImageView>
-                  <Pane layoutX="229.0" prefHeight="111.0" prefWidth="1071.0" style="-fx-background-color: #008080;">
+                  <Pane layoutX="229.0" layoutY="-1.0" prefHeight="135.0" prefWidth="1072.0" style="-fx-background-color: #008080;">
                      <children>
-                        <Text fill="WHITE" layoutX="382.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Guests">
+                        <Text fill="WHITE" layoutX="460.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Guests">
                            <font>
-                              <Font size="48.0" />
+                              <Font size="36.0" />
                            </font>
                         </Text>
-                        <AnchorPane layoutX="-1.0" layoutY="82.0" prefHeight="25.0" prefWidth="1073.0" style="-fx-background-color: #017373;">
-                           <children>
-                              <Label layoutX="9.0" layoutY="4.0" onMouseClicked="#onBookingButtonClick" text="Booking" textFill="#d4d4d4">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Label>
-                              <Label layoutX="77.0" layoutY="-2.0" text="&gt;" textFill="#d4d4d4">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="100.0" layoutY="3.0" onMouseClicked="#onSearchCustomerButtonClick" text="Add Guests" textFill="#d4d4d4">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font></Label>
-                              <Label layoutX="203.0" layoutY="-4.0" text="&gt;" textFill="#d4d4d4">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
+                        <Label layoutX="15.0" layoutY="90.0" onMouseClicked="#onBookingButtonClick" text="Booking" textFill="#d4d4d4">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="120.0" layoutY="90.0" text="&gt;" textFill="#d4d4d4">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="150.0" layoutY="90.0" onMouseClicked="#onSearchCustomerButtonClick" text="Add Guests" textFill="#d4d4d4">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </children>
@@ -130,7 +123,12 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button id="addguest" layoutX="330.0" layoutY="322.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="29.0" prefWidth="84.0" stylesheets="@css/styles.css" text="Save Guest" textFill="WHITE">
+            <TextField layoutX="138.0" layoutY="195.0" prefHeight="35.0" prefWidth="270.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button id="addguest" layoutX="308.0" layoutY="307.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Save Guest" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -192,7 +190,18 @@
             </TextField>
          </children>
       </AnchorPane>
-      <Button id="confirm" layoutX="283.0" layoutY="154.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" prefHeight="30.0" prefWidth="105.0" stylesheets="@css/styles.css" text="Search Guest" textFill="WHITE">
+      <Button id="confirm" layoutX="1115.0" layoutY="169.0" mnemonicParsing="false" onAction="#onSearchCustomerButtonClick" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Search Guest" textFill="WHITE" />
+      <Label layoutX="300.0" layoutY="155.0" prefHeight="35.0" prefWidth="279.0" text="Current Booking number:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="bNrPlaceholder" layoutX="579.0" layoutY="155.0" prefHeight="35.0" prefWidth="49.0" text="bid">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button id="confirm" layoutX="300.0" layoutY="639.0" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="30.0" prefWidth="82.0" stylesheets="@css/styles.css" text="Back" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
