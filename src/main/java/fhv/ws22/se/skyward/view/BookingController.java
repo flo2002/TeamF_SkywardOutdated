@@ -136,12 +136,18 @@ public class BookingController extends AbstractController {
     }
 
     public void onDeleteBookingButtonClick(ActionEvent event) {
-        session.delete(tmpBooking.getId(), BookingDto.class);
-        session.resetTmpBooking();
-        NotificationUtil.getInstance().showSuccessNotification("The Booking was deleted", event);
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+        Boolean isSure = NotificationUtil.getInstance().showAskNotification("are you sure?", event);
 
+        if(isSure == true){
 
+            session.delete(tmpBooking.getId(), BookingDto.class);
+            session.resetTmpBooking();
+            NotificationUtil.getInstance().showSuccessNotification("The Booking was deleted", event);
+            controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
+
+        }else if(isSure == false){
+            NotificationUtil.getInstance().showSuccessNotification("The Booking wasn't deleted", event);
+        }
 
     }
 
