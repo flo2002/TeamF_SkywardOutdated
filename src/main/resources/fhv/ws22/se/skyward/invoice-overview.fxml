@@ -121,7 +121,7 @@
                 </Text>
             </children>
         </Pane>
-            <TextField layoutX="300.0" layoutY="175.0" prefHeight="30.0" prefWidth="211.0" />
+            <TextField fx:id="searchTextField" layoutX="300.0" layoutY="175.0" prefHeight="30.0" prefWidth="211.0" promptText="Search by Guest-Name" />
             <Button id="search" layoutX="536.0" layoutY="175.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" stylesheets="@css/styles.css" text="Search" textFill="WHITE" />
     </children>
 </AnchorPane>

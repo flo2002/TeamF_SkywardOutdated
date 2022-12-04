@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.math.BigInteger;
@@ -15,6 +16,8 @@ public class InvoiceOverviewController extends AbstractController {
     @FXML
     private TableView<InvoiceDto> table;
     @FXML
+    private TextField searchTextField;
+    @FXML
     private TableColumn<InvoiceDto, BigInteger> invoiceNumberCol;
     @FXML
     private TableColumn<InvoiceDto, LocalDateTime> invoiceDateTimeCol;
@@ -23,11 +26,12 @@ public class InvoiceOverviewController extends AbstractController {
 
     @FXML
     protected void initialize() {
+        tmpBooking = session.getTmpBooking();
+
         invoiceNumberCol.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
         invoiceDateTimeCol.setCellValueFactory(new PropertyValueFactory<>("invoiceDateTime"));
         isPaidCol.setCellValueFactory(new PropertyValueFactory<>("isPaid"));
 
-        updateTable();
         table.setRowFactory(invoiceDtoTableView -> {
             TableRow<InvoiceDto> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
@@ -39,12 +43,23 @@ public class InvoiceOverviewController extends AbstractController {
             });
             return row;
         });
+
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateData(newValue);
+        });
+
+        updateData("");
     }
 
 
-    public void updateTable() {
+    public void updateData(String filter) {
         table.getItems().clear();
         List<InvoiceDto> invoices = session.getAll(InvoiceDto.class);
+        if (filter != null && !filter.isEmpty()) {
+            invoices.removeIf(invoice -> invoice.getBooking().getCustomers().stream().noneMatch(customerDto -> {
+                return customerDto.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customerDto.getLastName().toLowerCase().contains(filter.toLowerCase());
+            }));
+        }
         table.getItems().addAll(invoices);
     }
 }
