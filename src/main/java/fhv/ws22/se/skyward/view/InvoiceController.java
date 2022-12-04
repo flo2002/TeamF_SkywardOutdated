@@ -1,11 +1,7 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.domain.dtos.*;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import fhv.ws22.se.skyward.domain.dtos.ChargeableItemDto;
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -123,18 +119,19 @@ public class InvoiceController extends AbstractController {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
     @FXML
-    public void onEditButtonClick(Event event){
+    public void onEditButtonClick(Event event) {
         if (editButton.getText().equals("Edit")) {
             editButton.setText("Save Edit");
             namePlaceholder.setVisible(false);
             namePlaceholderInput.setVisible(true);
-        } else if (editButton.getText().equals("Save Edit")){
+        } else if (editButton.getText().equals("Save Edit")) {
             editButton.setText("Edit");
             tmpInvoice.setBilledCustomer(namePlaceholderInput.getValue());
             namePlaceholder.setVisible(true);
             namePlaceholderInput.setVisible(false);
             updateData();
         }
+    }
 
     @FXML
     public void onPrintButtonClick(Event event){
@@ -146,7 +143,7 @@ public class InvoiceController extends AbstractController {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
-    public void updateData(){
+    public void updateData() {
         hotelNamePlaceholder.setText(tmpInvoice.getCompanyName());
         hotelStreetPlaceholder.setText(tmpInvoice.getHotelAddress().getStreet() + " " + tmpInvoice.getHotelAddress().getHouseNumber());
         hotelCityPlaceholder.setText(tmpInvoice.getHotelAddress().getZipCode() + " " + tmpInvoice.getHotelAddress().getCity());

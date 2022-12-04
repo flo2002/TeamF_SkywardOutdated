@@ -20,9 +20,10 @@ public class DashboardController extends AbstractController {
     @FXML
     private TableView<BookingDto> arrivalTable;
     @FXML
+    private TableView<BookingDto> departureTable;
+    @FXML
     private TextField searchTextField;
 
-    private TableView<BookingDto> departureTable;
     @FXML
     private TableColumn<BookingDto, BigInteger> arrivalBookingNumberCol;
     @FXML
@@ -43,16 +44,17 @@ public class DashboardController extends AbstractController {
     @FXML
     protected void initialize() {
         arrivalBookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
-        arrivalCheckInDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime().toLocalDate()));
-        arrivalCheckOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime().toLocalDate()));
+        arrivalCheckInDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckInDateTime().toLocalDate()));
+        arrivalCheckOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckOutDateTime().toLocalDate()));
         arrivalIsCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
+        arrivalCheckInDateTimeCol.setSortType(TableColumn.SortType.DESCENDING);
 
         departureBookingNumberCol.setCellValueFactory(new PropertyValueFactory<>("bookingNumber"));
-        departureCheckInDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime().toLocalDate()));
-        departureCheckOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime().toLocalDate()));
+        departureCheckInDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckInDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckInDateTime().toLocalDate()));
+        departureCheckOutDateTimeCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getCheckOutDateTime() == null ? LocalDate.of(1970, 1, 1) : entry.getValue().getCheckOutDateTime().toLocalDate()));
         departureIsCheckedInCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getIsCheckedIn() ? "Checked-In" : "Checked-Out"));
+        departureCheckOutDateTimeCol.setSortType(TableColumn.SortType.DESCENDING);
 
-        updateData();
         arrivalTable.setRowFactory(bookingDtoTableView -> {
             TableRow<BookingDto> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
@@ -82,39 +84,36 @@ public class DashboardController extends AbstractController {
         updateData("");
     }
 
-
-    
-        
-
-        
-        
-
     public void updateData(String filter) {
         arrivalTable.getItems().clear();
         List<BookingDto> arrivalTempBookings = session.getAll(BookingDto.class);
-        List<BookingDto> arrivalBookings = new ArrayList<BookingDto>();
-        for (int i = 0; i< arrivalTempBookings.size();i++) {
-            if (arrivalTempBookings.get(i).getCheckInDateTime().getDayOfYear() == LocalDateTime.now().getDayOfYear() &&
-                    arrivalTempBookings.get(i).getCheckInDateTime().getYear() == LocalDateTime.now().getYear()) {
-                arrivalBookings.add(arrivalTempBookings.get(i));
+        List<BookingDto> arrivalBookings = new ArrayList<>();
+        for (BookingDto arrivalTempBooking : arrivalTempBookings) {
+            if (arrivalTempBooking.getCheckInDateTime() != null) {
+                if (arrivalTempBooking.getCheckInDateTime().getDayOfYear() == LocalDateTime.now().getDayOfYear() &&
+                        arrivalTempBooking.getCheckInDateTime().getYear() == LocalDateTime.now().getYear()) {
+                    arrivalBookings.add(arrivalTempBooking);
+                }
             }
         }
         if (filter != null && !filter.isEmpty()) {
-            arrivalTempbookings.removeIf(bookingDto -> bookingDto.getCustomers().stream().noneMatch(customerDto -> {
+            arrivalTempBookings.removeIf(bookingDto -> bookingDto.getCustomers().stream().noneMatch(customerDto -> {
                 return customerDto.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customerDto.getLastName().toLowerCase().contains(filter.toLowerCase());
             }));
         }
         arrivalTable.getItems().addAll(arrivalBookings);
-        arrivalTable.getSortOrder().setAll(checkInDateTimeCol);
+        arrivalTable.getSortOrder().setAll(arrivalCheckInDateTimeCol);
 
         departureTable.getItems().clear();
         List<BookingDto> departureTempBookings = session.getAll(BookingDto.class);
-        List<BookingDto> departureBookings = new ArrayList<BookingDto>();
-        
-        for (int i = 0; i < departureTempBookings.size(); i++) {
-            if (departureTempBookings.get(i).getCheckOutDateTime().getDayOfYear() == LocalDateTime.now().getDayOfYear() &&
-            departureTempBookings.get(i).getCheckOutDateTime().getYear() == LocalDateTime.now().getYear()) {
-                departureBookings.add(departureTempBookings.get(i));
+        List<BookingDto> departureBookings = new ArrayList<>();
+
+        for (BookingDto departureTempBooking : departureTempBookings) {
+            if (departureTempBooking.getCheckOutDateTime() != null) {
+                if (departureTempBooking.getCheckOutDateTime().getDayOfYear() == LocalDateTime.now().getDayOfYear() &&
+                        departureTempBooking.getCheckOutDateTime().getYear() == LocalDateTime.now().getYear()) {
+                    departureBookings.add(departureTempBooking);
+                }
             }
         }
         if (filter != null && !filter.isEmpty()) {
@@ -127,6 +126,7 @@ public class DashboardController extends AbstractController {
     }
 
     public void onCreateBookingButtonClick(Event event) {
+        session.resetTmpBooking();
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 }

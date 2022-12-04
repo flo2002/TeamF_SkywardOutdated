@@ -125,18 +125,16 @@ public class BookingController extends AbstractController {
             NotificationUtil.getInstance().showErrorNotification("Please add a Guest", event);
             customerTable.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
 
-        }else if (tmpBooking.getRooms()== null || tmpBooking.getRooms().isEmpty()) {
+        } else if (tmpBooking.getRooms()== null || tmpBooking.getRooms().isEmpty()) {
             NotificationUtil.getInstance().showErrorNotification("Please add a room", event);
             roomTable.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
         }
-        else{
+        else {
             session.resetTmpBooking();
             NotificationUtil.getInstance().showSuccessNotification("The Booking was saved", event);
             controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/dashboard.fxml", "Dashboard");
         }
-
     }
-
 
     public void onDeleteBookingButtonClick(ActionEvent event) {
         boolean isSure = NotificationUtil.showAskNotification("Are you sure to delete this booking?", event);
@@ -149,7 +147,6 @@ public class BookingController extends AbstractController {
         } else {
             NotificationUtil.getInstance().showSuccessNotification("The Booking wasn't deleted", event);
         }
-
     }
 
     @FXML
@@ -225,6 +222,5 @@ public class BookingController extends AbstractController {
 
         invoiceButton.setDisable(rooms == null || customers == null || rooms.isEmpty() || customers.isEmpty() || tmpBooking.getCheckOutDateTime() == null);
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
-
     }
 }
