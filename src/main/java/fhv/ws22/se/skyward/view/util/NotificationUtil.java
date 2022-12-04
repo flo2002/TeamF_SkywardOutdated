@@ -3,7 +3,7 @@ package fhv.ws22.se.skyward.view.util;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
@@ -86,35 +86,15 @@ public class NotificationUtil {
         logger.info("object: ErrorPopUp, msg: " + message);
     }
     public static boolean showAskNotification(String message, Event event) {
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        final Popup popup = createPopup(message);
-        popup.setOnShown(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent e) {
-                popup.setX(stage.getX() + POPUP_OFFSET);
-                popup.setY(stage.getY() + stage.getHeight() - popup.getHeight() - POPUP_OFFSET);
-            }
-        });
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
 
-        Button yesButton = new Button("Yes");
-        Button noButton = new Button("No");
+        alert.showAndWait();
 
-        yesButton.setOnAction(e -> {
-            answer = true;
-
-        });
-
-        noButton.setOnAction(e -> {
-            answer = false;
-        });
-
-        popup.getContent().get(0).getStyleClass().addAll("success_popup");
-        popup.getContent().addAll(yesButton, noButton);
-        popup.show(stage);
-        logger.info("object: SuccessPopUp, msg: " + message);
-
-        return answer;
+        return alert.getResult().getText().equals("OK");
     }
 
 }
