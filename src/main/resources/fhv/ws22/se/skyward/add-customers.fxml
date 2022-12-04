@@ -41,7 +41,17 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label layoutX="150.0" layoutY="90.0" onMouseClicked="#onSearchCustomerButtonClick" text="Add Guests" textFill="#d4d4d4">
+                        <Label layoutX="150.0" layoutY="90.0" onMouseClicked="#onSearchCustomerButtonClick" text="Search Guest" textFill="#d4d4d4">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="302.0" layoutY="90.0" text="&gt;" textFill="#d4d4d4">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="332.0" layoutY="90.0" text="Add Guests" textFill="#d4d4d4">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -97,6 +107,24 @@
                   <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/invoiceIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onRoomCapacityButtonClick" prefHeight="85.0" prefWidth="231.0" text="Room Capacity" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/room.png" />
                      </image>
                   </ImageView>
                </graphic>

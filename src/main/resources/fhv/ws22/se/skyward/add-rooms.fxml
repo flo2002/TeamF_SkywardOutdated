@@ -87,6 +87,24 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onRoomCapacityButtonClick" prefHeight="85.0" prefWidth="231.0" text="Room Capacity" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/room.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
          </children>
       </VBox>
       <HBox layoutX="300.0" layoutY="246.0" prefHeight="318.0" prefWidth="948.0">
@@ -119,7 +137,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="155.0" layoutY="90.0" onMouseClicked="#onBookingButtonClick" text="Add Rooms" textFill="#d4d4d4">
+            <Label layoutX="155.0" layoutY="90.0" text="Add Rooms" textFill="#d4d4d4">
                <font>
                   <Font size="24.0" />
                </font>

@@ -4,6 +4,7 @@ import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -63,22 +64,32 @@ public class SearchCustomerController extends AbstractController {
         updateData("");
 
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
+
+        customerTable.setRowFactory(customerDtoTableView -> {
+            TableRow<CustomerDto> row = new TableRow<>();
+            row.setOnMouseClicked(mouseEvent -> {
+                if (mouseEvent.getClickCount() == 2 && (!row.isEmpty())) {
+                    onConfirmCustomerSearchButtonClick(mouseEvent);
+                }
+            });
+            return row;
+        });
     }
 
     @FXML
-    public void onConfirmCustomerSearchButtonClick(ActionEvent event) {
+    public void onConfirmCustomerSearchButtonClick(Event event) {
         session.update(tmpBooking.getId(), tmpBooking);
         NotificationUtil.getInstance().showSuccessNotification("The guests were added to the booking", event);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
-    public void onCreateButtonClick(ActionEvent event) {
+    public void onCreateButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/add-customers.fxml", "Home");
     }
 
     @FXML
-    public void backButtonClick(ActionEvent event) {
+    public void backButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 

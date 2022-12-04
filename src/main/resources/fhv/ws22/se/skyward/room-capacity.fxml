@@ -31,7 +31,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="homeButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="86.0" prefWidth="234.0" styleClass="active-item" text="Home" textFill="WHITE">
+            <Button fx:id="homeButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="86.0" prefWidth="234.0" text="Home" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -80,6 +80,24 @@
                   <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/invoiceIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#onRoomCapacityButtonClick" prefHeight="85.0" prefWidth="231.0" styleClass="active-item" text="Room Capacity" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@css/styles.css" />
+               </stylesheets>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/room.png" />
                      </image>
                   </ImageView>
                </graphic>

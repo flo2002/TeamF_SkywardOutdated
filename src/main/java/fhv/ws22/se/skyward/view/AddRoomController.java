@@ -1,9 +1,11 @@
 package fhv.ws22.se.skyward.view;
 
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.domain.dtos.RoomDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -70,6 +72,15 @@ public class AddRoomController extends AbstractController {
 
         configureListener();
         updateData();
+        roomTable.setRowFactory(roomDtoTableView -> {
+            TableRow<RoomDto> row = new TableRow<>();
+            row.setOnMouseClicked(mouseEvent -> {
+                if (mouseEvent.getClickCount() == 2 && (!row.isEmpty())) {
+                    onConfirmButtonClick(mouseEvent);
+                }
+            });
+            return row;
+        });
     }
 
     private void configureListener() {
@@ -112,14 +123,14 @@ public class AddRoomController extends AbstractController {
     }
 
     @FXML
-    public void onConfirmButtonClick(ActionEvent event) {
+    public void onConfirmButtonClick(Event event) {
         session.update(tmpBooking.getId(), tmpBooking);
         NotificationUtil.getInstance().showSuccessNotification("The Rooms were added to the booking", event);
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
     @FXML
-    public void backButtonClick(ActionEvent event) {
+    public void backButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 

@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -98,12 +99,12 @@ public class InvoiceController extends AbstractController {
     }
 
     @FXML
-    public void onSplitButtonClick(ActionEvent event){
+    public void onSplitButtonClick(Event event){
 
     }
 
     @FXML
-    public void onPayButtonClick(ActionEvent event){
+    public void onPayButtonClick(Event event){
         if (payButton.getText().equals("Pay")) {
             payButton.setText("Unpay");
             tmpInvoice.setIsPaid(true);
@@ -116,13 +117,13 @@ public class InvoiceController extends AbstractController {
     }
 
     @FXML
-    public void onConfirmButtonClick(ActionEvent event){
+    public void onConfirmButtonClick(Event event){
         session.update(tmpInvoice.getId(), tmpInvoice);
         session.resetTmpInvoice();
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
     @FXML
-    public void onEditButtonClick(ActionEvent event){
+    public void onEditButtonClick(Event event){
         if (editButton.getText().equals("Edit")) {
             editButton.setText("Save Edit");
             namePlaceholder.setVisible(false);
@@ -134,14 +135,14 @@ public class InvoiceController extends AbstractController {
             namePlaceholderInput.setVisible(false);
             updateData();
         }
-    }
+
     @FXML
-    public void onPrintButtonClick(ActionEvent event){
+    public void onPrintButtonClick(Event event){
 
     }
 
     @FXML
-    public void backButtonClick(ActionEvent event) {
+    public void backButtonClick(Event event) {
         controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 
