@@ -117,13 +117,12 @@
       <Button id="confirm" layoutX="528.0" layoutY="225.0" mnemonicParsing="false" onAction="#onCreateButtonClick" prefHeight="30.0" prefWidth="100.0" stylesheets="@css/styles.css" text="Create Guest &gt;" textFill="WHITE" />
       <VBox layoutX="300.0" layoutY="274.0" prefHeight="329.0" prefWidth="838.0">
          <children>
-            <TableView fx:id="customerTable" prefHeight="330.0" prefWidth="867.0" stylesheets="@css/styles.css">
+            <TableView fx:id="customerTable" prefHeight="330.0" prefWidth="786.0" stylesheets="@css/styles.css">
               <columns>
-                  <TableColumn fx:id="checkboxCol" prefWidth="111.46673583984375" text="Selected" />
-                <TableColumn fx:id="firstNameCol" prefWidth="133.60003662109375" text="Firstname" />
-                <TableColumn fx:id="lastNameCol" prefWidth="188.5333251953125" text="Lastname" />
-                  <TableColumn fx:id="adressCol" prefWidth="164.53338623046875" text="Adress" />
-                  <TableColumn prefWidth="237.60001220703123" text="Telephone Number" />
+                  <TableColumn fx:id="checkboxCol" prefWidth="62.933349609375" text="Selected" />
+                <TableColumn fx:id="firstNameCol" prefWidth="200.53335571289062" text="Firstname" />
+                <TableColumn fx:id="lastNameCol" prefWidth="245.066650390625" text="Lastname" />
+                  <TableColumn fx:id="adressCol" prefWidth="331.73345947265625" text="Adress" />
               </columns>
             </TableView>
          </children>

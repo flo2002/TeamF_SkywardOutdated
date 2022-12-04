@@ -42,7 +42,7 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="100.0" layoutY="1.0" onMouseClicked="#onSearchCustomerButtonClick" text="Add Guests" textFill="#d4d4d4">
+                              <Label layoutX="100.0" layoutY="3.0" onMouseClicked="#onSearchCustomerButtonClick" text="Add Guests" textFill="#d4d4d4">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Label>
@@ -113,29 +113,24 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane layoutX="410.0" layoutY="142.0" prefHeight="468.0" prefWidth="686.0">
+      <AnchorPane layoutX="423.0" layoutY="193.0" prefHeight="468.0" prefWidth="686.0">
          <children>
-            <TextField fx:id="firstNameTextField" layoutX="138.0" layoutY="13.0" prefHeight="35.0" prefWidth="270.0">
+            <TextField fx:id="firstNameTextField" layoutX="140.0" layoutY="13.0" prefHeight="35.0" prefWidth="270.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="lastNameTextField" layoutX="138.0" layoutY="72.0" prefHeight="35.0" prefWidth="270.0">
+            <TextField fx:id="lastNameTextField" layoutX="140.0" layoutY="72.0" prefHeight="35.0" prefWidth="270.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="streetTextField" layoutX="138.0" layoutY="132.0" prefHeight="35.0" prefWidth="270.0">
+            <TextField fx:id="streetTextField" layoutX="140.0" layoutY="132.0" prefHeight="35.0" prefWidth="270.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField layoutX="138.0" layoutY="297.0" prefHeight="35.0" prefWidth="270.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <Button id="addguest" layoutX="343.0" layoutY="403.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="29.0" prefWidth="84.0" stylesheets="@css/styles.css" text="Save Guest" textFill="WHITE">
+            <Button id="addguest" layoutX="330.0" layoutY="322.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="29.0" prefWidth="84.0" stylesheets="@css/styles.css" text="Save Guest" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -155,22 +150,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="26.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail-adress">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <TextField layoutX="147.0" layoutY="352.0" prefHeight="35.0" prefWidth="270.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <Text layoutX="64.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel.Nr.">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <TextField fx:id="numberTextField" layoutX="138.0" layoutY="186.0" prefHeight="35.0" prefWidth="57.0">
+            <TextField fx:id="numberTextField" layoutX="140.0" layoutY="186.0" prefHeight="35.0" prefWidth="89.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -180,12 +160,12 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="228.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zip" wrappingWidth="65.59999999999991">
+            <Text layoutX="255.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zip" wrappingWidth="31.46669921874991">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="zipTextField" layoutX="282.0" layoutY="186.0" prefHeight="35.0" prefWidth="57.0">
+            <TextField fx:id="zipTextField" layoutX="309.0" layoutY="186.0" prefHeight="35.0" prefWidth="99.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -195,17 +175,17 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="214.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" wrappingWidth="65.59999999999991">
+            <Text layoutX="239.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" wrappingWidth="65.59999999999991">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="cityTextField" layoutX="118.0" layoutY="237.0" prefHeight="35.0" prefWidth="76.0">
+            <TextField fx:id="cityTextField" layoutX="140.0" layoutY="237.0" prefHeight="35.0" prefWidth="90.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="countryTextField" layoutX="294.0" layoutY="242.0" prefHeight="35.0" prefWidth="118.0">
+            <TextField fx:id="countryTextField" layoutX="311.0" layoutY="242.0" prefHeight="35.0" prefWidth="101.0">
                <font>
                   <Font size="14.0" />
                </font>

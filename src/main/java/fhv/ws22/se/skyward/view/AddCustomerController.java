@@ -3,6 +3,8 @@ package fhv.ws22.se.skyward.view;
 import fhv.ws22.se.skyward.domain.dtos.AddressDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,6 +22,9 @@ public class AddCustomerController extends AbstractController {
     private TextField streetTextField;
 
     @FXML
+    private TextField numberTextField;
+
+    @FXML
     private TextField zipTextField;
 
     @FXML
@@ -29,51 +34,68 @@ public class AddCustomerController extends AbstractController {
     private TextField countryTextField;
 
     @FXML
-    private TextField numberTextField;
-
-    @FXML
     private void initialize() {
+
+        zipTextField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!zipTextField.getText().matches("^[0-9]{4,5}(?:-[0-9]{1,4})?$")) {
+                    zipTextField.setText("");
+                }
+            }
+        });
+
+        numberTextField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!numberTextField.getText().matches("^\\d+(\\s|-)?\\w*$")) {
+                    numberTextField.setText("");
+                }
+            }
+        });
     }
 
     @FXML
     public void onConfirmButtonClick(ActionEvent event) {
-        String regex = "^[0-9]{4,5}(?:-[0-9]{1,4})?$";
-
         tmpBooking = session.getTmpBooking();
 
         if (firstNameTextField.getText().isEmpty()) {
             firstNameTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            NotificationUtil.getInstance().showErrorNotification("Wrong input at firstname field", event);
             return;
         }
         if (lastNameTextField.getText().isEmpty()) {
             lastNameTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            NotificationUtil.getInstance().showErrorNotification("Wrong input at lastname field", event);
             return;
         }
         if (streetTextField.getText().isEmpty()) {
             streetTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            NotificationUtil.getInstance().showErrorNotification("Wrong input at street field", event);
             return;
         }
         if (zipTextField.getText().isEmpty()) {
             zipTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            NotificationUtil.getInstance().showErrorNotification("Wrong input at zip field", event);
             return;
         }
         if (countryTextField.getText().isEmpty()) {
             countryTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            NotificationUtil.getInstance().showErrorNotification("Wrong input at country field", event);
             return;
         }
         if (numberTextField.getText().isEmpty()) {
             numberTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            NotificationUtil.getInstance().showErrorNotification("Wrong input at numbers field", event);
             return;
         }
         if (cityTextField.getText().isEmpty()) {
             cityTextField.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
+            NotificationUtil.getInstance().showErrorNotification("Wrong input at city field", event);
             return;
         }
 
         CustomerDto customerDto = new CustomerDto(firstNameTextField.getText(), lastNameTextField.getText(),
                 new AddressDto(streetTextField.getText(), Integer.parseInt(numberTextField.getText()), Integer.parseInt(zipTextField.getText()),
                         cityTextField.getText(), countryTextField.getText()));
-
 
         try {
             session.add(customerDto);
