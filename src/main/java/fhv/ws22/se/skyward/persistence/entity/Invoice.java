@@ -22,7 +22,7 @@ public class Invoice extends AbstractEntity {
     @JoinColumn(name = "customers")
     private Booking booking;
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "billed_customer_id")
     private Customer billedCustomer;
 
     public Invoice() {
