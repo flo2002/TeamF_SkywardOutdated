@@ -1,10 +1,6 @@
 package fhv.ws22.se.skyward.view;
 
-import fhv.ws22.se.skyward.domain.dtos.AddressDto;
 import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
-
-import fhv.ws22.se.skyward.domain.dtos.RoomDto;
-import fhv.ws22.se.skyward.view.util.ControllerNavigationUtil;
 import fhv.ws22.se.skyward.view.util.NotificationUtil;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
@@ -61,10 +57,10 @@ public class SearchCustomerController extends AbstractController {
         });
 
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateTable(newValue);
+            updateData(newValue);
         });
 
-        updateTable("");
+        updateData("");
 
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
@@ -87,7 +83,7 @@ public class SearchCustomerController extends AbstractController {
     }
 
 
-    public void updateTable(String filter) {
+    public void updateData(String filter) {
         customerTable.getItems().clear();
         List<CustomerDto> customers = session.getAll(CustomerDto.class);
         List<CustomerDto> filteredCustomers = new ArrayList<CustomerDto>();
@@ -100,6 +96,5 @@ public class SearchCustomerController extends AbstractController {
             }
         }
         customerTable.getItems().addAll(filteredCustomers);
-
     }
 }

@@ -46,6 +46,7 @@ public class AddRoomController extends AbstractController {
         List<RoomDto> selectedRooms = tmpBooking.getRooms();
 
         roomNumberCol.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        roomNumberCol.setSortType(TableColumn.SortType.ASCENDING);
         roomTypeNameCol.setCellValueFactory(new PropertyValueFactory<>("roomTypeName"));
         roomStateNameCol.setCellValueFactory(new PropertyValueFactory<>("roomStateName"));
         checkboxCol.setCellValueFactory(entry -> {
@@ -146,6 +147,7 @@ public class AddRoomController extends AbstractController {
 
         roomTable.getItems().clear();
         roomTable.getItems().addAll(rooms);
+        roomTable.getSortOrder().add(roomNumberCol);
 
         bNrPlaceholder.setText(tmpBooking.getBookingNumber().toString());
     }
