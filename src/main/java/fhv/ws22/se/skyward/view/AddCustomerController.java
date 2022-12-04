@@ -47,6 +47,6 @@ public class AddCustomerController extends AbstractController {
     }
 
     public void backButtonClick(Event event) {
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/search-customer.fxml", "Search");
     }
 }
