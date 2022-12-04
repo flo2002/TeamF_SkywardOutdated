@@ -29,37 +29,39 @@ public class SearchCustomerController extends AbstractController {
     private TableColumn<CustomerDto, CheckBox> checkboxCol;
 
     @FXML
-    private TableColumn<CustomerDto, String> adressCol;
+    private TableColumn<CustomerDto, String> addressCol;
     @FXML
     public Label bNrPlaceholder;
 
     @FXML
     protected void initialize() {
         tmpBooking = session.getTmpBooking();
-        List<CustomerDto> selectedCustomer = new ArrayList<>();
+        List<CustomerDto> selectedCustomer = tmpBooking.getCustomers();
 
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        adressCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getAddress().getStreet() + " " + entry.getValue().getAddress().getHouseNumber()));
-
-        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateTable(newValue);
-        });
-
+        addressCol.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getAddress().getStreet() + " " + entry.getValue().getAddress().getHouseNumber()));
         checkboxCol.setCellValueFactory(entry -> {
             CheckBox checkBox = new CheckBox();
 
             for (CustomerDto customer : tmpBooking.getCustomers()) {
                 if (customer.getId() == entry.getValue().getId()) {
-                    checkBox.setSelected(false);
+                    checkBox.setSelected(true);
                 }
             }
 
             checkBox.setOnAction(event -> {
-                selectedCustomer.add(entry.getValue());
+                selectedCustomer.removeIf(customer -> customer.getId() == entry.getValue().getId());
+                if (checkBox.isSelected()) {
+                    selectedCustomer.add(entry.getValue());
+                }
                 tmpBooking.setCustomers(selectedCustomer);
             });
             return new SimpleObjectProperty<>(checkBox);
+        });
+
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateTable(newValue);
         });
 
         updateTable("");

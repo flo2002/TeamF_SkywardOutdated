@@ -122,7 +122,7 @@
                   <TableColumn fx:id="checkboxCol" prefWidth="62.933349609375" text="Selected" />
                 <TableColumn fx:id="firstNameCol" prefWidth="200.53335571289062" text="Firstname" />
                 <TableColumn fx:id="lastNameCol" prefWidth="245.066650390625" text="Lastname" />
-                  <TableColumn fx:id="adressCol" prefWidth="331.73345947265625" text="Adress" />
+                  <TableColumn fx:id="addressCol" prefWidth="331.73345947265625" text="Address" />
               </columns>
             </TableView>
          </children>

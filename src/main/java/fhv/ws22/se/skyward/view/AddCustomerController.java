@@ -35,7 +35,6 @@ public class AddCustomerController extends AbstractController {
 
     @FXML
     private void initialize() {
-
         zipTextField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             if (!newValue) {
                 if (!zipTextField.getText().matches("^[0-9]{4,5}(?:-[0-9]{1,4})?$")) {
