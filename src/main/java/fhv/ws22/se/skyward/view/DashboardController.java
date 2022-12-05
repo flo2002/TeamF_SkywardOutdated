@@ -84,6 +84,11 @@ public class DashboardController extends AbstractController {
         updateData("");
     }
 
+    public void onCreateBookingButtonClick(Event event) {
+        session.resetTmpBooking();
+        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
+    }
+
     public void updateData(String filter) {
         arrivalTable.getItems().clear();
         List<BookingDto> arrivalTempBookings = session.getAll(BookingDto.class);
@@ -97,7 +102,7 @@ public class DashboardController extends AbstractController {
             }
         }
         if (filter != null && !filter.isEmpty()) {
-            arrivalTempBookings.removeIf(bookingDto -> bookingDto.getCustomers().stream().noneMatch(customerDto -> {
+            arrivalBookings.removeIf(booking -> booking.getCustomers().stream().noneMatch(customerDto -> {
                 return customerDto.getFirstName().toLowerCase().contains(filter.toLowerCase()) || customerDto.getLastName().toLowerCase().contains(filter.toLowerCase());
             }));
         }
@@ -107,7 +112,6 @@ public class DashboardController extends AbstractController {
         departureTable.getItems().clear();
         List<BookingDto> departureTempBookings = session.getAll(BookingDto.class);
         List<BookingDto> departureBookings = new ArrayList<>();
-
         for (BookingDto departureTempBooking : departureTempBookings) {
             if (departureTempBooking.getCheckOutDateTime() != null) {
                 if (departureTempBooking.getCheckOutDateTime().getDayOfYear() == LocalDateTime.now().getDayOfYear() &&
@@ -123,10 +127,5 @@ public class DashboardController extends AbstractController {
         }
         departureTable.getItems().addAll(departureBookings);
         departureTable.getSortOrder().setAll(departureCheckOutDateTimeCol);
-    }
-
-    public void onCreateBookingButtonClick(Event event) {
-        session.resetTmpBooking();
-        controllerNavigationUtil.navigate(event, "src/main/resources/fhv/ws22/se/skyward/bookings.fxml", "Booking");
     }
 }
