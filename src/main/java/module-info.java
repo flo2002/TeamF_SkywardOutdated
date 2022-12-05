@@ -7,6 +7,7 @@ module fhv.ws22.se.skyward {
     requires org.apache.logging.log4j;
     requires modelmapper;
     requires com.google.guice;
+    requires jakarta.servlet;
 
 
     exports fhv.ws22.se.skyward;
