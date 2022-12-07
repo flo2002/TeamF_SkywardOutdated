@@ -9,7 +9,7 @@
 <body>
 
 <h1>Reservation Form</h1>
-<form class="form" action="./servlet" method="get">
+<form class="form" action="./controller" method="get">
     <label for="check-in-date">Check-In Date:</label>
     <input type="date" id="check-in-date" name="check-in-date">
     <label for="check-out-date">Check-Out Date:</label>
@@ -30,8 +30,6 @@
     <input type="tel" id="phone" name="phone">
     <button type="submit" action="./servlet">Confirm</button>
 </form>
-<h1><%= "Hello World!" %></h1><br>
-<a href=main-servlet>main-servlet</a>
 
 </body>
 </html>

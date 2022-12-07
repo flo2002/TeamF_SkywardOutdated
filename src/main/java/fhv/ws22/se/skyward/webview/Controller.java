@@ -1,5 +1,12 @@
-package fhv.ws22.se.skyward.web;
+package fhv.ws22.se.skyward.webview;
 
+import com.google.inject.Inject;
+import fhv.ws22.se.skyward.domain.Session;
+import fhv.ws22.se.skyward.domain.SessionFactory;
+import fhv.ws22.se.skyward.domain.dtos.BookingDto;
+import fhv.ws22.se.skyward.domain.dtos.CustomerDto;
+import fhv.ws22.se.skyward.domain.dtos.RoomDto;
+import fhv.ws22.se.skyward.persistence.entity.Customer;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,14 +14,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.*;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-@WebServlet(urlPatterns = {"/servlet"})
-public class Servlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/controller"})
+public class Controller extends HttpServlet {
+
+    private Session session;
+
+    public void init() {
+        session = SessionFactory.getInstance().getSession(new BigInteger("2"));
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter pw = response.getWriter();
-        //
+
         response.setContentType("text/html");
 
         String checkIn = request.getParameter("check-in-date");
@@ -48,11 +64,18 @@ public class Servlet extends HttpServlet {
             pw.println("<td>"+ phone + "</td>");
             pw.println("</tr>");
 
+            BookingDto booking = new BookingDto();
+            CustomerDto customer = new CustomerDto();
+            //booking.setCheckInDateTime(new LocalDateTime(new LocalDate(checkIn)));
+            session.add(booking);
+            customer.setFirstName("Florian");
+            customer.setLastName("Schiemer");
+            session.add(customer);
+
         pw.println("</div>");
         pw.println("</div>");
 
 
-        // Do something with the date, room, and guest information...
     }
 
 }
