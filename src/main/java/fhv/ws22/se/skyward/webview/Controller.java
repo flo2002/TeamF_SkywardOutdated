@@ -38,6 +38,11 @@ public class Controller extends HttpServlet {
         String room = request.getParameter("room-type");
         String fName = request.getParameter("first-name");
         String lName = request.getParameter("last-name");
+        String street = request.getParameter("street");
+        String number = request.getParameter("number");
+        String zip = request.getParameter("zip");
+        String city = request.getParameter("city");
+        String country = request.getParameter("country");
 
         pw.println("<link rel=\"stylesheet\" href=\"stylesheet.css\" type=\"text/css\" media=\"all\">");
         pw.println("<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">\n");
@@ -46,9 +51,6 @@ public class Controller extends HttpServlet {
         pw.println("<table class=\"table\" border='1'>");
         pw.println(" <thead>\n" +
                 "    <tr>\n" +
-                "      <th scope=\"col\">Username</th>\n" +
-                "      <th scope=\"col\">Email</th>\n" +
-                "      <th scope=\"col\">Message</th>\n" +
                 "    </tr>\n" +
                 "  </thead>");
 
@@ -58,6 +60,11 @@ public class Controller extends HttpServlet {
             pw.println("<td>"+ room + "</td>");
             pw.println("<td>"+ fName + "</td>");
             pw.println("<td>"+ lName + "</td>");
+            pw.println("<td>"+ street + "</td>");
+            pw.println("<td>"+ number + "</td>");
+            pw.println("<td>"+ zip + "</td>");
+            pw.println("<td>"+ city + "</td>");
+            pw.println("<td>"+ country + "</td>");
             pw.println("</tr>");
 
             BookingDto booking = new BookingDto();
